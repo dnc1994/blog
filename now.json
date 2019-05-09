@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "name": "blog",
+  "alias": "linghao.io",
+  "builds": [
+    { "src": "package.json", "use": "@now/static-build" }
+  ],
+  "routes": [
+    { "src": "/about", "dest": "/" },
+    { "src": "/static/.*", "headers": { "cache-control": "public, max-age=31536000, immutable" } }
+  ]
+}
