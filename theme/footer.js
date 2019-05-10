@@ -1,7 +1,7 @@
 const YEAR = (new Date).getFullYear()
 
 export default () => <footer>
-  <abbr title='This site and all its content are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.'>CC BY-NC-SA 4.0</abbr> © 2018 - 2019 ❤️ Linghao Zhang.
+  <abbr title='This site and all its content are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.'>CC BY-NC-SA 4.0</abbr> © 2018 — 2019 ❤️ Linghao Zhang
   <style jsx>{`
     footer {
       margin-bottom: 2rem;
