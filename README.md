@@ -1,6 +1,6 @@
-# Shu’s Website
+# Linghao's website
 
-[shud.in](https://shud.in)
+[linghao.io](https://linghao.io)
 
 ## Development
 - Install `yarn` from [yarnpkg.org](https://yarnpkg.org)
@@ -13,5 +13,6 @@ Powered by **Next.js**, **MDX** and **▲ ZEIT Now**.
 
 ---
 
+This is a shameless copy from [Shu's website](https://github.com/quietshu/blog).
 Website code open sourced under MIT.  
-Blog posts / artworks under CC BY-NC 4.0.
+Site content under CC BY-NC-SA 4.0.
