@@ -6,8 +6,7 @@ import theme from '../theme'
 export default meta => ({ children }) => <MDXProvider components={theme.components}><>
   <Head>
     <title>{meta.title}</title>
-    <meta property="og:description" 
-    content={meta.description} />
+    <meta property="og:description" content={meta.description} />
   </Head>
   <theme.Container itemScope itemType='http://schema.org/blogPost'>
     <theme.components.h1 itemType='headline'>{meta.title}</theme.components.h1>
