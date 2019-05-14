@@ -1,7 +1,8 @@
 export default ({ children, ...props }) => (
   <div {...props}>
     {children}
-    <script dangerouslySetInnerHTML={{ __html: "<script async src='https://www.googletagmanager.com/gtag/js?id=UA-121702790-3'></script><script>window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-121702790-3');</script>" }} />
+    <script async src='https://www.googletagmanager.com/gtag/js?id=UA-121702790-3'/>
+    <script dangerouslySetInnerHTML={{ __html: "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'UA-121702790-3');" }} />
     <style jsx>{`
       div {
         margin: auto;
