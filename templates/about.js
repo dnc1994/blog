@@ -6,6 +6,7 @@ import theme from '../theme'
 export default meta => ({ children }) => <MDXProvider components={theme.components}><>
   <Head>
     <title>Linghao's Blog | {meta.title}</title>
+    <meta property="og:description" content={meta.description} />
   </Head>
   <theme.Container>
     <theme.components.h1>Linghao Zhang</theme.components.h1>
