@@ -7,6 +7,9 @@ export default meta => ({ children }) => <MDXProvider components={theme.componen
   <Head>
     <title>Linghao's Blog | {meta.title}</title>
     <meta property="og:description" content={meta.description} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Linghao Zhang" />
+    <meta name="twitter:description" content={meta.description} />    
   </Head>
   <theme.Container>
     <theme.components.h1>Linghao Zhang</theme.components.h1>
