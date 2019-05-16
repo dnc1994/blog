@@ -6,7 +6,6 @@ import theme from '../theme'
 export default meta => ({ children }) => <MDXProvider components={theme.components}><>
   <Head>
     <title>{meta.title}</title>
-    <meta property="og:site_name" content="Linghao's Blog" />
     <meta property="og:description" content={meta.description} />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={meta.title} />
