@@ -17,12 +17,19 @@ export default ({ children, meta = {} }) => (
       div.lang-zh :global(li) {
         text-align: justify;
         text-justify: auto;
-        hanging-punctuation: first allow-end;
       }
       div.lang-zh :global(em) {
         text-emphasis: filled dot;
         text-emphasis-position: under;
         font-style: inherit;
+      } 
+
+      div :global(li > p) {
+        margin-top: 0;
+      }
+
+      div :global(li) {
+        line-height: 1.7;
       }
       
       // :global(:target) {
