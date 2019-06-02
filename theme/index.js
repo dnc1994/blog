@@ -10,6 +10,7 @@ import Footer from './footer'
 import Nav from './nav'
 
 import Mailchimp from './mailchimp'
+import Disqus from './disqus'
 
 import TemplateList from './template-list'
 
@@ -22,7 +23,8 @@ export default {
     ...strong
   },
   plugins: {
-    Mailchimp
+    Mailchimp,
+    Disqus
   },
   Container,
   Content,

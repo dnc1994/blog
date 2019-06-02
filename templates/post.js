@@ -32,6 +32,7 @@ export default meta => withRouter(({ children, router }) => {
       </div>
       <theme.Content meta={meta}>{children}</theme.Content>
       <theme.plugins.Mailchimp/>
+      <theme.plugins.Disqus/>
       <theme.Footer/>
     </theme.Container>
   </></MDXProvider>
