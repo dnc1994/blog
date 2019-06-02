@@ -9,6 +9,8 @@ import Content from './content'
 import Footer from './footer'
 import Nav from './nav'
 
+import Mailchimp from './mailchimp'
+
 import TemplateList from './template-list'
 
 export default {
@@ -18,6 +20,9 @@ export default {
     ...blockquote,
     ...hr,
     ...strong
+  },
+  plugins: {
+    Mailchimp
   },
   Container,
   Content,
