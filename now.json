@@ -7,8 +7,6 @@
   ],
   "routes": [
     { "src": "/about", "dest": "/" },
-    { "src": "/posts", "dest": "/blog" },
-    { "src": "/posts/", "dest": "/blog" },
     { "src": "/static/.*", "headers": { "cache-control": "public, max-age=31536000, immutable" } }
   ]
 }
