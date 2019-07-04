@@ -9,6 +9,8 @@ export default meta => withRouter(({ children, router }) => {
   return <MDXProvider components={theme.components}><>
     <Head>
       <title>{meta.title}</title>
+      <meta name="description" content={meta.description} />
+      <meta property="og:title" content={meta.title} />
       <meta property="og:description" content={meta.description} />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={meta.title} />
