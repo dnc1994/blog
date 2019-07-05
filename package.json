@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
+    "build-rss": "node rss.js",
     "start": "next start",
     "export": "next export",
-    "now-build": "next build && next export -o dist"
+    "now-build": "next build && next export -o dist && node rss.js"
   },
   "devDependencies": {
     "@mdx-js/mdx": "^0.15.0",
@@ -20,6 +21,7 @@
   "dependencies": {
     "@mdx-js/tag": "^0.15.0",
     "lightense-images": "^1.0.8",
-    "rehype-slug": "^2.0.1"
+    "rehype-slug": "^2.0.1",
+    "rss": "^1.2.2"
   }
 }
