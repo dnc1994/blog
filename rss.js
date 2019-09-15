@@ -49,7 +49,7 @@ function generate() {
   })
 
   const rss = feed.xml({ indent: true })
-  fs.writeFileSync('./dist/feed.xml', rss)
+  fs.writeFileSync('./.next/static/feed.xml', rss)
 }
 
 generate()
