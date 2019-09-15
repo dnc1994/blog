@@ -9,7 +9,7 @@
     "build-rss": "node rss.js",
     "start": "next start",
     "export": "next export",
-    "now-build": "next build && next export -o dist && node rss.js"
+    "now-build": "next build && node rss.js"
   },
   "devDependencies": {
     "@mdx-js/mdx": "^0.15.0",
