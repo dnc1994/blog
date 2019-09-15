@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/instante_42
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://linghao.io
+  * I am instante_42 (https://keybase.io/instante_42) on keybase.
+  * I have a public key ASAIEAgOJDoZ-ErBaLMjSECfksJBeSn1q80RR4xmBN-efwo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0120c12485b60f277f88eea384c0cfcfe4ab84ac1c3b9916952778e3b3d6a4b413170a",
+      "host": "keybase.io",
+      "kid": "01200810080e243a19f84ac168b32348409f92c2417929f5abcd11478c6604df9e7f0a",
+      "uid": "9008687be63f426d7be9e305445b5719",
+      "username": "instante_42"
+    },
+    "merkle_root": {
+      "ctime": 1568520753,
+      "hash": "66aacd95db2dc7318a1db532254cf7e88ae5dedefed9143970ea9ddc12afe724717eb5ed87490d9c9b968780d2f66e1323dff05887b0a9f79c00e159c115b182",
+      "hash_meta": "f6ee8d2de66eef9165e32de056642f89faf474de2b21a4d332e62413c87df7ce",
+      "seqno": 7367834
+    },
+    "service": {
+      "entropy": "eaZ/rYmsHX9naM7PYA9yPrhs",
+      "hostname": "linghao.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "4.4.1"
+  },
+  "ctime": 1568520762,
+  "expire_in": 504576000,
+  "prev": "0945d15dfea496046c350e6c9a7d82edb51ec9fa9ba1fe8c1f17131764c2c488",
+  "seqno": 31,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgCBAIDiQ6GfhKwWizI0hAn5LCQXkp9avNEUeMZgTfnn8Kp3BheWxvYWTESpcCH8QgCUXRXf6klgRsNQ5smn2C7bUeyfqbof6MHxcTF2TCxIjEIEedHxtZpnTKFcFDNlswKuWwXW983/Q8892VlsrUa00NAgHCo3NpZ8RAYK4YdcdEEbwdRZk3E1aNtrZPeqKe7vtpJE+SVTYbYx4dp9+IQdizc9FXGIlx+V/dkxbT/5mJhoPapQuBsZavCqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIKOT6TrKT63WwnBcKU+P5zRfxgB60zA60du8dfxso/kJo3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/instante_42
+
+==================================================================
