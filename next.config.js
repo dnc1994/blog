@@ -7,5 +7,9 @@ module.exports = require('@zeit/next-mdx')({
     ]
   }
 })({
-  pageExtensions: ['jsx', 'js', 'md', 'mdx']
+  target: 'serverless',
+  pageExtensions: ['jsx', 'js', 'md', 'mdx'],
+  experimental: {
+    publicDirectory: true
+  }
 })
