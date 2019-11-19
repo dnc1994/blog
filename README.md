@@ -15,6 +15,6 @@ Powered by **Next.js**, **MDX** and **▲ ZEIT Now**.
 
 ---
 
-This is a shameless copy from [Shu Ding](https://github.com/quietshu/blog).  
+This is a shameless copy from [Shu Ding](https://github.com/quietshu/blog) ([template](https://github.com/quietshu/blog-template)).  
 Website code open sourced under MIT.  
 Website content licensed under CC BY-NC-SA 4.0.
