@@ -1,24 +1,26 @@
 import post from '../../templates/post'
 
 export const meta = {
-  title: '在 Google 的这半年：如何成为更高效的软件工程师',
+  title: 'Grow @ Google 01: Noogler 成长的必经之痛',
   author: 'Linghao',
   date: '2019-05-12',
   lang: 'zh',
-  description: '要成为一个高效的工程师，在理论和实践之间还是存在着不小的距离需要我们通过学习、试错和反思去跨越的。本文将结合我在 Google 参与的第一个项目来分享一些心得和教训。'
+  description: 'Grow @ Google 是一个基于我在 Google 的经历来讨论如何成为更高效的软件工程师的系列。本期的话题包括：建立高效的反馈回路；当心不假思索便做下的假设；主导和推动你所负责的项目。'
 }
 
 export default post(meta)
 
 <!-- content start here -->
 
-入职 Google 快半年，我深切地感受到：要成为一个高效的软件工程师，在理论和实践之间还是存在着不小的距离需要我们通过学习、试错和反思去跨越的。本文将结合我在 Google 参与的第一个项目来分享一些心得和教训。
+在「大厂」工作的体验就像当一颗螺丝钉？读过很多软件工程的书却仍会犯下里面的典型错误？感到自己工作效率低下却不知如何改进？要成为一名高效的软件工程师，在理论和实践之间是存在不小的距离需要我们通过广泛学习、勇敢试错和不断反思去跨越的。在 Grow @ Google 这个系列中，我会结合自己在 Google 的工作经历来分享一些经验和教训，帮助大家少走一些弯路。系列中的其他文章请见：
+
+- [Grow @ Google 02: 「能用就行」还远远不够](/posts/grow-at-google-02)
 
 ---
 
 ## Background
 
-在这个项目中，我的主要工作是修改和运行一个 C++ pipeline 来 backfill<sup>[1](#notes)</sup> 几年的用户数据。过程如下：
+我在 Google 参与的第一个项目主要是修改和运行一个 C++ pipeline 来 backfill<sup>[1](#notes)</sup> 几年的用户数据。过程如下：
 
 1. 通过 SQL query 从不同的来源读取数据
 2. 对数据进行一系列 join 和 transformation
