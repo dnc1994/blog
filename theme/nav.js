@@ -8,9 +8,9 @@ const Item = ({ name, path, active }) => {
 }
 
 export default ({ url }) => <div className='navigation'>
-  <Item name='Blog' path='/posts' active={url === '/blog'}/>
-  <Item name='Notes' path='/notes' active={url === '/notes'}/>
-  <Item name='About' path='/' active={url === '/'}/>
+  <Item name='BLOG' path='/posts' active={url === '/posts'}/>
+  <Item name='NOTES' path='/notes' active={url === '/notes'}/>
+  <Item name='ABOUT' path='/' active={url === '/'}/>
   <style jsx>{`
     .navigation {
       display: flex;

@@ -1,4 +1,4 @@
-# Linghao's Blog
+# Synthesist in the Shell
 
 [linghao.io](https://linghao.io)
 
