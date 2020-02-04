@@ -6,6 +6,7 @@ import theme from '../theme'
 export default meta => ({ children }) => <MDXProvider components={theme.components}><>
   <Head>
     <title>Synthesist in the Shell</title>
+    <meta property="og:title" content="Synthesist in the Shell | Blog by Linghao Zhang" />
     <meta property="og:description" content={meta.description} />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="Synthesist in the Shell | Blog by Linghao Zhang" />
