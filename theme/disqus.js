@@ -1,4 +1,15 @@
+import { useEffect } from 'react'
+
 export default function Disqus () {
+  useEffect(() => {
+    try {
+      // load disqus when the component is mounted
+      window['DISQUS'].host._loadEmbed()
+    } catch (err) {
+      // ignore
+    }
+  }, [])
+
   return <>
     <div id="disqus_thread" style={{
       marginBottom: 100
