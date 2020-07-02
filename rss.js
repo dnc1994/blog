@@ -4,7 +4,7 @@ const path = require('path')
 
 function generate() {
   const feed = new RSS({
-    title: 'Linghao’s Blog',
+    title: 'Synthesist in the Shell | Blog by Linghao',
     site_url: 'https://linghao.io',
     feed_url: 'https://linghao.io/feed.xml'
   })
