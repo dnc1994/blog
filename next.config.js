@@ -8,14 +8,4 @@ module.exports = require('@zeit/next-mdx')({
   }
 })({
   pageExtensions: ['jsx', 'js', 'md', 'mdx'],
-  experimental: {
-    rewrites() {
-      return [
-        {
-          source: '/feed.xml',
-          destination: '/_next/static/feed.xml'
-        }
-      ];
-    }
-  }
 })
