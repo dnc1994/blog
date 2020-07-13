@@ -20,7 +20,7 @@ export default meta => withRouter(({ children, router }) => {
       <theme.components.h1 itemType='headline'>{meta.title}</theme.components.h1>
       <div className='navigation'>
         <div className='meta'><span rel='author' itemType='author'>{meta.author}</span>, <time itemType='datePublished'>{meta.date}</time></div>
-        <div className='back'><theme.components.a href={rootPath}>back</theme.components.a></div>
+        <div className='back'><theme.components.a href={rootPath}>BACK</theme.components.a></div>
         <style jsx>{`
           .navigation {
             display: flex;

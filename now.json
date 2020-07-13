@@ -5,8 +5,16 @@
   "builds": [
     { "src": "package.json", "use": "@now/next@canary" }
   ],
-  "routes": [
-    { "src": "/about", "dest": "/" },
-    { "src": "/static/.*", "headers": { "cache-control": "public, max-age=31536000, immutable" } }
+  "headers": [
+    {
+      "source": "/static",
+      "headers": [
+        { "key": "cache-control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/about", "destination": "/" },
+    { "source": "/posts/noogler-learning-effective-engineer", "destination": "/posts/grow-at-google-01" }
   ]
 }
