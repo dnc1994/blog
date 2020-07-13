@@ -10,7 +10,7 @@ const A = ({ children, href, prefetch, ...props }) => {
   }
 
   if (external) {
-    return  <a target={external ? '_blank' : null} {...props}>
+    return  <a href={href} target="_blank" {...props}>
         {children}
         <style jsx>{`
           color: ${colors.main};
