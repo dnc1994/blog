@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "name": "blog",
   "alias": "linghao.io",
   "builds": [
     { "src": "package.json", "use": "@now/next@canary" }
