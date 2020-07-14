@@ -14,6 +14,7 @@
   ],
   "rewrites": [
     { "source": "/about", "destination": "/" },
-    { "source": "/posts/noogler-learning-effective-engineer", "destination": "/posts/grow-at-google-01" }
+    { "source": "/posts/noogler-learning-effective-engineer", "destination": "/posts/grow-at-google-01" },
+    { "source": "/posts/noogler-learning-effective-engineer/", "destination": "/posts/grow-at-google-01" }
   ]
 }
