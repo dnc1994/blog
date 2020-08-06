@@ -5,7 +5,7 @@ export const meta = {
   author: 'Linghao Zhang',
   date: '2020-08-02',
   lang: 'zh',
-  description: 'A Philosophy of Software Design is a short yet to-the-point book on high level ideas on how to design a software system with less complexity. This note mostly consists of quote-worthy excerpts from the book and aims to serve as a verbose version of the book\'s table of contents.'
+  description: 'A Philosophy of Software Design is a short yet to-the-point book on high level ideas about how to design a software system with less complexity. This note mostly consists of quote-worthy excerpts from the book and aims to serve as a verbose version of the book\'s table of contents.'
 }
 
 export default post(meta)
@@ -92,7 +92,7 @@ Information hiding can often be improved by making a class slightly larger.
 
 **Overexposure (red flag)**: if the API for a commonly used feature forces users to learn about other features that are rarely used, this increases the cognitive load on users who don't need the rarely used features.
 
-## Ch6 General-Purpose Modules are Deeper
+## Ch6: General-Purpose Modules are Deeper
 
 The sweet spot: make classes **somewhat general-purpose** -- the module's functionality should reflect your current needs, but its interface should not. Instead, the interface should be general enough to support multiple uses.
 
