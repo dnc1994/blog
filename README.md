@@ -10,11 +10,11 @@
 
 ## ▲ Deployment
 
-Every single push to master gets deployed to the **[Now](https://zeit.co/now)** Cloud automatically.  
-Powered by **Next.js**, **MDX** and **▲ ZEIT Now**.
+Every single push to master gets deployed to the **[Vercel](https://vercel.com)** Cloud automatically.  
+Powered by **Next.js**, **MDX** and **▲ Vercel**.
 
 ---
 
-This is a shameless copy from [Shu Ding](https://github.com/quietshu/blog) ([template](https://github.com/quietshu/blog-template)).  
+This is a shameless copy from [Shu Ding](https://github.com/shuding/blog) ([template](https://github.com/shuding/blog-template)).  
 Website code open sourced under MIT.  
 Website content licensed under CC BY-NC-SA 4.0.
