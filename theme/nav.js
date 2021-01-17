@@ -10,7 +10,10 @@ const Item = ({ name, path, active }) => {
 export default ({ url }) => <div className='navigation'>
   <Item name='BLOG' path='/posts' active={url === '/posts'}/>
   <Item name='NOTES' path='/notes' active={url === '/notes'}/>
+  {/*<Item name='TAGS' path='/tags' active={url === '/tags'}/>*/}
   <Item name='ABOUT' path='/' active={url === '/'}/>
+  {/*<a className='webring' href='https://webring.xxiivv.com/#random' target='_blank'><img src='https://webring.xxiivv.com/icon.black.svg'/></a>*/}
+
   <style jsx>{`
     .navigation {
       display: flex;
@@ -23,6 +26,10 @@ export default ({ url }) => <div className='navigation'>
     }
     .navigation :global(a), .navigation :global(span) {
       margin: 0 .5rem;
+    }
+    .webring: {
+      line-height: 1
+      display: inline-block
     }
   `}</style>
 </div>
