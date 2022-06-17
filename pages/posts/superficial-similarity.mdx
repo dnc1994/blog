@@ -1,0 +1,23 @@
+import post from '../../templates/post'
+
+export const meta = {
+  title: 'Superficial Similarity',
+  author: 'Linghao Zhang',
+  date: '2022-06-16',
+  lang: 'en',
+  description: 'We all know it pays to be aware of biases, but sometimes we just couldn\'t help it.'
+}
+
+export default post(meta)
+
+<!-- content start here -->
+
+I've been working on a migration for about 5 months. Things were going well, until we are now left with two remaining pieces which turn out to be rather challenging. Then everybody involved with the project had the same epiphany: we could have taken a different approach which makes solving the two pieces trivial.
+
+Why didn't we think of that in the first place? Because we didn't write a design document. We executed a very similar migration a year ago and everybody agreed we'd just follow the same path. One colleague actually thought of the alternative approach but dismissed it based on an incorrect assumption which could have been easily verified under 5 minutes. Had we gone through a proper design and review process, we very likely could have avoided not choosing the better approach.
+
+The exact same thing happened during my first project at Google. I was working on yet another migration where somebody else had written the design but didn't capture the most challenging aspect of the project due to its superficial similarity with previously executed migrations. I even wrote a [blog post](https://linghao.io/posts/grow-at-google-01#beware-of-superficial-similarity) about the danger of being blinded by superficial similarities.
+
+Recently, I've been reading *[Staff Engineer](https://staffeng.com/book)* by Will Larson. In one chapter he gave a few rules of thumb on deciding whether you need a design document or not. One of them is to require a design if the project takes more than one month of engineering time. Did I think the migration I'm working on would take more than one month? Absolutely. Even the previous migration which we all thought to be so similar took more than 6 months. Still, even if I had been dogmatically following Will's rule, I probably would still make the mistake because I was so blinded by the superficial similarity.
+
+All rules have exceptions. All theroies only work within a certain context. However, next time, maybe we'll benefit more from consisently adhering to rules that have stood the test of time instead of convincing ourselves that "this is the time to make an exception".
