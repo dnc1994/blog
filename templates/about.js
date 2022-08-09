@@ -5,7 +5,7 @@ import theme from '../theme'
 
 export default meta => ({ children }) => <MDXProvider components={theme.components}><>
   <Head>
-    <title>Synthesist in the Shell</title>
+    <title>{meta.title}</title>
     <meta name="description" content={meta.description} />
     <meta property="og:title" content={meta.title} />
     <meta property="og:description" content={meta.description} />
