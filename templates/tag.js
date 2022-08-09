@@ -14,7 +14,7 @@ export default meta => withRouter(({ children, router }) => {
     <theme.components.h1>{meta.title}</theme.components.h1>
     <div className='navigation'>
       <div className='meta'></div> {/* No author/date info */}
-      <div className='back'><theme.components.a href={rootPath ? rootPath : "/"}>ALL TAGS</theme.components.a></div>
+      <div className='back'><theme.components.a href={rootPath ? rootPath : "/"}>BACK</theme.components.a></div>
     </div>
     <theme.Content>{children}</theme.Content>
     <theme.Footer/>
