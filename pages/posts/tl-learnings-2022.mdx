@@ -23,7 +23,7 @@ Design discussions take many forms, from formal engineering design reviews to in
 I've found that the most effective angle is to focus on reducing the project's overall risk. Think about the following during design reviews:
 - Is the project's scope clearly defined? Are all the non-goals called out?
 - Is the design making any assumptions that are not explicitly called out? Are we able to back up all the assumptions with solid evidence?
-- Is the ideal long term solution the same as the recomended solution? If not, is the rationale well explained? Is there a plan to move to the ideal solution?
+- Is the ideal long term solution the same as the recommended solution? If not, is the rationale well explained? Is there a plan to move to the ideal solution?
 - Are there options not considered?
 - What's the riskiest part of each option? What are the unknown unknowns? Can we de-risk them with prototyping / experiments?
 - Are there any vague descriptions in areas that you believe to be critical?
@@ -37,9 +37,9 @@ Similarly, when doing code reviews, focus on what reduces the risk / cost of fut
 - Is the code relying on any assumptions without verifying them?
 - Are we in a performance critical section of the code? If not, should we prioritize readability instead?
 
-The cool thing about internalize these is that all of them apply to your own projects as well.
+The cool thing about internalizing these is that all of them apply to your own projects as well.
 
-One thing I've seen junior engineers struggle with in particular is to structure their design doc. A useful tip is to have a high level overview upfront, and break down the design into a series of critical design decisions. The design doc should then be structured around those, e.g. each critical design decison would make a separate section.
+One thing I've seen junior engineers struggle with in particular is to structure their design doc. A useful tip is to have a high level overview upfront, and break down the design into a series of critical design decisions. The design doc should then be structured around those, e.g. each critical design decision would make a separate section.
 
 ## Lead by example
 
@@ -47,19 +47,19 @@ It's relatively easy to lead a team of ramped-up junior engineers to implement t
 
 If you are their manager, you'd probably have more than a few tricks in your pocket for this. But as a TL, I found leading by example to be the most effective approach.
 
-Set an example with your own projects. Design and implement something that adheres to a high quality standard. Then put cherries on top by building monitoring graphs, setting up alerts, adding tests, writing documentation, etc. Your junior teammates will see it's not that hard to do all this. And they will start mimicing your behavior in their own projects.
+Set an example with your own projects. Design and implement something that adheres to a high quality standard. Then put cherries on top by building monitoring graphs, setting up alerts, adding tests, writing documentation, etc. Your junior teammates will see it's not that hard to do all this. And they will start mimicking your behavior in their own projects.
 
-In addition, usually there are some parts of the system that are not owned by anyone. It pays to do some of the above in those parts (a TL probably ends up doing those anyway if nobody else does it). If you're seen personally doing something you've been encouraing others to do, it's much more likely they will agree it's worth their time too.
+In addition, usually there are some parts of the system that are not owned by anyone. It pays to do some of the above in those parts (a TL probably ends up doing those anyway if nobody else does it). If you're seen personally doing something you've been encouraging others to do, it's much more likely they will agree it's worth their time too.
 
 ## Create space for others
 
-In most companies, being a TL means you need to delegate some of the work to others. For some, if not most, folks, this proves to be the most diffuclt aspect of transitioning from an individual contributor into a leadership role. But as a leader, it's crucial to create space for others to succeed.
+In most companies, being a TL means you need to delegate some of the work to others. For some, if not most, folks, this proves to be the most difficult aspect of transitioning from an individual contributor into a leadership role. But as a leader, it's crucial to create space for others to succeed.
 
 For a given task, you probably can do it faster and better than your junior teammates. After all, that's probably why you were promoted in the first place. But now you need to learn to let it go and try not to want to do everything yourself.
 
 As a TL, you should still actively look out for what to do. And you can write design proposals if you want (and you probably should). But then you would want to think about whether there is someone on the team who will benefit more from doing the task than you. If so, give it to them, and accept that they might do a slower and/or worse job than you.
 
-After you've delegated the task, refrain from making "style" comments on their work -- how they should approach certain aspects of the task, like how to write an email to a partner team or what graphs to use in the design doc. Everyone is different, so try to focus on the qualify of the work, instead of the "style" they finish the work with. This doesn't conflict with giving your teammates respectful feedback later on what they could do to be more effective and impactful.
+After you've delegated the task, refrain from making "style" comments on their work -- how they should approach certain aspects of the task, like how to write an email to a partner team or what graphs to use in the design doc. Everyone is different, so try to focus on the quality of the work, instead of the "style" they finish the work with. This doesn't conflict with giving your teammates respectful feedback later on what they could do to be more effective and impactful.
 
 Another practical tip for creating space for others is to consciously transition yourself into a support role. For example, in meetings, encourage others to speak more. Prefer asking questions that help guide their thinking process than making declarative comments yourself. Volunteer to take notes and follow up action items after the meeting.
 
@@ -69,7 +69,7 @@ For a TL that leads multiple projects, it's common to have to jump from project 
 
 It could feel very chaotic in the beginning. But as you gain more experience, you'll find that just like any other skill, you can become better at context switching through conscious practice. I won't go into details about how to approach this as it really depends on the individual. But for me I used to set aside one day every week to practice intentionally jumping between projects. The right habits help too. For example, if you keep good notes, it will save time whenever you have to switch.
 
-But there is also a huge downside to frequent context switching -- it creates cognitive overhead. If you do it too often, you overall productivity will suffer. For that reason, some people would prefer a working style where you only work on one thing, e.g. in any given half-day time block. While I think that approach has it merits, I prefer a more flexible approach that enables me to switch when I'm blocked: fully focus on the current thing you're doing, practice so that you can context switch to the next thing with minimal overhead, and most importantly, limit your work in progress.
+But there is also a huge downside to frequent context switching -- it creates cognitive overhead. If you do it too often, your overall productivity will suffer. For that reason, some people would prefer a working style where you only work on one thing, e.g. in any given half-day time block. While I think that approach has its merits, I prefer a more flexible approach that enables me to switch when I'm blocked: fully focus on the current thing you're doing, practice so that you can context switch to the next thing with minimal overhead, and most importantly, limit your work in progress.
 
 In short, don't keep too many ongoing projects. Early stage exploration is fine, but once the project enters implementation phase, it's essentially a liability cognitive burden wise until it's concluded. So when there are already too many open tabs, prefer spending more time on some to close them quicker than opening new ones.
 
@@ -79,16 +79,16 @@ Every engineer I know at every company is always complaining about inadequate in
 
 Much of the purpose for having internal documentation is knowledge sharing and preservation. A TL usually possesses much undocumented knowledge valuable to the entire team and beyond. And the only way to scale that knowledge is to write it down. Otherwise you'll find yourself hoping on ad-hoc calls over and over to explain the same stuff to different folks. 
 
-And I want to emphasize "everything" here. It's far too easy to not write something down because it's "too trivial" or "too fragmented". But what's trivial to you might not be trivial at all to others; knowledge about something being too fragmented might be exactly why every time someone has to waste a few hours finding relevant information. You can always restructure, rephrase, or remove documentation. The point is to have it in the first place. And it if makes things easier, you don't need to make them public from the beginning -- start with a private note if you want!
+And I want to emphasize "everything" here. It's far too easy to not write something down because it's "too trivial" or "too fragmented". But what's trivial to you might not be trivial at all to others; knowledge about something being too fragmented might be exactly why every time someone has to waste a few hours finding relevant information. You can always restructure, rephrase, or remove documentation. The point is to have it in the first place. And if it makes things easier, you don't need to make them public from the beginning -- start with a private note if you want!
 
 Finally, writing is a simple yet effective process that helps you think. Almost all of the great engineers I know, TL or not, produce great technical writings.
 
 ## Book recommendations
 
 I've found these immensely helpful as I progress my career as a software engineer:
-- [*The Effective Engineer*](https://www.effectiveengineer.com/book): Must-read for entry level engineers. Great resource for mindsets and behavioral advice that lay down a firm foundation for your career. Some content still resonate after reaching Senior roles. Check out [my notes](https://linghao.io/notes/the-effective-engineer).
+- [*The Effective Engineer*](https://www.effectiveengineer.com/book): Must-read for entry level engineers. Great resource for mindsets and behavioral advice that lay down a firm foundation for your career. Some content still resonates after reaching Senior roles. Check out [my notes](https://linghao.io/notes/the-effective-engineer).
 - [*A Philosopy of Software Design*](https://www.goodreads.com/en/book/show/39996759-a-philosophy-of-software-design): Must-read for entry level engineers. Rich with high level ideas on how to design a software system with less complexity. Check out [my notes](https://linghao.io/notes/a-philosophy-of-software-design).
-- [*Staff Engineer*](https://staffeng.com/book): A invaluable guide towards Staff+ roles where the support system fades away and you have to create your own success. Check out [my notes](https://linghao.io/notes/staff-engineer).
+- [*Staff Engineer*](https://staffeng.com/book): An invaluable guide towards Staff+ roles where the support system fades away and you have to create your own success. Check out [my notes](https://linghao.io/notes/staff-engineer).
 
 I haven't finished these but they are great as well:
 - [*The Manager's Path*](https://www.oreilly.com/library/view/the-managers-path/9781491973882/)
