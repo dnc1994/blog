@@ -10,36 +10,42 @@ const A = ({ children, href, prefetch, ...props }) => {
   }
 
   if (external) {
-    return  <a href={href} target="_blank" {...props}>
+    return (
+      <a href={href} target='_blank' {...props}>
         {children}
         <style jsx>{`
           color: ${colors.main};
           text-decoration: underline;
           text-decoration-color: transparent;
+          text-underline-position: from-font;
           cursor: pointer;
           :hover {
             text-decoration-color: currentColor;
           }
         `}</style>
       </a>
+    )
   } else {
-    return  <Link href={href} prefetch={prefetch}>
-      <a target={external ? '_blank' : null} {...props}>
-        {children}
-        <style jsx>{`
-          color: ${colors.main};
-          text-decoration: underline;
-          text-decoration-color: transparent;
-          cursor: pointer;
-          :hover {
-            text-decoration-color: currentColor;
-          }
-        `}</style>
-      </a>
-    </Link>
+    return (
+      <Link href={href} prefetch={prefetch}>
+        <a target={external ? '_blank' : null} {...props}>
+          {children}
+          <style jsx>{`
+            color: ${colors.main};
+            text-decoration: underline;
+            text-decoration-color: transparent;
+            text-underline-position: from-font;
+            cursor: pointer;
+            :hover {
+              text-decoration-color: currentColor;
+            }
+          `}</style>
+        </a>
+      </Link>
+    )
   }
 }
 
 export default {
-  a: A
+  a: A,
 }
