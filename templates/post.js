@@ -33,7 +33,6 @@ export default meta => withRouter(({ children, router }) => {
         `}</style>
       </div>
       <theme.Content meta={meta}>{children}</theme.Content>
-      <theme.plugins.Disqus/>
       <theme.Footer/>
     </theme.Container>
   </></MDXProvider>
