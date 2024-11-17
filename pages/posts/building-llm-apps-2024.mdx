@@ -1,0 +1,56 @@
+import post from '../../templates/post'
+
+export const meta = {
+  title: 'Lessons Learned Building LLM Applications',
+  author: 'Linghao Zhang',
+  date: '2024-11-16',
+  lang: 'en',
+  description: 'What I wish I knew before starting this journey. Thoughts on prompt engineering, data and evals, iteration velocity, guardrails, and product-market fit.'
+}
+
+export default post(meta)
+
+<!-- content start here -->
+
+In my last role, I spent about a year building [Conversational Analytics](https://cloud.google.com/blog/products/business-intelligence/conversational-analytics-in-looker-is-now-in-preview), an LLM-powered application that lets you ask natural language questions about your data and get insights. I've learned a few lessons along the way that I believe to be still very relevant to anybody building 2B/2C products in this space. Buckle up!
+
+## Start With Prompt Engineering and Evals
+
+Prompt engineering, typically with simple in-context learning techniques such as a handful of few-shot examples, can get you very far in a very short amount of time.
+
+Everybody on the team should do some prompt engineering. It has an incredibly low barrier to entry: Anybody from engineers to PMs and designers to executives can play with prompts against a state-of-the-art foundational model with almost 0 cost and 0 setup. It's great for exploring what can be achieved given the current model capabilities and creating demos to secure buy-in for the product vision. In a sense, it democratizes feasibility studies -- if a prompt works well for a few test cases, from that "happy path" we know that it's at least not a totally impossible idea.
+
+As you make progress, though, you likely need to move beyond simple prompt engineering and bring in more advanced techniques such as RAG, agentic reasoning, fine-tuning, etc. The possibilities are endless and it's especially challenging to navigate now given all the hype. How do you pick the winning approach? Like the common wisdom says: you can't improve what you can't measure -- you need high-quality evaluation datasets with associated tooling and processes.
+
+Make no mistake: While I'm writing about evals after prompt engineering, you should prioritize both from day 1. Creating high-quality datasets for a specific problem domain is not an easy task but there are existing practices to follow. It's usually a bootstrapping process: You start with a handful of manually created samples (they can be sourced from initial prompt engineering efforts) and augment that with a number of synthetic techniques such as asking LLMs to rewrite them into multiple alternatives. Then you can bring in humans in the loop which in turn gives you more and better samples to play with. Many companies inevitably ended up paying external vendors for such data labeling and curation but even that typically requires domain experts to work closely with the vendors to define guidelines and ensure quality of delivered data. Read more about high-quality human data in this [brilliant write-up by Lilian Weng](https://lilianweng.github.io/posts/2024-02-05-human-data-quality/).
+
+## Maximize for Iteration Velocity
+
+One of the most humbling lessons from working in this space is that many of our pre-existing assumptions will be constantly challenged and disproven. After all, it's a paradigm shift. Often, after the initial "anybody can engineer a prompt that makes a good demo" phase, it becomes difficult to predict what will or will not work to improve the quality of LLM responses further. Sure, there are general directions and proven techniques you can follow from academic and industry. But for your specific use cases, you won't know for sure until you've tried them.
+
+Therefore, in addition to prioritizing evals, you need to relentlessly optimize for iteration velocity. Make sure that everybody on the team is set up to rapidly try news ideas and run evals to validate them, be it simple prompt changes, building an entirely new API/pipeline to feed additional context to the model, or making a new LoRA fine-tuned model with latest data specifically curated for a top loss pattern.
+
+That's the goal. Realizing that and getting aligned behind that already gets you more than halfway there -- it doesn't require rocket science or LLM alchemy, just good old software engineering with a specific goal in mind. You'll run into some common challenges like development-prod skew and version-controlling prompts and datasets. None are hard to overcome though.
+
+## A Demo Is Very Far From a Product
+
+It can be trivial to create an impressive demo with LLMs, but the gap between that and a real product is even larger than that in traditional software domains. The LLM aspect is only one of the puzzles to true innovation and success. I would argue that eventually building an LLM application is mostly about two things: data and guardrails.
+
+I've talked enough about data in this post. To reiterate, while new foundational models and techniques for applying them continue to come out, expect to throw away much of your existing prompts and workflows. What remains are the high-quality datasets tailored to your use cases. Without them, even something like upgrading to a newer version of the foundational model will be painful as prompts typically need to be overhauled.
+
+Guardrails are various UX patterns, safety filters, pre-/post-processing, etc put in place of an LLM application to make sure that the unpredictable nature of LLMs do not create inaccurate or harmful responses and ruin the product experience. For example, hallucination is a common stubborn issue. In an application leveraging text-to-SQL generation, a typical post-processing step is to parse the generated SQL and fix e.g. a hallucinated column reference by replacing it with an existing column which has the smallest edit distance. One interesting thing here is that you could also use LLM-based techniques to fix such issues, e.g. by asking the model to self correct. But a general lesson is to prefer a non-LLM solution if it achieves similar performance -- the fewer LLM workflows in your system, the easier it is to manage the complexity and cost.
+
+In the space of 2B/2C products (as opposed to e.g. developer facing products like LLM APIs), data and guardrails make all the difference. They certainly take a lot of funding and execution to build. But they are the real assets that empower a polished, differentiated product.
+
+## An Initial Product Can Be Far From Product-Market Fit
+
+I'll keep this final section short and speculative because at this point very few LLM applications can claim they've reached PMF (certainly not Conversational Analytics).
+
+Just like in applying traditional ML models, issues of user trust and control come into play with LLM applications once they get into the hands of users. One question is how the product should evolve based on user feedback. LLMs excel in some areas but can struggle in others. For example, when creativity is desired, LLMs can take the center stage; but a more demanding factuality requirement will likely place the human in the driver's seat. Your initial iteration might not strike the right balance in how much control is given to the user and around which is the UX designed. So conduct plenty of user studies especially at early stages to help guide the product direction.
+
+Interestingly, if you provide enough value, users might adjust to new usage patterns. For instance, seeing higher SQL generation quality when the database schema is rich with annotations might motivate users to provide such enriched context more proactively. It would not have been easy to push users to do that otherwise. Personally I think this kind of emergent phenomenon and the learnings that come with it is what makes working in this space so rewarding :) What do you think?
+
+## Resources
+
+- This post is heavily inspired by [What We’ve Learned From A Year of Building with LLMs](https://applied-llms.org/)
+- [Building A Generative AI Platform](https://huyenchip.com/2024/07/25/genai-platform.html)
