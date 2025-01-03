@@ -1,11 +1,11 @@
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+// import { Analytics } from '@vercel/analytics/next';
+// import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export default ({ children, ...props }) => (
   <div {...props}>
     {children}
-    <Analytics />
-    <SpeedInsights />
+    {/* <Analytics /> */}
+    {/* <SpeedInsights /> */}
     <script
       async
       src='https://www.googletagmanager.com/gtag/js?id=UA-121702790-3'
