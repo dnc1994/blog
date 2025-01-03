@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && next",
-    "build": "next build",
+    "build": "SET NODE_OPTIONS=--openssl-legacy-provider && next build",
     "build-rss": "node rss.js",
     "start": "next start",
     "export": "next export",
