@@ -1,9 +1,6 @@
 {
   "version": 2,
   "alias": "linghao.io",
-  "builds": [
-    { "src": "package.json", "use": "@vercel/next@canary" }
-  ],
   "headers": [
     {
       "source": "/public",
