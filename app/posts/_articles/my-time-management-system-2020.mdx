@@ -1,0 +1,116 @@
+export const metadata = {
+  title: '我的时间管理系统',
+  description: 'A minimalist approach to time management that tracks and reviews to-dos in a single, easily accessible list.',
+  date: '2020.08.16',
+}
+
+最近我的朋友 [Nova](https://www.douban.com/people/casa_nova/) 做了一个[时间管理访谈](https://blogcn.acacess.com/tms-interview-index)，其形式是由参与者自发回答给定的访谈问题（类似我之前参与的[利器访谈](https://linghao.io/posts/liqi-interview)），目前已经积累了 20 多篇风格各异的回答。
+
+我认为时间管理的核心永远是 Getting Things Done (GTD) —— 在有限的时间内完成尽量多的事情。我曾经在[《过去这五年，我学到了什么》](https://linghao.io/posts/five-year-learning-2013-2018)中介绍过自己的 GTD 系统，但当时讲得比较抽象且不够全面。所以，在回答访谈问题之前，我打算先完整介绍一下自己实际在使用的系统。
+
+## Todo List
+
+我的时间管理系统的核心是一个 Todo List，它主要有以下三个要点：
+
+### 将所有任务放在单一的、随手可及的列表中
+
+**为什么需要这个列表？**短期记忆不是大脑的强项。Todo List 可以为大脑分担「记住我有哪些任务」这一「不重要」的工作——毕竟，任何系统都只能帮你规划任务，最重要的还是执行任务，而这需要大脑全方位的投入<sup>[1](#notes)</sup>。
+
+**为什么只用一个列表？**为了避免在不同列表之间切换，降低认知负担。尤其当我们试图调整多个任务之间的相对优先级，或是将任务在「现在做」和「近期做」之间移动时，能够同时在单个屏幕中看到所有任务是非常有帮助的。
+
+**用什么工具来维护这个列表？**在工具链中越是处于基本和重要地位的部分，就越需要避免过度设计带来的干扰。市面上生产力工具层出不穷，但许多都有过度设计的问题，而我这套系统只需要一个文本编辑工具。理论上来说，一张纸一支笔就可以管理 Todo List。当然为了方便修改，我使用的是朋友 [Shu](https://shud.in/) 开发的 Markdown 编辑器 [Mak](https://inns.studio/mak/)。它是一个以 GitHub Gist 作为存储后端的 Single Page App，平时就作为一个标签页常驻于浏览器中。
+
+当你建立了这样一个单一 Todo List，而它又时刻处于伸手可及之处，你就会频繁地浏览和更新这个列表。这是一种非常有效的自我暗示，可以利用到大脑的排演机制<sup>[2](#notes)</sup>，去「均摊」做那些相对较困难的任务的精神负担。同时，你也会更倾向于记下转瞬即逝的想法，以及更勤快地调整任务的优先度。
+
+### 对照目标来调整优先度
+
+除非只有无关紧要的杂活，否则一个没有按照优先度排序的 Todo List 是没有太大意义的。同时，随着外部条件的变化，任务的优先度也不是恒定的。所以，我们每隔一段时间就要做一下 prioritization。
+
+我的做法是将自己近中期想要达成的目标也写进 Todo List，然后不定期地在浏览列表的同时对照这些目标来重新调整任务的优先度。举例来说，目前我在工作以外最热衷的就是写博客，所以每次我都会把已经准备好要写的文章提到列表最顶上来。
+
+对于那些「紧急但不重要」的杂活（比如邮寄材料、网购自助退货等），它们会跟其他任务一样正常进入 Todo List，然后我会尽快决定什么时候去做，决定了就直接划掉并标在日历上。这样可以最大程度地降低列表的 visual clutter。
+
+### Timeboxing
+
+到此为止，我们已经能管理绝大部分杂活和能在几小时之内完成的任务了。而对于那些耗时更长、目标更模糊的事情，我们需要额外的机制来应对。比如：
+
+- 读一本需要耗时 30 个小时的书。
+- 类似「学习游戏开发」这样的模糊目标。在学习的某个阶段，你的直接目标可能是「学完一份共 10 期、每期 2 小时的 Unity 新手教程」，这就比较清晰；而当你开始尝试做一个简单的游戏，这要花费多久就没有那么明确了。
+
+这些往往是所谓「重要但不紧急」的事情。我们经常会因为在最初的探索阶段不明确后续应该做什么，或是由于无法准确估计耗时从而担心一头扎进去会挤压留给其他任务的时间，从而犹豫着不去做它们。然而从长期来看，这恰恰是我们最应该去做的事情。
+
+我的解决方法是使用一个简单的技巧：Timeboxing ——分配固定的一段时间专门用于做某件事情。比如我有一个很长的阅读列表，所以在平时比较随性的阅读之外，我规定每天晚上 9 到 10 点专门用于阅读。这就保证了在这个方向上至少一直有进展，同时也有助于习惯的养成。
+
+使用 Timeboxing 时，我也会在日历上创建对应的事件，从而更容易巩固习惯。
+
+### 总结
+
+我的 Todo List 实际大概是这个样子的（用英文是我的个人习惯）：
+
+- Schedule & Goals：每天必做的事情和近中期的目标。
+- Todo：当前可以立即做的事情，按优先度排序。
+- Backlog：近期可以做但还未计划执行的事情。这同时也是用于记录和整理不成熟想法的区域。
+- Icebox：暂时不满足前置条件或还未想好是否该做/如何做的事情。
+
+![Todo List](https://cdn.linghao.vercel.app/assets/tms-example.png)
+
+## Everything Else
+
+这套系统基本上是围绕着 Todo List 来运转的，所以在此之外没有特别多可谈的。这里提一些比较值得说的：
+
+- 在具体执行一个任务时，我使用的是周期为 50 分钟 + 10 分钟的[番茄工作法](https://zh.wikipedia.org/wiki/%E7%95%AA%E8%8C%84%E5%B7%A5%E4%BD%9C%E6%B3%95)。但不论采用何种方式，关键是要周期性地让大脑进入放松状态<sup>[3](#notes)</sup>。
+- 从逻辑上来说，提高时间利用效率的方式有三种<sup>[4](#notes)</sup>：
+  - 减少做一件事情所需的时间：比如我在最近几乎每篇文章<sup>[5](#notes)</sup>中都有提到的缩短反馈回路。
+  - 提高做一件事情的产出：比如每次开会前都准备好议程和期望达到的目标。
+  - 转而去做更有价值的事情（维护 Todo List 的主要目的）。
+- 换一个角度，有意识地不去做一些事情从而节省时间，也是时间管理的好方式。
+  - 积极地「断舍离」：拒绝 [FOMO](https://en.wikipedia.org/wiki/Fear_of_missing_out)<sup>[6](#notes)</sup>、划掉在 Todo List 上待了一个月还没被执行的任务<sup>[7](#notes)</sup>、不要强迫自己把每本书都读完<sup>[8](#notes)</sup>、等等。
+  - 远离有毒的工具、平台和社交关系。
+
+---
+
+下面回答一些访谈问题：
+
+### 请简单介绍一下自己？目前最让你骄傲的成就是？
+
+我是 Linghao，一名 Google 的软件工程师。算不上令人骄傲，但的确让我很有成就感的一件事情就是我一直坚持通过[博客](https://linghao.io/)和 [Telegram 频道](https://t.me/s/LinghaoCh)来分享知识、经验和优质资源。
+
+### 你的时间管理工作流适用于什么场景？
+
+我在工作和业余中都没有什么事情是有硬性 deadline 的，所以我这套系统关注的不是「如何将每天 8 小时工作时间和 6 小时业余时间都安排得合理并执行得到位」，而更多关注的是「当我有一段空闲时间，我应该做什么」以及「如何在那些重要但不紧急的事情上取得进展」等问题。
+
+### 你的时间管理工作流需要哪些工具？
+
+任意 Markdown 编辑器 + 任意日历应用即可。我个人使用的是 [Mak](https://inns.studio/mak/) + Google Calendar。
+
+### 坚持这一工作流多久了？
+
+一些做法和习惯最早在大二（2014 年）那会就有了，不过目前的系统正式成型大概是在两年前。
+
+### 这一工作流的优点是？
+
+最大的优点是简单明确。如果将 Todo List 维护成「我所要做的所有事情」的一个 canonical representation，那么维护这一系统就几乎完全等同于维护一个文本格式的列表，没有任何额外的认知负担，任何人拿起纸笔就可以从零开始尝试。
+
+### 目前在时间管理中最大的痛点是？理想中的时间管理工作流是？需要什么样的工具？
+
+如果把 Todo List 想象成一个数据源，那么主要地痛点在于对其的「输入」和「输出」有时不大方便。比如通过邮件得知一件不得不做的事情后，我需要手动将其加入列表；列表上的杂项在确定何时执行之后，也要手动加到日历上。
+
+我知道有很多生产力工具试图解决这些问题，但目前还没有找到适合自己又不引入过多干扰的解决方案。理想情况下我想要的可能是一个能让我不离开 Todo List 就可以获取新的输入和自动输出到指定目的地的工具。我不觉得短期内机器能把这件事情做得非常精确，但如果能自动化一些纯机械性的操作，就已经很有帮助了。当然，作为一个软件工程师，我可能也会倾向于自己写一些小工具来解决这些痛点。
+
+### 能否推荐一本时间管理方面的书籍？对你影响最大的那本
+
+其实我没有读过专门讲时间管理的书，不过 [The Effective Engineer](https://www.effectiveengineer.com/book) 的相关章节（主要是三、四章）给了我很大的启发。
+
+---
+
+## Notes
+
+1. 这也是为什么 Checklist 在很多行业被证明可以有效降低人为错误的几率。https://www.artofmanliness.com/articles/the-power-of-checklists/
+2. https://linghao.io/posts/notes-learning-how-to-learn#memory-tricks
+3. https://linghao.io/posts/notes-learning-how-to-learn#thinking-modes
+4. 思路来自 The Effective Engineer 第一章：https://linghao.io/notes/the-effective-engineer#systematically-increase-the-leverage-of-your-time
+5. 见[这里](https://linghao.io/posts/programming-vs-software-engineering#%E9%99%8D%E4%BD%8E%E7%8A%AF%E9%94%99%E6%88%90%E6%9C%AC)、[这里](https://linghao.io/posts/grow-at-google-02#%E9%87%8D%E8%A6%81%E7%9A%84%E4%BA%8B%E6%83%85%E8%AF%B4%E4%B8%A4%E9%81%8D)、[这里](https://linghao.io/posts/grow-at-google-01#getting-feedback-early-and-often)还有[这里](https://linghao.io/posts/five-year-learning-2013-2018#%E5%BB%BA%E7%AB%8B%E9%AB%98%E6%95%88%E7%9A%84%E5%8F%8D%E9%A6%88%E5%9B%9E%E8%B7%AF)。
+6. https://linghao.io/posts/five-year-learning-2013-2018#%E5%AF%B9%E6%8A%97%E7%84%A6%E8%99%91
+7. [Yiming](https://yiming.dev/about/) 在[他的访谈](https://blogcn.acacess.com/shi-jian-guan-li-fang-tan-020-yi-mu-biao-wei-zhong-xin-de-shi-jian-guan-li-zhe-xue)中也提到了这一点。
+8. [Naval Ravikant](https://en.wikipedia.org/wiki/Naval_Ravikant) 在[这期访谈](https://fs.blog/knowledge-project/naval-ravikant/)中谈到他不再执着于把书读完了。
+9. 最后友情打个广告，欢迎加入 Nova 在 Telegram 上建立的[讨论群](https://t.me/tms_discuss)和[频道](https://t.me/tms_ur_way)。
