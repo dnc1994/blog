@@ -6,9 +6,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "build": "next build",
+    "build": "next build && npm run rss",
     "start": "next start",
     "lint": "next lint",
+    "rss": "node scripts/generate-rss.mjs",
     "deploy": "npm run build && wrangler pages deploy dist",
     "deploy:prod": "npm run build && wrangler pages deploy dist --branch=main"
   },
@@ -29,6 +30,7 @@
     "react-dom": "^18.3.1",
     "react-katex": "^3.0.1",
     "remark-gfm": "^4.0.0",
+    "rss": "^1.2.2",
     "sharp": "^0.33.4",
     "shiki": "^3.2.1"
   },
