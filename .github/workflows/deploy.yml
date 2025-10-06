@@ -3,9 +3,9 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches:
-      - main
-      - chenxi-vibe
-  workflow_dispatch:
+      - main      # Production deployment
+      - v2        # V2 preview deployment
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   deploy:
