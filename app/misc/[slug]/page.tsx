@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs'
 import path from 'path'
 import cn from 'clsx'
+import { Tag } from '@/components/tag'
 
 export default async function Page(props: {
   params: Promise<{
@@ -20,6 +21,16 @@ export default async function Page(props: {
       <h1 className='font-semibold mb-7 text-rurikon-600 text-balance'>
         {metadata.title}
       </h1>
+      
+      {/* Tags */}
+      {metadata.tags && metadata.tags.length > 0 && (
+        <div className='flex flex-wrap gap-2 mb-7'>
+          {metadata.tags.map((tag: string) => (
+            <Tag key={tag} tag={tag} href={`/tags/all?tag=${tag}`} />
+          ))}
+        </div>
+      )}
+      
       <div className='[&>*:first-child]:mt-0'>
         <MDXContent />
       </div>
