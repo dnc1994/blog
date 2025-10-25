@@ -4,9 +4,9 @@
         <description><![CDATA[A blog by Linghao Zhang]]></description>
         <link>https://linghao.io</link>
         <generator>RSS for Node</generator>
-        <lastBuildDate>Mon, 06 Oct 2025 03:14:09 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 25 Oct 2025 00:46:58 GMT</lastBuildDate>
         <atom:link href="https://linghao.io/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Mon, 06 Oct 2025 03:14:09 GMT</pubDate>
+        <pubDate>Sat, 25 Oct 2025 00:46:58 GMT</pubDate>
         <language><![CDATA[en]]></language>
         <ttl>60</ttl>
         <item>
@@ -15,7 +15,7 @@
             <link>https://linghao.io/posts/hotel-california-2025</link>
             <guid isPermaLink="false">https://linghao.io/posts/hotel-california-2025</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Fri, 22 Aug 2025 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 21 Aug 2025 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[How To Be Great 101]]></title>
@@ -23,7 +23,7 @@
             <link>https://linghao.io/posts/how-to-be-great-101</link>
             <guid isPermaLink="false">https://linghao.io/posts/how-to-be-great-101</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sun, 01 Dec 2024 08:00:00 GMT</pubDate>
+            <pubDate>Sat, 30 Nov 2024 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Lessons Learned Building LLM Applications]]></title>
@@ -31,7 +31,7 @@
             <link>https://linghao.io/posts/building-llm-apps-2024</link>
             <guid isPermaLink="false">https://linghao.io/posts/building-llm-apps-2024</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sat, 16 Nov 2024 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 15 Nov 2024 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Why is ML Runtime Infra So Hard]]></title>
@@ -39,7 +39,7 @@
             <link>https://linghao.io/posts/why-is-ml-runtime-infra-so-hard</link>
             <guid isPermaLink="false">https://linghao.io/posts/why-is-ml-runtime-infra-so-hard</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sat, 09 Nov 2024 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 08 Nov 2024 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Naming Matters: DRI vs. Owner in Software Projects]]></title>
@@ -47,7 +47,7 @@
             <link>https://linghao.io/posts/dri-vs-owner</link>
             <guid isPermaLink="false">https://linghao.io/posts/dri-vs-owner</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sun, 25 Aug 2024 07:00:00 GMT</pubDate>
+            <pubDate>Sat, 24 Aug 2024 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Becoming a Staff Engineer]]></title>
@@ -55,7 +55,7 @@
             <link>https://linghao.io/posts/staff-eng-learnings-2024</link>
             <guid isPermaLink="false">https://linghao.io/posts/staff-eng-learnings-2024</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sat, 06 Jan 2024 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 05 Jan 2024 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Demystifying TLMs]]></title>
@@ -63,7 +63,7 @@
             <link>https://linghao.io/posts/demystifying-tlm</link>
             <guid isPermaLink="false">https://linghao.io/posts/demystifying-tlm</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Tue, 25 Apr 2023 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 24 Apr 2023 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Learnings as a Tech Lead]]></title>
@@ -71,7 +71,7 @@
             <link>https://linghao.io/posts/tl-learnings-2022</link>
             <guid isPermaLink="false">https://linghao.io/posts/tl-learnings-2022</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Thu, 06 Oct 2022 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 05 Oct 2022 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Staff Engineer]]></title>
@@ -79,7 +79,7 @@
             <link>https://linghao.io/notes/staff-engineer</link>
             <guid isPermaLink="false">https://linghao.io/notes/staff-engineer</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sun, 07 Aug 2022 07:00:00 GMT</pubDate>
+            <pubDate>Sat, 06 Aug 2022 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Self Awareness with Tools]]></title>
@@ -87,7 +87,7 @@
             <link>https://linghao.io/posts/self-awareness-with-tools</link>
             <guid isPermaLink="false">https://linghao.io/posts/self-awareness-with-tools</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Tue, 26 Jul 2022 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 25 Jul 2022 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Editing Technical Direction]]></title>
@@ -95,7 +95,7 @@
             <link>https://linghao.io/posts/edit-tech-direction</link>
             <guid isPermaLink="false">https://linghao.io/posts/edit-tech-direction</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Mon, 18 Jul 2022 07:00:00 GMT</pubDate>
+            <pubDate>Sun, 17 Jul 2022 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Rethinking Pessimism]]></title>
@@ -103,7 +103,7 @@
             <link>https://linghao.io/posts/rethink-pessimism</link>
             <guid isPermaLink="false">https://linghao.io/posts/rethink-pessimism</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Wed, 13 Jul 2022 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 12 Jul 2022 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Superficial Similarity]]></title>
@@ -111,7 +111,7 @@
             <link>https://linghao.io/posts/superficial-similarity</link>
             <guid isPermaLink="false">https://linghao.io/posts/superficial-similarity</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Thu, 16 Jun 2022 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 15 Jun 2022 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Grow @ Google 03: 文档意识与培养新人]]></title>
@@ -119,7 +119,7 @@
             <link>https://linghao.io/posts/grow-at-google-03</link>
             <guid isPermaLink="false">https://linghao.io/posts/grow-at-google-03</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sat, 02 Jan 2021 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 01 Jan 2021 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[我的时间管理系统]]></title>
@@ -127,7 +127,7 @@
             <link>https://linghao.io/posts/my-time-management-system-2020</link>
             <guid isPermaLink="false">https://linghao.io/posts/my-time-management-system-2020</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sun, 16 Aug 2020 07:00:00 GMT</pubDate>
+            <pubDate>Sat, 15 Aug 2020 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[A Philosophy of Software Design]]></title>
@@ -135,7 +135,7 @@
             <link>https://linghao.io/notes/a-philosophy-of-software-design</link>
             <guid isPermaLink="false">https://linghao.io/notes/a-philosophy-of-software-design</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sun, 02 Aug 2020 07:00:00 GMT</pubDate>
+            <pubDate>Sat, 01 Aug 2020 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[「程序员」和「软件工程师」是一回事吗？]]></title>
@@ -143,7 +143,7 @@
             <link>https://linghao.io/posts/programming-vs-software-engineering</link>
             <guid isPermaLink="false">https://linghao.io/posts/programming-vs-software-engineering</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sun, 12 Jul 2020 07:00:00 GMT</pubDate>
+            <pubDate>Sat, 11 Jul 2020 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Grow @ Google 02: 「能用就行」还远远不够]]></title>
@@ -151,7 +151,7 @@
             <link>https://linghao.io/posts/grow-at-google-02</link>
             <guid isPermaLink="false">https://linghao.io/posts/grow-at-google-02</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Mon, 03 Feb 2020 08:00:00 GMT</pubDate>
+            <pubDate>Sun, 02 Feb 2020 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Excerpts from Permanent Records]]></title>
@@ -159,7 +159,7 @@
             <link>https://linghao.io/notes/permanent-record-excerpts</link>
             <guid isPermaLink="false">https://linghao.io/notes/permanent-record-excerpts</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sat, 26 Oct 2019 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 25 Oct 2019 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[东京 H-1B 首签 Tips]]></title>
@@ -167,7 +167,7 @@
             <link>https://linghao.io/misc/tokyo-h1b-first-stamping</link>
             <guid isPermaLink="false">https://linghao.io/misc/tokyo-h1b-first-stamping</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Wed, 16 Oct 2019 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 15 Oct 2019 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[旧金山日本领馆多次签证 Tips]]></title>
@@ -175,7 +175,7 @@
             <link>https://linghao.io/misc/japan-multiple-entry-visa-sf</link>
             <guid isPermaLink="false">https://linghao.io/misc/japan-multiple-entry-visa-sf</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Wed, 25 Sep 2019 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 24 Sep 2019 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[David Perell 关于在线写作的建议]]></title>
@@ -183,7 +183,7 @@
             <link>https://linghao.io/notes/david-perell-writing-online</link>
             <guid isPermaLink="false">https://linghao.io/notes/david-perell-writing-online</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sat, 01 Jun 2019 07:00:00 GMT</pubDate>
+            <pubDate>Fri, 31 May 2019 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Grow @ Google 01: Noogler 成长的必经之痛]]></title>
@@ -191,7 +191,7 @@
             <link>https://linghao.io/posts/grow-at-google-01</link>
             <guid isPermaLink="false">https://linghao.io/posts/grow-at-google-01</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sun, 12 May 2019 07:00:00 GMT</pubDate>
+            <pubDate>Sat, 11 May 2019 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Excerpts from Blindsight]]></title>
@@ -199,7 +199,7 @@
             <link>https://linghao.io/notes/blindsight-excerpts</link>
             <guid isPermaLink="false">https://linghao.io/notes/blindsight-excerpts</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sun, 27 Jan 2019 08:00:00 GMT</pubDate>
+            <pubDate>Sat, 26 Jan 2019 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[过去这五年，我学到了什么]]></title>
@@ -207,7 +207,7 @@
             <link>https://linghao.io/posts/five-year-learning-2013-2018</link>
             <guid isPermaLink="false">https://linghao.io/posts/five-year-learning-2013-2018</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Tue, 25 Dec 2018 08:00:00 GMT</pubDate>
+            <pubDate>Mon, 24 Dec 2018 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[利器访谈：创造者和他们的工具]]></title>
@@ -215,7 +215,7 @@
             <link>https://linghao.io/posts/liqi-interview</link>
             <guid isPermaLink="false">https://linghao.io/posts/liqi-interview</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sun, 09 Dec 2018 08:00:00 GMT</pubDate>
+            <pubDate>Sat, 08 Dec 2018 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[The Effective Engineer]]></title>
@@ -223,7 +223,7 @@
             <link>https://linghao.io/notes/the-effective-engineer</link>
             <guid isPermaLink="false">https://linghao.io/notes/the-effective-engineer</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Tue, 16 Oct 2018 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 15 Oct 2018 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[过去这五年]]></title>
@@ -231,7 +231,7 @@
             <link>https://linghao.io/posts/five-year-summary-2013-2018</link>
             <guid isPermaLink="false">https://linghao.io/posts/five-year-summary-2013-2018</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Wed, 10 Oct 2018 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 09 Oct 2018 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Steven Pinker on Linguistics, Style and Writing]]></title>
@@ -239,7 +239,7 @@
             <link>https://linghao.io/notes/steven-pinker-linguistics-style-writing</link>
             <guid isPermaLink="false">https://linghao.io/notes/steven-pinker-linguistics-style-writing</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Fri, 20 Jul 2018 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 19 Jul 2018 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Programming Beyond Practices]]></title>
@@ -247,7 +247,7 @@
             <link>https://linghao.io/notes/programming-beyond-practices</link>
             <guid isPermaLink="false">https://linghao.io/notes/programming-beyond-practices</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Thu, 05 Jul 2018 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 04 Jul 2018 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[如何提高英语水平]]></title>
@@ -255,7 +255,7 @@
             <link>https://linghao.io/posts/improve-english</link>
             <guid isPermaLink="false">https://linghao.io/posts/improve-english</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Mon, 23 Jan 2017 08:00:00 GMT</pubDate>
+            <pubDate>Sun, 22 Jan 2017 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[DIY 留学申请全攻略]]></title>
@@ -263,7 +263,7 @@
             <link>https://linghao.io/posts/gradapply-diy</link>
             <guid isPermaLink="false">https://linghao.io/posts/gradapply-diy</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Thu, 05 Jan 2017 08:00:00 GMT</pubDate>
+            <pubDate>Wed, 04 Jan 2017 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Alistair Croll on Lean Analytics and Growth Hacking]]></title>
@@ -271,7 +271,7 @@
             <link>https://linghao.io/notes/alistair-croll-lean-analytics-growth-hacking</link>
             <guid isPermaLink="false">https://linghao.io/notes/alistair-croll-lean-analytics-growth-hacking</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Tue, 21 Jun 2016 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 20 Jun 2016 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[初心]]></title>
@@ -279,7 +279,7 @@
             <link>https://linghao.io/notes/stay-gold</link>
             <guid isPermaLink="false">https://linghao.io/notes/stay-gold</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Thu, 16 Jun 2016 07:00:00 GMT</pubDate>
+            <pubDate>Wed, 15 Jun 2016 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[How Technology is Hijacking Your Mind]]></title>
@@ -287,7 +287,7 @@
             <link>https://linghao.io/notes/how-technology-is-hijacking-your-mind</link>
             <guid isPermaLink="false">https://linghao.io/notes/how-technology-is-hijacking-your-mind</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Wed, 01 Jun 2016 07:00:00 GMT</pubDate>
+            <pubDate>Tue, 31 May 2016 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[A Beginner\]]></title>
@@ -295,7 +295,7 @@
             <link>https://linghao.io/misc/kaggle-beginner-guide</link>
             <guid isPermaLink="false">https://linghao.io/misc/kaggle-beginner-guide</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Tue, 10 May 2016 07:00:00 GMT</pubDate>
+            <pubDate>Mon, 09 May 2016 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[Kaggle 入门指南]]></title>
@@ -303,7 +303,7 @@
             <link>https://linghao.io/misc/kaggle-beginner-guide-zh</link>
             <guid isPermaLink="false">https://linghao.io/misc/kaggle-beginner-guide-zh</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Fri, 29 Apr 2016 07:00:00 GMT</pubDate>
+            <pubDate>Thu, 28 Apr 2016 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[如何备考 TOEFL/GRE]]></title>
@@ -311,7 +311,7 @@
             <link>https://linghao.io/posts/toefl-gre-prep</link>
             <guid isPermaLink="false">https://linghao.io/posts/toefl-gre-prep</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Mon, 21 Mar 2016 07:00:00 GMT</pubDate>
+            <pubDate>Sun, 20 Mar 2016 16:00:00 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[《Learning How to Learn》课程笔记]]></title>
@@ -319,7 +319,7 @@
             <link>https://linghao.io/posts/notes-learning-how-to-learn</link>
             <guid isPermaLink="false">https://linghao.io/posts/notes-learning-how-to-learn</guid>
             <dc:creator><![CDATA[Linghao Zhang]]></dc:creator>
-            <pubDate>Sat, 27 Feb 2016 08:00:00 GMT</pubDate>
+            <pubDate>Fri, 26 Feb 2016 16:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>
