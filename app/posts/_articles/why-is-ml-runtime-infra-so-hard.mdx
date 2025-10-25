@@ -1,0 +1,44 @@
+export const metadata = {
+  title: 'Why is ML Runtime Infra So Hard',
+  description: 'An attempt to reason about the complexity of ML runtime infrastructure from first principles.',
+  date: '2024.11.09',
+  tags: ['Machine Learning', 'Infrastructure', 'Engineering'],
+}
+
+This post is my rough thoughts on the topic while I onboard to the problem space. I wrote this mainly for myself and it's bound to contain problematic statements and reasoning. Take it with a grain of salt. I'd appreciate any discussions on the topic.
+
+---
+
+Let's loosely define an **ML Runtime System** as a software stack that bridges ML frameworks (think PyTorch, Tensorflow, Jax) and hardware accelerators (think NVIDIA H100s, TPUs), enabling ML developers to (primarily) train and serve ML models. For simplicity, let's also largely disregard the fact that hardware is being constantly iterated on. Instead we focus on engineering software systems based on the currently available set of hardware.
+
+Building such systems seems to be widely considered challenging. Why is that?
+
+Computing on a specific software-hardware stack is already no small feat. Some common requirements to solve for are:
+
+- Efficiency: To maximize performance goals such as throughput / latency and hardware utilization.
+- Ease of use: To make it easy for different user personas to do their work.
+- Scalability: Bigger problems often simply require more resources. But adding more resources doesn't automatically solve the problem -- think distributed system challenges.
+
+On "traditional" stacks, however, this is relatively speaking a solved problem. The domain has been around for longer and the number of variables at play is limited. For instance, developers of distributed query processing systems are mostly only dealing with machines that can be abstracted away as compute resources with CPUs and RAMs. Things like different CPU ISAs, for example, are implementation details. There are also decades worth of frameworks, abstractions, design patterns, and best practices that have been well validated.
+
+An ML program, on the other hand, typically has more diverse computing requirements, which in turn necessitates, among other things, a range of hardware accelerators. Each accelerator typically comes with its own software stack. Therefore we end up with multiple interweaving "stacks" of software-hardware paths.
+
+Why? A ML program might need to do:
+
+- Computation-intensive numerical programs - best on GPUs / TPUs
+- More general-purpose logic for e.g. pre- and post-processing - best on CPUs
+- Memory-bound operations such as embedding lookups
+- To make things more complicated, any of the above can be further optimized with bespoke architectural changes, e.g. with [disaggregated serving](https://arxiv.org/abs/2401.09670).
+
+In essence, an ML program can be viewed as a computational graph that describes any number of computation units that run in arbitrary orders and on heterogeneous hardware. It's not hard to see how this creates magnitudes more complexities than, say, a system that only runs general-purpose logic purely on CPUs. It's a challenging but highly interesting and rewarding problem space.
+
+As a result, an **ML Runtime Infra**, which typically consists of more than one runtime system, often struggles to balance a number of requirement dimensions:
+
+- CUJs: Model training and serving have very different computational characteristics.
+- User personas: Research and production users have very different priorities. One demands iteration speed and flexibility while the other pursues SLOs and robustness.
+- Software/hardware optionality: Users want to leverage whatever languages/frameworks that are best for the job; Similarly, a company might have a diverse pool of hardware that all need to be well supported to achieve good utilization.
+
+To mitigate the complexity, a lot of intermeidate layers were introduced (e.g. see [*Why are ML Compilers so Hard?*](https://petewarden.com/2021/12/24/why-are-ml-compilers-so-hard/)
+), resulting in a deep stack where end-to-end expertise is hard to build and maintain. At the same time, the overall landscape in this space is usually fragmented. There are often multiple ways to do one thing and the best we can do is to create "well-lit paths" for major CUJs. And that needs to be constantly adapted to catch up with research advancements and hardware iterations and availability. Creating a small number (ideally 1) of general-purpose, catch-all solution for each sufficiently disjoint CUJ is aspiring but often not achievable due to various constraints (e.g. opportunity cost from diverting resources to perfect infrastructure instead of building applications, prohibitive migration costs for existing models, etc).
+
+In summary, I see ML Runtime Infra as a natural evolution from the previous generations of computing software. The challenges ultimately stem from the inherent complexity of the problem space. The fragmented landspace we see today is not inevitable IMO. Eventually, this space should mature just like its "predecessors" and the challenge then might be on some new computing paradigm not yet imaginable. Do you agree?

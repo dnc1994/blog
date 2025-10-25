@@ -2,30 +2,45 @@
   "name": "blog",
   "description": "A blog by Linghao Zhang.",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.2.0",
+  "private": true,
   "scripts": {
-    "dev": "SET NODE_OPTIONS=--openssl-legacy-provider && next",
-    "build": "SET NODE_OPTIONS=--openssl-legacy-provider && next build",
-    "build-rss": "node rss.js",
+    "dev": "next dev --turbo",
+    "build": "next build && npm run rss",
     "start": "next start",
-    "export": "next export",
-    "now-build": "next build && node rss.js"
-  },
-  "devDependencies": {
-    "@mdx-js/mdx": "^0.15.0",
-    "@zeit/next-mdx": "^1.1.0",
-    "next": "^9.4.4",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "lint": "next lint",
+    "rss": "node scripts/generate-rss.mjs",
+    "deploy": "npm run build && wrangler pages deploy dist",
+    "deploy:prod": "npm run build && wrangler pages deploy dist --branch=main"
   },
   "dependencies": {
-    "@mdx-js/tag": "^0.15.0",
-    "@vercel/analytics": "^1.4.1",
-    "@vercel/speed-insights": "^1.1.0",
-    "lightense-images": "^1.0.8",
-    "now": "^19.1.2",
-    "rehype-slug": "^2.0.1",
-    "rss": "^1.2.2"
+    "@heroicons/react": "^2.1.5",
+    "@mdx-js/loader": "^3.0.1",
+    "@mdx-js/react": "^3.0.1",
+    "@next/mdx": "^15.0.0",
+    "@shikijs/rehype": "^3.2.1",
+    "@tailwindcss/postcss": "4.0.15",
+    "@types/mdx": "^2.0.12",
+    "@vercel/analytics": "^1.5.0",
+    "clsx": "^2.1.0",
+    "katex": "^0.16.11",
+    "next": "^15.0.0",
+    "next-mdx-remote": "^4.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-katex": "^3.0.1",
+    "remark-gfm": "^4.0.0",
+    "rss": "^1.2.2",
+    "sharp": "^0.33.4",
+    "shiki": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "postcss": "^8.4.47",
+    "tailwindcss": "4.0.0-beta.8",
+    "typescript": "^5"
   },
   "engines": {
     "node": ">=16 <=22"

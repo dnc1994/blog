@@ -1,0 +1,279 @@
+@import 'tailwindcss';
+@source "../mdx-components.tsx";
+
+@layer utilities {
+  .font-thin {
+    font-variation-settings: 'wght' 100, var(--sans-variation);
+  }
+  .font-extralight {
+    font-variation-settings: 'wght' 200, var(--sans-variation);
+  }
+  .font-light {
+    font-variation-settings: 'wght' 300, var(--sans-variation);
+  }
+  .font-normal {
+    font-variation-settings: 'wght' 440, var(--sans-variation);
+  }
+  .font-medium {
+    font-variation-settings: 'wght' 500, var(--sans-variation);
+  }
+  .font-semibold {
+    font-variation-settings: 'wght' 600, var(--sans-variation);
+  }
+  .font-bold {
+    font-variation-settings: 'wght' 640, var(--sans-variation);
+  }
+  .font-extrabold {
+    font-variation-settings: 'wght' 700, var(--sans-variation);
+  }
+  .font-black {
+    font-variation-settings: 'wght' 800, var(--sans-variation);
+  }
+}
+
+@theme {
+  --color-rurikon-50: #ebedef;
+  --color-rurikon-100: #d8dbdf;
+  --color-rurikon-200: #b3b9c1;
+  --color-rurikon-300: #8c95a1;
+  --color-rurikon-400: #697381;
+  --color-rurikon-500: #4a515b;
+  --color-rurikon-600: #3b4149;
+  --color-rurikon-700: #2b3035;
+  --color-rurikon-800: #1e2125;
+  --color-rurikon-900: #0e0f11;
+  --color-rurikon-950: #07080a;
+
+  --color-rurikon-border: #d8dbdfb3;
+
+  --font-family-sans: var(--sans), -apple-system, ui-sans-serif, system-ui,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
+  --font-family-serif: var(--serif), ui-serif, Georgia, Cambria,
+    'Times New Roman', Times, serif;
+  --font-family-mono: var(--mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+  --font-family-zh: var(--sans), -apple-system, ui-sans-serif, system-ui,
+    'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN', sans-serif;
+
+  --breakpoint-text: 1220px;
+  --breakpoint-mobile: 420px;
+}
+
+:root {
+  --background: #fcfcfc;
+}
+
+:root {
+  --sans-variation: 'opsz' 32;
+  --font-features: 'cpsp' 1, 'cv01', 'cv03', 'cv04', 'calt', 'ss03',
+    'liga', 'ordn';
+}
+
+body {
+  font-synthesis: none;
+  font-family: var(--sans), system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+    sans-serif;
+  font-feature-settings: var(--font-features);
+  font-variation-settings: 'wght' 440, var(--sans-variation);
+  font-variant: common-ligatures contextual;
+  text-decoration-skip-ink: auto;
+  text-spacing-trim: space-first;
+  font-optical-sizing: auto;
+  letter-spacing: 0.0085em;
+  word-spacing: -0.04em;
+  background-color: var(--background);
+  text-rendering: geometricPrecision;
+  text-autospace: normal;
+
+  /* Debugger */
+  /* background: linear-gradient(to bottom, #ccc, var(--background) 1px);
+  background-size: 100% 1.75rem; */
+}
+
+i,
+em,
+blockquote,
+nav,
+.sidenote {
+  font-family: var(--serif), Baskerville, Georgia, Cambria, 'Times New Roman',
+    Times, serif;
+  font-style: initial;
+  font-optical-sizing: auto;
+  font-variation-settings: 'wght' 480, var(--sans-variation);
+  font-weight: 400;
+  font-variant-ligatures: contextual;
+  letter-spacing: -0.006em;
+}
+
+del {
+  text-decoration-thickness: 1px;
+}
+
+blockquote {
+  box-shadow: 1px 0 0 var(--color-rurikon-500) inset;
+}
+@media screen and (max-width: 420px) {
+  blockquote {
+    /* Make it wider on mobile with a lighter color */
+    box-shadow: 2px 0 0 var(--color-rurikon-300) inset;
+  }
+}
+
+blockquote + blockquote {
+  display: flow-root;
+}
+
+main {
+  hanging-punctuation: first allow-end last;
+  hyphens: auto;
+  hyphenate-limit-chars: 10 5 5;
+}
+
+pre {
+  background-color: #f7f7f7;
+  contain: paint;
+  /* margin: 1.75rem 0; */
+  overflow-x: auto;
+  /* border-radius: 0.75rem; */
+  /* background-color: var(--color-rurikon-50); */
+  padding: 0.875rem 1.25rem;
+  -webkit-font-smoothing: auto;
+}
+
+pre code {
+  display: inline-block;
+  padding: 0;
+  line-height: 1.45rem;
+}
+
+code {
+  font-family: var(--mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, 'Liberation Mono', 'Courier New', monospace;
+  word-spacing: -0.15em;
+
+  /* background: var(--color-rurikon-50); */
+  padding: 0.15em 0.2em;
+  /* margin: 0 1px; */
+  /* border-radius: 2px; */
+  /* -webkit-box-decoration-break: clone;
+  box-decoration-break: clone; */
+
+  /* color: hsl(215deg 32% 37%); */
+  --shiki-token-comment: hsl(215deg 32% 37% / 45%);
+  --shiki-token-punctuation: hsl(215deg 32% 37% / 65%);
+  --shiki-token-keyword: hsl(215deg 32% 37% / 85%);
+  --shiki-token-function: hsl(223deg 85% 46%);
+  --shiki-token-string: #0fb359;
+  --shiki-token-string-expression: #0fb359;
+  --shiki-token-constant: hsl(215deg 32% 26%);
+  --shiki-token-link: #0fb359;
+  --shiki-token-parameter: #ff9800;
+}
+
+pre {
+  --shiki-foreground: #414141;
+  --shiki-background: transparent;
+}
+
+code span {
+  transition: color 0.2s;
+}
+
+article {
+  figure {
+    margin-top: 1.75rem;
+    line-height: 0;
+  }
+  .sidenote-content {
+    img,
+    video,
+    pre {
+      margin: 0;
+    }
+  }
+  .framed > img, .framed > figure > span:first-child {
+    padding: var(--frame-padding, 0.875rem);
+    background: var(--frame-background, #fff);
+    border: 1px solid var(--color-rurikon-border);
+  }
+  iframe {
+    width: 100%;
+    border: 1px solid var(--color-rurikon-border);
+    background-color: #fff;
+  }
+  details {
+    margin-top: 1.75rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid var(--color-rurikon-border);
+    border-bottom: 1px solid var(--color-rurikon-border);
+  }
+  details summary {
+    font-variation-settings: 'wght' 600, var(--sans-variation);
+    margin-bottom: 0.25rem;
+  }
+  details summary::marker {
+    content: '';
+  }
+  details p:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.content-fade-out {
+  background: linear-gradient(to bottom, #fcfcfc, #fcfcfc00);
+}
+
+*::selection {
+  background: #95a5ac40;
+  color: #485a74;
+}
+
+.dot-leaders {
+  text-align: end;
+  height: 1em;
+  overflow: hidden;
+  word-wrap: break-word;
+  letter-spacing: 6px;
+}
+
+.dot-leaders::after {
+  content: '······································································';
+}
+
+@supports (view-transition-name: none) {
+  @media not (prefers-reduced-motion: reduce) {
+    ::view-transition-old(crossfade) {
+      animation: hide 0.4s cubic-bezier(0.6, 0, 0.8, 1) forwards;
+    }
+
+    ::view-transition-new(crossfade) {
+      opacity: 0;
+      animation: appear .6s ease 0.2s forwards;
+    }
+  }
+}
+
+@keyframes hide {
+  0% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(4px);
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
