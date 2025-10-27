@@ -3,7 +3,7 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches:
-      - main      # Production deployment
+      - master    # Production deployment
       - v2        # V2 preview deployment
   workflow_dispatch: # Allows manual triggering
 
