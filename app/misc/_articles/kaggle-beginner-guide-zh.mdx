@@ -142,7 +142,7 @@ Feature Selection 最实用的方法也就是看 Random Forest 训练完以后�
 
 通常我们会通过一个叫做 [Grid Search][16] 的过程来确定一组最佳的参数。其实这个过程说白了就是根据给定的参数候选对所有的组合进行暴力搜索。
 
-```Python
+```python
 param_grid = {'n_estimators': [300, 500], 'max_features': [10, 12, 14]}
 model = grid_search.GridSearchCV(estimator=rfr, param_grid=param_grid, n_jobs=1, cv=10, verbose=20, scoring=RMSE)
 model.fit(X_train, y_train)
@@ -167,7 +167,7 @@ model.fit(X_train, y_train)
 4. 逐步将 `eta` 降低，找到最佳值。
 5. 以验证集为 watchlist，用找到的最佳参数组合重新在训练集上训练。注意观察算法的输出，看每次迭代后在验证集上分数的变化情况，从而得到最佳的 `early_stopping_rounds`。
 
-```Python
+```python
 X_dtrain, X_deval, y_dtrain, y_deval = cross_validation.train_test_split(X_train, y_train, random_state=1026, test_size=0.3)
 dtrain = xgb.DMatrix(X_dtrain, y_dtrain)
 deval = xgb.DMatrix(X_deval, y_deval)
@@ -223,7 +223,7 @@ pred = clf.predict(xgb.DMatrix(df_test))
 
 这里给出我的实现代码：
 
-```Python
+```python
 class Ensemble(object):
     def __init__(self, n_folds, stacker, base_models):
         self.n_folds = n_folds

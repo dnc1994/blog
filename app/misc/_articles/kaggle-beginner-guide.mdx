@@ -153,7 +153,7 @@ We can improve a model's performance by tuning its parameters. A model usually h
 
 Normally we would find the best set of parameters by a process called **[grid search][16]**. Actually what it does is simply iterating through all the possible combinations and find the best one.
 
-```Python
+```python
 param_grid = {'n_estimators': [300, 500], 'max_features': [10, 12, 14]}
 model = grid_search.GridSearchCV(
     estimator=rfr, param_grid=param_grid, n_jobs=1, cv=10, verbose=20, scoring=RMSE
@@ -180,7 +180,7 @@ Usual tuning steps:
 4. Gradually lower `eta` until we reach the optimum.
 5. **Use the validation set as `watch_list` to re-train the model with the best parameters. Observe how score changes on validation set in each iteration. Find the optimal value for `early_stopping_rounds`.**
 
-```Python
+```python
 X_dtrain, X_deval, y_dtrain, y_deval = \
     cross_validation.train_test_split(X_train, y_train, random_state=1026, test_size=0.3)
 dtrain = xgb.DMatrix(X_dtrain, y_dtrain)
@@ -243,7 +243,7 @@ It's much like cross validation. Take 5-fold stacking as an example. First we sp
 
 Maybe it's better to just show the codes:
 
-```Python
+```python
 class Ensemble(object):
     def __init__(self, n_folds, stacker, base_models):
         self.n_folds = n_folds
