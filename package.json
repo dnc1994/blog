@@ -11,7 +11,7 @@
     "lint": "next lint",
     "rss": "node scripts/generate-rss.mjs",
     "deploy": "npm run build && wrangler pages deploy dist",
-    "deploy:prod": "npm run build && wrangler pages deploy dist --branch=main"
+    "deploy:prod": "npm run build && wrangler pages deploy dist --branch=master"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
