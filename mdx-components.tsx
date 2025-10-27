@@ -75,9 +75,11 @@ export const components: Record<
     <pre className='mt-7 whitespace-pre md:whitespace-pre-wrap' {...props} />
   ),
   code: async (props) => {
+    const lang = props.className?.replace(/language-/, '') || 'plaintext'
+
     if (typeof props.children === 'string') {
       const code = await codeToHtml(props.children, {
-        lang: 'jsx',
+        lang,
         theme: cssVariablesTheme,
         transformers: [
           {

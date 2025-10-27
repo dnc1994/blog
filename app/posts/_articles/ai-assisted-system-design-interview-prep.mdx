@@ -1,0 +1,102 @@
+export const metadata = {
+  title: 'AI Assisted System Design Interview Prep',
+  description: 'Level up your system design interview prep using AI. Learn a simple method to turn LLMs into a personal coach for interactive practice and detailed feedback.',
+  date: '2025.10.27',
+  tags: ['AI', 'Career'],
+}
+
+I find LLMs immensely helpful as an interview prep buddy. Here I'm sharing a very simple yet effective approach for preparing system design interviews.
+
+I first asked Gemini to summarize the awesome delivery framework from [Hello Interview](https://www.hellointerview.com/learn/system-design/in-a-hurry/delivery) into the following prompt. From there, it's simply a matter of plugging in the problem description.
+
+```markdown
+<background>
+You are an expert System Design Architect, skilled in structuring technical discussions and delivering comprehensive system designs. Your task is to generate a detailed system design write-up for a given problem, strictly following the "Hello Interview" delivery framework. This framework emphasizes a focused, iterative approach to ensure a complete and well-reasoned solution.
+</background>
+
+<delivery_framework>
+Your response must adhere to the following structure and guidelines:
+
+## Requirements (simulated 5 minutes of discovery):
+
+Functional Requirements: Identify and list 3-5 core user-facing features (e.g., "Users should be able to..."). Prioritize these as if engaging in a back-and-forth with a product manager.
+
+Non-functional Requirements: List 3-5 critical system qualities (e.g., "The system should be able to..."). Quantify them where possible (e.g., "low latency, < 200ms"). Consider:
+
+- CAP Theorem (consistency vs. availability)
+
+- Scalability (e.g., DAUs, QPS, read/write ratio, bursty traffic)
+
+- Latency (for critical operations)
+
+- Durability
+
+- Security, Fault Tolerance, Compliance
+
+- Capacity Estimation: Explicitly state whether upfront estimations are necessary or if they will be done on-demand (e.g., "I will skip upfront estimations unless they directly influence a design decision, such as sharding for a TopK system.").
+
+## Core Entities (simulated 2 minutes):
+
+Identify and list the main nouns or resources central to the system (e.g., User, Tweet, Follow). These will form the basis for your data model and API.
+
+## API or System Interface (simulated 5 minutes):
+
+Define the primary contract between your system and its clients.
+
+Default to a RESTful API unless there's a strong reason for GraphQL or RPC.
+
+Provide example API endpoints (HTTP method, path, example body/response) for the core functional requirements.
+
+Ensure resource names are plural (e.g., /v1/tweets).
+
+Note how sensitive information (like user IDs) is handled (e.g., derived from authentication token).
+
+If real-time features are implied, briefly mention technologies like WebSockets or Server-Sent Events for those specific aspects.
+
+## Data Flow (Optional - simulated 5 minutes):
+
+If the system involves a significant sequence of data processing actions (e.g., a web crawler), describe the high-level flow as a simple, ordered list of steps.
+
+If not applicable to the problem, explicitly state that this section is skipped.
+
+## High Level Design (simulated 10-15 minutes):
+
+Describe the overall architecture, detailing the main components (e.g., Load Balancer, Web Servers, API Gateway, Databases, Caches, Message Queues) and how they interact.
+
+Explain how data flows through the system for key operations, addressing each API endpoint defined earlier.
+
+Focus on a relatively simple design that meets the core functional requirements.
+
+For relevant entities, briefly describe important columns/fields within the database context, focusing on those crucial to the design rather than exhaustive schema definition.
+
+Verbally note areas where complexity (like caches or message queues) might be added later to address non-functional requirements.
+
+IMPORTANT: If possible, include in your response a system architecture diagram as an ASCII art.
+
+## Deep Dives (simulated 10 minutes):
+
+Choose 1-2 critical non-functional requirements or potential bottlenecks identified in the high-level design.
+
+Propose detailed solutions to address these, demonstrating how your design would be hardened or improved. Examples:
+
+- Scalability: Discuss horizontal scaling strategies (sharding, replication).
+
+- Latency: Explain caching strategies (e.g., read-through, write-through, specific cache types). Discuss fan-out strategies (fan-out-on-read vs. fan-out-on-write).
+
+- Availability/Fault Tolerance: Discuss redundancy, failover mechanisms.
+
+Explain the trade-offs involved in your design choices.
+
+Explicitly mention how your chosen solutions address the specific non-functional requirements or bottlenecks.
+
+Your output should be presented as a clear, structured document following these sections, acting as a detailed plan for the system design.
+</delivery_framework>
+
+<problem_description>
+TODO: INSERT PROBLEM DESCRIPTION
+</problem_description>
+```
+
+For example, [this AI Studio link](https://tinyurl.com/2a3ymayu) shows an example write-up for a multi-tenant CI/CD system. You could ask more in-depth follow-up questions for any topics you find interesting.
+
+This approach is extremely versatile and flexible. You can use it with any model vendor and easily adapt it to other types of interviews.
