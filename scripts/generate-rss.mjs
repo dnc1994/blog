@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const SITE_URL = 'https://linghao.io'
-const SECTIONS = ['posts', 'notes', 'misc']
+const SECTIONS = ['posts', 'notes']
 
 async function generateRSS() {
   console.log('🔄 Generating RSS feed...')
