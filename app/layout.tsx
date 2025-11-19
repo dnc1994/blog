@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next'
-import { Analytics } from '@vercel/analytics/next'
 
 import cn from 'clsx'
 import localFont from 'next/font/local'
@@ -67,7 +66,6 @@ export default function RootLayout({
           </main>
         </div>
         <GoogleAnalytics />
-        <Analytics />
       </body>
     </html>
   )
