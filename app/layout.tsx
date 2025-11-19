@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import type { Metadata, Viewport } from 'next'
 
 import cn from 'clsx'
@@ -65,7 +66,9 @@ export default function RootLayout({
             </ViewTransition>
           </main>
         </div>
-        <GoogleAnalytics />
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
       </body>
     </html>
   )
