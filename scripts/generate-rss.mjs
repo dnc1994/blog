@@ -100,18 +100,26 @@ async function generateRSS() {
 
   // Generate XML
   const xml = feed.xml({ indent: true })
-  
-  // Write to public directory (for dev) and dist directory (for production)
+
+  // Define paths for public (dev) and dist (production)
   const publicPath = path.join(__dirname, '..', 'public', 'feed.xml')
   const distPath = path.join(__dirname, '..', 'dist', 'feed.xml')
-  
-  fs.writeFileSync(publicPath, xml)
-  console.log(`✅ RSS feed written to public/feed.xml (${allArticles.length} articles)`)
-  
-  // Also write to dist if it exists (for production builds)
-  if (fs.existsSync(path.join(__dirname, '..', 'dist'))) {
+
+  try {
+    // Ensure directories exist
+    fs.mkdirSync(path.dirname(publicPath), { recursive: true })
+    fs.mkdirSync(path.dirname(distPath), { recursive: true })
+
+    // Write to both directories
+    fs.writeFileSync(publicPath, xml)
+    console.log(`✅ RSS feed written to public/feed.xml (${allArticles.length} articles)`)
+    
     fs.writeFileSync(distPath, xml)
     console.log(`✅ RSS feed written to dist/feed.xml`)
+
+  } catch (error) {
+    console.error('❌ Error writing RSS feed to file:', error)
+    throw error
   }
   
   console.log(`📡 RSS feed URL: ${SITE_URL}/feed.xml`)
