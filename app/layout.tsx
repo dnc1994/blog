@@ -5,28 +5,25 @@ import cn from 'clsx'
 import localFont from 'next/font/local'
 import 'katex/dist/katex.min.css'
 
+import { GoogleAnalytics } from '@/components/google-analytics'
 import Navbar from '@/components/navbar'
 import { ViewTransition } from '@/components/view-transition'
 import './globals.css'
-
 const sans = localFont({
   src: './_fonts/InterVariable.woff2',
   preload: true,
   variable: '--sans',
 })
-
 const serif = localFont({
   src: './_fonts/LoraItalicVariable.woff2',
   preload: true,
   variable: '--serif',
 })
-
 const mono = localFont({
   src: './_fonts/IosevkaFixedCurly-ExtendedMedium.woff2',
   preload: true,
   variable: '--mono',
 })
-
 export const metadata: Metadata = {
   title: {
     template: '%s - Linghao Zhang',
@@ -34,13 +31,11 @@ export const metadata: Metadata = {
   },
   description: 'A blog by Linghao Zhang.',
 }
-
 export const viewport: Viewport = {
   maximumScale: 1,
   colorScheme: 'only light',
   themeColor: '#fcfcfc',
 }
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -71,6 +66,7 @@ export default function RootLayout({
             </ViewTransition>
           </main>
         </div>
+        <GoogleAnalytics />
         <Analytics />
       </body>
     </html>
