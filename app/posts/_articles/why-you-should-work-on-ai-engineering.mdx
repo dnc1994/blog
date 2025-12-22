@@ -1,0 +1,55 @@
+export const metadata = {
+  title: 'Why You Should Probably Work on AI Engineering',
+  description: 'An exploration of why traditional software engineers should embrace AI engineering as the next great layer of complexity management. This post covers the shift from deterministic logic to non-deterministic systems, the importance of system engineering to bridge machine intelligence and useful products, and why mastering these new abstractions is essential for career longevity in a changing industry.',
+  date: '2025.12.21',
+  tags: ['AI', 'Career'],
+  language: 'en',
+  translationId: 'why-you-should-work-on-ai-engineering',
+  canonical: true,
+}
+
+The software industry is saturated with AI hype, so much so that sometimes traditional software engineering feels sidelined. Many seasoned engineers who didn't start in the AI field are understandably dubious. I felt the same way initially. However, I've come to believe that you should probably work on AI engineering, even if you have no intention of rebranding yourself as an "AI Engineer".
+
+## The Death of Determinism
+
+Whether or not you believe AGI is on the horizon, the current generation of models has already unlocked a vast new category of applications and we are nowhere near the ceiling of this progress.
+
+As Andrej Karpathy put it, models are "non-deterministic [ghosts](https://youtu.be/lXUZvyajciY)". They don't follow the if-then-else logic we've relied on for decades. Harnessing their power requires building robust systems around them. Software engineering is increasingly shifting toward managing this non-determinism and bridging the gap between raw, ["jagged" machine intelligence](https://x.com/karpathy/status/1816531576228053133) and reliable, polished products that benefit end users.
+
+## Managing New Complexity
+
+At its core, software engineering is not about code. It's about managing complexity. And Generative AI adds on new paradigms of complexities. To name a few:
+
+- **Model Configuration:** Behavior is driven by data and config rather than explicit logic. While a backend API with 50 parameters is considered complex, LLM practitioners deal with dozens of hyper-parameters and sometimes hundreds of compiler flags.
+- **Context Engineering:** Every token in the context window is a budget item. The challenge lies in how to retrieve, rank, synthesize, and reconcile potentially conflicting pieces of information to provide the best "grounding" for the model.
+- **Guardrails:** There is a massive gap between a model's raw output and a production-ready response. Currently, this gap is filled by a messy mixture of post-processing rules and ad-hoc patches that need to be systematized.
+
+## Moving Up the Abstraction Ladder
+
+The ultimate goal of these complexity-managing layers is to move past brittle, individual LLM calls and toward system-level components. We need to build AI systems with predictable quality attributes that can be reasoned with just like any other microservice and liberate the team's productivity.
+
+### Building Hybrid Systems
+
+In frontier applications, the best solution rarely uses a single model. It is almost always a complex, hybrid system where you balance:
+
+- **Model Diversity:** Leveraging models from different providers to use the best model for the task and avoid vendor lock-in.
+- **Tiered Compute:** Using smaller, faster models for things like basic classification and routing, while reserving frontier models for complex reasoning.
+- **Quality Attributes Trade-offs:** Fine-tuning the balance between quality, latency, and cost based on the specific use case.
+
+### The Data Flywheel
+
+Another critical engineering challenge is managing the infrastructure for human-in-the-loop processes:
+
+- **Experimentation:** Running dozens of parallel experiments with model and query flow variants.
+- **Human Evaluation:** Engaging outside raters to evaluate experiments and generate high-quality ground truth.
+- **Feedback Loops:** Using rater data to update automated evals and refine the "loss ontology", which in turn guide development and quality hill climbing.
+
+A firm software engineering foundation is what shifts research scientists and engineers from caring about "how to do it" to "when to do it". In a crowded market, the speed at which this data flywheel can spin is often the only sustainable competitive advantage.
+
+## Beyond Self-Preservation
+
+Engaging with AI engineering is, at the bottom line, an act of self-preservation. The industry is shifting; the baseline requirements for an engineer now include the ability to navigate non-deterministic systems. Ignoring this shift is a strategic risk to your career longevity.
+
+However, beyond the necessity of staying relevant, there is a deeper, more exciting reason to lean in: AI is the most significant new abstraction in the history of computing. We are moving from instructing machines exactly how to think to building the systems that guide their thinking.
+
+Software engineering has always been about mastering the next layer of complexity. AI is simply the next rung on the ring. The ceiling for what we can build has moved, and there is no better time to be an engineer than when the rules of the craft are being rewritten.
