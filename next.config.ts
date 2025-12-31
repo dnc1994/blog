@@ -8,8 +8,16 @@ export default withMDX()({
   transpilePackages: ['shiki'],
   images: {
     contentDispositionType: 'inline',
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    contentSecurityPolicy: "default-src 'self'; img-src 'self' https://r2.linghao.io; script-src 'none'; sandbox;",
     unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'r2.linghao.io',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 } satisfies NextConfig)
 
