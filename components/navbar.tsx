@@ -36,8 +36,8 @@ export default function Navbar() {
         <Item href='/'>About</Item>
         <Item href='/posts'>Posts</Item>
         <Item href='/notes'>Notes</Item>
-        <Item href='/gallery'>Gallery</Item>
         <Item href='/tags/all'>Tags</Item>
+        <Item href='/gallery'>Gallery</Item>
       </ul>
     </nav>
   )
