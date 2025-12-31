@@ -24,6 +24,7 @@ A blog by Linghao Zhang, built with Next.js 15 and modern web technologies.
 - 🔍 Syntax highlighting for code blocks
 - 🧮 Math rendering support
 - 🏷️ Tag system with filtering
+- 📸 Photography gallery with lightbox
 - 📡 Auto-generated RSS feed
 - ⚡ Optimized static site with CDN delivery
 - 🚀 Automated deployments
@@ -108,6 +109,10 @@ npm run lint
 │   │   ├── page.tsx        # Misc index
 │   │   ├── [slug]/         # Dynamic misc pages
 │   │   └── _articles/      # Misc content (MDX)
+│   ├── gallery/            # Photography gallery
+│   │   ├── page.tsx        # Gallery page
+│   │   ├── gallery-grid.tsx # Lightbox component
+│   │   └── data.ts         # Photo data
 │   └── tags/               # Tag system
 │       └── all/            # Tag filtering page
 ├── components/             # React components
@@ -160,6 +165,28 @@ Your content here...
 - **Misc** (`app/misc/_articles/`) - Miscellaneous content
 
 All sections follow the same structure and metadata format.
+
+### Gallery
+
+The gallery feature displays a collection of photography. Photos are managed in `app/gallery/data.ts`.
+
+To add a new photo:
+1. Upload the image to a hosting service (e.g., Cloudflare R2).
+2. Add a new object to the `photos` array in `app/gallery/data.ts`:
+
+```typescript
+{
+  id: 'unique-id',
+  src: 'https://your-image-url.jpg',
+  alt: 'Description for accessibility',
+  caption: 'Optional caption text',
+  metadata: {
+    'Location': 'Kyoto, Japan',
+    'Date': '2024-10-28',
+    'Camera': 'Sony α7C II',
+  }
+}
+```
 
 ### Using Components
 
