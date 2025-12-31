@@ -18,19 +18,25 @@ export const components: Record<
 > = {
   h1: (props) => (
     <h1
-      className='font-semibold mb-7 text-rurikon-600 text-balance'
+      className='text-2xl font-semibold mb-7 text-rurikon-600 text-balance'
       {...props}
     />
   ),
   h2: (props) => (
     <h2
-      className='font-semibold mt-14 mb-7 text-rurikon-600 text-balance'
+      className='text-xl font-semibold mt-14 mb-7 text-rurikon-600 text-balance'
       {...props}
     />
   ),
   h3: (props) => (
     <h3
-      className='font-semibold mt-14 mb-7 text-rurikon-600 text-balance'
+      className='text-lg font-semibold mt-14 mb-7 text-rurikon-600 text-balance'
+      {...props}
+    />
+  ),
+  h4: (props) => (
+    <h4
+      className='font-semibold mt-10 mb-5 text-rurikon-600 text-balance'
       {...props}
     />
   ),

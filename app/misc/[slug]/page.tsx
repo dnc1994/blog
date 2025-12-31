@@ -18,7 +18,7 @@ export default async function Page(props: {
       className={cn(metadata.chinese && 'text-justify font-zh')}
       lang={metadata.chinese ? 'zh-Hans' : 'en'}
     >
-      <h1 className='font-semibold mb-7 text-rurikon-600 text-balance'>
+      <h1 className='text-2xl font-semibold mb-7 text-rurikon-600 text-balance'>
         {metadata.title}
       </h1>
       

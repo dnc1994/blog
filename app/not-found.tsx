@@ -3,7 +3,7 @@ import Link from 'next/link'
 export default function NotFound() {
   return (
     <div>
-      <h1>404 - Page Not Found</h1>
+      <h1 className='text-2xl font-semibold mb-7 text-rurikon-600'>404 - Page Not Found</h1>
       <p className='mt-7'>
         The page you're looking for doesn't exist.
       </p>

@@ -69,7 +69,7 @@ export function TagsClient({ initialPosts, initialTags }: TagsClientProps) {
       {/* Tags Filter Section */}
       <div>
         <div className="flex items-baseline justify-between mb-7">
-          <h1 className="font-semibold text-rurikon-600">Filter by Tags</h1>
+          <h1 className="text-2xl font-semibold text-rurikon-600">Filter by Tags</h1>
           {selectedTags.size > 0 && (
             <button
               onClick={clearTags}
@@ -97,7 +97,7 @@ export function TagsClient({ initialPosts, initialTags }: TagsClientProps) {
 
       {/* Posts List */}
       <div>
-        <h2 className="font-semibold mb-7 text-rurikon-600">
+        <h2 className="text-xl font-semibold mb-7 text-rurikon-600">
           {selectedTags.size > 0 ? 'Filtered Posts' : 'All Posts'} ({filteredPosts.length})
         </h2>
 
