@@ -1,11 +1,9 @@
-import { Suspense } from 'react'
 import type { Metadata, Viewport } from 'next'
 
 import cn from 'clsx'
 import localFont from 'next/font/local'
 import 'katex/dist/katex.min.css'
 
-import { GoogleAnalytics } from '@/components/google-analytics'
 import Navbar from '@/components/navbar'
 import { ViewTransition } from '@/components/view-transition'
 import './globals.css'
@@ -66,9 +64,6 @@ export default function RootLayout({
             </ViewTransition>
           </main>
         </div>
-        <Suspense fallback={null}>
-          <GoogleAnalytics />
-        </Suspense>
         <script defer src="https://cloud.umami.is/script.js" data-website-id="123a4517-a917-4944-83b4-670d2a832ada"></script>
       </body>
     </html>
