@@ -110,9 +110,25 @@ export async function generateMetadata(props: {
   const params = await props.params
   const metadata = (await import('../_articles/' + `${params.slug}.mdx`))
     .metadata
+  
+  const ogImage = metadata.image
+  
   return {
     title: metadata.title,
     description: metadata.description,
+    openGraph: {
+      title: metadata.title,
+      description: metadata.description,
+      type: 'article',
+      url: `https://linghao.io/posts/${params.slug}`,
+      images: ogImage ? [{ url: ogImage }] : [],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metadata.title,
+      description: metadata.description,
+      images: ogImage ? [ogImage] : [],
+    },
   }
 }
 

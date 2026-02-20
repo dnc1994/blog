@@ -28,6 +28,28 @@ export const metadata: Metadata = {
     default: 'Linghao Zhang',
   },
   description: 'A blog by Linghao Zhang.',
+  openGraph: {
+    title: 'Linghao Zhang',
+    description: 'A blog by Linghao Zhang.',
+    url: 'https://linghao.io',
+    siteName: 'Linghao Zhang',
+    locale: 'en_US',
+    type: 'website',
+    images: [
+      {
+        url: 'https://linghao.io/icon.png',
+        width: 512,
+        height: 512,
+        alt: 'Linghao Zhang',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Linghao Zhang',
+    description: 'A blog by Linghao Zhang.',
+    images: ['https://linghao.io/icon.png'],
+  },
 }
 export const viewport: Viewport = {
   maximumScale: 1,

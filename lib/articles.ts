@@ -10,6 +10,7 @@ export type PostWithTags = {
   language?: string
   translationId?: string
   canonical?: boolean
+  image?: string
 }
 
 // Helper function to dynamically import articles from a specific section
@@ -47,6 +48,7 @@ export async function getArticlesFromSection(
             language: module.metadata.language,
             translationId: module.metadata.translationId,
             canonical: module.metadata.canonical,
+            image: module.metadata.image,
           })
         }
       } catch (importError) {
