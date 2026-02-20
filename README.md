@@ -128,8 +128,6 @@ npm run lint
 ├── mdx-components.tsx      # MDX component config
 ├── next.config.ts          # Next.js config
 ├── wrangler.toml           # Cloudflare config
-└── .github/workflows/      # CI/CD pipelines
-    └── deploy.yml          # Deployment workflow
 ```
 
 ## Content Management
