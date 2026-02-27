@@ -62,9 +62,6 @@
 
 :root {
   --background: #fcfcfc;
-}
-
-:root {
   --sans-variation: 'opsz' 32;
   --font-features: 'cpsp' 1, 'cv01', 'cv03', 'cv04', 'calt', 'ss03',
     'liga', 'ordn';
@@ -72,9 +69,7 @@
 
 body {
   font-synthesis: none;
-  font-family: var(--sans), system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: var(--font-family-sans);
   font-feature-settings: var(--font-features);
   font-variation-settings: 'wght' 440, var(--sans-variation);
   font-variant: common-ligatures contextual;
@@ -87,9 +82,6 @@ body {
   text-rendering: geometricPrecision;
   text-autospace: normal;
 
-  /* Debugger */
-  /* background: linear-gradient(to bottom, #ccc, var(--background) 1px);
-  background-size: 100% 1.75rem; */
 }
 
 i,
@@ -114,7 +106,7 @@ del {
 blockquote {
   box-shadow: 1px 0 0 var(--color-rurikon-500) inset;
 }
-@media screen and (max-width: 420px) {
+@media screen and (max-width: var(--breakpoint-mobile)) {
   blockquote {
     /* Make it wider on mobile with a lighter color */
     box-shadow: 2px 0 0 var(--color-rurikon-300) inset;
@@ -132,12 +124,9 @@ main {
 }
 
 pre {
-  background-color: #f7f7f7;
+  background-color: var(--color-rurikon-50);
   contain: paint;
-  /* margin: 1.75rem 0; */
   overflow-x: auto;
-  /* border-radius: 0.75rem; */
-  /* background-color: var(--color-rurikon-50); */
   padding: 0.875rem 1.25rem;
   -webkit-font-smoothing: auto;
 }
@@ -152,28 +141,20 @@ code {
   font-family: var(--mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, 'Liberation Mono', 'Courier New', monospace;
   word-spacing: -0.15em;
-
-  /* background: var(--color-rurikon-50); */
   padding: 0.15em 0.2em;
-  /* margin: 0 1px; */
-  /* border-radius: 2px; */
-  /* -webkit-box-decoration-break: clone;
-  box-decoration-break: clone; */
-
-  /* color: hsl(215deg 32% 37%); */
-  --shiki-token-comment: hsl(215deg 32% 37% / 45%);
-  --shiki-token-punctuation: hsl(215deg 32% 37% / 65%);
-  --shiki-token-keyword: hsl(215deg 32% 37% / 85%);
-  --shiki-token-function: hsl(223deg 85% 46%);
-  --shiki-token-string: #0fb359;
-  --shiki-token-string-expression: #0fb359;
-  --shiki-token-constant: hsl(215deg 32% 26%);
-  --shiki-token-link: #0fb359;
-  --shiki-token-parameter: #ff9800;
+  --shiki-token-comment: color-mix(in srgb, var(--color-rurikon-500) 45%, transparent);
+  --shiki-token-punctuation: color-mix(in srgb, var(--color-rurikon-500) 65%, transparent);
+  --shiki-token-keyword: color-mix(in srgb, var(--color-rurikon-600) 85%, transparent);
+  --shiki-token-function: var(--color-rurikon-700);
+  --shiki-token-string: var(--color-rurikon-500);
+  --shiki-token-string-expression: var(--color-rurikon-500);
+  --shiki-token-constant: var(--color-rurikon-800);
+  --shiki-token-link: var(--color-rurikon-500);
+  --shiki-token-parameter: var(--color-rurikon-400);
 }
 
 pre {
-  --shiki-foreground: #414141;
+  --shiki-foreground: var(--color-rurikon-600);
   --shiki-background: transparent;
 }
 
@@ -195,13 +176,13 @@ article {
   }
   .framed > img, .framed > figure > span:first-child {
     padding: var(--frame-padding, 0.875rem);
-    background: var(--frame-background, #fff);
+    background: var(--frame-background, var(--background));
     border: 1px solid var(--color-rurikon-border);
   }
   iframe {
     width: 100%;
     border: 1px solid var(--color-rurikon-border);
-    background-color: #fff;
+    background-color: var(--background);
   }
   details {
     margin-top: 1.75rem;
@@ -222,12 +203,12 @@ article {
 }
 
 .content-fade-out {
-  background: linear-gradient(to bottom, #fcfcfc, #fcfcfc00);
+  background: linear-gradient(to bottom, var(--background), transparent);
 }
 
 *::selection {
-  background: #95a5ac40;
-  color: #485a74;
+  background: color-mix(in srgb, var(--color-rurikon-200) 40%, transparent);
+  color: var(--color-rurikon-700);
 }
 
 .dot-leaders {
@@ -250,7 +231,7 @@ article {
 
     ::view-transition-new(crossfade) {
       opacity: 0;
-      animation: appear .6s ease 0.2s forwards;
+      animation: appear 0.6s ease 0.2s forwards;
     }
   }
 }
@@ -276,4 +257,3 @@ article {
     filter: blur(0);
   }
 }
-
