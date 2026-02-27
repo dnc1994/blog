@@ -1,30 +1,19 @@
-import { promises as fs } from 'fs'
 import Link from 'next/link'
-import path from 'path'
+import { LEGACY_NOTE_SLUGS } from '@/lib/legacy-notes'
 
 export const metadata = {
-  title: 'NOTES',
+  title: 'Notes (Moved)',
+  description: 'Legacy notes URLs are preserved. New and moved notes now live under /posts.',
 }
 
-const articlesDirectory = path.join(
-  process.cwd(),
-  'app',
-  'notes',
-  '_articles'
-)
-
 export default async function Page() {
-  const articles = await fs.readdir(articlesDirectory)
-
   const items = []
-  for (const article of articles) {
-    if (!article.endsWith('.mdx')) continue
-    const module = await import('./_articles/' + article)
-
-    if (!module.metadata) throw new Error('Missing `metadata` in ' + article)
+  for (const slug of LEGACY_NOTE_SLUGS) {
+    const module = await import('@/app/posts/_articles/' + `${slug}.mdx`)
+    if (!module.metadata) continue
 
     items.push({
-      slug: article.replace(/\.mdx$/, ''),
+      slug,
       title: module.metadata.title,
       date: module.metadata.date || '-',
       sort: Number(module.metadata.date?.replaceAll('.', '').replaceAll('-', '') || 0),
@@ -34,11 +23,14 @@ export default async function Page() {
 
   return (
     <div>
+      <p className='text-rurikon-400 mb-7'>
+        Notes have moved to <Link href='/posts' className='underline decoration-rurikon-300 hover:decoration-rurikon-600'>/posts</Link>. This page is kept for backward compatibility.
+      </p>
       <ul>
         {items.map((item) => (
           <li key={item.slug} className='font-medium'>
             <Link
-              href={`/notes/${item.slug}`}
+              href={`/posts/${item.slug}`}
               className='group flex gap-1 justify-between items-center'
               draggable={false}
             >
@@ -56,4 +48,3 @@ export default async function Page() {
     </div>
   )
 }
-

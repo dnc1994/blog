@@ -102,10 +102,9 @@ npm run lint
 │   │   ├── page.tsx        # Posts index
 │   │   ├── [slug]/         # Dynamic post pages
 │   │   └── _articles/      # Post content (MDX)
-│   ├── notes/              # Reading notes
-│   │   ├── page.tsx        # Notes index
-│   │   ├── [slug]/         # Dynamic note pages
-│   │   └── _articles/      # Note content (MDX)
+│   ├── notes/              # Legacy URL compatibility routes (redirect/alias to posts)
+│   │   ├── page.tsx        # Legacy notes index
+│   │   └── [slug]/         # Legacy note URLs
 │   ├── misc/               # Miscellaneous articles
 │   │   ├── page.tsx        # Misc index
 │   │   ├── [slug]/         # Dynamic misc pages
@@ -163,11 +162,10 @@ Your content here...
 
 ### Content Sections
 
-- **Posts** (`app/posts/_articles/`) - Blog posts and articles
-- **Notes** (`app/notes/_articles/`) - Reading notes and summaries
+- **Posts** (`app/posts/_articles/`) - Blog posts and reading notes
 - **Misc** (`app/misc/_articles/`) - Miscellaneous content
 
-All sections follow the same structure and metadata format.
+Legacy `/notes/*` URLs are still supported for backward compatibility, but new content should be added under `posts`.
 
 ### Gallery
 
@@ -278,7 +276,7 @@ export const metadata = {
 The RSS feed is automatically generated on every build:
 
 - **Feed URL**: `https://linghao.io/feed.xml`
-- **Includes**: All posts, notes, and misc articles
+- **Includes**: All posts and misc articles
 - **Updates**: Automatic on deployment
 - **Manual generation**: `npm run rss`
 

@@ -1,9 +1,9 @@
 import { PostWithTags } from './articles'
-import { getAllArticles } from './articles'
+import { getArticlesFromSection } from './articles'
 
 // Get all posts with their tags across all sections
 export async function getAllPostsWithTags(): Promise<PostWithTags[]> {
-  const allPosts = await getAllArticles()
+  const allPosts = await getArticlesFromSection('posts')
   const postsByTranslationId = new Map<string, PostWithTags[]>()
 
   // Group posts by translationId

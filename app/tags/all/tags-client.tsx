@@ -10,7 +10,7 @@ type Post = {
   title: string
   date: string
   tags: string[]
-  section: 'posts' | 'notes' | 'misc'
+  section: 'posts' | 'misc'
 }
 
 type TagsClientProps = {
@@ -128,4 +128,3 @@ export function TagsClient({ initialPosts, initialTags }: TagsClientProps) {
     </div>
   )
 }
-

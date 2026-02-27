@@ -1,8 +1,8 @@
-import { promises as fs } from 'fs'
-import path from 'path'
 import cn from 'clsx'
 import { Tag } from '@/components/tag'
 import { resolveSocialImage } from '@/lib/seo'
+import { notFound } from 'next/navigation'
+import { LEGACY_NOTE_SLUGS } from '@/lib/legacy-notes'
 
 export default async function Page(props: {
   params: Promise<{
@@ -10,9 +10,13 @@ export default async function Page(props: {
   }>
 }) {
   const params = await props.params
-  const { default: MDXContent, metadata } = await import(
-    '../_articles/' + `${params.slug}.mdx`
-  )
+  let articleModule
+  try {
+    articleModule = await import('@/app/posts/_articles/' + `${params.slug}.mdx`)
+  } catch {
+    notFound()
+  }
+  const { default: MDXContent, metadata } = articleModule
 
   return (
     <div
@@ -40,15 +44,7 @@ export default async function Page(props: {
 }
 
 export async function generateStaticParams() {
-  const articles = await fs.readdir(
-    path.join(process.cwd(), 'app', 'notes', '_articles')
-  )
-
-  return articles
-    .filter((name) => name.endsWith('.mdx'))
-    .map((name) => ({
-      slug: name.replace(/\.mdx$/, ''),
-    }))
+  return LEGACY_NOTE_SLUGS.map((slug) => ({ slug }))
 }
 
 export async function generateMetadata(props: {
@@ -57,14 +53,22 @@ export async function generateMetadata(props: {
   }>
 }) {
   const params = await props.params
-  const metadata = (await import('../_articles/' + `${params.slug}.mdx`))
-    .metadata
+  let metadata
+  try {
+    metadata = (await import('@/app/posts/_articles/' + `${params.slug}.mdx`))
+      .metadata
+  } catch {
+    return {}
+  }
   
   const socialImage = resolveSocialImage(metadata.image)
   
   return {
     title: metadata.title,
     description: metadata.description,
+    alternates: {
+      canonical: `https://linghao.io/posts/${params.slug}`,
+    },
     openGraph: {
       title: metadata.title,
       description: metadata.description,

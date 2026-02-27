@@ -21,7 +21,7 @@ This is a **Next.js 15 App Router static site** (`output: 'export'` to `dist/`) 
 
 ### Content System
 
-Articles live in `app/[section]/_articles/*.mdx` where section is `posts`, `notes`, or `misc`. Each MDX file exports a `metadata` object:
+Articles live in `app/[section]/_articles/*.mdx` where section is `posts` or `misc`. Legacy `/notes/*` URLs are maintained via compatibility routes that map to posts. Each MDX file exports a `metadata` object:
 
 ```typescript
 export const metadata = {

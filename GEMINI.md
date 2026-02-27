@@ -18,7 +18,7 @@ This is a personal blog built with **Next.js 15 (App Router)**, **TypeScript**, 
 ### Key Directories
 - **`app/`**: Application source code (App Router).
   - **`layout.tsx`**: Root layout with global styles and font loading.
-  - **`[section]/`**: Sections of the blog (e.g., `posts`, `notes`, `misc`).
+  - **`[section]/`**: Sections of the blog (e.g., `posts`, `misc`). Legacy `/notes/*` routes are compatibility aliases.
     - **`_articles/`**: Contains `.mdx` content files for that section.
     - **`[slug]/`**: Dynamic route for rendering individual articles.
   - **`_fonts/`**: Local font files (Inter, Iosevka, Lora).
@@ -51,7 +51,7 @@ This is a personal blog built with **Next.js 15 (App Router)**, **TypeScript**, 
 - **`npm run deploy:prod`**: Deploy to Cloudflare Pages (Production).
 
 ### Adding Content
-1. Choose the appropriate section (`posts`, `notes`, or `misc`).
+1. Choose the appropriate section (`posts` or `misc`).
 2. Create a new `.mdx` file in `app/[section]/_articles/`.
 3. Export the required `metadata` object.
 

@@ -6,7 +6,7 @@ export type PostWithTags = {
   title: string
   date: string
   tags: string[]
-  section: 'posts' | 'notes' | 'misc'
+  section: 'posts' | 'misc'
   language?: string
   translationId?: string
   canonical?: boolean
@@ -15,7 +15,7 @@ export type PostWithTags = {
 
 // Helper function to dynamically import articles from a specific section
 export async function getArticlesFromSection(
-  section: 'posts' | 'notes' | 'misc'
+  section: 'posts' | 'misc'
 ): Promise<PostWithTags[]> {
   const articlesDir = path.join(process.cwd(), 'app', section, '_articles')
   const posts: PostWithTags[] = []
@@ -32,8 +32,6 @@ export async function getArticlesFromSection(
         let module
         if (section === 'posts') {
           module = await import(`@/app/posts/_articles/${file}`)
-        } else if (section === 'notes') {
-          module = await import(`@/app/notes/_articles/${file}`)
         } else if (section === 'misc') {
           module = await import(`@/app/misc/_articles/${file}`)
         }
@@ -65,7 +63,7 @@ export async function getArticlesFromSection(
 
 
 export async function getDedupedArticlesFromSection(
-  section: 'posts' | 'notes' | 'misc'
+  section: 'posts' | 'misc'
 ): Promise<PostWithTags[]> {
   const allArticles = await getArticlesFromSection(section)
 
@@ -97,10 +95,9 @@ export async function getDedupedArticlesFromSection(
 }
 
 export async function getAllArticles(): Promise<PostWithTags[]> {
-  const [posts, notes, misc] = await Promise.all([
+  const [posts, misc] = await Promise.all([
     getArticlesFromSection('posts'),
-    getArticlesFromSection('notes'),
     getArticlesFromSection('misc'),
   ]);
-  return [...posts, ...notes, ...misc];
+  return [...posts, ...misc];
 }

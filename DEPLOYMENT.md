@@ -188,7 +188,7 @@ git push
 ### RSS Auto-Update
 
 RSS feed automatically regenerates on every build:
-- Includes all posts, notes, and misc articles
+- Includes all posts and misc articles
 - Sorted by date (newest first)
 - Available at: `/feed.xml`
 
@@ -255,4 +255,3 @@ If you encounter issues:
 ---
 
 **Last Updated**: October 2025
-
