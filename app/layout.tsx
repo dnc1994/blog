@@ -23,6 +23,7 @@ const mono = localFont({
   variable: '--mono',
 })
 export const metadata: Metadata = {
+  metadataBase: new URL('https://linghao.io'),
   title: {
     template: '%s - Linghao Zhang',
     default: 'Linghao Zhang',
@@ -91,4 +92,3 @@ export default function RootLayout({
     </html>
   )
 }
-

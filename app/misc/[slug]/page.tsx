@@ -2,6 +2,7 @@ import { promises as fs } from 'fs'
 import path from 'path'
 import cn from 'clsx'
 import { Tag } from '@/components/tag'
+import { resolveSocialImage } from '@/lib/seo'
 
 export default async function Page(props: {
   params: Promise<{
@@ -59,7 +60,7 @@ export async function generateMetadata(props: {
   const metadata = (await import('../_articles/' + `${params.slug}.mdx`))
     .metadata
   
-  const ogImage = metadata.image
+  const socialImage = resolveSocialImage(metadata.image)
   
   return {
     title: metadata.title,
@@ -69,14 +70,13 @@ export async function generateMetadata(props: {
       description: metadata.description,
       type: 'article',
       url: `https://linghao.io/misc/${params.slug}`,
-      images: ogImage ? [{ url: ogImage }] : [],
+      images: socialImage ? [socialImage] : undefined,
     },
     twitter: {
       card: 'summary_large_image',
       title: metadata.title,
       description: metadata.description,
-      images: ogImage ? [ogImage] : [],
+      images: socialImage ? [socialImage.url] : undefined,
     },
   }
 }
-
