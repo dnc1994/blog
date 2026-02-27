@@ -24,6 +24,7 @@ A blog by Linghao Zhang, built with Next.js 15 and modern web technologies.
 - 🔍 Syntax highlighting for code blocks
 - 🧮 Math rendering support
 - 🏷️ Tag system with filtering
+- 🧩 Projects page with SVG logos
 - 📸 Photography gallery with lightbox
 - 📡 Auto-generated RSS feed
 - ⚡ Optimized static site with CDN delivery
@@ -113,6 +114,10 @@ npm run lint
 │   │   ├── page.tsx        # Gallery page
 │   │   ├── gallery-grid.tsx # Lightbox component
 │   │   └── data.ts         # Photo data
+│   ├── projects/           # Projects page
+│   │   ├── page.tsx        # Projects page
+│   │   ├── data.tsx        # Project metadata
+│   │   └── logos.tsx       # Project SVG logos
 │   └── tags/               # Tag system
 │       └── all/            # Tag filtering page
 ├── components/             # React components
@@ -211,7 +216,18 @@ The blog uses the "rurikon" color palette defined in `app/globals.css`. Customiz
 
 ### Fonts
 
-Custom fonts are loaded from `app/_fonts/`. To change fonts, replace the font files and update `app/layout.tsx`.
+Fonts are loaded locally via `next/font/local` in `app/layout.tsx` and exposed as CSS variables:
+
+- `--sans`: Inter Variable (default body text)
+- `--serif`: Lora Italic Variable (used for blockquote/nav/sidenote styling)
+- `--mono`: Iosevka Fixed Curly (code blocks and inline code)
+
+Current typography strategy in `app/globals.css`:
+
+- Body text uses sans variable font with custom OpenType features and `font-variation-settings`.
+- Emphasis (`em`, `i`) uses sans italic with `font-synthesis: style` (so italic renders even when no dedicated italic face is available).
+- Blockquote/nav/sidenote use serif styling.
+- Code uses mono styling and Shiki token variables.
 
 ### Navigation
 
@@ -233,8 +249,8 @@ npm run deploy:prod
 
 ### Automatic Deployments
 
-- Push to `v2` branch → Preview deployment
-- Push to `main` branch → Production deployment
+Deployment is currently script-driven (`npm run deploy`, `npm run deploy:prod`).
+If CI branch automation is added, document branch mappings here.
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed setup instructions.
 
