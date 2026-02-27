@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
 import { Photo } from './data'
 import { XMarkIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
-import clsx from 'clsx'
 
 export default function GalleryGrid({ photos }: { photos: Photo[] }) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
@@ -40,10 +39,12 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
     <>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {photos.map((photo, index) => (
-          <div
+          <button
+            type="button"
             key={photo.id}
             className="group relative aspect-[4/3] cursor-pointer overflow-hidden bg-rurikon-50"
             onClick={() => openLightbox(index)}
+            aria-label={`Open photo ${index + 1}: ${photo.alt}`}
           >
             <Image
               src={photo.src}
@@ -53,7 +54,7 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
               unoptimized
             />
             <div className="absolute inset-0 bg-black/0 transition-colors group-hover:bg-black/10" />
-          </div>
+          </button>
         ))}
       </div>
 
@@ -70,20 +71,20 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
             <XMarkIcon className="w-8 h-8" />
           </button>
 
-          {/* Navigation Buttons (Desktop) */}
+          {/* Navigation Buttons */}
           <button
             onClick={showPrev}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 text-rurikon-300 hover:text-rurikon-800 hidden sm:block transition-colors"
+            className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-2 text-rurikon-300 hover:text-rurikon-800 transition-colors"
             aria-label="Previous"
           >
-            <ChevronLeftIcon className="w-10 h-10" />
+            <ChevronLeftIcon className="w-8 h-8 sm:w-10 sm:h-10" />
           </button>
           <button
             onClick={showNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 text-rurikon-300 hover:text-rurikon-800 hidden sm:block transition-colors"
+            className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-2 text-rurikon-300 hover:text-rurikon-800 transition-colors"
             aria-label="Next"
           >
-            <ChevronRightIcon className="w-10 h-10" />
+            <ChevronRightIcon className="w-8 h-8 sm:w-10 sm:h-10" />
           </button>
 
           <div className="flex flex-col md:flex-row w-full max-w-6xl h-full md:h-auto max-h-screen gap-6 items-center justify-center">

@@ -17,7 +17,9 @@ export function Tag({ tag, active = false, count, interactive = false, href }: T
       ? active
         ? 'bg-rurikon-800 text-white border-rurikon-800'
         : 'bg-white text-rurikon-400 border-rurikon-200 hover:border-rurikon-400 hover:text-rurikon-600 cursor-pointer'
-      : 'bg-white text-rurikon-400 border-rurikon-200 hover:border-rurikon-400 hover:text-rurikon-600'
+      : href
+        ? 'bg-white text-rurikon-400 border-rurikon-200 hover:border-rurikon-400 hover:text-rurikon-600'
+        : 'bg-white text-rurikon-400 border-rurikon-200'
   )
 
   const content = (
@@ -44,4 +46,3 @@ export function Tag({ tag, active = false, count, interactive = false, href }: T
 
   return <span className={className}>{content}</span>
 }
-

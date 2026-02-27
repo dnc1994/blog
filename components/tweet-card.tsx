@@ -25,10 +25,9 @@ export function Card({
       />
       <p className='m-4 mt-3 mb-1 font-semibold'>{title}</p>
       <p className='m-4 mb-2 mt-1 opacity-80 text-sm'>{desc}</p>
-      <p className='m-4 mt-1 mb-3 text-rurikon-200 text-sm transition-colors group-hover:text-rurikon-300'>
+      <p className='m-4 mt-1 mb-3 text-rurikon-300 text-sm transition-colors group-hover:text-rurikon-400'>
         {link}
       </p>
     </a>
   )
 }
-
