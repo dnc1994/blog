@@ -16,7 +16,11 @@ function getImageType(url: string) {
   return undefined
 }
 
-export function resolveSocialImage(image?: string) {
+export function resolveSocialImage(
+  image?: string,
+  width: number = 1200,
+  height: number = 630,
+) {
   if (!image) return undefined
 
   const url = toAbsoluteUrl(image)
@@ -24,6 +28,8 @@ export function resolveSocialImage(image?: string) {
     url,
     secureUrl: url,
     type: getImageType(url),
+    width,
+    height,
     alt: 'Social card image',
   }
 }

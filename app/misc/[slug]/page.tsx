@@ -60,7 +60,7 @@ export async function generateMetadata(props: {
   const metadata = (await import('../_articles/' + `${params.slug}.mdx`))
     .metadata
   
-  const socialImage = resolveSocialImage(metadata.image)
+  const socialImage = resolveSocialImage(metadata.image, metadata.imageWidth, metadata.imageHeight)
   
   return {
     title: metadata.title,

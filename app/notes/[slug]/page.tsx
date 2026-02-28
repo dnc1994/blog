@@ -61,7 +61,7 @@ export async function generateMetadata(props: {
     return {}
   }
   
-  const socialImage = resolveSocialImage(metadata.image)
+  const socialImage = resolveSocialImage(metadata.image, metadata.imageWidth, metadata.imageHeight)
   
   return {
     title: metadata.title,

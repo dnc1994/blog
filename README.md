@@ -124,6 +124,8 @@ npm run lint
 │   ├── tag.tsx             # Tag component
 │   └── ...                 # Other components
 ├── lib/                    # Utilities
+│   ├── articles.ts         # Content loading
+│   ├── seo.ts              # OG/social image resolution
 │   └── tags.ts             # Tag management
 ├── scripts/                # Build scripts
 │   └── generate-rss.mjs    # RSS generation
@@ -149,6 +151,11 @@ export const metadata = {
   description: 'A brief description',
   date: '2025.01.01',
   tags: ['Tag1', 'Tag2'],
+  // Optional: OG/social card image (hosted on Cloudflare R2 or any public URL)
+  image: 'https://r2.linghao.io/blog-assets/your-image.png',
+  // Optional: override default OG image dimensions (defaults to 1200×630)
+  imageWidth: 1200,
+  imageHeight: 630,
 }
 
 Your content here...
