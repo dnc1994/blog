@@ -17,7 +17,7 @@ export const projects: Project[] = [
     id: 'post-summarizer-bot',
     name: 'Post Summarizer Bot',
     description:
-      'A Telegram bot that summarizes forwarded posts and long-form content for faster reading.',
+      'A Telegram bot that summarizes long-form posts for faster reading, with a high personalized offline eval workflow that lets you systematically hill-climb the prompt using collected user feedback.',
     repoUrl: 'https://github.com/dnc1994/post_summarizer_bot',
     logo: PostSummarizerBotLogo,
   },
@@ -25,7 +25,7 @@ export const projects: Project[] = [
     id: 'bw-calendar',
     name: 'BW Calendar',
     description:
-      'A focused calendar utility for tracking and organizing personal schedules with a clean workflow.',
+      'A privacy-first and minimalist Obsidian plugin for viewing personal event logs.',
     repoUrl: 'https://github.com/dnc1994/bw-calendar',
     logo: BwCalendarLogo,
   },
