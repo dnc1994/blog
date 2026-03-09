@@ -1,6 +1,7 @@
 import type { SVGProps } from 'react'
 import {
   BwCalendarLogo,
+  JarvisLogo,
   PostSummarizerBotLogo,
   RedactleZhLogo,
 } from './logos'
@@ -40,5 +41,13 @@ export const projects: Project[] = [
       'A privacy-first and minimalist Obsidian plugin for viewing personal event logs.',
     repoUrl: 'https://github.com/dnc1994/bw-calendar',
     logo: BwCalendarLogo,
+  },
+  {
+    id: 'jarvis',
+    name: 'Jarvis',
+    description:
+      'A personal task management assistant based on skills and optionally Obsidian, designed to work with agentic tools such as Claude and OpenClaw.',
+    repoUrl: 'https://github.com/dnc1994/jarvis',
+    logo: JarvisLogo,
   },
 ]

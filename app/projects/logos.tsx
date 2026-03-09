@@ -57,3 +57,16 @@ export function RedactleZhLogo(props: LogoProps) {
     </svg>
   )
 }
+
+export function JarvisLogo(props: LogoProps) {
+  return (
+    <svg viewBox='0 0 64 64' fill='none' aria-hidden='true' {...props}>
+      <rect x='1.5' y='1.5' width='61' height='61' rx='14' className='fill-rurikon-50 stroke-rurikon-200' />
+      <circle cx='32' cy='32' r='15' className='fill-white stroke-rurikon-300' />
+      <circle cx='32' cy='32' r='9' className='fill-rurikon-700' />
+      <circle cx='32' cy='32' r='4' className='fill-white' />
+      <path d='M32 12V18M32 46V52M12 32H18M46 32H52' className='stroke-rurikon-400' strokeWidth='2.2' strokeLinecap='round' />
+      <circle cx='32' cy='32' r='22' className='stroke-rurikon-200' strokeWidth='2' strokeDasharray='2.5 4' />
+    </svg>
+  )
+}
