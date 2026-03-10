@@ -59,6 +59,10 @@ Tailwind CSS v4 (beta) — no `tailwind.config.ts`; configuration is in `app/glo
 
 Photos are stored as data in `app/gallery/data.ts` and hosted on Cloudflare R2 at `r2.linghao.io`. The gallery uses a lightbox component at `app/gallery/gallery-grid.tsx`.
 
+### Agentic Coding
+
+A curated list of tools bookmarked for agentic coding. Data lives in `app/agentic-coding/data.ts` as a flat array of `Tool` entries (id, name, description, url). The page at `app/agentic-coding/page.tsx` renders them as a lightweight list.
+
 ### Path Alias
 
 `@/*` maps to the repo root (configured in `tsconfig.json`).
