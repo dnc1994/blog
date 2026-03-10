@@ -16,7 +16,7 @@ export default function AgenticCodingPage() {
       <ul className='divide-y divide-rurikon-border'>
         {tools.map((tool) => (
           <li key={tool.id} className='py-4 sm:py-5'>
-            <div className='flex flex-wrap items-baseline gap-x-2'>
+            <div className='min-w-0'>
               <Link
                 href={tool.url}
                 target='_blank'
@@ -26,8 +26,7 @@ export default function AgenticCodingPage() {
               >
                 {tool.name}
               </Link>
-              <span className='text-rurikon-300'>—</span>
-              <span className='text-rurikon-400'>{tool.description}</span>
+              <p className='mt-1 text-rurikon-400'>{tool.description}</p>
             </div>
           </li>
         ))}
