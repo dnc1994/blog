@@ -9,6 +9,13 @@ export const metadata = {
 export default function AgenticCodingPage() {
   return (
     <div>
+      <Link
+        href='/lists'
+        className='inline-block mb-6 text-sm text-rurikon-400 hover:text-rurikon-600 transition-colors'
+      >
+        ← Lists
+      </Link>
+
       <p className='text-rurikon-500 mb-8'>
         Tools I&apos;ve bookmarked for agentic coding workflows.
       </p>
