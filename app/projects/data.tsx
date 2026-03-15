@@ -2,6 +2,7 @@ import type { SVGProps } from 'react'
 import {
   BwCalendarLogo,
   JarvisLogo,
+  MagiLogo,
   PostSummarizerBotLogo,
   RedactleZhLogo,
 } from './logos'
@@ -41,6 +42,14 @@ export const projects: Project[] = [
       'A privacy-first and minimalist Obsidian plugin for viewing personal event logs.',
     repoUrl: 'https://github.com/dnc1994/bw-calendar',
     logo: BwCalendarLogo,
+  },
+  {
+    id: 'magi',
+    name: 'MAGI',
+    description:
+      'A terminal GUI simulating the MAGI supercomputer voting system from Neon Genesis Evangelion. Three subsystems — MELCHIOR-1, BALTHASAR-2, and CASPAR-3 — deliberate via LLM calls to reach a consensus.',
+    repoUrl: 'https://github.com/dnc1994/magi',
+    logo: MagiLogo,
   },
   {
     id: 'jarvis',

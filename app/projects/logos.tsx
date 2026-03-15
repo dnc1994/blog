@@ -58,6 +58,38 @@ export function RedactleZhLogo(props: LogoProps) {
   )
 }
 
+export function MagiLogo(props: LogoProps) {
+  return (
+    <svg viewBox='0 0 64 64' fill='none' aria-hidden='true' {...props}>
+      <rect x='1.5' y='1.5' width='61' height='61' rx='14' className='fill-rurikon-50 stroke-rurikon-200' />
+      {/* Three terminal panels */}
+      <rect x='10' y='18' width='13' height='16' rx='3' className='fill-white stroke-rurikon-300' />
+      <rect x='25.5' y='18' width='13' height='16' rx='3' className='fill-white stroke-rurikon-300' />
+      <rect x='41' y='18' width='13' height='16' rx='3' className='fill-white stroke-rurikon-300' />
+      {/* Screen lines in each panel */}
+      <rect x='12.5' y='22' width='8' height='1.5' rx='0.75' className='fill-rurikon-300' />
+      <rect x='12.5' y='25.5' width='6' height='1.5' rx='0.75' className='fill-rurikon-300' />
+      <rect x='28' y='22' width='8' height='1.5' rx='0.75' className='fill-rurikon-300' />
+      <rect x='28' y='25.5' width='6' height='1.5' rx='0.75' className='fill-rurikon-300' />
+      <rect x='43.5' y='22' width='8' height='1.5' rx='0.75' className='fill-rurikon-300' />
+      <rect x='43.5' y='25.5' width='6' height='1.5' rx='0.75' className='fill-rurikon-300' />
+      {/* Vote indicators — all green (consensus) */}
+      <circle cx='16.5' cy='30.5' r='2.2' className='fill-rurikon-700' />
+      <circle cx='32' cy='30.5' r='2.2' className='fill-rurikon-700' />
+      <circle cx='47.5' cy='30.5' r='2.2' className='fill-rurikon-700' />
+      {/* Connection lines to central verdict */}
+      <line x1='16.5' y1='34' x2='16.5' y2='40' className='stroke-rurikon-400' strokeWidth='1.5' strokeLinecap='round' />
+      <line x1='32' y1='34' x2='32' y2='40' className='stroke-rurikon-400' strokeWidth='1.5' strokeLinecap='round' />
+      <line x1='47.5' y1='34' x2='47.5' y2='40' className='stroke-rurikon-400' strokeWidth='1.5' strokeLinecap='round' />
+      <line x1='16.5' y1='40' x2='47.5' y2='40' className='stroke-rurikon-400' strokeWidth='1.5' strokeLinecap='round' />
+      <line x1='32' y1='40' x2='32' y2='46' className='stroke-rurikon-500' strokeWidth='1.8' strokeLinecap='round' />
+      {/* Central verdict node */}
+      <circle cx='32' cy='49' r='4.5' className='fill-rurikon-700' />
+      <path d='M29.8 49.2L31.5 51L34.5 47.2' className='stroke-white' strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round' />
+    </svg>
+  )
+}
+
 export function JarvisLogo(props: LogoProps) {
   return (
     <svg viewBox='0 0 64 64' fill='none' aria-hidden='true' {...props}>
