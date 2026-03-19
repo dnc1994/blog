@@ -36,14 +36,6 @@ export const projects: Project[] = [
     logo: RedactleZhLogo,
   },
   {
-    id: 'bw-calendar',
-    name: 'BW Calendar',
-    description:
-      'A privacy-first and minimalist Obsidian plugin for viewing personal event logs.',
-    repoUrl: 'https://github.com/dnc1994/bw-calendar',
-    logo: BwCalendarLogo,
-  },
-  {
     id: 'magi',
     name: 'MAGI',
     description:
@@ -59,4 +51,12 @@ export const projects: Project[] = [
     repoUrl: 'https://github.com/dnc1994/jarvis',
     logo: JarvisLogo,
   },
+  {
+    id: 'bw-calendar',
+    name: 'BW Calendar',
+    description:
+      'A privacy-first and minimalist Obsidian plugin for viewing personal event logs.',
+    repoUrl: 'https://github.com/dnc1994/bw-calendar',
+    logo: BwCalendarLogo,
+  },  
 ]
