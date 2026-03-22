@@ -1,0 +1,108 @@
+export const metadata = {
+  title: 'The Rise of Software Speciation',
+  description: 'TBD.',
+  date: '2026.03.15',
+  tags: ['AI', 'Philosophy'],
+  language: 'en',
+  translationId: 'software-speciation',
+  canonical: true,
+  image: 'https://r2.linghao.io/blog-assets/bespoke-flywheel.png',
+}
+
+For most of software history, we have relied on a quiet but powerful assumption: **the identical binary**.
+
+If you and I install version 2.4.1 of a program, we assume we are running the same organism. When a bug appears in my copy, it should appear in yours. This shared genetic identity is what makes bug reports meaningful and collective debugging possible.
+
+But that assumption is beginning to fail.
+
+For the past decade, the industry has embraced **config-as-code**: feature flags, YAML files, environment variables. Configuration allowed us to express variation without changing the organism itself. The genotype—the source code—remained stable, while configuration altered the phenotype.
+
+Now a different paradigm is emerging: **code-as-config**. Instead of toggling parameters, agents modify the source itself. Tools like nanoclaw allow an agent to rewrite the core of a system in order to add a feature. In effect, the software genome is no longer fixed.
+
+Once this becomes normal, every installation begins to mutate. And once mutation becomes routine, software begins to speciate.
+
+What follows are three consequences of this shift and a few predictions for where the evolutionary path leads.
+
+## 1. The Death of the Community Bug Report
+
+In the classical model of software distribution, bug reports work because systems share a common genome. If I encounter a bug in version 2.4.1, you can reproduce it because our codebases are genetically identical. The debugging process resembles epidemiology: we identify a pathogen and track its spread across identical hosts.
+
+But in a world of agentic mutation, my installation may have already diverged genetically from yours. The agent that implemented my Telegram integration may have taken a completely different evolutionary path than the one that implemented yours. Two programs that once shared a common ancestor now behave as distinct species.
+
+The result is a new class of problem: **Heisenberg Bugs** -- errors or vulnerabilities that exist in only a single organism. They cannot be reproduced because no other instance shares the same mutation history. Troubleshooting becomes less like public health and more like personal medicine. Each user and their agent diagnose their own software lineage in isolation.
+
+In that world, the collective intelligence of forums begins to weaken. The traditional community bug report slowly loses its ecological niche.
+
+## 2. From Version Control to Lineage Tracking
+
+Our current tooling assumes a shared evolutionary tree. Git tracks human-made mutations across a common ancestry. Version numbers give us labels for stable points along that tree: version 2.0.1 represents a particular genetic snapshot.
+
+But once agents begin mutating the source continuously, the evolutionary tree fragments. The commit history fills with entries like:
+
+```
+Agent added X.
+Agent refactored Y.
+Agent updated dependency graph.
+```
+
+These mutations still exist, but the narrative becomes incomprehensible to humans. The genome evolves faster than we can interpret it.
+
+At that point, version numbers lose meaning. A version label implies a canonical artifact. But if every installation has diverged through local mutations, no two instances truly share the same genome.
+
+What replaces versions is lineage. The true source of truth becomes a genetic log -- a record of every mutation an agent performed in response to a user's intent. Instead of asking "what version are you running?", we will ask something closer to "what evolutionary path produced this organism?"
+
+Software identity shifts from a version number to a **phylogenetic history**.
+
+## 3. The Butterfly Effect in the Substrate
+
+Configuration systems tend to isolate variation. A mistake in YAML is usually localized.
+
+Source mutation is different. It alters the genome itself.
+
+When an agent implements a new feature, it may choose to refactor a seemingly unrelated utility function. That mutation then propagates through the codebase like a genetic trait spreading through a population. Over time, these small mutations accumulate.
+
+The architecture begins to drift not because a human designed a new structure, but because thousands of small evolutionary pressures reshaped it. The resulting organism may behave perfectly well, but its anatomy no longer resembles the original design.
+
+Eventually we may cross a threshold: **the human-legibility horizon**. Beyond this point, the codebase has evolved into a form optimized for the agent's own maintenance strategies rather than human comprehension. Humans can still observe the organism, but they can no longer safely perform surgery.
+
+## Three Predictions for 2027
+
+### a. The Rise of Verification-as-a-Service
+
+If software genomes mutate locally, pre-built binaries lose their authority. You can no longer assume the program you received is genetically identical to the one others are running.
+
+In this environment, the most valuable agent will not be the one that writes code. It will be the one that verifies mutations -- an independent auditor that proves a change did not introduce a vulnerability or backdoor.
+
+Evolution needs a new immune system. Verification agents will become the antibodies of the software ecosystem.
+
+### b. The Frozen Core Architecture
+
+Unchecked mutation leads to entropy. Natural systems often preserve stability through protected genetic regions. Software will likely adopt a similar structure.
+
+A small **immutable kernel** —- written by humans and cryptographically locked -— forms the stable genome of the system. Around it exists a **malleable shell**, where agents are free to introduce mutations to satisfy user needs.
+
+The frozen core preserves identity. The mutable shell absorbs evolutionary pressure.
+
+### c. The Reverse-SaaS Trend
+
+Today, SaaS means software running somewhere else. In the mutation era, the model may invert.
+
+Instead of hosting software for you, companies will lease you an evolutionary agent that maintains a continuously adapting version of an open-source system on your own hardware.
+
+The product is no longer the software instance. The product is the organism's caretaker.
+
+## The Provocation
+
+For forty years, the industry has tried to make software stable and standardized. Version numbers, package managers, reproducible builds—these are all attempts to freeze the genome.
+
+Agentic coding suggests a different future: perhaps software cannot remain standardized because human needs are too diverse.
+
+Instead of distributing a single organism, we allow software to evolve into many species. This trade gives us enormous flexibility. But it also removes the safety of the shared genome.
+
+The era of the identical binary ends. What replaces it is a world of bespoke organisms—each one shaped by its own evolutionary history.
+
+And the uncomfortable question is this:
+
+**Are you ready to be the only person on Earth running your particular strain of software truth?**
+
+---
