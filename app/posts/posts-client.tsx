@@ -85,7 +85,7 @@ export function PostsClient({ posts, tags }: PostsClientProps) {
                 {post.title}
               </span>
               <span className='text-sm dot-leaders flex-1 text-rurikon-100 font-normal group-hover:text-rurikon-500 transition-colors group-hover:transition-none leading-none' />
-              <time className='block text-sm text-rurikon-100 font-normal group-hover:text-rurikon-500 transition-colors group-hover:transition-none self-start'>
+              <time className='block font-mono text-rurikon-200 tabular-nums font-normal tracking-tighter group-hover:text-rurikon-500 transition-colors group-hover:transition-none self-start'>
                 {post.date}
               </time>
             </Link>
