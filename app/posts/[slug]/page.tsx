@@ -6,6 +6,24 @@ import { getAllArticles } from '@/lib/articles'
 import { resolveSocialImage } from '@/lib/seo'
 import Link from 'next/link'
 
+function estimateReadingTime(mdxContent: string): number {
+  const text = mdxContent
+    .replace(/^export\s+[\s\S]*?^}/gm, '') // export blocks (metadata)
+    .replace(/^import\s+.*$/gm, '')         // import statements
+    .replace(/```[\s\S]*?```/g, '')          // fenced code blocks
+    .replace(/`[^`]+`/g, '')                // inline code
+    .replace(/<[^>]+>/g, '')                // JSX/HTML tags
+    .replace(/!\[.*?\]\(.*?\)/g, '')        // images
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1') // links → text
+    .replace(/[#*_~]/g, '')                 // markdown syntax chars
+  // CJK characters are counted individually (~300 chars/min)
+  const cjkChars = (text.match(/[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/g) || []).length
+  // Latin words (~200 words/min)
+  const latinWords = text.replace(/[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/g, '').split(/\s+/).filter((w) => w.length > 0).length
+  const minutes = cjkChars / 300 + latinWords / 200
+  return Math.max(1, Math.round(minutes))
+}
+
 export default async function Page(props: {
   params: Promise<{
     slug: string
@@ -22,6 +40,12 @@ export default async function Page(props: {
     : []
   const translations = articlesInGroup.filter((p) => p.slug !== params.slug)
 
+  const mdxRaw = await fs.readFile(
+    path.join(process.cwd(), 'app/posts/_articles', `${params.slug}.mdx`),
+    'utf-8'
+  )
+  const readingTime = estimateReadingTime(mdxRaw)
+
   return (
     <div
       className={cn(metadata.chinese && 'text-justify font-zh')}
@@ -31,7 +55,7 @@ export default async function Page(props: {
         {metadata.title}
       </h1>
 
-      {/* Meta row: date · tags · language switcher */}
+      {/* Meta row: date · reading time · languages · tags */}
       {(metadata.date || (metadata.tags?.length > 0) || articlesInGroup.length > 1) && (
         <div className='flex flex-wrap items-center gap-x-2 gap-y-1 mb-7 text-sm'>
           {metadata.date && (
@@ -39,12 +63,8 @@ export default async function Page(props: {
               {metadata.date}
             </time>
           )}
-          {metadata.date && metadata.tags?.length > 0 && (
-            <span className='text-rurikon-200'>·</span>
-          )}
-          {metadata.tags?.map((tag: string) => (
-            <Tag key={tag} tag={tag} href={`/posts?tag=${tag}`} />
-          ))}
+          {metadata.date && <span className='text-rurikon-200'>·</span>}
+          <span className='text-rurikon-300'>{readingTime} min read</span>
           {articlesInGroup.length > 1 && (
             <>
               <span className='text-rurikon-200'>·</span>
@@ -65,6 +85,14 @@ export default async function Page(props: {
                     </Link>
                   )
                 })}
+            </>
+          )}
+          {metadata.tags?.length > 0 && (
+            <>
+              <span className='text-rurikon-200'>·</span>
+              {metadata.tags.map((tag: string) => (
+                <Tag key={tag} tag={tag} href={`/posts?tag=${tag}`} />
+              ))}
             </>
           )}
         </div>
