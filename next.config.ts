@@ -1,7 +1,7 @@
 import withMDX from '@next/mdx'
 import { NextConfig } from 'next'
 
-export default withMDX()({
+export default withMDX({ options: { remarkPlugins: ['remark-gfm'] } })({
   pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
   output: 'export',
   distDir: 'dist',

@@ -150,6 +150,21 @@ export const components: Record<
 
     return img
   },
+  table: (props) => (
+    <div className='mt-7 overflow-x-auto'>
+      <table className='w-full border-collapse' {...props} />
+    </div>
+  ),
+  thead: (props) => <thead {...props} />,
+  tbody: (props) => <tbody {...props} />,
+  tr: (props) => <tr className='border-b border-rurikon-border' {...props} />,
+  th: (props) => (
+    <th
+      className='py-2 pr-6 text-left font-semibold text-rurikon-600 whitespace-nowrap'
+      {...props}
+    />
+  ),
+  td: (props) => <td className='py-2 pr-6' {...props} />,
   hr: (props) => <hr className='my-14 w-24 border-rurikon-border' {...props} />,
   BlockSideTitle,
   InlineMath,
