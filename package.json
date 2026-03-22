@@ -10,6 +10,7 @@
     "start": "next start",
     "lint": "next lint",
     "rss": "node scripts/generate-rss.mjs",
+    "og-image": "node scripts/og-image.mjs",
     "deploy": "npm run build && wrangler pages deploy dist",
     "deploy:prod": "npm run build && wrangler pages deploy dist --branch=master"
   },
