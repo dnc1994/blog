@@ -16,10 +16,10 @@ export function Tag({ tag, active = false, count, interactive = false, href }: T
     interactive
       ? active
         ? 'bg-rurikon-800 text-white border-rurikon-800'
-        : 'bg-white text-rurikon-400 border-rurikon-200 hover:border-rurikon-400 hover:text-rurikon-600 cursor-pointer'
+        : 'bg-rurikon-50 text-rurikon-400 border-rurikon-200 hover:border-rurikon-accent hover:text-rurikon-accent cursor-pointer'
       : href
-        ? 'bg-white text-rurikon-400 border-rurikon-200 hover:border-rurikon-400 hover:text-rurikon-600'
-        : 'bg-white text-rurikon-400 border-rurikon-200'
+        ? 'bg-rurikon-50 text-rurikon-400 border-rurikon-200 hover:border-rurikon-accent hover:text-rurikon-accent'
+        : 'bg-rurikon-50 text-rurikon-400 border-rurikon-200'
   )
 
   const content = (

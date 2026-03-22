@@ -29,7 +29,7 @@ export default function AgenticCodingPage() {
                 target='_blank'
                 rel='noopener noreferrer'
                 draggable={false}
-                className='font-medium text-rurikon-600 hover:text-rurikon-800 transition-colors underline decoration-rurikon-200 hover:decoration-rurikon-400 underline-offset-2'
+                className='font-medium text-rurikon-600 hover:text-rurikon-accent transition-colors underline decoration-rurikon-200 hover:decoration-rurikon-accent underline-offset-2'
               >
                 {tool.name}
               </Link>

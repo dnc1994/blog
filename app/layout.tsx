@@ -55,7 +55,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   maximumScale: 1,
   colorScheme: 'only light',
-  themeColor: '#fcfcfc',
+  themeColor: '#FFFCF0',
 }
 export default function RootLayout({
   children,
@@ -70,7 +70,7 @@ export default function RootLayout({
           serif.variable,
           mono.variable,
           'w-full p-6 sm:p-10 md:p-14',
-          'text-sm leading-6 sm:text-[15px] sm:leading-7 md:text-base md:leading-7',
+          'text-base leading-7 sm:text-[17px] sm:leading-7 md:text-lg md:leading-7',
           'text-rurikon-500',
           'antialiased'
         )}

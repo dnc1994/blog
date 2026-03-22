@@ -52,7 +52,7 @@ export default async function Page(props: {
             'inline-flex items-center gap-1.5 px-2 py-0.5 text-xs font-medium rounded-sm border transition-colors'
           const activeTagClass = 'bg-rurikon-800 text-white border-rurikon-800'
           const inactiveTagClass =
-            'bg-white text-rurikon-400 border-rurikon-200 hover:border-rurikon-400 hover:text-rurikon-600'
+            'bg-rurikon-50 text-rurikon-400 border-rurikon-200 hover:border-rurikon-accent hover:text-rurikon-accent'
 
           return (
             <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-7">

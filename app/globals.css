@@ -32,19 +32,21 @@
 }
 
 @theme {
-  --color-rurikon-50: #ebedef;
-  --color-rurikon-100: #d8dbdf;
-  --color-rurikon-200: #b3b9c1;
-  --color-rurikon-300: #8c95a1;
-  --color-rurikon-400: #697381;
-  --color-rurikon-500: #4a515b;
-  --color-rurikon-600: #3b4149;
-  --color-rurikon-700: #2b3035;
-  --color-rurikon-800: #1e2125;
-  --color-rurikon-900: #0e0f11;
-  --color-rurikon-950: #07080a;
+  --color-rurikon-50: #F2F0E5;
+  --color-rurikon-100: #E6E4D9;
+  --color-rurikon-200: #B7B5AC;
+  --color-rurikon-300: #878580;
+  --color-rurikon-400: #6F6E69;
+  --color-rurikon-500: #403E3C;
+  --color-rurikon-600: #282726;
+  --color-rurikon-700: #1C1B1A;
+  --color-rurikon-800: #100F0F;
+  --color-rurikon-900: #100F0F;
+  --color-rurikon-950: #100F0F;
 
-  --color-rurikon-border: #d8dbdfb3;
+  --color-rurikon-border: #B7B5ACb3;
+
+  --color-rurikon-accent: #24837B;
 
   --font-family-sans: var(--sans), -apple-system, ui-sans-serif, system-ui,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
@@ -61,10 +63,9 @@
 }
 
 :root {
-  --background: #fcfcfc;
+  --background: #FFFCF0;
   --sans-variation: 'opsz' 32;
-  --font-features: 'cpsp' 1, 'cv01', 'cv03', 'cv04', 'calt', 'ss03',
-    'liga', 'ordn';
+  --font-features: 'calt', 'liga';
 }
 
 body {
@@ -73,15 +74,13 @@ body {
     'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
     sans-serif;
   font-feature-settings: var(--font-features);
-  font-variation-settings: 'wght' 440, var(--sans-variation);
+  font-variation-settings: 'wght' 400, var(--sans-variation);
   font-variant: common-ligatures contextual;
   text-decoration-skip-ink: auto;
   text-spacing-trim: space-first;
   font-optical-sizing: auto;
-  letter-spacing: 0.0085em;
-  word-spacing: -0.04em;
   background-color: var(--background);
-  text-rendering: geometricPrecision;
+  text-rendering: optimizeLegibility;
   text-autospace: normal;
 
 }
@@ -102,14 +101,11 @@ em {
 blockquote,
 nav,
 .sidenote {
-  font-family: var(--serif), Baskerville, Georgia, Cambria, 'Times New Roman',
-    Times, serif;
   font-style: normal;
   font-optical-sizing: auto;
-  font-variation-settings: 'wght' 480, var(--sans-variation);
+  font-variation-settings: 'wght' 400, var(--sans-variation);
   font-weight: 400;
   font-variant-ligatures: contextual;
-  letter-spacing: -0.006em;
 }
 
 del {
@@ -220,8 +216,8 @@ article {
 }
 
 *::selection {
-  background: #95a5ac40;
-  color: #485a74;
+  background: #24837B40;
+  color: #100F0F;
 }
 
 .dot-leaders {
