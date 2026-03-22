@@ -65,7 +65,7 @@ export default function GalleryGrid({ photos }: { photos: Photo[] }) {
           {/* Close Button */}
           <button
             onClick={closeLightbox}
-            className="absolute top-4 right-4 p-2 text-rurikon-500 hover:text-rurikon-900 transition-colors"
+            className="absolute top-4 left-4 p-2 text-rurikon-500 hover:text-rurikon-900 transition-colors"
             aria-label="Close"
           >
             <XMarkIcon className="w-8 h-8" />
