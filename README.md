@@ -19,7 +19,7 @@ A blog by Linghao Zhang, built with Next.js 15 and modern web technologies.
 - ✨ Modern, clean design with smooth view transitions
 - 📱 Fully responsive layout
 - 🎨 Custom typography with variable fonts
-- 🌈 Elegant color scheme (rurikon palette)
+- 🌈 Flexoki-inspired color scheme (warm cream, near-black text, teal accents)
 - 📝 MDX support for rich content
 - 🔍 Syntax highlighting for code blocks
 - 🧮 Math rendering support
@@ -217,22 +217,15 @@ MDX files can use React components:
 
 ### Colors
 
-The blog uses the "rurikon" color palette defined in `app/globals.css`. Customize colors by modifying the `@theme` section.
+The blog uses the "rurikon" color palette defined in `app/globals.css`, mapped to [Flexoki](https://stephango.com/flexoki) values. Customize colors by modifying the `@theme` section. See [`docs/visual-style.md`](./docs/visual-style.md) for the full palette reference.
 
 ### Fonts
 
 Fonts are loaded locally via `next/font/local` in `app/layout.tsx` and exposed as CSS variables:
 
-- `--sans`: Inter Variable (default body text)
-- `--serif`: Lora Italic Variable (used for blockquote/nav/sidenote styling)
+- `--sans`: Inter Variable (body text, headings, blockquotes, nav — used everywhere)
+- `--serif`: Lora Italic Variable (loaded but not actively applied)
 - `--mono`: Iosevka Fixed Curly (code blocks and inline code)
-
-Current typography strategy in `app/globals.css`:
-
-- Body text uses sans variable font with custom OpenType features and `font-variation-settings`.
-- Emphasis (`em`, `i`) uses sans italic with `font-synthesis: style` (so italic renders even when no dedicated italic face is available).
-- Blockquote/nav/sidenote use serif styling.
-- Code uses mono styling and Shiki token variables.
 
 ### Navigation
 

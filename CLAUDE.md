@@ -57,7 +57,7 @@ Syntax highlighting uses Shiki with a CSS variables theme (colors defined in `gl
 
 ### Styling
 
-Tailwind CSS v4 (beta) — no `tailwind.config.ts`; configuration is in `app/globals.css` under `@theme`. The custom color palette is `rurikon` (50–950 scale). Custom breakpoints: `mobile` (420px), `text` (1220px). Three font CSS variables: `--sans` (Inter Variable), `--serif` (Lora Italic), `--mono` (Iosevka Fixed Curly).
+Tailwind CSS v4 (beta) — no `tailwind.config.ts`; configuration is in `app/globals.css` under `@theme`. The custom color palette is `rurikon` (50–950 scale), mapped to [Flexoki](https://stephango.com/flexoki) values — warm cream background (`#FFFCF0`), near-black text, teal accent (`rurikon-accent: #24837B`) for link hover. Custom breakpoints: `mobile` (420px), `text` (1220px). Three font CSS variables: `--sans` (Inter Variable, used everywhere), `--serif` (Lora Italic, loaded but unused), `--mono` (Iosevka Fixed Curly). See `docs/visual-style.md` for the full design reference.
 
 ### Gallery
 
