@@ -31,15 +31,23 @@ function Item(props: React.ComponentProps<typeof Link>) {
 
 export default function Navbar() {
   return (
-    <nav className='mobile:mr-6 sm:mr-10 md:mr-14 w-full mobile:w-16'>
-      <ul className='lowercase text-right mobile:sticky top-6 sm:top-10 md:top-14 mb-6 mobile:mb-0 flex gap-2 justify-end mobile:block'>
-        <Item href='/'>About</Item>
-        <Item href='/posts'>Posts</Item>
-        <Item href='/projects'>Projects</Item>
-        <Item href='/gallery'>Gallery</Item>
-        <Item href='/lists'>Curation</Item>
-        <Item href='/tags/all'>Tags</Item>
-      </ul>
+    <nav className='mobile:mr-6 sm:mr-10 md:mr-14 w-full mobile:w-28'>
+      <div className='mobile:sticky top-6 sm:top-10 md:top-14 mb-6 mobile:mb-0'>
+        <Link
+          href='/'
+          className='block text-right text-rurikon-700 font-semibold text-sm leading-snug mb-3 mobile:mb-5'
+          draggable={false}
+        >
+          Synthesist<br />in the Shell
+        </Link>
+        <ul className='italic lowercase text-right flex flex-wrap gap-x-3 gap-y-1 justify-end mobile:block'>
+          <Item href='/'>About</Item>
+          <Item href='/posts'>Posts</Item>
+          <Item href='/projects'>Projects</Item>
+          <Item href='/gallery'>Gallery</Item>
+          <Item href='/lists'>Curation</Item>
+        </ul>
+      </div>
     </nav>
   )
 }

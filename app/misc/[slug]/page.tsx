@@ -27,7 +27,7 @@ export default async function Page(props: {
       {metadata.tags && metadata.tags.length > 0 && (
         <div className='flex flex-wrap gap-2 mb-7'>
           {metadata.tags.map((tag: string) => (
-            <Tag key={tag} tag={tag} href={`/tags/all?tag=${tag}`} />
+            <Tag key={tag} tag={tag} href={`/posts?tag=${tag}`} />
           ))}
         </div>
       )}

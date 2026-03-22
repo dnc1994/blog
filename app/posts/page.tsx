@@ -1,40 +1,38 @@
-import Link from 'next/link'
+import { Suspense } from 'react'
 import { getDedupedArticlesFromSection } from '@/lib/articles'
+import { PostsClient } from './posts-client'
 
 export const metadata = {
-  title: 'POSTS',
+  title: 'Posts',
 }
 
 export default async function Page() {
-  const items = (await getDedupedArticlesFromSection('posts')).map((item) => ({
-    ...item,
-    sort: Number(item.date?.replaceAll('.', '').replaceAll('-', '') || 0),
-  }))
+  const posts = (await getDedupedArticlesFromSection('posts'))
+    .map((item) => ({
+      slug: item.slug,
+      title: item.title ?? '',
+      date: item.date ?? '',
+      tags: item.tags ?? [],
+    }))
+    .sort((a, b) => {
+      const da = Number(a.date.replaceAll('.', '').replaceAll('-', '') || 0)
+      const db = Number(b.date.replaceAll('.', '').replaceAll('-', '') || 0)
+      return db - da
+    })
 
-  items.sort((a, b) => b.sort - a.sort)
+  const tagCounts: Record<string, number> = {}
+  for (const post of posts) {
+    for (const tag of post.tags) {
+      tagCounts[tag] = (tagCounts[tag] ?? 0) + 1
+    }
+  }
+  const tags = Object.fromEntries(
+    Object.entries(tagCounts).sort(([a], [b]) => a.localeCompare(b))
+  )
 
   return (
-    <div>
-      <ul>
-        {items.map((item) => (
-          <li key={item.slug} className='font-medium'>
-            <Link
-              href={`/posts/${item.slug}`}
-              className='group flex gap-1 justify-between items-center'
-              draggable={false}
-            >
-              <span className='block text-rurikon-500 group-hover:text-rurikon-700'>
-                {item.title}
-              </span>
-              <span className='text-sm dot-leaders flex-1 text-rurikon-100 font-normal group-hover:text-rurikon-500 transition-colors group-hover:transition-none leading-none' />
-              <time className='block text-rurikon-200 tabular-nums font-normal tracking-tighter group-hover:text-rurikon-500 transition-colors group-hover:transition-none self-start'>
-                {item.date}
-              </time>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Suspense fallback={null}>
+      <PostsClient posts={posts} tags={tags} />
+    </Suspense>
   )
 }
-
