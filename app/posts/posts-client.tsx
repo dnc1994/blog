@@ -21,6 +21,7 @@ export function PostsClient({ posts, tags }: PostsClientProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set())
+  const [tagsExpanded, setTagsExpanded] = useState(false)
 
   useEffect(() => {
     const tagParam = searchParams.get('tag')
@@ -46,52 +47,89 @@ export function PostsClient({ posts, tags }: PostsClientProps) {
     }
   }
 
+  const clearTags = () => {
+    setSelectedTags(new Set())
+    router.push('/posts', { scroll: false })
+  }
+
   const filteredPosts =
     selectedTags.size === 0
       ? posts
       : posts.filter((p) => p.tags.some((t) => selectedTags.has(t)))
 
+  const tagButtons = (
+    <>
+      {Object.entries(tags).map(([tag, count]) => (
+        <button
+          key={tag}
+          onClick={() => toggleTag(tag)}
+          className='focus:outline-none focus-visible:ring-2 focus-visible:ring-rurikon-400 focus-visible:ring-offset-2 rounded-sm'
+        >
+          <Tag tag={tag} count={count} active={selectedTags.has(tag)} interactive />
+        </button>
+      ))}
+      {selectedTags.size > 0 && (
+        <button
+          onClick={clearTags}
+          className='text-xs text-rurikon-400 hover:text-rurikon-accent transition-colors'
+        >
+          clear
+        </button>
+      )}
+    </>
+  )
+
   return (
-    <div>
-      <div className='flex flex-wrap gap-2 mb-7 items-center'>
-        {Object.entries(tags).map(([tag, count]) => (
+    <div className='sm:flex sm:gap-x-10 sm:items-start'>
+
+      {/* Post list */}
+      <div className='flex-1 min-w-0'>
+
+        {/* Mobile: collapsible tag filter */}
+        <div className='sm:hidden mb-6'>
           <button
-            key={tag}
-            onClick={() => toggleTag(tag)}
-            className='focus:outline-none focus-visible:ring-2 focus-visible:ring-rurikon-400 focus-visible:ring-offset-2 rounded-sm'
+            onClick={() => setTagsExpanded((v) => !v)}
+            className='flex items-center gap-1.5 text-sm text-rurikon-400 hover:text-rurikon-600 transition-colors'
           >
-            <Tag tag={tag} count={count} active={selectedTags.has(tag)} interactive />
+            <span>Filter by tag</span>
+            {selectedTags.size > 0 && (
+              <span className='text-rurikon-accent'>({selectedTags.size})</span>
+            )}
+            <span className='text-xs opacity-60'>{tagsExpanded ? '▲' : '▼'}</span>
           </button>
-        ))}
-        {selectedTags.size > 0 && (
-          <button
-            onClick={() => { setSelectedTags(new Set()); router.push('/posts', { scroll: false }) }}
-            className='text-xs text-rurikon-400 hover:text-rurikon-accent transition-colors'
-          >
-            clear
-          </button>
-        )}
+          {tagsExpanded && (
+            <div className='mt-3 flex flex-wrap gap-2 items-center'>
+              {tagButtons}
+            </div>
+          )}
+        </div>
+
+        <ul>
+          {filteredPosts.map((post) => (
+            <li key={post.slug} className='font-medium'>
+              <Link
+                href={`/posts/${post.slug}`}
+                className='group flex gap-1 justify-between items-center'
+                draggable={false}
+              >
+                <span className='block text-rurikon-500 group-hover:text-rurikon-700'>
+                  {post.title}
+                </span>
+                <span className='text-sm dot-leaders flex-1 text-rurikon-100 font-normal group-hover:text-rurikon-500 transition-colors group-hover:transition-none leading-none' />
+                <time className='block font-mono text-rurikon-200 tabular-nums font-normal tracking-tighter group-hover:text-rurikon-500 transition-colors group-hover:transition-none self-start'>
+                  {post.date}
+                </time>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <ul>
-        {filteredPosts.map((post) => (
-          <li key={post.slug} className='font-medium'>
-            <Link
-              href={`/posts/${post.slug}`}
-              className='group flex gap-1 justify-between items-center'
-              draggable={false}
-            >
-              <span className='block text-rurikon-500 group-hover:text-rurikon-700'>
-                {post.title}
-              </span>
-              <span className='text-sm dot-leaders flex-1 text-rurikon-100 font-normal group-hover:text-rurikon-500 transition-colors group-hover:transition-none leading-none' />
-              <time className='block font-mono text-rurikon-200 tabular-nums font-normal tracking-tighter group-hover:text-rurikon-500 transition-colors group-hover:transition-none self-start'>
-                {post.date}
-              </time>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {/* Desktop: tag sidebar on the right */}
+      <div className='hidden sm:flex sm:flex-wrap sm:gap-2 sm:content-start sm:w-44 sm:shrink-0'>
+        {tagButtons}
+      </div>
+
     </div>
   )
 }
