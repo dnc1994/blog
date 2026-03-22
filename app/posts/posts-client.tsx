@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { Tag } from '@/components/tag'
@@ -17,11 +17,75 @@ type PostsClientProps = {
   tags: Record<string, number>
 }
 
+function TagFilterPanel({
+  defaultExpanded,
+  tags,
+  selectedTags,
+  onToggleTag,
+  onClear,
+}: {
+  defaultExpanded: boolean
+  tags: Record<string, number>
+  selectedTags: Set<string>
+  onToggleTag: (tag: string) => void
+  onClear: () => void
+}) {
+  const [expanded, setExpanded] = useState(defaultExpanded)
+
+  return (
+    <div>
+      <div className='flex items-center gap-1.5 mb-3'>
+        <button
+          onClick={() => setExpanded((v) => !v)}
+          className='flex items-center gap-1.5 text-sm text-rurikon-400 hover:text-rurikon-600 transition-colors'
+        >
+          <span className='text-xs opacity-60'>{expanded ? '▲' : '▼'}</span>
+          Filter by tags{selectedTags.size > 0 ? `: ${selectedTags.size} selected` : ''}
+        </button>
+        {selectedTags.size > 0 && (
+          <button
+            onClick={onClear}
+            className='text-sm text-rurikon-300 hover:text-rurikon-accent transition-colors'
+          >
+            (clear)
+          </button>
+        )}
+      </div>
+      {expanded && (
+        <div className='flex flex-wrap gap-2'>
+          {Object.entries(tags).map(([tag, count]) => (
+            <button
+              key={tag}
+              onClick={() => onToggleTag(tag)}
+              className='focus:outline-none focus-visible:ring-2 focus-visible:ring-rurikon-400 focus-visible:ring-offset-2 rounded-sm'
+            >
+              <Tag tag={tag} count={count} active={selectedTags.has(tag)} interactive />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export function PostsClient({ posts, tags }: PostsClientProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set())
-  const [tagsExpanded, setTagsExpanded] = useState(false)
+  const wrapperRef = useRef<HTMLDivElement>(null)
+  const [panelLeft, setPanelLeft] = useState<number | null>(null)
+
+  useEffect(() => {
+    const update = () => {
+      if (wrapperRef.current) {
+        const rect = wrapperRef.current.getBoundingClientRect()
+        setPanelLeft(rect.right + 56)
+      }
+    }
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
 
   useEffect(() => {
     const tagParam = searchParams.get('tag')
@@ -57,47 +121,17 @@ export function PostsClient({ posts, tags }: PostsClientProps) {
       ? posts
       : posts.filter((p) => p.tags.some((t) => selectedTags.has(t)))
 
-  const tagButtons = (
-    <>
-      {Object.entries(tags).map(([tag, count]) => (
-        <button
-          key={tag}
-          onClick={() => toggleTag(tag)}
-          className='focus:outline-none focus-visible:ring-2 focus-visible:ring-rurikon-400 focus-visible:ring-offset-2 rounded-sm'
-        >
-          <Tag tag={tag} count={count} active={selectedTags.has(tag)} interactive />
-        </button>
-      ))}
-      {selectedTags.size > 0 && (
-        <button
-          onClick={clearTags}
-          className='text-xs text-rurikon-400 hover:text-rurikon-accent transition-colors'
-        >
-          clear
-        </button>
-      )}
-    </>
-  )
-
   return (
-    <div>
+    <div ref={wrapperRef}>
       {/* Collapsible tag filter — mobile and non-xl screens */}
       <div className='xl:hidden mb-6'>
-        <button
-          onClick={() => setTagsExpanded((v) => !v)}
-          className='flex items-center gap-1.5 text-sm text-rurikon-400 hover:text-rurikon-600 transition-colors'
-        >
-          <span>Filter by tag</span>
-          {selectedTags.size > 0 && (
-            <span className='text-rurikon-accent'>({selectedTags.size})</span>
-          )}
-          <span className='text-xs opacity-60'>{tagsExpanded ? '▲' : '▼'}</span>
-        </button>
-        {tagsExpanded && (
-          <div className='mt-3 flex flex-wrap gap-2 items-center'>
-            {tagButtons}
-          </div>
-        )}
+        <TagFilterPanel
+          defaultExpanded={false}
+          tags={tags}
+          selectedTags={selectedTags}
+          onToggleTag={toggleTag}
+          onClear={clearTags}
+        />
       </div>
 
       {/* Post list — full width */}
@@ -113,7 +147,7 @@ export function PostsClient({ posts, tags }: PostsClientProps) {
                 {post.title}
               </span>
               <span className='text-sm dot-leaders flex-1 text-rurikon-100 font-normal group-hover:text-rurikon-500 transition-colors group-hover:transition-none leading-none' />
-              <time className='block font-mono text-rurikon-200 tabular-nums font-normal tracking-tighter group-hover:text-rurikon-500 transition-colors group-hover:transition-none self-start'>
+              <time className='block font-mono text-sm text-rurikon-200 tabular-nums font-normal tracking-tighter group-hover:text-rurikon-500 transition-colors group-hover:transition-none self-start'>
                 {post.date}
               </time>
             </Link>
@@ -121,9 +155,18 @@ export function PostsClient({ posts, tags }: PostsClientProps) {
         ))}
       </ul>
 
-      {/* Fixed tag panel — xl screens only, floats in the right margin */}
-      <div className='hidden xl:flex xl:flex-wrap xl:gap-2 xl:content-start fixed right-14 top-14 w-56 max-h-[calc(100vh-7rem)] overflow-y-auto'>
-        {tagButtons}
+      {/* Fixed tag panel — xl screens only, positioned just right of article content */}
+      <div
+        className='hidden xl:block fixed top-14 w-72 max-h-[calc(100vh-7rem)] overflow-y-auto'
+        style={{ left: panelLeft !== null ? `${panelLeft}px` : undefined }}
+      >
+        <TagFilterPanel
+          defaultExpanded={true}
+          tags={tags}
+          selectedTags={selectedTags}
+          onToggleTag={toggleTag}
+          onClear={clearTags}
+        />
       </div>
     </div>
   )
