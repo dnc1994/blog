@@ -35,12 +35,12 @@ export default function Navbar() {
       <div className='mobile:sticky top-6 sm:top-10 md:top-14 mb-6 mobile:mb-0'>
         <Link
           href='/'
-          className='block text-right text-rurikon-700 font-semibold text-sm leading-snug mb-3 mobile:mb-5'
+          className='block text-right text-rurikon-700 font-semibold text-lg leading-snug mb-3 mobile:mb-5 not-italic font-sans'
           draggable={false}
         >
           Synthesist<br />in the Shell
         </Link>
-        <ul className='italic lowercase text-right flex flex-wrap gap-x-3 gap-y-1 justify-end mobile:block'>
+        <ul className='lowercase text-right flex flex-wrap gap-x-3 gap-y-1 justify-end mobile:block'>
           <Item href='/'>About</Item>
           <Item href='/posts'>Posts</Item>
           <Item href='/projects'>Projects</Item>

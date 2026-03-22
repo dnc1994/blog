@@ -99,13 +99,22 @@ em {
 }
 
 blockquote,
-nav,
 .sidenote {
   font-style: normal;
   font-optical-sizing: auto;
   font-variation-settings: 'wght' 400, var(--sans-variation);
   font-weight: 400;
   font-variant-ligatures: contextual;
+}
+
+nav {
+  font-family: var(--serif), Baskerville, Georgia, Cambria, 'Times New Roman',
+    Times, serif;
+  font-style: italic;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-variant-ligatures: contextual;
+  letter-spacing: -0.006em;
 }
 
 del {
