@@ -54,16 +54,24 @@ export const metadata: Metadata = {
 }
 export const viewport: Viewport = {
   maximumScale: 1,
-  colorScheme: 'only light',
-  themeColor: '#FFFCF0',
+  colorScheme: 'light dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FFFCF0' },
+    { media: '(prefers-color-scheme: dark)', color: '#1C1B1A' },
+  ],
 }
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const noFlashScript = `try{var t=localStorage.getItem('theme')||'light';document.documentElement.classList.toggle('theme-dark',t==='dark');document.documentElement.classList.toggle('theme-light',t==='light')}catch(e){}`
+
   return (
     <html lang='en' className='overflow-x-hidden touch-manipulation'>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: noFlashScript }} />
+      </head>
       <body
         className={cn(
           sans.variable,

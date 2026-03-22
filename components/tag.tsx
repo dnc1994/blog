@@ -15,7 +15,7 @@ export function Tag({ tag, active = false, count, interactive = false, href }: T
     'border transition-colors',
     interactive
       ? active
-        ? 'bg-rurikon-800 text-white border-rurikon-800'
+        ? 'bg-rurikon-800 text-rurikon-50 border-rurikon-800'
         : 'bg-rurikon-50 text-rurikon-400 border-rurikon-200 hover:border-rurikon-accent hover:text-rurikon-accent cursor-pointer'
       : href
         ? 'bg-rurikon-50 text-rurikon-400 border-rurikon-200 hover:border-rurikon-accent hover:text-rurikon-accent'
@@ -28,7 +28,7 @@ export function Tag({ tag, active = false, count, interactive = false, href }: T
       {count !== undefined && (
         <span className={cn(
           'tabular-nums',
-          active ? 'text-white/80' : 'text-rurikon-300'
+          active ? 'text-rurikon-50/80' : 'text-rurikon-300'
         )}>
           {count}
         </span>

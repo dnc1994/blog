@@ -68,6 +68,39 @@
   --font-features: 'calt', 'liga';
 }
 
+/* Dark mode: flip the rurikon palette */
+@media (prefers-color-scheme: dark) {
+  html:not(.theme-light):not(.theme-dark) {
+    --background: #1C1B1A;
+    --color-rurikon-50: #100F0F;
+    --color-rurikon-100: #282726;
+    --color-rurikon-200: #403E3C;
+    --color-rurikon-300: #6F6E69;
+    --color-rurikon-400: #878580;
+    --color-rurikon-500: #B7B5AC;
+    --color-rurikon-600: #E6E4D9;
+    --color-rurikon-700: #F2F0E5;
+    --color-rurikon-800: #F2F0E5;
+    --color-rurikon-border: #403E3Cb3;
+    --color-rurikon-accent: #3AA99F;
+  }
+}
+
+html.theme-dark {
+  --background: #1C1B1A;
+  --color-rurikon-50: #100F0F;
+  --color-rurikon-100: #282726;
+  --color-rurikon-200: #403E3C;
+  --color-rurikon-300: #6F6E69;
+  --color-rurikon-400: #878580;
+  --color-rurikon-500: #B7B5AC;
+  --color-rurikon-600: #E6E4D9;
+  --color-rurikon-700: #F2F0E5;
+  --color-rurikon-800: #F2F0E5;
+  --color-rurikon-border: #403E3Cb3;
+  --color-rurikon-accent: #3AA99F;
+}
+
 body {
   font-synthesis: none;
   font-family: var(--sans), system-ui, -apple-system, BlinkMacSystemFont,
@@ -180,6 +213,32 @@ code span {
   transition: color 0.2s;
 }
 
+@media (prefers-color-scheme: dark) {
+  html:not(.theme-light):not(.theme-dark) code {
+    --shiki-token-comment: #6F6E69;
+    --shiki-token-punctuation: #878580;
+    --shiki-token-keyword: #8B7EC8;
+    --shiki-token-function: #4385BE;
+    --shiki-token-string: #879A39;
+    --shiki-token-string-expression: #879A39;
+    --shiki-token-constant: #3AA99F;
+    --shiki-token-link: #879A39;
+    --shiki-token-parameter: #DA702C;
+  }
+}
+
+html.theme-dark code {
+  --shiki-token-comment: #6F6E69;
+  --shiki-token-punctuation: #878580;
+  --shiki-token-keyword: #8B7EC8;
+  --shiki-token-function: #4385BE;
+  --shiki-token-string: #879A39;
+  --shiki-token-string-expression: #879A39;
+  --shiki-token-constant: #3AA99F;
+  --shiki-token-link: #879A39;
+  --shiki-token-parameter: #DA702C;
+}
+
 article {
   figure {
     margin-top: 1.75rem;
@@ -227,6 +286,18 @@ article {
 *::selection {
   background: #24837B40;
   color: #100F0F;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.theme-light):not(.theme-dark) *::selection {
+    background: #3AA99F40;
+    color: #F2F0E5;
+  }
+}
+
+html.theme-dark *::selection {
+  background: #3AA99F40;
+  color: #F2F0E5;
 }
 
 .dot-leaders {
