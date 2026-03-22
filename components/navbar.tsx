@@ -31,14 +31,14 @@ function Item(props: React.ComponentProps<typeof Link>) {
 
 export default function Navbar() {
   return (
-    <nav className='mobile:mr-6 sm:mr-10 md:mr-14 w-full mobile:w-28'>
+    <nav className='mobile:mr-6 sm:mr-10 md:mr-14 w-full mobile:w-auto mobile:shrink-0'>
       <div className='mobile:sticky top-6 sm:top-10 md:top-14 mb-6 mobile:mb-0'>
         <Link
           href='/'
-          className='block text-right text-rurikon-700 font-semibold text-lg leading-snug mb-3 mobile:mb-5 not-italic font-sans'
+          className='block text-right text-rurikon-700 font-semibold text-lg leading-snug mb-3 mobile:mb-5 not-italic font-sans whitespace-nowrap'
           draggable={false}
         >
-          Synthesist<br />in the Shell
+          Synthesist in the Shell
         </Link>
         <ul className='lowercase text-right flex flex-wrap gap-x-3 gap-y-1 justify-end mobile:block'>
           <Item href='/'>About</Item>
