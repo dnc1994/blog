@@ -59,7 +59,7 @@
     'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN', sans-serif;
 
   --breakpoint-text: 1220px;
-  --breakpoint-mobile: 420px;
+  --breakpoint-mobile: 500px;
 }
 
 :root {

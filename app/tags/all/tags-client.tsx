@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useState } from 'react'
 import Link from 'next/link'
 import { Tag } from '@/components/tag'
 
@@ -19,18 +18,7 @@ type TagsClientProps = {
 }
 
 export function TagsClient({ initialPosts, initialTags }: TagsClientProps) {
-  const router = useRouter()
-  const searchParams = useSearchParams()
   const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set())
-
-  // Initialize selected tags from URL params
-  useEffect(() => {
-    const tagParam = searchParams.get('tag')
-    if (tagParam) {
-      const tags = tagParam.split(',').filter(Boolean)
-      setSelectedTags(new Set(tags))
-    }
-  }, [searchParams])
 
   const toggleTag = (tag: string) => {
     const newSelected = new Set(selectedTags)
@@ -40,23 +28,10 @@ export function TagsClient({ initialPosts, initialTags }: TagsClientProps) {
       newSelected.add(tag)
     }
     setSelectedTags(newSelected)
-    
-    // Update URL
-    updateURL(newSelected)
   }
 
   const clearTags = () => {
     setSelectedTags(new Set())
-    router.push('/tags/all', { scroll: false })
-  }
-
-  const updateURL = (tags: Set<string>) => {
-    if (tags.size === 0) {
-      router.push('/tags/all', { scroll: false })
-    } else {
-      const tagString = Array.from(tags).join(',')
-      router.push(`/tags/all?tag=${encodeURIComponent(tagString)}`, { scroll: false })
-    }
   }
 
   const filteredPosts =

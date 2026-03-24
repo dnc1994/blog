@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import { getAllPostsWithTags, getAllTags } from '@/lib/tags'
 import { TagsClient } from './tags-client'
 
@@ -11,10 +10,6 @@ export default async function AllTagsPage() {
   const tagsMap = await getAllTags()
   const allTags = Object.fromEntries(tagsMap)
 
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <TagsClient initialPosts={allPosts} initialTags={allTags} />
-    </Suspense>
-  )
+  return <TagsClient initialPosts={allPosts} initialTags={allTags} />
 }
 
