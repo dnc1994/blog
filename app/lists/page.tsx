@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { tools } from './agentic-coding/data'
+import { resources as designResources } from './design/data'
 
 export const metadata = {
   title: 'Lists',
@@ -16,6 +17,12 @@ const lists = [
     name: 'Agentic Coding',
     description: 'Tools for agentic coding workflows.',
     count: tools.length,
+  },
+  {
+    slug: 'design',
+    name: 'Design',
+    description: 'Design systems, templates, and references worth keeping close.',
+    count: designResources.length,
   },
 ]
 
