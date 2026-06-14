@@ -10,7 +10,8 @@ The public resume lives at `/resume` (`https://linghao.io/resume`). It is implem
 - `app/resume/page.tsx` — output HTML renderer.
   - Imports `resume` from `source.ts` and turns it into semantic HTML sections.
   - Owns metadata, links, print classes, responsive layout, and visual styling.
-- `components/navbar.tsx` — includes the `/resume` navigation entry.
+  - Deliberately renders a standalone fixed-position Kami-style sheet so `/resume` visually matches the original generated HTML instead of inheriting the blog article frame.
+- `components/navbar.tsx` — includes the `/resume` navigation entry, but the page itself visually covers the normal blog shell.
 
 This separation is intentional: update content in `source.ts`; update the visual design in `page.tsx`.
 
@@ -36,7 +37,7 @@ npm run dev
 
 ## Print / PDF notes
 
-The page includes print-specific Tailwind classes so browser Print → Save as PDF should produce a compact resume. Use A4 paper size. If a future content update makes the PDF overflow, first shorten bullets or metrics in `source.ts`; only then adjust print density in `page.tsx`.
+The page includes standalone print CSS so browser Print → Save as PDF should produce a compact Kami-style resume. Use A4 paper size. If a future content update makes the PDF overflow, first shorten bullets or metrics in `source.ts`; only then adjust print density in `page.tsx`.
 
 ## Content source history
 

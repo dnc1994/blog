@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import type { ReactNode } from 'react'
 import Link from 'next/link'
 import { resume, type ResumeLink } from './source'
 
@@ -36,11 +35,7 @@ function linkifyText(text: string, links: ResumeLink[] = []) {
         if (chunk) nextParts.push(chunk)
         if (index < chunks.length - 1) {
           nextParts.push(
-            <Link
-              key={`${link.href}-${nextParts.length}`}
-              href={link.href}
-              className='text-rurikon-accent underline decoration-rurikon-border underline-offset-2 transition-colors hover:text-rurikon-700 hover:decoration-rurikon-accent'
-            >
+            <Link key={`${link.href}-${nextParts.length}`} href={link.href}>
               {link.label}
             </Link>
           )
@@ -54,94 +49,351 @@ function linkifyText(text: string, links: ResumeLink[] = []) {
   return parts
 }
 
-function Section({
-  title,
-  children,
-}: {
-  title: string
-  children: ReactNode
-}) {
-  return (
-    <section className='grid gap-2 border-t border-rurikon-border pt-4 text-[0.95rem] leading-6 mobile:grid-cols-[5.5rem_1fr] mobile:gap-6 print:grid-cols-[5.5rem_1fr] print:gap-6 print:break-inside-avoid'>
-      <h2 className='font-mono text-[0.68rem] font-medium uppercase leading-5 tracking-[0.16em] text-rurikon-accent'>
-        {title}
-      </h2>
-      <div className='min-w-0'>{children}</div>
-    </section>
-  )
-}
-
 export default function ResumePage() {
   return (
-    <div className='resume-page max-w-none pb-10 print:pb-0'>
-      <header className='mb-7 border-b border-rurikon-border pb-5'>
-        <div className='flex flex-col gap-4 mobile:flex-row mobile:items-end mobile:justify-between'>
-          <div>
-            <h1 className='text-[2.15rem] font-semibold leading-none tracking-[-0.04em] text-rurikon-700 sm:text-[2.55rem] print:text-[2rem]'>
-              {resume.name}
-            </h1>
-            <p className='mt-2 text-sm font-medium leading-5 text-rurikon-accent sm:text-base print:text-[0.82rem]'>
-              {resume.title}
-            </p>
-          </div>
+    <div className='resumeStandalone' aria-label='Linghao Zhang resume'>
+      <style>{`
+        body:has(.resumeStandalone) {
+          padding: 0 !important;
+        }
 
-          <address className='not-italic text-sm leading-6 text-rurikon-400 mobile:text-right print:text-[0.75rem] print:leading-5'>
-            <Link className='text-rurikon-accent hover:text-rurikon-700' href={`mailto:${resume.contact.email}`}>
-              {resume.contact.email}
-            </Link>
-            <span className='px-1.5 text-rurikon-border'>·</span>
+        body:has(.resumeStandalone) nav,
+        body:has(.resumeStandalone) > .fixed {
+          display: none !important;
+        }
+
+        .resumeStandalone {
+          position: fixed;
+          inset: 0;
+          z-index: 100;
+          overflow: auto;
+          background: #f5f4ed;
+          color: #141413;
+          font-family: Charter, "Bitstream Charter", "Iowan Old Style", Georgia, Palatino, "Times New Roman", serif;
+          font-size: 9.1pt;
+          line-height: 1.34;
+          letter-spacing: 0;
+          -webkit-font-smoothing: antialiased;
+          text-rendering: optimizeLegibility;
+          --parchment: #f5f4ed;
+          --ivory: #faf9f5;
+          --ink: #141413;
+          --warm-ink: #3d3d3a;
+          --olive: #504e49;
+          --muted: #6b6a64;
+          --rule: #e3e0d5;
+          --rule-strong: #d8d4c8;
+          --brand: #1b365d;
+          --brand-tint: #eef2f7;
+          --mono: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+        }
+
+        .resumeStandalone * { box-sizing: border-box; margin: 0; padding: 0; }
+        .resumeStandalone a { color: var(--brand); text-decoration: none; }
+        .resumeStandalone a:hover { text-decoration: underline; }
+
+        .resumeSheet {
+          max-width: 210mm;
+          min-height: 297mm;
+          margin: 14px auto;
+          padding: 10mm 12mm;
+          background: var(--parchment);
+          box-shadow: 0 20px 60px rgba(42, 39, 25, 0.13);
+          border: 1px solid rgba(216, 212, 200, 0.8);
+        }
+
+        .resumeHeader {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          gap: 12mm;
+          align-items: end;
+          padding-bottom: 2.4mm;
+          border-bottom: 0.7pt solid var(--rule-strong);
+          margin-bottom: 3.2mm;
+        }
+
+        .resumeName {
+          font-size: 24pt;
+          font-weight: 500;
+          letter-spacing: -0.35pt;
+          line-height: 0.95;
+          color: var(--ink);
+        }
+
+        .resumeTitle {
+          margin-top: 1.4mm;
+          color: var(--brand);
+          font-size: 10.2pt;
+          font-weight: 500;
+        }
+
+        .resumeContact {
+          text-align: right;
+          color: var(--muted);
+          font-size: 8.7pt;
+          line-height: 1.42;
+          white-space: nowrap;
+          font-style: normal;
+        }
+
+        .resumeContact .sep { color: var(--rule-strong); padding: 0 0.5mm; }
+
+        .resumeMetrics {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          column-gap: 5mm;
+          margin-bottom: 2.9mm;
+        }
+
+        .resumeMetric {
+          border-bottom: 0.35pt dotted var(--rule-strong);
+          padding-bottom: 1.4mm;
+        }
+
+        .resumeMetricValue {
+          display: block;
+          font-size: 12.7pt;
+          line-height: 1;
+          font-weight: 500;
+          color: var(--brand);
+          font-variant-numeric: tabular-nums;
+          white-space: nowrap;
+        }
+
+        .resumeMetricLabel {
+          display: block;
+          margin-top: 0.8mm;
+          color: var(--olive);
+          font-size: 8.35pt;
+          line-height: 1.15;
+          white-space: nowrap;
+        }
+
+        .resumeSection {
+          display: grid;
+          grid-template-columns: 24mm 1fr;
+          column-gap: 5mm;
+          margin-top: 3.3mm;
+        }
+
+        .resumeSection:first-of-type { margin-top: 0; }
+
+        .resumeSectionLabel {
+          color: var(--brand);
+          font-size: 9pt;
+          font-weight: 500;
+          letter-spacing: 0.85pt;
+          text-transform: uppercase;
+          padding-top: 0.6mm;
+        }
+
+        .resumeSectionBody {
+          border-top: 0.55pt solid var(--rule);
+          padding-top: 1.8mm;
+          min-width: 0;
+        }
+
+        .resumeSummary {
+          font-size: 9.3pt;
+          line-height: 1.42;
+          color: var(--warm-ink);
+        }
+
+        .resumeSummary strong,
+        .resumeHl { color: var(--brand); font-weight: 500; }
+
+        .resumeRoleBlock {
+          padding: 0 0 2mm 0;
+          break-inside: avoid;
+        }
+
+        .resumeRoleBlock + .resumeRoleBlock {
+          padding-top: 2.1mm;
+          border-top: 0.35pt dotted var(--rule);
+        }
+
+        .resumeRoleHead {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          column-gap: 4mm;
+          align-items: baseline;
+          margin-bottom: 1mm;
+        }
+
+        .resumeCompanyLine {
+          min-width: 0;
+          font-size: 10.4pt;
+          line-height: 1.2;
+        }
+
+        .resumeCompany {
+          font-weight: 600;
+          color: var(--ink);
+        }
+
+        .resumeRole {
+          color: var(--olive);
+          font-style: italic;
+        }
+
+        .resumeDate {
+          color: var(--muted);
+          font-size: 8.8pt;
+          line-height: 1.2;
+          font-style: italic;
+          white-space: nowrap;
+          font-variant-numeric: tabular-nums;
+        }
+
+        .resumeBullets {
+          list-style: none;
+        }
+
+        .resumeBullets li {
+          position: relative;
+          padding-left: 3.5mm;
+          margin: 0.95mm 0;
+          color: var(--warm-ink);
+          line-height: 1.34;
+        }
+
+        .resumeBullets li::before {
+          content: "";
+          position: absolute;
+          left: 0.5mm;
+          top: 0.55em;
+          width: 1.25mm;
+          height: 1.25mm;
+          border-radius: 50%;
+          background: var(--brand);
+          opacity: 0.9;
+        }
+
+        .resumeBullets strong {
+          color: var(--ink);
+          font-weight: 600;
+        }
+
+        .resumeCompactRole .resumeBullets li { margin: 0.5mm 0; }
+
+        .resumeEduItem {
+          display: grid;
+          grid-template-columns: 1fr auto;
+          column-gap: 4mm;
+          padding: 0.9mm 0;
+          break-inside: avoid;
+        }
+
+        .resumeEduItem + .resumeEduItem {
+          border-top: 0.35pt dotted var(--rule);
+          padding-top: 1.5mm;
+          margin-top: 0.8mm;
+        }
+
+        .resumeSchool { font-size: 10.2pt; font-weight: 600; color: var(--ink); }
+        .resumeDegree { color: var(--warm-ink); margin-top: 0.5mm; }
+        .resumeCoursework { color: var(--muted); margin-top: 0.4mm; }
+
+        .resumeSkills { display: grid; row-gap: 1mm; }
+
+        .resumeSkillRow {
+          display: grid;
+          grid-template-columns: 21mm 1fr;
+          gap: 3mm;
+          padding: 0.4mm 0;
+        }
+
+        .resumeSkillLabel {
+          color: var(--brand);
+          font-size: 8.7pt;
+          font-weight: 500;
+          text-transform: uppercase;
+          letter-spacing: 0.45pt;
+        }
+
+        .resumeSkillText { color: var(--warm-ink); }
+
+        @media (max-width: 720px) {
+          .resumeSheet { min-height: auto; margin: 0; padding: 18px; border: none; box-shadow: none; }
+          .resumeHeader { grid-template-columns: 1fr; gap: 8px; }
+          .resumeContact { text-align: left; white-space: normal; }
+          .resumeMetrics { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 10px; }
+          .resumeSection { grid-template-columns: 1fr; gap: 5px; }
+          .resumeSectionBody { padding-top: 8px; }
+          .resumeRoleHead, .resumeEduItem { grid-template-columns: 1fr; row-gap: 3px; }
+          .resumeSkillRow { grid-template-columns: 1fr; gap: 2px; }
+        }
+
+        @media print {
+          @page { size: A4; margin: 10mm 12mm 10mm 12mm; background: #f5f4ed; }
+          .resumeStandalone {
+            position: static;
+            overflow: visible;
+            background: #f5f4ed;
+          }
+          .resumeSheet {
+            width: auto;
+            min-height: auto;
+            padding: 0;
+            margin: 0;
+            box-shadow: none;
+            border: none;
+          }
+        }
+      `}</style>
+
+      <main className='resumeSheet'>
+        <header className='resumeHeader'>
+          <div>
+            <h1 className='resumeName'>{resume.name}</h1>
+            <div className='resumeTitle'>{resume.title}</div>
+          </div>
+          <address className='resumeContact' aria-label='Contact information'>
+            <Link href={`mailto:${resume.contact.email}`}>{resume.contact.email}</Link>
+            <span className='sep'>·</span>
             <span>{resume.contact.phone}</span>
             <br />
-            <Link className='text-rurikon-accent hover:text-rurikon-700' href={resume.contact.blogUrl}>
-              {resume.contact.blog}
-            </Link>
-            <span className='px-1.5 text-rurikon-border'>·</span>
+            <Link href={resume.contact.blogUrl}>{resume.contact.blog}</Link>
+            <span className='sep'>·</span>
             <span>{resume.contact.organization}</span>
           </address>
+        </header>
+
+        <div className='resumeMetrics' aria-label='Career highlights'>
+          {resume.metrics.map((metric) => (
+            <div className='resumeMetric' key={metric.label}>
+              <span className='resumeMetricValue'>{metric.value}</span>
+              <span className='resumeMetricLabel'>{metric.label}</span>
+            </div>
+          ))}
         </div>
-      </header>
 
-      <div className='mb-7 grid grid-cols-2 gap-x-5 gap-y-4 sm:grid-cols-4 print:mb-4 print:grid-cols-4 print:gap-x-4'>
-        {resume.metrics.map((metric) => (
-          <div key={metric.label} className='border-b border-dotted border-rurikon-border pb-2'>
-            <div className='text-xl font-medium leading-none tracking-[-0.02em] text-rurikon-accent print:text-base'>
-              {metric.value}
-            </div>
-            <div className='mt-1.5 text-xs leading-4 text-rurikon-400 print:text-[0.68rem] print:leading-3'>
-              {metric.label}
-            </div>
+        <section className='resumeSection' aria-labelledby='resume-summary-title'>
+          <div className='resumeSectionLabel' id='resume-summary-title'>Summary</div>
+          <div className='resumeSectionBody'>
+            <p className='resumeSummary'>{resume.summary}</p>
           </div>
-        ))}
-      </div>
+        </section>
 
-      <div className='space-y-7 print:space-y-4'>
-        <Section title='Summary'>
-          <p className='text-rurikon-500 print:text-[0.78rem] print:leading-5'>
-            {resume.summary}
-          </p>
-        </Section>
-
-        <Section title='Experience'>
-          <div className='space-y-5 print:space-y-3'>
+        <section className='resumeSection' aria-labelledby='resume-experience-title'>
+          <div className='resumeSectionLabel' id='resume-experience-title'>Experience</div>
+          <div className='resumeSectionBody'>
             {resume.experience.map((job) => (
-              <article key={`${job.company}-${job.dates}`} className='break-inside-avoid'>
-                <div className='flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between'>
-                  <h3 className='text-base font-semibold leading-6 text-rurikon-700 print:text-[0.86rem] print:leading-5'>
-                    {job.company}
-                    <span className='font-normal italic text-rurikon-400'>, {job.role}</span>
-                  </h3>
-                  <div className='shrink-0 text-sm italic leading-5 text-rurikon-300 print:text-[0.72rem]'>
-                    {job.dates}
+              <article
+                className={`resumeRoleBlock ${job.bullets.length === 1 ? 'resumeCompactRole' : ''}`}
+                key={`${job.company}-${job.dates}`}
+              >
+                <div className='resumeRoleHead'>
+                  <div className='resumeCompanyLine'>
+                    <span className='resumeCompany'>{job.company}</span>,{' '}
+                    <span className='resumeRole'>{job.role}</span>
                   </div>
+                  <div className='resumeDate'>{job.dates}</div>
                 </div>
-
-                <ul className='mt-1.5 space-y-1.5 print:mt-1 print:space-y-1'>
+                <ul className='resumeBullets'>
                   {job.bullets.map((bullet) => (
-                    <li
-                      key={`${job.company}-${bullet.lead || bullet.text}`}
-                      className='relative pl-4 text-[0.95rem] leading-6 text-rurikon-500 before:absolute before:left-0 before:top-[0.68em] before:h-1.5 before:w-1.5 before:rounded-full before:bg-rurikon-accent print:text-[0.76rem] print:leading-[1.25rem]'
-                    >
-                      {bullet.lead ? <strong className='font-semibold text-rurikon-700'>{bullet.lead}: </strong> : null}
+                    <li key={`${job.company}-${bullet.lead || bullet.text}`}>
+                      {bullet.lead ? <strong>{bullet.lead}: </strong> : null}
                       {linkifyText(bullet.text, bullet.links)}
                     </li>
                   ))}
@@ -149,39 +401,39 @@ export default function ResumePage() {
               </article>
             ))}
           </div>
-        </Section>
+        </section>
 
-        <Section title='Education'>
-          <div className='space-y-3 print:space-y-2'>
+        <section className='resumeSection' aria-labelledby='resume-education-title'>
+          <div className='resumeSectionLabel' id='resume-education-title'>Education</div>
+          <div className='resumeSectionBody'>
             {resume.education.map((edu) => (
-              <div key={edu.school} className='break-inside-avoid border-b border-dotted border-rurikon-border pb-3 last:border-0 last:pb-0 print:pb-2'>
-                <div className='flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between'>
-                  <h3 className='font-semibold leading-6 text-rurikon-700 print:text-[0.84rem] print:leading-5'>{edu.school}</h3>
-                  <div className='shrink-0 text-sm italic text-rurikon-300 print:text-[0.72rem]'>{edu.dates}</div>
+              <div className='resumeEduItem' key={edu.school}>
+                <div>
+                  <div className='resumeSchool'>{edu.school}</div>
+                  {edu.details.map((detail, index) => (
+                    <div className={index === 0 ? 'resumeDegree' : 'resumeCoursework'} key={detail}>
+                      {detail}
+                    </div>
+                  ))}
                 </div>
-                {edu.details.map((detail) => (
-                  <p key={detail} className='text-sm leading-5 text-rurikon-500 print:text-[0.74rem] print:leading-4'>
-                    {detail}
-                  </p>
-                ))}
+                <div className='resumeDate'>{edu.dates}</div>
               </div>
             ))}
           </div>
-        </Section>
+        </section>
 
-        <Section title='Skills'>
-          <div className='space-y-2 print:space-y-1'>
+        <section className='resumeSection' aria-labelledby='resume-skills-title'>
+          <div className='resumeSectionLabel' id='resume-skills-title'>Skills</div>
+          <div className='resumeSectionBody resumeSkills'>
             {resume.skills.map((skill) => (
-              <div key={skill.label} className='grid gap-1 text-sm leading-5 sm:grid-cols-[6.25rem_1fr] sm:gap-4 print:grid-cols-[5.5rem_1fr] print:text-[0.74rem] print:leading-4'>
-                <div className='font-mono text-[0.7rem] font-medium uppercase tracking-[0.12em] text-rurikon-accent print:text-[0.62rem]'>
-                  {skill.label}
-                </div>
-                <div className='text-rurikon-500'>{skill.items.join(', ')}</div>
+              <div className='resumeSkillRow' key={skill.label}>
+                <div className='resumeSkillLabel'>{skill.label}</div>
+                <div className='resumeSkillText'>{skill.items.join(', ')}</div>
               </div>
             ))}
           </div>
-        </Section>
-      </div>
+        </section>
+      </main>
     </div>
   )
 }
