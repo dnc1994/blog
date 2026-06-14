@@ -117,6 +117,9 @@ npm run lint
 │   │   ├── page.tsx        # Projects page
 │   │   ├── data.tsx        # Project metadata
 │   │   └── logos.tsx       # Project SVG logos
+│   ├── resume/             # Public resume at /resume
+│   │   ├── source.ts       # Resume content source of truth
+│   │   └── page.tsx        # Resume HTML renderer
 │   └── tags/               # Tag system
 │       └── all/            # Tag filtering page
 ├── components/             # React components
@@ -137,6 +140,10 @@ npm run lint
 ```
 
 ## Content Management
+
+### Resume Page
+
+The public resume is available at `/resume`. Its content source is `app/resume/source.ts`, and the rendered HTML page is `app/resume/page.tsx`. Update content in `source.ts`; only edit `page.tsx` for layout/styling changes. See `docs/resume.md` for the full update workflow.
 
 All content is written in MDX format, combining Markdown with React components.
 
