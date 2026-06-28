@@ -5,6 +5,30 @@ import { Tag } from '@/components/tag'
 import { getAllArticles } from '@/lib/articles'
 import { resolveSocialImage } from '@/lib/seo'
 import Link from 'next/link'
+import { TocSidebar, type TocHeading } from '@/components/toc-sidebar'
+
+function extractHeadings(mdxContent: string): TocHeading[] {
+  const headings: TocHeading[] = []
+  for (const line of mdxContent.split('\n')) {
+    const match = line.match(/^(#{2,4}) (.+)$/)
+    if (!match) continue
+    const level = match[1].length
+    const raw = match[2].trim()
+    // Strip markdown formatting
+    const text = raw
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/[*_`]/g, '')
+      .trim()
+    // Replicate github-slugger (used by rehype-slug)
+    const id = text
+      .toLowerCase()
+      .replace(/[^\w\s]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+    headings.push({ id, text, level })
+  }
+  return headings
+}
 
 function estimateReadingTime(mdxContent: string): number {
   const text = mdxContent
@@ -45,6 +69,7 @@ export default async function Page(props: {
     'utf-8'
   )
   const readingTime = estimateReadingTime(mdxRaw)
+  const headings = extractHeadings(mdxRaw)
 
   return (
     <div
@@ -115,6 +140,8 @@ export default async function Page(props: {
       <div className='[&>*:first-child]:mt-0'>
         <MDXContent />
       </div>
+
+      <TocSidebar headings={headings} defaultOpen={!!metadata.toc} />
     </div>
   )
 }
