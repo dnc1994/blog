@@ -108,11 +108,12 @@ export function TocSidebar({
           <p className='text-[11px] font-semibold uppercase tracking-widest text-rurikon-300 mb-4'>
             Contents
           </p>
-          <nav className='flex flex-col'>
+          <div role='navigation' aria-label='Table of contents' className='flex flex-col'>
             {numbered.map(({ id, text, level, number }) => (
               <a
                 key={id}
                 href={`#${id}`}
+                onClick={() => setActiveId(id)}
                 className={cn(
                   'py-1 text-sm leading-snug transition-colors',
                   level === 2 && 'pl-0',
@@ -127,7 +128,7 @@ export function TocSidebar({
                 {text}
               </a>
             ))}
-          </nav>
+          </div>
         </div>
       </div>
     </>
