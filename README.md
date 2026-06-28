@@ -6,13 +6,12 @@ A blog by Linghao Zhang, built with Next.js 15 and modern web technologies.
 
 - **Framework**: Next.js 15 (App Directory, Static Export)
 - **Language**: TypeScript
-- **Styling**: Tailwind CSS 4.0 beta
+- **Styling**: Tailwind CSS 4
 - **Content**: MDX for rich content
 - **Syntax Highlighting**: Shiki
 - **Math**: KaTeX
 - **Fonts**: Inter Variable, Lora Italic Variable, Iosevka Fixed Curly
 - **Deployment**: Cloudflare Pages
-- **CI/CD**: GitHub Actions
 
 ## Features
 
@@ -27,35 +26,27 @@ A blog by Linghao Zhang, built with Next.js 15 and modern web technologies.
 - 🧩 Projects page with SVG logos
 - 📸 Photography gallery with lightbox
 - 📡 Auto-generated RSS feed
+- 🗂️ Toggleable table of contents sidebar for long posts
+- ⚓ Anchor links on all headings
+- 🌐 Multilingual article support with language switcher
 - ⚡ Optimized static site with CDN delivery
-- 🚀 Automated deployments
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node.js 16 or later
-- pnpm, yarn, or npm
+- Node.js 18.18 or later
+- npm
 
 ### Installation
 
 ```bash
-# Install dependencies
-pnpm install
-# or
-yarn install
-# or
 npm install
 ```
 
 ### Development
 
 ```bash
-# Run development server
-pnpm dev
-# or
-yarn dev
-# or
 npm run dev
 ```
 
@@ -64,14 +55,12 @@ Open [http://localhost:3000](http://localhost:3000) to view the blog.
 ### Build
 
 ```bash
-# Build for production (includes RSS generation)
 npm run build
 ```
 
 The build outputs to the `dist/` directory and includes:
 - Static HTML/CSS/JS files
 - Auto-generated RSS feed at `/feed.xml`
-- Optimized images and assets
 
 ### Additional Commands
 
@@ -113,6 +102,9 @@ npm run lint
 │   │   ├── page.tsx        # Gallery page
 │   │   ├── gallery-grid.tsx # Lightbox component
 │   │   └── data.ts         # Photo data
+│   ├── lists/              # Curation lists
+│   │   ├── page.tsx        # Lists hub
+│   │   └── [slug]/         # Individual list pages
 │   ├── projects/           # Projects page
 │   │   ├── page.tsx        # Projects page
 │   │   ├── data.tsx        # Project metadata
@@ -125,6 +117,7 @@ npm run lint
 ├── components/             # React components
 │   ├── navbar.tsx          # Navigation
 │   ├── tag.tsx             # Tag component
+│   ├── toc-sidebar.tsx     # Table of contents sidebar
 │   └── ...                 # Other components
 ├── lib/                    # Utilities
 │   ├── articles.ts         # Content loading
@@ -141,12 +134,6 @@ npm run lint
 
 ## Content Management
 
-### Resume Page
-
-The public resume is available at `/resume`. Its content source is `app/resume/source.ts`, and the rendered HTML page is `app/resume/page.tsx`. Update content in `source.ts`; only edit `page.tsx` for layout/styling changes. See `docs/resume.md` for the full update workflow.
-
-All content is written in MDX format, combining Markdown with React components.
-
 ### Adding a New Post
 
 1. Create a new `.mdx` file in `app/posts/_articles/`
@@ -158,11 +145,19 @@ export const metadata = {
   description: 'A brief description',
   date: '2025.01.01',
   tags: ['Tag1', 'Tag2'],
+
+  // Optional: show a table of contents sidebar (default open)
+  toc: true,
+
   // Optional: OG/social card image (hosted on Cloudflare R2 or any public URL)
   image: 'https://r2.linghao.io/blog-assets/your-image.png',
-  // Optional: override default OG image dimensions (defaults to 1200×630)
   imageWidth: 1200,
   imageHeight: 630,
+
+  // Optional: multilingual linking (see Multilingual Support below)
+  language: 'en',
+  translationId: 'shared-slug',
+  canonical: true,
 }
 
 Your content here...
@@ -173,6 +168,26 @@ Your content here...
    - Be included in RSS feed
    - Be filterable by tags
    - Get a URL like `/posts/your-post-title`
+   - Have anchor links on all headings (`#heading-slug`)
+
+### Table of Contents
+
+Any post with two or more headings gets a toggleable TOC sidebar. A small icon button appears on the right side of the viewport; clicking it opens a panel listing all headings (h2–h4) with hierarchical numbering and active-heading highlighting as you scroll.
+
+By default the sidebar is **closed**. Set `toc: true` in the article metadata to have it open automatically — useful for long reference posts.
+
+### Multilingual Support
+
+Articles sharing a `translationId` are grouped as translations of each other. The article page shows a language switcher between them. Only the `canonical: true` version appears in index pages and tag pages.
+
+```mdx
+export const metadata = {
+  title: 'My Post',
+  language: 'en',
+  translationId: 'my-post',
+  canonical: true,
+}
+```
 
 ### Content Sections
 
@@ -180,6 +195,10 @@ Your content here...
 - **Misc** (`app/misc/_articles/`) - Miscellaneous content
 
 Legacy `/notes/*` URLs are still supported for backward compatibility, but new content should be added under `posts`.
+
+### Resume Page
+
+The public resume is available at `/resume`. Its content source is `app/resume/source.ts`, and the rendered HTML page is `app/resume/page.tsx`. Update content in `source.ts`; only edit `page.tsx` for layout/styling changes. See `docs/resume.md` for the full update workflow.
 
 ### Gallery
 
@@ -230,8 +249,8 @@ The blog uses the "rurikon" color palette defined in `app/globals.css`, mapped t
 
 Fonts are loaded locally via `next/font/local` in `app/layout.tsx` and exposed as CSS variables:
 
-- `--sans`: Inter Variable (body text, headings, blockquotes, nav — used everywhere)
-- `--serif`: Lora Italic Variable (loaded but not actively applied)
+- `--sans`: Inter Variable (body text, headings, UI elements — used everywhere)
+- `--serif`: Lora Italic Variable (navigation elements via global `nav {}` rule)
 - `--mono`: Iosevka Fixed Curly (code blocks and inline code)
 
 ### Navigation
@@ -240,10 +259,6 @@ Edit `components/navbar.tsx` to modify navigation links.
 
 ## Deployment
 
-The blog uses automated CI/CD with GitHub Actions and Cloudflare Pages.
-
-### Quick Deploy
-
 ```bash
 # Deploy to preview
 npm run deploy
@@ -251,11 +266,6 @@ npm run deploy
 # Deploy to production
 npm run deploy:prod
 ```
-
-### Automatic Deployments
-
-Deployment is currently script-driven (`npm run deploy`, `npm run deploy:prod`).
-If CI branch automation is added, document branch mappings here.
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed setup instructions.
 
