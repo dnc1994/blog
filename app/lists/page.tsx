@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { tools } from './agentic-coding/data'
 import { resources as designResources } from './design/data'
+import { resources as aiResearchResources } from './ai-research/data'
 
 export const metadata = {
   title: 'Lists',
@@ -23,6 +24,12 @@ const lists = [
     name: 'Design',
     description: 'Design systems, templates, and references worth keeping close.',
     count: designResources.length,
+  },
+  {
+    slug: 'ai-research',
+    name: 'AI Research',
+    description: 'Papers, articles, and resources on AI research worth reading.',
+    count: aiResearchResources.length,
   },
 ]
 
