@@ -34,9 +34,9 @@ It tests whether a memory system can retrieve a relevant fact from a fixed snaps
 
 It does not tell us how the system performs before reaching this fixed snapshot in time, nor does it provide much predictive power to how it would perform into the future.
 
-This is worrying from a product perspective. The memory system is part of its own feedback loop: if the perceived memory quality is bad or does not improve noticeably over time, users might become discouraged from interacting in ways that require good memory, or turn off the memory features alltogether.
+This is worrying from a product perspective. The memory system is part of its own feedback loop: if the perceived memory quality is bad or does not improve noticeably over time, users might become discouraged from interacting in ways that require good memory, or turn off the memory features altogether.
 
-## The Ideal Longitudal Memory Eval
+## The Ideal Longitudinal Memory Eval
 
 The ideal memory eval should consist of the following building blocks:
 
@@ -153,10 +153,10 @@ The eval should be implementation-agnostic but also deeply connected with real-w
 
 To scale the eval data, we need to build simulated user agents that:
 
-- Produces realistic new interactions based on the user profile and past interactions
-- Models longtitudal behavioral changes due to past interactions and perceived quality/utility of the memory system.
+- Produce realistic new interactions based on the user profile and past interactions
+- Model longitudinal behavioral changes due to past interactions and perceived quality/utility of the memory system.
   - E.g. It might avoid chatting about a certain topic if past interactions about this topic had been consistently suboptimal.
-- Produces the ground truth of synthetic new interactions. In a sense, we need to have an Oracle that gives the best response based on all observable data of a given user, likely using a lot more offline compute than what can be leveraged in production.
+- Produce the ground truth of synthetic new interactions. In a sense, we need to have an Oracle that gives the best response based on all observable data of a given user, likely using a lot more offline compute than what can be leveraged in production.
 
 ### Scoring
 
@@ -177,3 +177,7 @@ Most AI memory systems are designed top down based on individual imagination. Bu
 An eval like this would quickly expose weaknesses in many approaches. The likely winner is a hybrid of several first-principled engineering components, clever tricks, and holistic trade-off between multiple variables.
 
 But which system will win is beside the point. The point is that we should not try to design the winner, but let the environment pressure the winner to emerge.
+
+---
+
+*Generative AI Usage Disclosure: Refined by ChatGPT.*
