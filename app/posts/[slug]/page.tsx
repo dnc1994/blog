@@ -6,6 +6,7 @@ import { getAllArticles } from '@/lib/articles'
 import { resolveSocialImage } from '@/lib/seo'
 import Link from 'next/link'
 import { TocSidebar, type TocHeading } from '@/components/toc-sidebar'
+import { MusicPlayer } from '@/components/music-player'
 
 function extractHeadings(mdxContent: string): TocHeading[] {
   const headings: TocHeading[] = []
@@ -142,6 +143,14 @@ export default async function Page(props: {
       </div>
 
       <TocSidebar headings={headings} defaultOpen={!!metadata.toc} />
+
+      {metadata.music?.youtube && (
+        <MusicPlayer
+          videoId={metadata.music.youtube}
+          title={metadata.music.title}
+          artist={metadata.music.artist}
+        />
+      )}
     </div>
   )
 }
