@@ -11,6 +11,7 @@
     "lint": "next lint",
     "rss": "node scripts/generate-rss.mjs",
     "og-image": "node scripts/og-image.mjs",
+    "blog:image": "node scripts/blog-image-assets.mjs",
     "deploy": "npm run build && wrangler pages deploy dist",
     "deploy:prod": "npm run build && wrangler pages deploy dist --branch=master"
   },

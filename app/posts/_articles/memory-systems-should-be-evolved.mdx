@@ -1,0 +1,179 @@
+export const metadata = {
+  title: 'Evolving Memory Systems: An Eval-First Approach',
+  description: 'AI memory systems are often designed as architectural bets: vector stores, profiles, summaries, graphs, etc. This post argues for a different starting point: build longitudinal eval environments where systems without good memory cannot survive, then let better memory strategies emerge under pressure from repeated interactions.',
+  date: '2026.06.27',
+  tags: ['AI', 'Memory'],
+  language: 'en',
+  translationId: 'memory-systems-should-be-evolved',
+  canonical: true,
+  image: 'https://r2.linghao.io/blog-assets/memory-systems-should-be-evolved-og.jpg',
+}
+
+![Banner](https://r2.linghao.io/blog-assets/memory-systems-should-be-evolved.png)
+
+People are building all sorts of fancy memory systems for AI assistants and personal agents. My X timeline is full of jargons like vector stores, knowledge graphs, semantic memory, episodic memory, user profiles, conversation summaries, hierarchical retrieval, memory consolidation, memory decay, ...
+
+Make no mistake, many of these ideas are useful. Some are probably indispensable. But the field has a strange imbalance: we spend a lot of energy inventing memory architectures, and much less energy improving the evals used to assess whether these systems actually make agents use memory better over time.
+
+The result is a lot of over-engineering. People build memory systems based on their own narrow definition of what "good memory" should look like. Without a serious evaluation environment, these are mostly just architectural bets.
+
+My view is that memory is not a first-order fundamental capability of a system. **Memory is a second-order effect that emerges when a system is placed under pressure to perform better across repeated interactions.**
+
+The right way to build better memory systems is not by designing them. The right way is to build an environment where systems without good memory cannot survive.
+
+## The Problem with Static Memory Evals
+
+Most memory evals today are too static. They usually look something like this:
+
+- Give the system a set of prior user facts or conversation history.
+- Ask a current question.
+- Check whether the system retrieves the relevant memory.
+- Score the answer based on whether it used the right fact.
+
+It tests whether a memory system can retrieve a relevant fact from a fixed snapshot. It does not test whether the system becomes better over time.
+
+It does not tell us how the system performs before reaching this fixed snapshot in time, nor does it provide much predictive power to how it would perform into the future.
+
+This is worrying from a product perspective. The memory system is part of its own feedback loop: if the perceived memory quality is bad or does not improve noticeably over time, users might become discouraged from interacting in ways that require good memory, or turn off the memory features alltogether.
+
+## The Ideal Longitudal Memory Eval
+
+The ideal memory eval should consist of the following building blocks:
+
+- A replayable user interaction history
+- Future interactions that depend on the history
+- A scoring system that rewards good memory usage
+
+To illustrate, imagine a synthetic interaction history like this:
+
+```
+Interaction 1: User asks for help writing a technical blog post.
+Interaction 2: User says they prefer concise, direct language.
+Interaction 3: User rejects a draft for sounding too salesy.
+Interaction 4: User asks for restaurant recommendations near LA downtown.
+Interaction 5: User says they dislike loud restaurants.
+Interaction 6: User starts a home renovation planning thread.
+Interaction 7: User mentions the budget is around $200K.
+...
+Interaction 200: User asks for help drafting an email to a contractor.
+```
+
+At each point, the memory system may decide what to store, summarize, consolidate, etc. Then, at selected checkpoints, you test it.
+
+For example:
+
+```
+Checkpoint after Interaction 50:
+User: Can you rewrite this to sound more like me?
+```
+
+A system with good memory should know from previous interactions that the user prefers concise, direct, slightly dry prose and dislikes over-explaining.
+
+Or:
+
+```
+Checkpoint after Interaction 120:
+User: Does this fit with the house project numbers we discussed?
+```
+
+A system with good memory should remember the rough renovation context, but also avoid overconfidence if the numbers may have changed.
+
+## Making It More Concrete
+
+Above is just a rough sketch. Many details need to be worked out to make such an eval really useful.
+
+At a high level, we need to build a dataset combining human and synthetic data where each data point looks something like this:
+
+```
+User U
+ - hidden profile (only visible to simulated users)
+ - interaction history
+ - checkpoints (both organic and synthetic)
+ - scoring rubrics
+```
+
+For instance:
+
+```json
+{
+ "user_id": "user_042",
+ "hidden_profile": {
+   "style": {
+     "prefers_concise": true,
+     "dislikes_hype": true,
+     "likes_deadpan_humor": true
+   },
+   "projects": {
+     "home_renovation": {
+       "budget": "$200k",
+       "location": "Orange County, CA"
+     }
+   }
+ },
+ "timeline": [
+   {
+     "turn": 1,
+     "user": "Can you help me polish this blog post?",
+     "type": "normal"
+   },
+   {
+     "turn": 2,
+     "user": "Can you make this argument sharper? Less academic, more direct.",
+     "type": "normal"
+   },
+   {
+     "turn": 3,
+     "user": "Rewrite this document in a similar way.",
+     "type": "checkpoint_organic",
+     "evaluation": {
+       "scoring_rubric": "Output should follow a direct writing style and avoid being overly academic."
+     }
+   },
+   {
+     "turn": 4,
+     "user": "Help me research steps to get a planning permit for my home renovation project.",
+     "type": "normal"
+   },   
+   // ...
+   {
+     "turn": 200,
+     "user": "Write an email to follow up on the renovation cost with the general contractor.",  // Generated by the simulated user agent.
+     "type": "checkpoint_synthetic",
+     "evaluation": {
+       "scoring_rubric": "Email should pull in relevant context such as budget, home location, etc."
+     }
+   }
+ ]
+}
+```
+
+The eval should be implementation-agnostic but also deeply connected with real-world product value-add and practical constraints. A few key pieces to consider:
+
+### User Simulation
+
+To scale the eval data, we need to build simulated user agents that:
+
+- Produces realistic new interactions based on the user profile and past interactions
+- Models longtitudal behavioral changes due to past interactions and perceived quality/utility of the memory system.
+  - E.g. It might avoid chatting about a certain topic if past interactions about this topic had been consistently suboptimal.
+- Produces the ground truth of synthetic new interactions. In a sense, we need to have an Oracle that gives the best response based on all observable data of a given user, likely using a lot more offline compute than what can be leveraged in production.
+
+### Scoring
+
+The scoring mechanism and rubrics need to consider multiple aspects:
+
+- It needs to assign weights to successes/failures of a given interaction in a way that aligns with the intended product value.
+  - E.g. If a bad memory usage happens early on in the user's interaction history, should that be punished more or less?
+- It should cover various types of evolutional pressures, including scenarios like addition, updates, forgetting, conflict resolution, etc.
+- It should balance memory quality against other metrics such as serving latency and compute costs.
+  - The system can do whatever it wants. Spending more compute either offline or online will generally lead to better results (e.g. by making a large number of LLM calls to a frontier reasoning model to synthesize and consolidate memories often). But the highest-scoring solution is not always the best one to launch to production.
+- It should support attribution (e.g. identifying which part of the memory system contributed to a loss) so that the eval can actually guide quality hill climbing.
+- ...
+
+## Conclusion
+
+Most AI memory systems are designed top down based on individual imagination. But this is backwards. We should not start with the system design. Instead we should start with the survival environment.
+
+An eval like this would quickly expose weaknesses in many approaches. The likely winner is a hybrid of several first-principled engineering components, clever tricks, and holistic trade-off between multiple variables.
+
+But which system will win is beside the point. The point is that we should not try to design the winner, but let the environment pressure the winner to emerge.
