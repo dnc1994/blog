@@ -56,7 +56,7 @@ export default function Navbar() {
         <div className="hidden mobile:flex justify-end mt-5">
           <ThemeToggle />
         </div>
-        <div id="music-player-slot" className="flex justify-end mt-5" />
+        <div id="music-player-slot" className="hidden mobile:flex justify-end mt-5" />
       </div>
     </nav>
   );

@@ -119,8 +119,31 @@ export function MusicPlayer({
         <div ref={mountRef} />
       </div>
 
-      {/* Render button into the navbar slot via portal */}
+      {/* Desktop: render into navbar slot via portal */}
       {slotEl && createPortal(button, slotEl)}
+
+      {/* Mobile: small floating button at bottom-right */}
+      <button
+        onClick={toggle}
+        disabled={!ready}
+        aria-label={playing ? `Pause ${title}` : `Play ${title}`}
+        title={`${title} — ${artist}`}
+        className={cn(
+          'mobile:hidden',
+          'fixed bottom-6 right-4 z-50',
+          'flex items-center justify-center w-8 h-8 rounded-sm',
+          'border border-rurikon-border bg-[var(--background)]',
+          'transition-colors cursor-pointer disabled:opacity-30',
+          playing
+            ? 'text-rurikon-accent border-rurikon-accent'
+            : 'text-rurikon-300 hover:text-rurikon-500'
+        )}
+      >
+        {/* Music note icon */}
+        <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor' className='w-4 h-4'>
+          <path fillRule='evenodd' d='M19.952 1.651a.75.75 0 01.298.599V16.303a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.403-4.909l2.311-.66a1.5 1.5 0 001.088-1.442V6.994l-9 2.572v9.737a3 3 0 01-2.176 2.884l-1.32.377a2.553 2.553 0 11-1.402-4.909l2.31-.66a1.5 1.5 0 001.088-1.442V9.017 5.25a.75.75 0 01.544-.721l10.5-3a.75.75 0 01.658.122z' clipRule='evenodd' />
+        </svg>
+      </button>
     </>
   )
 }
