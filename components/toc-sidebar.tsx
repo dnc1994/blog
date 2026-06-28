@@ -40,6 +40,15 @@ export function TocSidebar({
 
   if (headings.length < 2) return null
 
+  // Compute hierarchical numbers (1, 1.1, 1.1.2, …)
+  const counters = [0, 0, 0]
+  const numbered = headings.map((h) => {
+    const idx = h.level - 2
+    counters[idx]++
+    for (let i = idx + 1; i < 3; i++) counters[i] = 0
+    return { ...h, number: counters.slice(0, idx + 1).join('.') }
+  })
+
   return (
     <>
       {/* Toggle button — always fixed on the right */}
@@ -90,7 +99,7 @@ export function TocSidebar({
         className={cn(
           'fixed right-0 top-0 h-full w-60 z-40',
           'border-l border-rurikon-border bg-[var(--background)]',
-          'overflow-y-auto',
+          'overflow-y-auto font-sans not-italic',
           'transition-transform duration-200 ease-in-out',
           open ? 'translate-x-0' : 'translate-x-full'
         )}
@@ -100,7 +109,7 @@ export function TocSidebar({
             Contents
           </p>
           <nav className='flex flex-col'>
-            {headings.map(({ id, text, level }) => (
+            {numbered.map(({ id, text, level, number }) => (
               <a
                 key={id}
                 href={`#${id}`}
@@ -114,6 +123,7 @@ export function TocSidebar({
                     : 'text-rurikon-300 hover:text-rurikon-500'
                 )}
               >
+                <span className='mr-2 tabular-nums'>{number}</span>
                 {text}
               </a>
             ))}
