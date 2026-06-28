@@ -20,7 +20,7 @@ As Andrej Karpathy put it, models are "non-deterministic [ghosts](https://youtu.
 
 At its core, software engineering is not about code. It's about managing complexity. And Generative AI adds on new paradigms of complexities. To name a few:
 
-- **Model Configuration:** Behavior is driven by data and config rather than explicit logic. While a backend API with 50 parameters is considered complex, LLM practitioners deal with dozens of hyper-parameters and sometimes hundreds of compiler flags.
+- **Model Configuration:** Behavior is driven by data and config rather than explicit logic. While a backend API with merely 10 parameters can be considered complex, LLM practitioners deal with dozens of hyper-parameters and sometimes hundreds of compiler flags.
 - **Context Engineering:** Every token in the context window is a budget item. The challenge lies in how to retrieve, rank, synthesize, and reconcile potentially conflicting pieces of information to provide the best "grounding" for the model.
 - **Guardrails:** There is a massive gap between a model's raw output and a production-ready response. Currently, this gap is filled by a messy mixture of post-processing rules and ad-hoc patches that need to be systematized.
 
@@ -41,7 +41,7 @@ In frontier applications, the best solution rarely uses a single model. It is al
 Another critical engineering challenge is managing the infrastructure for human-in-the-loop processes:
 
 - **Experimentation:** Running dozens of parallel experiments with model and query flow variants.
-- **Human Evaluation:** Engaging outside raters to evaluate experiments and generate high-quality ground truth.
+- **Human Evaluation:** Engaging human raters to evaluate experiments and generate high-quality ground truth.
 - **Feedback Loops:** Using rater data to update automated evals and refine the "loss ontology", which in turn guide development and quality hill climbing.
 
 A firm software engineering foundation is what shifts research scientists and engineers from caring about "how to do it" to "when to do it". In a crowded market, the speed at which this data flywheel can spin is often the only sustainable competitive advantage.

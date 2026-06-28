@@ -36,7 +36,7 @@ We can implement this through a four-step offline pipeline that runs periodicall
 
 ### Step 1: Growth Period Identification
 
-The pipeline scans recent logs to detect if the user has entered a sustained project. It reconstructs a `Latent Spec` -- the inferred goal behind the queries.
+The pipeline scans recent logs to detect if the user has entered a sustained project. It reconstructs a **Latent Spec** -- the inferred goal behind the queries.
 
 | User | Signal | Latent Spec |
 |---|---|---|
@@ -46,9 +46,9 @@ The pipeline scans recent logs to detect if the user has entered a sustained pro
 
 ### Step 2: Archetype Generation
 
-The pipeline uses a frontier model to dynamically generate a "success checklist" or `Competency Tree` for that specific Latent Spec. This is the benchmark of what a "complete" version of this journey looks like.
+The pipeline uses a frontier model to dynamically generate a **Competency Checklist** for that specific Latent Spec. This is the benchmark of what a "complete" version of this journey looks like.
 
-| User | Competency Tree |
+| User | Competency Checklist |
 |---|---|
 | Language Student | Reading, Writing, Listening, Speaking, Culture |
 | Solo Developer | Frontend, Data Fetching, Database Schema, Auth, Deployment |
@@ -56,7 +56,7 @@ The pipeline uses a frontier model to dynamically generate a "success checklist"
 
 ### Step 3: Gap Discovery
 
-The pipeline uses a frontier model to look for gaps between the user's actual activities and the Competency Tree.
+The pipeline uses a frontier model to look for gaps between the user's actual activities and the Competency Checklist.
 
 | User | Observed Activity | The Gap |
 |---|---|---|
@@ -78,7 +78,7 @@ The pipeline outputs these gaps as **Shadow Memories**. These are injected into 
 
 By systematically profiling the negative space, we shift the AI's role from a passive responder to a high-context partner. It allows us to guide users around pitfalls they don't even know exist.
 
-The future of AI memory isn't just about remembering what we said—it's about understanding what we've forgotten to do.
+The future of AI memory isn't just about remembering what we said. It's about understanding what we've forgotten to do.
 
 ---
 
