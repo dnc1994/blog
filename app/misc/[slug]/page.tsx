@@ -44,11 +44,14 @@ export async function generateStaticParams() {
     path.join(process.cwd(), 'app', 'misc', '_articles')
   )
 
-  return articles
-    .filter((name) => name.endsWith('.mdx'))
-    .map((name) => ({
-      slug: name.replace(/\.mdx$/, ''),
-    }))
+  const params = []
+  for (const name of articles) {
+    if (!name.endsWith('.mdx')) continue
+    const module = await import('../_articles/' + name)
+    if (module.metadata?.draft && process.env.NODE_ENV !== 'development') continue
+    params.push({ slug: name.replace(/\.mdx$/, '') })
+  }
+  return params
 }
 
 export async function generateMetadata(props: {

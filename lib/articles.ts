@@ -11,7 +11,11 @@ export type PostWithTags = {
   translationId?: string
   canonical?: boolean
   image?: string
+  draft?: boolean
 }
+
+// Drafts are hidden from listings/routing outside local dev, even if committed and deployed.
+const isDev = process.env.NODE_ENV === 'development'
 
 // Helper function to dynamically import articles from a specific section
 export async function getArticlesFromSection(
@@ -37,6 +41,8 @@ export async function getArticlesFromSection(
         }
 
         if (module && module.metadata) {
+          if (module.metadata.draft && !isDev) continue
+
           posts.push({
             slug: file.replace(/\.mdx$/, ''),
             title: module.metadata.title || 'Untitled',
@@ -47,6 +53,7 @@ export async function getArticlesFromSection(
             translationId: module.metadata.translationId,
             canonical: module.metadata.canonical,
             image: module.metadata.image,
+            draft: module.metadata.draft,
           })
         }
       } catch (importError) {

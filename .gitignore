@@ -43,6 +43,3 @@ next-env.d.ts
 
 # wrangler
 /.wrangler/
-
-# local drafts (unpublished)
-/drafts

@@ -39,10 +39,13 @@ export const metadata = {
   canonical: true,               // marks the canonical version shown in index
   image: 'https://r2.linghao.io/...',  // OG image
   chinese: true,                 // applies Chinese typography (font-zh, text-justify)
+  draft: true,                   // hides from listings/routing outside local dev
 }
 ```
 
 **Multilingual support**: Articles sharing a `translationId` are grouped. Only the `canonical: true` version appears in index pages and tags. The article page shows a language switcher between grouped articles.
+
+**Drafts**: Set `draft: true` to work on a post in place under `_articles/` without publishing it. Draft posts are excluded from `lib/articles.ts` listings (and thus from index pages, tags, and RSS) and from `generateStaticParams`, so they get no static page in the exported build — even if the file is committed and deployed, it isn't reachable. They remain visible and routable in `next dev` (`NODE_ENV === 'development'`) so they can be previewed locally before publishing.
 
 `lib/articles.ts` handles all content loading — it reads `.mdx` files from disk, dynamically imports them, and exposes `getArticlesFromSection()`, `getDedupedArticlesFromSection()`, and `getAllArticles()`. Due to webpack static analysis requirements, dynamic imports use explicit string literals per section (not template literals with variable section names).
 

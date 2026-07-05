@@ -47,8 +47,10 @@ async function generateRSS() {
           const titleMatch = metadataStr.match(/title:\s*['"](.*?)['"]/s)
           const descMatch = metadataStr.match(/description:\s*['"](.*?)['"]/s)
           const dateMatch = metadataStr.match(/date:\s*['"](.*?)['"]/s)
-          
+          const draftMatch = metadataStr.match(/draft:\s*true/s)
+
           if (!titleMatch || !dateMatch) continue
+          if (draftMatch) continue
           
           const title = titleMatch[1]
           const description = descMatch ? descMatch[1] : ''
