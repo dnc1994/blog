@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Taste Taxonomy — the losses caused by bad model taste</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --bg: #f7f4ee;
+      --paper: #fffdf8;
+      --paper-2: #f0ece3;
+      --ink: #1d1b16;
+      --muted: #665f53;
+      --faint: #9a9284;
+      --line: #ded6c8;
+      --accent: #9c5b20;
+      --accent-2: #245f73;
+      --bad: #9f3328;
+      --good: #22683b;
+      --shadow: 0 18px 50px rgba(77, 58, 32, .10);
+      --radius: 18px;
+    }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #fff8e8 0, var(--bg) 38%, #eee8dc 100%);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    .app { display: grid; grid-template-columns: 400px 1fr; min-height: 100vh; }
+    aside {
+      border-right: 1px solid var(--line);
+      background: rgba(255,253,248,.78);
+      backdrop-filter: blur(18px);
+      padding: 20px 18px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow: auto;
+    }
+    main { padding: 38px; max-width: 1160px; }
+    h1 { font-size: 25px; letter-spacing: -0.045em; line-height: 1; margin: 0 0 6px; }
+    .subtitle { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+    .claim {
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, #fff7df, #f2fbff);
+      padding: 10px 12px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+      color: #342b1f;
+      font-size: 12.5px;
+      line-height: 1.4;
+    }
+    .rule { font-size: 11.5px; color: var(--muted); line-height: 1.4; margin-bottom: 10px; }
+    .side-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: .13em; color: var(--faint); font-weight: 800; margin: 12px 0 6px; }
+    .mech-card {
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--mech-color, var(--accent));
+      background: var(--paper);
+      border-radius: 10px;
+      padding: 7px 10px;
+      margin-bottom: 6px;
+    }
+    .mech-card strong { display: block; font-size: 12.5px; color: var(--mech-color, var(--accent)); }
+    .mech-card span { display: block; color: var(--muted); font-size: 11.5px; line-height: 1.35; margin-top: 1px; }
+    .mode-list { display: grid; gap: 5px; }
+    .mode-btn { width: 100%; text-align: left; background: transparent; border: 1px solid transparent; border-radius: 10px; padding: 8px 10px; cursor: pointer; transition: .15s ease; font: inherit; color: var(--ink); }
+    .mode-btn:hover, .mode-btn.active { background: var(--paper); border-color: var(--line); box-shadow: 0 8px 24px rgba(77,58,32,.07); }
+    .mode-btn strong { display: block; font-size: 13px; }
+    .mode-btn span { display: block; color: var(--muted); font-size: 11.5px; line-height: 1.35; margin-top: 1px; }
+    .topbar { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; margin-bottom: 22px; }
+    .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .14em; font-size: 12px; font-weight: 800; }
+    .selected-title { font-size: 46px; letter-spacing: -0.06em; line-height: .98; margin: 5px 0 9px; }
+    .selected-short { color: var(--muted); font-size: 18px; max-width: 760px; }
+    .meta { color: var(--faint); font-size: 13px; white-space: nowrap; }
+    .card { background: rgba(255,253,248,.86); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+    .card h2 { margin: 0 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+    .card p { margin: 0; }
+    .why-note { margin-top: 14px; padding: 12px 14px; border-left: 3px solid var(--bad); background: #fff9f7; border-radius: 0 10px 10px 0; font-size: 14.5px; color: #30281e; }
+    .why-label { font-weight: 800; font-size: 11.5px; text-transform: uppercase; letter-spacing: .12em; color: var(--bad); margin-right: 4px; }
+    .diagnostics { margin-top: 16px; border: 1px solid var(--line); border-radius: var(--radius); background: rgba(255,253,248,.6); }
+    .diagnostics summary { cursor: pointer; padding: 14px 20px; font-size: 13px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); font-weight: 700; user-select: none; }
+    .diagnostics[open] summary { border-bottom: 1px solid var(--line); }
+    .diag-body { padding: 18px 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+    .diag-body h3 { margin: 0 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: var(--faint); }
+    .diag-body p { margin: 0; font-size: 14px; color: var(--muted); }
+    .diag-body .pills { margin-top: 0; }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .pill { border: 1px solid var(--line); background: var(--paper-2); color: var(--muted); border-radius: 999px; padding: 6px 10px; font-size: 12px; }
+    .case-header { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 12px; flex-wrap: wrap; }
+    .case-header-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .domain { color: var(--accent); font-weight: 700; font-size: 13px; }
+    .case-tabs { display: flex; gap: 6px; }
+    .case-tab { border: 1px solid var(--line); background: var(--paper-2); color: var(--muted); border-radius: 999px; padding: 5px 13px; font-size: 12.5px; cursor: pointer; font: inherit; transition: .15s ease; }
+    .case-tab.active { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+    .badge { display: inline-block; border-radius: 999px; padding: 4px 11px; font-size: 11.5px; font-weight: 700; letter-spacing: .02em; color: #fff; }
+    .badge.proxy-optimization { background: var(--accent); }
+    .badge.unowned-judgment { background: var(--accent-2); }
+    .prompt { padding: 14px; border-radius: 14px; background: #f4efe5; border: 1px solid var(--line); color: #30281e; margin-bottom: 14px; }
+    .example { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .quote { border-radius: 14px; padding: 15px; min-height: 220px; border: 1px solid var(--line); background: #fff; white-space: pre-wrap; }
+    .quote.bad { border-color: rgba(159,51,40,.28); background: #fff9f7; }
+    .quote.good { border-color: rgba(34,104,59,.28); background: #f7fff8; }
+    .label { font-size: 12px; text-transform: uppercase; letter-spacing: .13em; color: var(--faint); margin-bottom: 8px; font-weight: 800; }
+    .bad .label { color: var(--bad); }
+    .good .label { color: var(--good); }
+    .footer-note { color: var(--faint); margin-top: 18px; font-size: 13px; }
+    @media (max-width: 980px) { .app { grid-template-columns: 1fr; } aside { position: relative; height: auto; } .example, .diag-body { grid-template-columns: 1fr; } .topbar { flex-direction: column; } }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside>
+      <h1>Taste Taxonomy</h1>
+      <div class="subtitle">The losses caused by bad model taste.</div>
+      <div class="claim" id="claim"></div>
+      <div class="rule" id="rule"></div>
+      <div class="side-label">Two mechanisms (why models fail)</div>
+      <div id="mechList"></div>
+      <div class="side-label">Six surfaces (where it shows up)</div>
+      <div id="modeList" class="mode-list"></div>
+    </aside>
+    <main>
+      <div class="topbar">
+        <div>
+          <div class="eyebrow">Loss surface</div>
+          <div id="title" class="selected-title"></div>
+          <div id="short" class="selected-short"></div>
+        </div>
+      </div>
+
+      <section class="card">
+        <div class="case-header">
+          <div class="case-header-left">
+            <h2 style="margin:0">Example</h2>
+            <div id="domain" class="domain"></div>
+            <div id="caseBadges"></div>
+          </div>
+          <div id="caseTabs" class="case-tabs"></div>
+        </div>
+        <div class="prompt"><div class="label">User prompt</div><div id="prompt"></div></div>
+        <div class="example">
+          <div class="quote bad"><div class="label">Bad model response</div><div id="bad"></div></div>
+          <div class="quote good"><div class="label">Better response</div><div id="better"></div></div>
+        </div>
+        <div class="why-note"><span class="why-label">Why this fails:</span> <span id="whyBad"></span></div>
+      </section>
+
+      <section class="card" style="margin-top:16px"><h2>Repair rule</h2><p id="repair"></p></section>
+
+      <details class="diagnostics">
+        <summary>How to recognize this loss</summary>
+        <div class="diag-body">
+          <div><h3>Ask</h3><p id="question"></p></div>
+          <div><h3>Symptoms</h3><div id="symptoms" class="pills"></div></div>
+          <div><h3>Not to confuse with</h3><p id="boundary"></p></div>
+        </div>
+      </details>
+
+      <div class="footer-note">v0.4: two mechanisms &times; six surfaces. Classify by one primary surface, then tag the mechanisms that explain it. Examples are constructed illustrations of each failure shape (one is captured from a real model).</div>
+    </main>
+  </div>
+
+  <script id="taxonomy-data" type="application/json">{"project":{"name":"Taste Taxonomy","version":"0.4.0","claim":"Bad taste is not weak style. It is a qualitative decision failure under weak metrics — the model makes the wrong choice about what to keep, what to foreground, what to optimize for, and what to commit to.","taxonomy_rule":"Classify a bad output by one primary surface — where the first unusable qualitative choice shows up — and tag any mechanisms that explain why the model made it."},"mechanisms":[{"id":"proxy-optimization","name":"Proxy optimization","short":"The model's quality criterion is a visible substitute for the real signal.","definition":"Polish instead of judgment, length instead of substance, broad palatability instead of expert quality, statistical-default aesthetics instead of contextual fit. Training on averaged preferences rewards what looks good to everyone — and the average of many tastes is no taste at all.","signature":"Ask: if this output were iterated ten more times against its own criterion, would it get better or just shinier?","evidence":"RLHF on general user preference degrades expert-evaluated quality (Taste Labs; Runway, Figma, Adobe findings). AI design converges on purple gradients, Inter, three-column grids — frequency, not fit (Taste Skill, 7,896 GitHub stars)."},{"id":"unowned-judgment","name":"Unowned judgment","short":"Judgment's form without an accountable position that could be wrong.","definition":"The output uses judgment vocabulary — recommendations, evaluations, tradeoffs — but commits to nothing falsifiable. Historically, a judgment-shaped artifact was proof someone had done the thinking. Generation without commitment breaks that signal.","signature":"Ask: is there a real position here? What would have to be true for this to be wrong?","evidence":"\"AI has broken proof-of-work as a trust signal\" (@ollobrains). \"When taste is fully automated it ceases to function as taste\" (Emily Segal). Models affirm users in ~50% of cases where humans would not (sycophancy research, 2026)."}],"surfaces":[{"id":"selection","name":"Selection","short":"The model keeps, picks, or recommends the wrong thing — or refuses to choose.","primary_question":"Did the output choose the wrong object, option, quote, frame, or next step — or dodge the choice entirely?","loss":"Attention is spent on low-leverage material while the valuable part is buried, absent, or left for the user to find.","repair_rule":"Force a ranking. Justify why the winner is load-bearing and what was intentionally rejected.","boundary":"Not hierarchy: there the right material is present but underweighted. Here it is absent, wrong, or unchosen.","symptoms":["weak item chosen as the winner","all options treated as similar","menu instead of a pick","recommendation optimizes for obviousness"],"cases":[{"domain":"Project prioritization","mechanisms":["unowned-judgment"],"prompt":"I have one weekend to build a demo around model taste. Options: (A) a preference-data labeling tool, (B) a polished landing page explaining model taste, (C) an OmissionBench prototype that scores what a model leaves out, (D) a local LoRA fine-tune on 50 examples. Which should I build first and why?","bad_response":"All four directions are promising. A labeling tool helps you collect data, a landing page helps you communicate, OmissionBench gives you a concrete benchmark, and a LoRA fine-tune would show technical depth. If you want something practical, choose A. If you want something communicative, choose B. If you want something evaluative, choose C. If you want something ML-heavy, choose D.","why_bad":"The user asked for judgment under a constraint. The model catalogues affordances but refuses to identify the highest-leverage weekend demo — the choice is handed back to the user, dressed as an answer.","better_response":"Build C: OmissionBench. It is the only option that makes the thesis visible without needing pre-curated data. The landing page can explain the claim, but the benchmark lets viewers see taste failure directly: the model kept decorative detail and dropped the central tension. Skip the LoRA until you have examples; skip the labeling tool until the eval shape is clear."},{"domain":"Writing feedback","mechanisms":["proxy-optimization"],"prompt":"Give me feedback on this blog post introduction.","bad_response":"This introduction is engaging and sets up the topic well. You might consider adding a hook at the beginning, or perhaps tightening the second sentence. Overall it reads smoothly and should connect with a broad audience.","why_bad":"The feedback selects cosmetic notes instead of the load-bearing problem. The criterion is agreeableness — feedback that feels encouraging — rather than editorial judgment about what actually holds the intro back.","better_response":"The second sentence is the real opening — the first sentence is preamble you don't need. The setup for the central question is clear, but 'broad audience' is the wrong goal here; this post is for people who already understand the problem. Cut the softening."}]},{"id":"hierarchy","name":"Hierarchy","short":"The model includes the right pieces but flattens their importance.","primary_question":"Are the right ingredients present but treated as equally important?","loss":"The reader still has to infer the thesis, the main mechanism, and the caveats from an undifferentiated pile of true statements.","repair_rule":"Rewrite as gist first, support second, caveat last. Demote everything else.","boundary":"Not selection: the important material is present. Not form: the output may be the right length; the content is just leveled.","symptoms":["section-by-section paraphrase","many parallel bullets","no thesis sentence","chronology instead of priority"],"cases":[{"domain":"Research digest","mechanisms":[],"prompt":"Summarize this essay for my notes. Keep it concise. The essay argues that AI apps remain investable where correctness is private, slow to verify, and embedded in workflows; it uses coding benchmarks, law-firm M&A workflows, physician adoption, and outcome pricing as examples.","bad_response":"The essay discusses the investor concern that AI apps may be thin wrappers. It then covers software engineering and coding benchmarks. It mentions that agents can write more code but shipping still depends on humans. The author also discusses private data, workflows, law firms, medical adoption, and outcome pricing. Overall, the essay says AI apps can still matter.","why_bad":"Nothing is false, but the hierarchy is missing. The mechanism — measurable work commoditizes; private correctness remains valuable — is never foregrounded, so the summary preserves the words and loses the idea.","better_response":"Gist: AI apps are defensible when they own private correctness, not generic intelligence. Coding benchmarks improve fastest because compilers and tests make correctness cheap to verify; durable apps live in the opposite zone, where trust, workflow change, liability, and customer-specific data define what \"good\" means."},{"domain":"Meeting recap","mechanisms":["proxy-optimization"],"prompt":"Recap this planning meeting for the team channel. (The meeting covered a staging cutover date, an unstarted two-day blocker that slips the whole schedule a week if late, a silently failing backup snapshot the rollback plan depends on, and a decoupled marketing announcement.)","bad_response":"Meeting recap:\n• Staging cutover confirmed for Tuesday night (Priya owns runbook)\n• Discussed analytics service schema migration\n• Marcus to build dual-write shim (~2 days)\n• Compliance freeze starts Thursday\n• Dana reviewing rollback plan\n• Snapshot infrastructure discussed\n• Marketing planning dashboard announcement next week\n• Next sync Monday","why_bad":"Every item is true and the recap looks thorough — completeness stands in for usefulness. But the two things that can sink the launch (the unstarted blocker, the silently failing snapshots) are visually identical to the routine items. The reader must reconstruct the risk ranking the meeting already did.","better_response":"Two things can slip the launch:\n1. Dual-write shim is 2 days of work and unstarted (Marcus is on the incident). Not ready by Monday = we slip a week past the compliance freeze.\n2. Rollback assumes Sunday's snapshot, but snapshots have been failing silently — Dana validating today.\nOn track: Tuesday cutover (Priya has the runbook). Decoupled: marketing's announcement."}]},{"id":"context","name":"Context","short":"The model's model of this user's situation is wrong — ignored, or abused to fake relevance.","primary_question":"Would the same answer work for almost anyone? Or is it pretending this matters to you more than it does?","loss":"The output is locally irrelevant even when generally reasonable — or trust erodes because relevance was manufactured.","repair_rule":"Name the user's actual constraint first and tailor around it. Allow \"no strong relevance\" as a first-class answer.","boundary":"Two polarities of one failure: ignoring real context (generic answer) and abusing context (fake connection). Not grounding: the model isn't over-reading real content; it is misreading the situation.","symptoms":["generic best practices","missed user correction","forced 'why this matters to you'","memory used performatively"],"cases":[{"domain":"Assistant behavior correction","mechanisms":[],"prompt":"Your last answer was too long and undiscerning. I'm asking about taste; don't give me an exhaustive menu. What is the one project I should build?","bad_response":"There are several strong options depending on your goals: a taste arena, a dataset builder, a reranker, a rubric evaluator, a fine-tuning pipeline, or a prompt library. Each has pros and cons. If you want data, build the arena. If you want a demo, build the reranker. If you want rigor, build an eval suite.","why_bad":"It repeats the exact failure the user just named. The model understands the abstract request but ignores the immediate conversational context — the correction was the most important content in the prompt.","better_response":"Build OmissionBench. It is the cleanest demo of taste because it tests the scarce skill directly: knowing what not to say. The taxonomy can come second as the explanation layer for failures."},{"domain":"Personal knowledge management","mechanisms":["proxy-optimization"],"prompt":"Process this clipping: a minor changelog post from a note-taking app announcing three icon updates and a new export button color.","bad_response":"Why this matters to you: this relates deeply to your work on AI memory and personalization because interface polish shapes how users build trust with intelligent systems. You may want to revisit your own memory architecture through the lens of visual affordances.","why_bad":"The model abuses what it knows about the user to manufacture significance for a low-signal clipping. Personalization-looking output substitutes for actual relevance — which is worse than saying nothing.","better_response":"No durable personal relevance. If saved, summarize as a product-history note only: minor UI polish, no clear implication for AI memory or knowledge workflows."}]},{"id":"form","name":"Form","short":"The output's size, structure, tone, or format is mismatched to its next real use.","primary_question":"Is the shape of this output matched to the decision it serves — or does the user have to translate, trim, or clean it up?","loss":"Signal is diluted by ceremony, or the answer is technically adequate but expensive to actually use.","repair_rule":"Match form to consequence: small question, small answer. Optimize for the output's next real use, not for looking thorough.","boundary":"Two polarities: proportion (wrong size or ceremony) and friction (wrong fit — tone, granularity, format). Not hierarchy: the ranking may be fine; the package is wrong.","symptoms":["ritual sections and heading bloat","long answer to a narrow ask","tone mismatch","needs rewriting before use"],"cases":[{"domain":"Project note drafting","mechanisms":["proxy-optimization"],"prompt":"Make a short project note for two directions: Taste Failure Taxonomy and OmissionBench. I want something I can build from, not a manifesto.","bad_response":"# Comprehensive Strategic Roadmap\n\n## Executive Overview\n## Philosophical Foundation\n## Market Context\n## User Personas\n## Technical Architecture\n## Data Strategy\n## Evaluation Methodology\n## Monetization Possibilities\n## Risks\n## Next Steps\n\nThe age of AI calls for a new theory of taste...","why_bad":"The answer may contain usable pieces, but the structure overwhelms the actual need: a compact project seed. Ten ritual sections perform thoroughness instead of serving the ask.","better_response":"# Model Taste Projects\n\nGist: show that taste failures are diagnosable and that omission is measurable.\n\n1. Taste Failure Taxonomy: name recurring losses such as wrong selection, flattened hierarchy, and forced relevance.\n2. OmissionBench: test whether a model can compress without dropping the load-bearing idea.\n\nMVP: 20 annotated failure cards + 10 omission audits."},{"domain":"Outbound message drafting","mechanisms":[],"prompt":"Draft a short DM to a researcher whose paper I liked. Tone: low-key, specific, not fanboy. Ask whether they'd be open to a 20-minute chat.","bad_response":"Dear Professor, I was absolutely fascinated by your groundbreaking paper, which I found to be incredibly insightful and highly relevant to my own intellectual journey. I would be deeply honored if you might consider sharing your valuable time with me for a brief conversation.","why_bad":"The content is directionally correct, but the voice creates social friction. The user asked for low-key and specific; the model produced ceremonial flattery that the user must fully rewrite before sending.","better_response":"Hi — I liked your paper on evaluation drift, especially the point that benchmark gains can hide changes in what the task is measuring. I'm exploring adjacent questions around personal AI evaluation. Would you be open to a 20-minute chat sometime next week?"}]},{"id":"grounding","name":"Grounding","short":"The output asserts more than the evidence supports — interpretive overreach or invented specifics.","primary_question":"Did the output become more interesting, or more specific, than its sources can carry?","loss":"The result feels insightful or authoritative but is untrustworthy: the frame is unearned or the details are fabricated.","repair_rule":"Tie every frame and every specific to evidence. Mark extrapolation as extrapolation; leave unknowable details unstated.","boundary":"Not context: the model is over-reading real content, not misreading the user's situation. Distinct from unowned judgment: here the model did commit — it just committed past its evidence.","symptoms":["seductive metaphor, vanishing source","speculation stated as thesis","invented specifics stated as fact","overgeneralization from one example"],"cases":[{"domain":"Social-post analysis","mechanisms":[],"prompt":"Summarize this short post: 'Taste is valuable because production is becoming abundant. The output of taste is easy to copy, but the original qualitative judgment is hard to create.'","bad_response":"This post is really about the collapse of authorship in late-stage AI culture: as machine production dissolves the boundary between creator and audience, taste becomes the final site of human metaphysical resistance.","why_bad":"The frame is flashy but unearned. It turns a practical claim about judgment under abundant production into a grand cultural theory the two sentences cannot support.","better_response":"The post's narrower point is stronger: when execution gets cheap, value moves upstream to qualitative judgment. Taste is not protected because it cannot be copied; it matters because it decides what others copy."},{"domain":"Landing page copy (captured from a real model, 2026)","mechanisms":["proxy-optimization"],"prompt":"Write the hero section copy and a layout suggestion for the landing page of a CLI tool that deduplicates dotfiles across machines. Audience: experienced developers.","bad_response":"Headline: \"Dotfiles, synchronized across machines\"\nCTA Button: `npm install -g dotfiles-dedup`\nLayout: hero, terminal demo, three-column feature grid (Scan / Compare / Resolve), quick start, footer.","why_bad":"The CTA invents a package name and a distribution channel — the model has no idea whether this tool ships via npm, Homebrew, or a curl script, but states it as fact. The three-column feature grid is the reflexive default rather than a choice. (This output was captured from a real model.)","better_response":"Headline: \"Your dotfiles disagree with each other. Find out where.\" CTA: [Installation →] — linking to real install docs rather than asserting a channel. Lead with the terminal demo; skip the feature grid until there are features worth gridding."}]},{"id":"scope","name":"Scope","short":"The model solves an easier neighboring problem instead of the one the constraint defines.","primary_question":"Did the model respect the binding constraint — or quietly change the task?","loss":"The answer appears helpful while bypassing the very limitation that made judgment necessary.","repair_rule":"Restate the binding constraint and make the solution live inside it. The hard 20% is the task.","boundary":"Not form: the problem is which problem got solved, not how the answer is shaped. A perfectly proportioned answer to the wrong problem is still scope failure.","symptoms":["ignores budget/time/data limits","adds prerequisites the user ruled out","happy path only","solves the impressive version instead of the useful version"],"cases":[{"domain":"ML demo design","mechanisms":[],"prompt":"I want a showcase project about improving model taste, but assume I do not yet have curated preference data. What can I build this week?","bad_response":"The best path is to collect 5,000 high-quality pairwise judgments, train a reward model, then use DPO to align a local model to your taste profile. With enough data, the model can learn subtle preferences around compression, tone, and relevance.","why_bad":"It answers the long-term research problem, not the constrained showcase problem. The lack of curated data was the premise, not an inconvenience to handwave away.","better_response":"Build a failure taxonomy plus OmissionBench. Both work before you have preference data: the taxonomy shows taste failures are diagnosable, and OmissionBench creates examples where viewers can see whether the model preserved the load-bearing idea."},{"domain":"Frontend implementation","mechanisms":["proxy-optimization"],"prompt":"Build the signup form component for our React app. It needs to actually work in production.","bad_response":"A clean, nicely styled form component: email and password fields, a submit button with a gradient hover state, client-side format validation. On submit: `// TODO: handle errors`. No loading state, no duplicate-email handling, no network-failure path, no disabled-while-submitting.","why_bad":"The model built the version that demos well — the happy path is complete and visually polished. But \"works in production\" was the binding constraint, and everything production actually requires (error states, loading, retries, edge cases) was left as comments. The impressive version substituted for the useful one.","better_response":"The same form with the unglamorous parts done: submit disabled while pending, inline error rendering for validation and server rejections (including duplicate email), a network-failure retry path, and a note on what the backend contract needs to return for each case."}]}]}</script>
+  <script>
+    const taxonomy = JSON.parse(document.getElementById('taxonomy-data').textContent);
+    const surfaces = taxonomy.surfaces;
+    const mechanisms = taxonomy.mechanisms;
+    const mechById = Object.fromEntries(mechanisms.map(m => [m.id, m]));
+    const mechColors = { 'proxy-optimization': 'var(--accent)', 'unowned-judgment': 'var(--accent-2)' };
+
+    let selected = surfaces[0].id;
+    let caseIdx = 0;
+
+    const $ = id => document.getElementById(id);
+    $('claim').textContent = taxonomy.project.claim;
+    $('rule').innerHTML = '<strong>How to classify:</strong> ' + taxonomy.project.taxonomy_rule;
+
+    $('mechList').innerHTML = mechanisms.map(m =>
+      `<div class="mech-card" style="--mech-color:${mechColors[m.id]}" title="${m.definition.replace(/"/g, '&quot;')}">
+        <strong>${m.name}</strong><span>${m.short}</span>
+      </div>`
+    ).join('');
+
+    function renderList() {
+      const list = $('modeList'); list.innerHTML = '';
+      surfaces.forEach(s => {
+        const b = document.createElement('button');
+        b.className = 'mode-btn' + (s.id === selected ? ' active' : '');
+        b.innerHTML = `<strong>${s.name}</strong><span>${s.short}</span>`;
+        b.onclick = () => { selected = s.id; caseIdx = 0; render(); };
+        list.appendChild(b);
+      });
+    }
+    function render() {
+      renderList();
+      const s = surfaces.find(x => x.id === selected) || surfaces[0];
+      const c = s.cases[Math.min(caseIdx, s.cases.length - 1)];
+      $('title').textContent = s.name;
+      $('short').textContent = s.short;
+      $('question').textContent = s.primary_question;
+      $('repair').textContent = s.repair_rule;
+      $('boundary').textContent = s.boundary;
+      $('symptoms').innerHTML = s.symptoms.map(x => `<span class="pill">${x}</span>`).join('');
+
+      $('domain').textContent = c.domain;
+      $('caseBadges').innerHTML = (c.mechanisms || []).map(id =>
+        `<span class="badge ${id}" title="${mechById[id].signature.replace(/"/g, '&quot;')}">${mechById[id].name}</span>`
+      ).join(' ');
+      $('caseTabs').innerHTML = '';
+      s.cases.forEach((_, i) => {
+        const t = document.createElement('button');
+        t.className = 'case-tab' + (i === caseIdx ? ' active' : '');
+        t.textContent = 'Case ' + (i + 1);
+        t.onclick = () => { caseIdx = i; render(); };
+        $('caseTabs').appendChild(t);
+      });
+
+      $('prompt').textContent = c.prompt;
+      $('bad').textContent = c.bad_response;
+      $('better').textContent = c.better_response;
+      $('whyBad').textContent = c.why_bad;
+    }
+    render();
+  </script>
+</body>
+</html>
