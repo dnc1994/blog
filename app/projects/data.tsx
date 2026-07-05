@@ -1,4 +1,4 @@
-import type { SVGProps } from 'react'
+import type { ReactNode, SVGProps } from 'react'
 import {
   BwCalendarLogo,
   HermesSidebarLogo,
@@ -13,7 +13,7 @@ export type ProjectLogo = (props: SVGProps<SVGSVGElement>) => JSX.Element
 export interface Project {
   id: string
   name: string
-  description: string
+  description: ReactNode
   repoUrl: string
   logo: ProjectLogo
 }
@@ -31,8 +31,20 @@ export const projects: Project[] = [
   {
     id: 'redactle-zh',
     name: 'Redactle 中文版',
-    description:
-      'A daily Chinese word-guessing game based on Redactle (https://redactle.net/). Each day, a Chinese Wikipedia article is presented with most characters redacted. Guess words to reveal them - your goal is to uncover the article title.',
+    description: (
+      <>
+        A daily Chinese word-guessing game based on{' '}
+        <a
+          href='https://redactle.net/'
+          target='_blank'
+          rel='noopener noreferrer'
+          className='underline decoration-rurikon-200 hover:decoration-rurikon-accent hover:text-rurikon-accent transition-colors'
+        >
+          Redactle
+        </a>
+        . Each day, a Chinese Wikipedia article is presented with most characters redacted. Guess words to reveal them - your goal is to uncover the article title.
+      </>
+    ),
     repoUrl: 'https://redactle-zh.linghao.io/',
     logo: RedactleZhLogo,
   },
@@ -48,7 +60,7 @@ export const projects: Project[] = [
     id: 'obsidian-hermes-sidebar',
     name: 'Obsidian Hermes Sidebar',
     description:
-      'An Obsidian plugin that brings the Hermes agent into a right-sidebar panel, letting you ask questions about the active note and get answers without it touching the note unless you copy the answer in yourself.',
+      'An Obsidian plugin that brings the Hermes agent into a right-sidebar panel, letting you ask questions about the active note.',
     repoUrl: 'https://github.com/dnc1994/obsidian-hermes-sidebar',
     logo: HermesSidebarLogo,
   },
