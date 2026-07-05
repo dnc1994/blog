@@ -21,25 +21,24 @@
       --shadow: 0 18px 50px rgba(77, 58, 32, .10);
       --radius: 18px;
     }
+    html, body { height: 100%; overflow: hidden; margin: 0; }
     body {
-      margin: 0;
       font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: radial-gradient(circle at top left, #fff8e8 0, var(--bg) 38%, #eee8dc 100%);
       color: var(--ink);
       line-height: 1.5;
     }
-    .app { display: grid; grid-template-columns: 400px 1fr; min-height: 100vh; }
+    .app { display: grid; grid-template-columns: 400px 1fr; height: 100vh; overflow: hidden; }
     aside {
       border-right: 1px solid var(--line);
       background: rgba(255,253,248,.78);
       backdrop-filter: blur(18px);
       padding: 20px 18px;
-      position: sticky;
-      top: 0;
       height: 100vh;
-      overflow: auto;
+      overflow-y: auto;
+      overscroll-behavior: contain;
     }
-    main { padding: 38px; max-width: 1160px; }
+    main { padding: 38px; max-width: 1160px; height: 100vh; overflow-y: auto; overscroll-behavior: contain; box-sizing: border-box; }
     h1 { font-size: 25px; letter-spacing: -0.045em; line-height: 1; margin: 0 0 6px; }
     .subtitle { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
     .claim {
@@ -106,17 +105,26 @@
     .bad .label { color: var(--bad); }
     .good .label { color: var(--good); }
     .footer-note { color: var(--faint); margin-top: 18px; font-size: 13px; }
+    .topbar-meta { display: flex; align-items: center; gap: 14px; white-space: nowrap; padding-top: 4px; flex-shrink: 0; }
+    .topbar-meta a, .topbar-meta button { font-size: 11.5px; color: var(--faint); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--line); background: none; border: none; padding: 0; cursor: pointer; font: inherit; transition: color .15s, text-decoration-color .15s; }
+    .topbar-meta a:hover, .topbar-meta button:hover { color: var(--muted); text-decoration-color: var(--muted); }
+    .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(29,27,22,.45); z-index: 100; align-items: center; justify-content: center; }
+    .modal-backdrop.open { display: flex; }
+    .modal { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 32px; max-width: 480px; width: calc(100% - 48px); box-shadow: var(--shadow); position: relative; }
+    .modal h3 { margin: 0 0 12px; font-size: 13px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+    .modal p { margin: 0; font-size: 14.5px; color: var(--ink); line-height: 1.65; }
+    .modal-close { position: absolute; top: 14px; right: 16px; background: none; border: none; cursor: pointer; font-size: 20px; color: var(--faint); line-height: 1; padding: 0; }
+    .modal-close:hover { color: var(--ink); }
     @media (max-width: 980px) { .app { grid-template-columns: 1fr; } aside { position: relative; height: auto; } .example, .diag-body { grid-template-columns: 1fr; } .topbar { flex-direction: column; } }
   </style>
 </head>
 <body>
   <div class="app">
     <aside>
-      <h1>Taste Taxonomy</h1>
+      <h1>Taste Loss Taxonomy</h1>
       <div class="subtitle">The losses caused by bad model taste.</div>
       <div class="claim" id="claim"></div>
-      <div class="rule" id="rule"></div>
-      <div class="side-label">Two mechanisms (why models fail)</div>
+<div class="side-label">Two mechanisms (why models fail)</div>
       <div id="mechList"></div>
       <div class="side-label">Six surfaces (where it shows up)</div>
       <div id="modeList" class="mode-list"></div>
@@ -127,6 +135,18 @@
           <div class="eyebrow">Loss surface</div>
           <div id="title" class="selected-title"></div>
           <div id="short" class="selected-short"></div>
+        </div>
+        <div class="topbar-meta">
+          <button onclick="document.getElementById('learnModal').classList.add('open')">About v0.4</button>
+          <a href="https://linghao.io" target="_blank" rel="noopener">By Linghao Zhang</a>
+        </div>
+      </div>
+
+      <div class="modal-backdrop" id="learnModal" onclick="if(event.target===this)this.classList.remove('open')">
+        <div class="modal">
+          <button class="modal-close" onclick="document.getElementById('learnModal').classList.remove('open')">&times;</button>
+          <h3>About</h3>
+          <p>v0.4: two mechanisms &times; six surfaces. Classify by one primary surface, then tag the mechanisms that explain it. Examples are constructed illustrations of each failure shape (one is captured from a real model).</p>
         </div>
       </div>
 
@@ -158,7 +178,6 @@
         </div>
       </details>
 
-      <div class="footer-note">v0.4: two mechanisms &times; six surfaces. Classify by one primary surface, then tag the mechanisms that explain it. Examples are constructed illustrations of each failure shape (one is captured from a real model).</div>
     </main>
   </div>
 
@@ -175,7 +194,6 @@
 
     const $ = id => document.getElementById(id);
     $('claim').textContent = taxonomy.project.claim;
-    $('rule').innerHTML = '<strong>How to classify:</strong> ' + taxonomy.project.taxonomy_rule;
 
     $('mechList').innerHTML = mechanisms.map(m =>
       `<div class="mech-card" style="--mech-color:${mechColors[m.id]}" title="${m.definition.replace(/"/g, '&quot;')}">
