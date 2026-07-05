@@ -90,15 +90,40 @@ export function MagiLogo(props: LogoProps) {
   )
 }
 
-export function JarvisLogo(props: LogoProps) {
+export function TasteLossTaxonomyLogo(props: LogoProps) {
   return (
     <svg viewBox='0 0 64 64' fill='none' aria-hidden='true' {...props}>
       <rect x='1.5' y='1.5' width='61' height='61' rx='14' className='fill-rurikon-50 stroke-rurikon-200' />
-      <circle cx='32' cy='32' r='15' className='fill-white stroke-rurikon-300' />
-      <circle cx='32' cy='32' r='9' className='fill-rurikon-700' />
-      <circle cx='32' cy='32' r='4' className='fill-white' />
-      <path d='M32 12V18M32 46V52M12 32H18M46 32H52' className='stroke-rurikon-400' strokeWidth='2.2' strokeLinecap='round' />
-      <circle cx='32' cy='32' r='22' className='stroke-rurikon-200' strokeWidth='2' strokeDasharray='2.5 4' />
+      <circle cx='32' cy='16' r='4.5' className='fill-rurikon-700' />
+      <line x1='32' y1='20.5' x2='32' y2='27' className='stroke-rurikon-400' strokeWidth='1.8' strokeLinecap='round' />
+      <line x1='32' y1='27' x2='19' y2='34' className='stroke-rurikon-400' strokeWidth='1.8' strokeLinecap='round' />
+      <line x1='32' y1='27' x2='45' y2='34' className='stroke-rurikon-400' strokeWidth='1.8' strokeLinecap='round' />
+      <circle cx='19' cy='38' r='4' className='fill-rurikon-300' />
+      <circle cx='45' cy='38' r='4' className='fill-rurikon-300' />
+      <line x1='19' y1='42' x2='13' y2='48' className='stroke-rurikon-300' strokeWidth='1.6' strokeLinecap='round' />
+      <line x1='19' y1='42' x2='25' y2='48' className='stroke-rurikon-300' strokeWidth='1.6' strokeLinecap='round' />
+      <line x1='45' y1='42' x2='39' y2='48' className='stroke-rurikon-300' strokeWidth='1.6' strokeLinecap='round' />
+      <line x1='45' y1='42' x2='51' y2='48' className='stroke-rurikon-300' strokeWidth='1.6' strokeLinecap='round' />
+      <circle cx='13' cy='51' r='3' className='fill-rurikon-200' />
+      <circle cx='25' cy='51' r='3' className='fill-rurikon-200' />
+      <circle cx='39' cy='51' r='3' className='fill-rurikon-200' />
+      <circle cx='51' cy='51' r='3' className='fill-rurikon-200' />
+    </svg>
+  )
+}
+
+export function HermesSidebarLogo(props: LogoProps) {
+  return (
+    <svg viewBox='0 0 64 64' fill='none' aria-hidden='true' {...props}>
+      <rect x='1.5' y='1.5' width='61' height='61' rx='14' className='fill-rurikon-50 stroke-rurikon-200' />
+      <rect x='10' y='14' width='30' height='36' rx='5' className='fill-white stroke-rurikon-300' />
+      <rect x='15' y='20' width='16' height='3' rx='1.5' className='fill-rurikon-300' />
+      <rect x='15' y='27' width='20' height='3' rx='1.5' className='fill-rurikon-300' />
+      <rect x='15' y='34' width='13' height='3' rx='1.5' className='fill-rurikon-300' />
+      <rect x='44' y='14' width='10' height='36' rx='4' className='fill-rurikon-700' />
+      <path d='M47 22L51 26L47 30' className='stroke-white' strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round' />
+      <line x1='47' y1='38' x2='51' y2='38' className='stroke-white' strokeWidth='1.8' strokeLinecap='round' />
+      <line x1='47' y1='42' x2='51' y2='42' className='stroke-white' strokeWidth='1.8' strokeLinecap='round' />
     </svg>
   )
 }

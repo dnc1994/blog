@@ -1,10 +1,11 @@
 import type { SVGProps } from 'react'
 import {
   BwCalendarLogo,
-  JarvisLogo,
+  HermesSidebarLogo,
   MagiLogo,
   PostSummarizerBotLogo,
   RedactleZhLogo,
+  TasteLossTaxonomyLogo,
 } from './logos'
 
 export type ProjectLogo = (props: SVGProps<SVGSVGElement>) => JSX.Element
@@ -20,12 +21,12 @@ export interface Project {
 // To override a logo, swap the `logo` component for a project below.
 export const projects: Project[] = [
   {
-    id: 'post-summarizer-bot',
-    name: 'Post Summarizer Bot',
+    id: 'taste-loss-taxonomy',
+    name: 'Taste Loss Taxonomy',
     description:
-      'A Telegram bot that summarizes long-form posts for faster reading, with a high personalized offline eval workflow that lets you systematically hill-climb the prompt using collected user feedback.',
-    repoUrl: 'https://github.com/dnc1994/post_summarizer_bot',
-    logo: PostSummarizerBotLogo,
+      'A taxonomy of the losses caused by bad model taste.',
+    repoUrl: 'https://linghao.io/taste-loss-taxonomy',
+    logo: TasteLossTaxonomyLogo,
   },
   {
     id: 'redactle-zh',
@@ -44,12 +45,20 @@ export const projects: Project[] = [
     logo: MagiLogo,
   },
   {
-    id: 'jarvis',
-    name: 'Jarvis',
+    id: 'obsidian-hermes-sidebar',
+    name: 'Obsidian Hermes Sidebar',
     description:
-      'A personal task management assistant based on skills and optionally Obsidian, designed to work with agentic tools such as Claude and OpenClaw.',
-    repoUrl: 'https://github.com/dnc1994/jarvis',
-    logo: JarvisLogo,
+      'An Obsidian plugin that brings the Hermes agent into a right-sidebar panel, letting you ask questions about the active note and get answers without it touching the note unless you copy the answer in yourself.',
+    repoUrl: 'https://github.com/dnc1994/obsidian-hermes-sidebar',
+    logo: HermesSidebarLogo,
+  },
+  {
+    id: 'post-summarizer-bot',
+    name: 'Post Summarizer Bot',
+    description:
+      'A Telegram bot that summarizes long-form posts for faster reading, with a high personalized offline eval workflow that lets you systematically hill-climb the prompt using collected user feedback.',
+    repoUrl: 'https://github.com/dnc1994/post_summarizer_bot',
+    logo: PostSummarizerBotLogo,
   },
   {
     id: 'bw-calendar',
@@ -58,5 +67,5 @@ export const projects: Project[] = [
       'A privacy-first and minimalist Obsidian plugin for viewing personal event logs.',
     repoUrl: 'https://github.com/dnc1994/bw-calendar',
     logo: BwCalendarLogo,
-  },  
+  },
 ]
