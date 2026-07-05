@@ -1,71 +1,67 @@
 export const metadata = {
   title: 'A Taxonomy Is a Theory of What Differences Matter',
-  description: 'Taxonomies are not neutral filing systems. They predict, coordinate, allocate, and govern — and the right way to judge one depends on the job it is doing.',
-  date: '2026.06.28',
+  description: 'Taxonomies are not neutral filing systems. They predict, coordinate, allocate, and govern. The right way to judge one depends on the job it is doing.',
+  date: '2026.07.05',
   tags: ['Philosophy', 'AI', 'Writing'],
   language: 'en',
   translationId: 'taxonomy-differences-matter',
   canonical: true,
 }
 
-I started thinking about this from a narrow place: trying to improve the answers a language model gives.
+I started thinking about this from a narrow problem: how to improve the answers a language model gives.
 
-When someone says an AI answer is "bad," the word is almost useless. Bad how? It might have invented a fact, missed what the user actually wanted, answered the literal question at the wrong level of abstraction, refused something harmless, complied with something it shouldn't have, lost the thread of what was said three turns ago, or produced the benchmark-shaped version of a task instead of the real one. Each is a different failure with a different fix. Until you split "bad" into kinds, you can collect thumbs-downs and average scores forever without improving anything, because the thing you're measuring hasn't been carved into parts yet.
+When someone says an AI answer is "bad," the word does not help much. Bad how? It might have invented a fact, missed what the user wanted, answered at the wrong level of abstraction, refused something harmless, complied with something it should have refused, lost the thread from three turns ago, or solved the benchmark-shaped version of the task instead of the real one.
 
-That's the local problem. The longer I sat with it, the less AI-specific it felt. It's a general feature of understanding: a domain becomes workable when you learn which distinctions matter. And the structure that holds those distinctions has a boring name and a surprising amount of hidden power.
+Those are different failures, and they usually need different fixes. Until you split "bad" into kinds, you can collect thumbs-downs and average scores forever without learning much, because you are measuring something you have not yet understood.
+
+The more I sat with this, the less AI-specific it felt. A domain becomes workable when you learn which distinctions matter, and the structure that holds those distinctions is usually dismissed as paperwork.
 
 A taxonomy is not a filing system. It is a theory of what differences matter.
 
-I want to make two claims about taxonomies that I don't think are obvious, and that changed how I read the ones I deal with every day. The first is that taxonomies do fundamentally different *jobs*, and most arguments about a particular taxonomy are secretly arguments about which job it owes you. The second is that categories don't just describe the world — they act on it.
-
 ## Taxonomies do different jobs
 
-Start with the most flattering job a taxonomy can do: **predict**.
+The cleanest job a taxonomy can do is prediction.
 
-The periodic table is the high example. It isn't a tidy list of elements sorted for classroom posters; it arranges them so that recurring properties line up, and the arrangement was confident enough that Mendeleev could leave gaps and describe the properties of elements no one had found yet. The table became a wager: if these categories are right, reality should have missing pieces in exactly these places. It did. That is the rare ideal — a taxonomy that compresses what's known so well it tells you what to look for next.
+The periodic table is the obvious example. It does not just list the elements; it arranges them so that recurring properties line up, and the arrangement was reliable enough that Mendeleev could [leave gaps and describe the properties of elements nobody had discovered yet](https://en.wikipedia.org/wiki/Mendeleev%27s_predicted_elements). That is the rare case where a classification organizes known facts so well that it points toward unknown ones.
 
-Most taxonomies never predict an element. They earn their keep doing humbler jobs, and it's worth naming them, because they're easy to mistake for failed versions of the periodic table when they're actually doing something else entirely.
+Most taxonomies never manage anything like that, and it is easy to undervalue the work they do if the periodic table is the only standard you hold them to.
 
-Some **coordinate**. The International Classification of Diseases is a vast bureaucratic map of illness and death, and it is not trying to be beautiful. What it does is let a hospital in one country, a statistics office in another, and an insurer in a third all record the same event the same way. Without shared categories, every institution sees only its own local blur. With them, health becomes countable across borders and decades. The job is not insight; it's agreement at scale.
+Some taxonomies exist to coordinate. The [International Classification of Diseases](https://www.who.int/standards/classifications/classification-of-diseases) gives hospitals, governments, researchers, and insurers a shared way to record illness and death. A diagnosis code is crude next to a person's actual condition, but the crudeness is partly the point: thousands of institutions have to record similar cases in similar ways, or the data cannot be compared at all.
 
-Some **allocate**. Triage categories don't describe patients so much as rank them for scarce attention: who is treated now, who can wait, who is beyond saving with the resources on hand. In ordinary life we like to treat each person as a full individual case. A mass-casualty event makes that impossible, and the taxonomy steps in precisely to convert overwhelming complexity into an order of action. It doesn't picture the patients. It divides the doctor's time.
+[Triage](https://en.wikipedia.org/wiki/Triage) categories do something different. They allocate. When more people need help than there are hands or supplies to help them, the categories exist to decide what happens first, not to understand any one patient in full.
 
-Some **govern**. A platform's taxonomy of harm — spam, harassment, hate speech, self-harm, scams — does far more than sort posts after the fact. It shapes the enforcement queue, the moderator's training, the appeals process, the automated classifier, the transparency report, and the public argument about whether the platform is fair. A harm with no category is hard to count. A harm filed under the wrong one is hard to understand. The categories don't follow the policy; they *are* the policy.
+And some taxonomies govern. A platform's categories for spam, harassment, hate speech, self-harm, and scams shape far more than a moderation report: they determine which posts get queued for review, what moderators are trained to notice, which appeals are possible, and what the platform can later claim about its own behavior. A harm with no category is hard to count. A harm filed under the wrong one is hard to understand.
 
-Once you separate these jobs, a surprising number of stubborn arguments come apart cleanly.
+Separating these jobs explains why some debates go in circles.
 
-Take the long fight over the DSM, the manual of mental disorders. Critics point out that its categories don't cut reality at clean joints — that diagnoses blur, overlap, and shift between editions — and conclude it's a bad taxonomy. But that critique judges the DSM by the *predict* standard, the periodic-table standard: are these carvings real, will they reveal hidden structure? That was never the DSM's main job. Its jobs are to coordinate (give clinicians and researchers a shared language), to allocate (decide what counts as a billable, treatable, reimbursable condition), and to govern (structure what research gets funded and what suffering gets recognized). Most of the heat in that debate is a job mismatch: one side asking *is it true?* while the thing is built to answer *can we all act on it together?* Both questions are fair. They are not the same question, and a taxonomy can ace one while failing the other.
+Take the [DSM](https://en.wikipedia.org/wiki/Diagnostic_and_Statistical_Manual_of_Mental_Disorders), the manual of mental disorders. A standing criticism is that its diagnoses do not cut reality at clean joints: conditions overlap, boundaries move between editions, symptoms vary from person to person. Fair enough, if we are judging the DSM as a predictive taxonomy, something aspiring to the condition of the periodic table. But the DSM spends most of its life doing other jobs. It gives clinicians and researchers a shared language, tells insurers and hospitals what counts as a diagnosable and reimbursable condition, and shapes which research gets funded and which kinds of suffering become legible to institutions. A category can be scientifically messy and still carry enormous administrative force. The first question to ask about a taxonomy is not whether it is true but what it is good for.
 
 ## Categories act
 
-Notice what every one of those examples has in common. In none of them is the taxonomy merely sitting there describing. Triage divides attention. The harm taxonomy routes enforcement. The diagnosis unlocks insurance and validates — or flattens — a life. The disease code decides what a health system can even see itself doing.
+None of these systems is merely describing something. Triage changes who gets treated first; a diagnosis can unlock insurance or flatten a person into criteria; a platform's harm categories decide what gets enforced. The labels become part of the reality people have to live inside.
 
-This is the second claim, and unlike the first I can't take credit for it: it's the thing James Scott, and Bowker and Star, and Ian Hacking each circled from different directions — the recognition that classification is an exercise of power, that to categorize people and problems is to *make up* the world they then have to live in. Whoever defines the categories tends to define the visible problem. A hiring rubric, a disease code, an academic discipline, a product dashboard — each turns a messy reality into administrable units, and everything that falls outside the grid quietly disappears.
+[Ian Hacking](https://en.wikipedia.org/wiki/Ian_Hacking) called one version of this [the looping effect](https://www.lrb.co.uk/the-paper/v28/n16/ian-hacking/making-up-people). Classify people a certain way — as hyperactive children, as refugees, as a personality type — and they respond to the classification: adopting it, resisting it, organizing around it, until the category describes a population it helped produce. James Scott told a similar story about states in [_Seeing Like a State_](https://en.wikipedia.org/wiki/Seeing_Like_a_State), and Bowker and Star about infrastructure in [_Sorting Things Out_](https://books.google.com/books?id=xHlP8WqzizYC), but the shared observation is that classification is never only bookkeeping. Naming the kinds is already a decision about what a system can see and what it is allowed to do.
 
-So a category can be a door. It can also be a wall. That's the part that's easy to miss when a taxonomy looks like neutral bookkeeping: the act of naming the kinds is already a decision about what the system is allowed to do.
+## "Good" depends on the job
 
-## "Good" is a question about the job, not about truth
+People often ask whether a taxonomy is true. Sometimes that is the right question; when the job is prediction, truth is the standard. But a taxonomy built for reimbursement, policy, moderation, shelf placement, or emergency response should be judged by how well it does that work and by what damage it causes along the way.
 
-Put the two claims together and a question that usually traps people comes loose. The question is: which taxonomies are good? People instinctively reach for *is it true?* — does it carve nature at its joints? But that's only the right test for a taxonomy whose job is to predict. For the others, the standard is functional: a taxonomy is good *relative to the job you need it to do.*
+A system built to coordinate millions of cases will flatten the individual case. That is the price of the job, not a defect in the design. The ICD has to treat a particular illness as an instance of a type, or health data stops being comparable across hospitals and countries. The same flattening that serves an insurer can do real harm in a therapist's office, where the work is to see one person clearly. Similar operation, different job, opposite verdict.
 
-A classification built to coordinate millions of cases at scale will flatten the individual. That isn't a flaw to apologize for; it's the price of the job. The ICD has to treat your particular illness as an instance of a type, or it can't make health countable across a continent. The same flattening that's correct for an insurer is genuinely harmful in a therapist's office, where the job is to see one person clearly rather than to compare them to everyone else. Same logical operation, opposite verdict, because the job changed.
+This is why the wrong taxonomy can be worse than no taxonomy. With no categories you are in fog, and at least you know you are in fog. With bad categories you get the comfort of precision before the distinctions have been earned. A team invents five labels for model failures and starts charting them, and the chart looks like progress even if the labels are renamed vibes. A product team decides users churn for five reasons, and from then on every messy reason has to fit one of the five. The map stops reporting the territory and starts overruling it.
 
-This is why "the wrong taxonomy" is worse than no taxonomy at all. The absence of categories leaves you in fog, and at least fog announces itself. The wrong categories give you a confident, well-labeled map of the wrong city — the comfort of precision before the underlying distinctions have been earned. A team invents five names for model failures and starts charting them, and the chart feels like progress even when the labels are just vibes wearing lab coats. A product team decides users churn for five reasons, and from then on every messy real reason gets jammed into one of the five. The map stops reporting the territory and starts overruling it.
+## Expertise means using the map without worshipping it
 
-## Living between the two dangers
+Expertise is partly the ability to live between those two dangers: too few categories, and too much faith in the ones you have.
 
-Maybe expertise is partly the skill of living between those dangers — the fog and the false map — and the shape of that skill is not what you'd guess.
+Beginners lack distinctions and see only the gross category: the code is broken, the essay is bad, the model failed, the patient is sick. Intermediates tend to have the opposite problem. They have learned the official taxonomy and begun treating every case as an instance of it, with a confidence the boxes have not earned. Experts use the taxonomy while seeing its seams. They know which distinctions are load-bearing, which are teaching devices, which are political compromises, and which are probably temporary. They have not rejected the map; they just remember what it was made for.
 
-You'd expect expertise to be a straight line: the more you know, the more distinctions you have. It's closer to a U. Beginners lack distinctions and see only the gross category — the code is broken, the essay is bad, the model failed, the patient is sick. Intermediates have the opposite problem: they've learned the official taxonomy and mistake it for reality, sorting every case into a named box with a confidence the boxes don't deserve. Experts come out the far side and hold both at once. They use the categories fluently *and* see the seams — they know which distinctions are load-bearing, which are pedagogical conveniences, which are political compromises, and which are quietly waiting to be replaced. The intermediate trusts the map most. The expert trusts it precisely as far as its job allows.
+This suggests a useful way into a new field. The beginner asks, "What should I read?" A better question is, "What distinctions do insiders make that outsiders miss?" The answer often lives less in the textbook than in the workflow: what a practitioner checks first, which cases they refuse to lump together, which failure modes have earned names, and, most revealing, which categories exist because they track reality and which exist because an institution needs to process the world at scale.
 
-That's also the most useful question to ask when entering a new field. The beginner asks, "What should I read?" The better question is, "What distinctions do insiders draw that outsiders collapse?" Often the answer isn't in the textbook; it's in the workflow. What does a practitioner check first? Which cases do they refuse to lump together? Which failure modes have names? And — the revealing one — which categories exist because they're true, and which exist because an institution needs to process the world at scale?
+## Every taxonomy is temporary
 
-## Every taxonomy is a loan
+[Linnaean ranks](https://en.wikipedia.org/wiki/Linnaean_taxonomy) let naturalists coordinate observations across the world for two centuries. Then evolutionary thinking showed that some of those tidy categories were useful handles rather than faithful pictures of ancestry. That is the common lifecycle: a taxonomy helps people see for a while, and then, if the field keeps moving, the same taxonomy starts getting in the way. The best one does not pretend to be reality. It is useful enough to act with, explicit about the job it is doing, and easy to revise when its distinctions stop working.
 
-There's a last thing the U-curve points at, and it's the note I want to end on rather than a checklist of virtues.
+Which brings me back to the model answers. What I needed was never a better scoring system; it was a theory of which differences in "bad" matter. A hallucinated fact and an answer at the wrong altitude can earn the same thumbs-down while implicating entirely different parts of the system, and no amount of averaging will surface that. Once the kinds have names, a pile of complaints turns into cases, cases turn into patterns, and patterns turn into decisions about what to change. That is why taxonomy work looks like administration from the outside and feels like power from the inside.
 
-Every taxonomy is indispensable without being final. Linnaean ranks let naturalists coordinate observations across the whole world for two centuries — and then evolutionary thinking revealed that some of those tidy categories were useful handles rather than faithful pictures of ancestry. This is the recurring life-cycle: a taxonomy helps people see for a while, and then becomes one of the things that stops them from seeing. The categories that let you notice are, eventually, the categories you have to break to notice more.
-
-So the best taxonomy is not the one that pretends to be reality. It's the one that's useful enough to act with, honest enough to name the job it's doing, and humble enough to show where it fails — because it remembers that every classification is a compression, and every compression is a loan taken out against a future revision.
-
-This is why taxonomy work looks like administration from the outside and feels like power from the inside. Naming kinds looks like paperwork. But when the names are right, they turn vibes into cases, cases into patterns, and patterns into decisions. A taxonomy is a theory of what differences matter. To improve one is to improve what you are capable of noticing.
+A taxonomy is a theory of what differences matter. To improve one is to improve what you are capable of noticing.
