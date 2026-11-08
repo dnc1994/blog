@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { resources as designResources } from './design/data'
 import { resources as aiResearchResources } from './ai-research/data'
 import { resources as sciFiResources } from './sci-fi/data'
+import { resources as workingWithAIResources } from './working-with-ai/data'
 
 export const metadata = {
   title: 'Lists',
@@ -30,6 +31,12 @@ const lists = [
     name: 'Sci-Fi',
     description: 'Stories about minds, machines, and what it means to be a self.',
     count: sciFiResources.length,
+  },
+  {
+    slug: 'working-with-ai',
+    name: 'Working with AI',
+    description: 'Essays on collaborating with models: how to think, plan, and aim higher with AI.',
+    count: workingWithAIResources.length,
   },
 ].sort((a, b) => a.name.localeCompare(b.name))
 
