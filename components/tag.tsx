@@ -11,20 +11,20 @@ type TagProps = {
 
 export function Tag({ tag, active = false, count, interactive = false, href }: TagProps) {
   const className = cn(
-    'inline-flex items-center gap-1.5 px-2 py-0.5 text-xs font-medium rounded-sm',
+    'inline-flex items-center gap-1.5 px-2 py-0.5 font-mono text-xs',
     'border transition-colors',
     interactive
       ? active
-        ? 'bg-rurikon-800 text-rurikon-50 border-rurikon-800'
-        : 'bg-rurikon-50 text-rurikon-400 border-rurikon-200 hover:border-rurikon-accent hover:text-rurikon-accent cursor-pointer'
+        ? 'bg-rurikon-accent text-[var(--background)] border-rurikon-accent'
+        : 'text-rurikon-400 border-rurikon-200 hover:border-rurikon-accent hover:text-rurikon-accent cursor-pointer'
       : href
-        ? 'bg-rurikon-50 text-rurikon-400 border-rurikon-200 hover:border-rurikon-accent hover:text-rurikon-accent'
-        : 'bg-rurikon-50 text-rurikon-400 border-rurikon-200'
+        ? 'text-rurikon-400 border-rurikon-200 hover:border-rurikon-accent hover:text-rurikon-accent'
+        : 'text-rurikon-400 border-rurikon-200'
   )
 
   const content = (
     <>
-      <span>{tag}</span>
+      <span>#{tag}</span>
       {count !== undefined && (
         <span className={cn(
           'tabular-nums',

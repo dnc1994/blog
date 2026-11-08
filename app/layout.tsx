@@ -5,6 +5,8 @@ import localFont from 'next/font/local'
 import 'katex/dist/katex.min.css'
 
 import Navbar from '@/components/navbar'
+import SiteFooter from '@/components/site-footer'
+import ContentFrame from '@/components/content-frame'
 import { ViewTransition } from '@/components/view-transition'
 import './globals.css'
 const sans = localFont({
@@ -12,13 +14,13 @@ const sans = localFont({
   preload: true,
   variable: '--sans',
 })
-const serif = localFont({
-  src: './_fonts/LoraItalicVariable.woff2',
+const display = localFont({
+  src: './_fonts/SpaceGroteskVariable.woff2',
   preload: true,
-  variable: '--serif',
+  variable: '--display',
 })
 const mono = localFont({
-  src: './_fonts/IosevkaFixedCurly-ExtendedMedium.woff2',
+  src: './_fonts/JetBrainsMonoVariable.woff2',
   preload: true,
   variable: '--mono',
 })
@@ -56,8 +58,8 @@ export const viewport: Viewport = {
   maximumScale: 1,
   colorScheme: 'light dark',
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#FFFCF0' },
-    { media: '(prefers-color-scheme: dark)', color: '#1C1B1A' },
+    { media: '(prefers-color-scheme: light)', color: '#050707' },
+    { media: '(prefers-color-scheme: dark)', color: '#050707' },
   ],
 }
 export default function RootLayout({
@@ -65,35 +67,32 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const noFlashScript = `try{var t=localStorage.getItem('theme')||'light';document.documentElement.classList.toggle('theme-dark',t==='dark');document.documentElement.classList.toggle('theme-light',t==='light')}catch(e){}`
+  const noFlashScript = `document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme')||'dark';document.documentElement.classList.toggle('theme-dark',t==='dark');document.documentElement.classList.toggle('theme-light',t==='light')}catch(e){}`
 
   return (
-    <html lang='en' className='overflow-x-hidden touch-manipulation'>
+    <html lang='en' className='overflow-x-hidden touch-manipulation' suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: noFlashScript }} />
       </head>
       <body
         className={cn(
           sans.variable,
-          serif.variable,
+          display.variable,
           mono.variable,
-          'w-full p-6 sm:p-10 md:p-14',
-          'text-base leading-7 sm:text-[17px] sm:leading-7 md:text-lg md:leading-7',
+          'w-full min-h-screen px-5 sm:px-8',
+          'text-base leading-7 sm:text-[17px] sm:leading-7 md:text-lg md:leading-[1.75]',
           'text-rurikon-500',
           'antialiased'
         )}
       >
-        <div className='fixed sm:hidden h-6 w-full top-0 left-0 z-30 pointer-events-none content-fade-out' />
-        <div className='flex flex-col mobile:flex-row'>
+        <div className='mx-auto max-w-[1280px] flex flex-col min-h-screen'>
           <Navbar />
-          <main className='relative flex-1 max-w-2xl [contain:inline-size]'>
-            <div className='absolute w-full h-px opacity-50 bg-rurikon-border right-0 mobile:right-auto mobile:left-0 mobile:w-px mobile:h-full mobile:opacity-100' />
+          <main className='relative flex-1 pt-10 sm:pt-14 pb-16'>
             <ViewTransition>
-              <article className='pl-0 pt-6 mobile:pt-0 mobile:pl-6 sm:pl-10 md:pl-14'>
-                {children}
-              </article>
+              <ContentFrame>{children}</ContentFrame>
             </ViewTransition>
           </main>
+          <SiteFooter />
         </div>
         <script defer src="https://cloud.umami.is/script.js" data-website-id="123a4517-a917-4944-83b4-670d2a832ada"></script>
       </body>

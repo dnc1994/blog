@@ -31,74 +31,82 @@
   }
 }
 
+/*
+ * Memory Dump theme.
+ * The rurikon scale keeps its meaning (50 = surface, 600 = headings,
+ * 800 = strongest text) so every existing component re-themes for free.
+ * Dark is the default; html.theme-light switches to the paper variant.
+ */
 @theme {
-  --color-rurikon-50: #F2F0E5;
-  --color-rurikon-100: #E6E4D9;
-  --color-rurikon-200: #B7B5AC;
-  --color-rurikon-300: #878580;
-  --color-rurikon-400: #6F6E69;
-  --color-rurikon-500: #403E3C;
-  --color-rurikon-600: #282726;
-  --color-rurikon-700: #1C1B1A;
-  --color-rurikon-800: #100F0F;
-  --color-rurikon-900: #100F0F;
-  --color-rurikon-950: #100F0F;
+  --color-rurikon-50: #0A1111;
+  --color-rurikon-100: #142120;
+  --color-rurikon-200: #2A4A46;
+  --color-rurikon-300: #6E8F89;
+  --color-rurikon-400: #8FB3AC;
+  --color-rurikon-500: #B5CFC9;
+  --color-rurikon-600: #E8F4F1;
+  --color-rurikon-700: #F2FAF8;
+  --color-rurikon-800: #FFFFFF;
+  --color-rurikon-900: #FFFFFF;
+  --color-rurikon-950: #FFFFFF;
 
-  --color-rurikon-border: #B7B5ACb3;
+  --color-rurikon-border: #1C2B29;
 
-  --color-rurikon-accent: #24837B;
+  --color-rurikon-accent: #3AA99F;
+  --color-rurikon-signal: #DA702C;
+  --color-rurikon-ghost: #3E5C57;
 
   --font-family-sans: var(--sans), -apple-system, ui-sans-serif, system-ui,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
     'Noto Color Emoji';
-  --font-family-serif: var(--serif), ui-serif, Georgia, Cambria,
-    'Times New Roman', Times, serif;
+  --font-family-display: var(--display), var(--sans), ui-sans-serif, system-ui,
+    sans-serif;
   --font-family-mono: var(--mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, 'Liberation Mono', 'Courier New', monospace;
   --font-family-zh: var(--sans), -apple-system, ui-sans-serif, system-ui,
     'PingFang SC', 'Hiragino Sans GB', 'Source Han Sans CN', sans-serif;
+
+  /* Tailwind v4 reads the --font-* namespace for font-* utilities */
+  --font-sans: var(--font-family-sans);
+  --font-display: var(--font-family-display);
+  --font-mono: var(--font-family-mono);
+  --font-zh: var(--font-family-zh);
 
   --breakpoint-text: 1220px;
   --breakpoint-mobile: 500px;
 }
 
 :root {
-  --background: #FFFCF0;
+  --background: #050707;
+  --scanline: rgba(255, 255, 255, 0.022);
+  --glitch-a: rgba(218, 112, 44, 0.75);
+  --glitch-b: rgba(58, 169, 159, 0.85);
   --sans-variation: 'opsz' 32;
   --font-features: 'calt', 'liga';
+  color-scheme: dark;
 }
 
-/* Dark mode: flip the rurikon palette */
-@media (prefers-color-scheme: dark) {
-  html:not(.theme-light):not(.theme-dark) {
-    --background: #1C1B1A;
-    --color-rurikon-50: #100F0F;
-    --color-rurikon-100: #282726;
-    --color-rurikon-200: #403E3C;
-    --color-rurikon-300: #6F6E69;
-    --color-rurikon-400: #878580;
-    --color-rurikon-500: #B7B5AC;
-    --color-rurikon-600: #E6E4D9;
-    --color-rurikon-700: #F2F0E5;
-    --color-rurikon-800: #F2F0E5;
-    --color-rurikon-border: #403E3Cb3;
-    --color-rurikon-accent: #3AA99F;
-  }
-}
-
-html.theme-dark {
-  --background: #1C1B1A;
-  --color-rurikon-50: #100F0F;
-  --color-rurikon-100: #282726;
-  --color-rurikon-200: #403E3C;
+html.theme-light {
+  --background: #FFFCF0;
+  --scanline: rgba(16, 15, 15, 0.025);
+  --glitch-a: rgba(188, 82, 21, 0.55);
+  --glitch-b: rgba(36, 131, 123, 0.6);
+  --color-rurikon-50: #F2F0E5;
+  --color-rurikon-100: #E6E4D9;
+  --color-rurikon-200: #B7B5AC;
   --color-rurikon-300: #6F6E69;
-  --color-rurikon-400: #878580;
-  --color-rurikon-500: #B7B5AC;
-  --color-rurikon-600: #E6E4D9;
-  --color-rurikon-700: #F2F0E5;
-  --color-rurikon-800: #F2F0E5;
-  --color-rurikon-border: #403E3Cb3;
-  --color-rurikon-accent: #3AA99F;
+  --color-rurikon-400: #575653;
+  --color-rurikon-500: #343331;
+  --color-rurikon-600: #1C1B1A;
+  --color-rurikon-700: #100F0F;
+  --color-rurikon-800: #100F0F;
+  --color-rurikon-900: #100F0F;
+  --color-rurikon-950: #100F0F;
+  --color-rurikon-border: #DAD8CE;
+  --color-rurikon-accent: #24837B;
+  --color-rurikon-signal: #BC5215;
+  --color-rurikon-ghost: #B7B5AC;
+  color-scheme: light;
 }
 
 body {
@@ -115,14 +123,26 @@ body {
   background-color: var(--background);
   text-rendering: optimizeLegibility;
   text-autospace: normal;
+}
 
+/* CRT scanlines over everything, never intercepting clicks */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  background-image: repeating-linear-gradient(
+    0deg,
+    var(--scanline) 0px,
+    var(--scanline) 1px,
+    transparent 1px,
+    transparent 3px
+  );
 }
 
 i,
 em {
-  font-family: var(--sans), system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
-    sans-serif;
   font-style: italic;
   font-synthesis: style;
   font-optical-sizing: auto;
@@ -140,28 +160,12 @@ blockquote,
   font-variant-ligatures: contextual;
 }
 
-nav {
-  font-family: var(--serif), Baskerville, Georgia, Cambria, 'Times New Roman',
-    Times, serif;
-  font-style: italic;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-variant-ligatures: contextual;
-  letter-spacing: -0.006em;
-}
-
 del {
   text-decoration-thickness: 1px;
 }
 
 blockquote {
-  box-shadow: 1px 0 0 var(--color-rurikon-500) inset;
-}
-@media screen and (max-width: 420px) {
-  blockquote {
-    /* Make it wider on mobile with a lighter color */
-    box-shadow: 2px 0 0 var(--color-rurikon-300) inset;
-  }
+  box-shadow: 2px 0 0 var(--color-rurikon-accent) inset;
 }
 
 blockquote + blockquote {
@@ -176,6 +180,7 @@ main {
 
 pre {
   background-color: var(--color-rurikon-50);
+  border: 1px solid var(--color-rurikon-border);
   contain: paint;
   overflow-x: auto;
   padding: 0.875rem 1.25rem;
@@ -191,17 +196,28 @@ pre code {
 code {
   font-family: var(--mono), ui-monospace, SFMono-Regular, Menlo, Monaco,
     Consolas, 'Liberation Mono', 'Courier New', monospace;
-  word-spacing: -0.15em;
   padding: 0.15em 0.2em;
-  --shiki-token-comment: hsl(215deg 32% 37% / 45%);
-  --shiki-token-punctuation: hsl(215deg 32% 37% / 65%);
-  --shiki-token-keyword: hsl(215deg 32% 37% / 85%);
-  --shiki-token-function: hsl(223deg 85% 46%);
-  --shiki-token-string: #0fb359;
-  --shiki-token-string-expression: #0fb359;
-  --shiki-token-constant: hsl(215deg 32% 26%);
-  --shiki-token-link: #0fb359;
-  --shiki-token-parameter: #ff9800;
+  --shiki-token-comment: #6E8F89;
+  --shiki-token-punctuation: #8FB3AC;
+  --shiki-token-keyword: #8B7EC8;
+  --shiki-token-function: #4385BE;
+  --shiki-token-string: #879A39;
+  --shiki-token-string-expression: #879A39;
+  --shiki-token-constant: #3AA99F;
+  --shiki-token-link: #879A39;
+  --shiki-token-parameter: #DA702C;
+}
+
+html.theme-light code {
+  --shiki-token-comment: #6F6E69;
+  --shiki-token-punctuation: #575653;
+  --shiki-token-keyword: #5E409D;
+  --shiki-token-function: #205EA6;
+  --shiki-token-string: #66800B;
+  --shiki-token-string-expression: #66800B;
+  --shiki-token-constant: #24837B;
+  --shiki-token-link: #66800B;
+  --shiki-token-parameter: #BC5215;
 }
 
 pre {
@@ -211,32 +227,6 @@ pre {
 
 code span {
   transition: color 0.2s;
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not(.theme-light):not(.theme-dark) code {
-    --shiki-token-comment: #6F6E69;
-    --shiki-token-punctuation: #878580;
-    --shiki-token-keyword: #8B7EC8;
-    --shiki-token-function: #4385BE;
-    --shiki-token-string: #879A39;
-    --shiki-token-string-expression: #879A39;
-    --shiki-token-constant: #3AA99F;
-    --shiki-token-link: #879A39;
-    --shiki-token-parameter: #DA702C;
-  }
-}
-
-html.theme-dark code {
-  --shiki-token-comment: #6F6E69;
-  --shiki-token-punctuation: #878580;
-  --shiki-token-keyword: #8B7EC8;
-  --shiki-token-function: #4385BE;
-  --shiki-token-string: #879A39;
-  --shiki-token-string-expression: #879A39;
-  --shiki-token-constant: #3AA99F;
-  --shiki-token-link: #879A39;
-  --shiki-token-parameter: #DA702C;
 }
 
 article {
@@ -284,20 +274,13 @@ article {
 }
 
 *::selection {
+  background: #3AA99F55;
+  color: #FFFFFF;
+}
+
+html.theme-light *::selection {
   background: #24837B40;
   color: #100F0F;
-}
-
-@media (prefers-color-scheme: dark) {
-  html:not(.theme-light):not(.theme-dark) *::selection {
-    background: #3AA99F40;
-    color: #F2F0E5;
-  }
-}
-
-html.theme-dark *::selection {
-  background: #3AA99F40;
-  color: #F2F0E5;
 }
 
 .dot-leaders {
@@ -312,15 +295,56 @@ html.theme-dark *::selection {
   content: '······································································';
 }
 
+/* Chromatic-aberration headline that twitches every few seconds */
+.glitch {
+  text-shadow: -3px 0 var(--glitch-a), 3px 0 var(--glitch-b);
+}
+
+@keyframes glitch-jitter {
+  0%, 92%, 100% { transform: translate(0, 0); }
+  93% { transform: translate(-4px, 1px); }
+  95% { transform: translate(3px, -2px); }
+  97% { transform: translate(-1px, 2px); }
+}
+
+.glitch-jitter {
+  animation: glitch-jitter 4.5s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glitch-jitter,
+  .cursor-blink,
+  .pulse-dot {
+    animation: none;
+  }
+}
+
 @supports (view-transition-name: none) {
   @media not (prefers-reduced-motion: reduce) {
     ::view-transition-old(crossfade) {
-      animation: hide 0.4s cubic-bezier(0.6, 0, 0.8, 1) forwards;
+      animation: hide 0.3s cubic-bezier(0.6, 0, 0.8, 1) forwards;
     }
 
     ::view-transition-new(crossfade) {
       opacity: 0;
-      animation: appear 0.6s ease 0.2s forwards;
+      animation: appear 0.45s ease 0.15s forwards;
     }
   }
 }
@@ -345,4 +369,18 @@ html.theme-dark *::selection {
     opacity: 1;
     filter: blur(0);
   }
+}
+
+/*
+ * Decode effect: text is server-rendered for SEO and no-JS readers, hidden
+ * while JS boots, then revealed as noise that resolves into the real string.
+ * If hydration never happens, the fallback animation shows the text anyway.
+ */
+.js .decode-pending {
+  opacity: 0;
+  animation: decode-fallback 0s linear 2.5s forwards;
+}
+
+@keyframes decode-fallback {
+  to { opacity: 1; }
 }
