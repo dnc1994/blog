@@ -7,6 +7,7 @@ import 'katex/dist/katex.min.css'
 import Navbar from '@/components/navbar'
 import SiteFooter from '@/components/site-footer'
 import ContentFrame from '@/components/content-frame'
+import ShellMount from '@/components/shell/shell-mount'
 import { ViewTransition } from '@/components/view-transition'
 import './globals.css'
 const sans = localFont({
@@ -94,6 +95,7 @@ export default function RootLayout({
           </main>
           <SiteFooter />
         </div>
+        <ShellMount />
         <script defer src="https://cloud.umami.is/script.js" data-website-id="123a4517-a917-4944-83b4-670d2a832ada"></script>
       </body>
     </html>

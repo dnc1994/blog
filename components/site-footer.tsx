@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ShellButton } from '@/components/shell/terminal'
 
 const links = [
   { label: 'Telegram', href: 'https://t.me/linghao' },
@@ -9,7 +10,13 @@ const links = [
 export default function SiteFooter() {
   return (
     <footer className='flex flex-wrap justify-between gap-x-6 gap-y-2 py-5 mb-4 border-t border-rurikon-border font-mono text-xs text-rurikon-300'>
-      <span>Stay informed. Stay authentic.</span>
+      <span className='flex flex-wrap gap-x-4'>
+        <span>Stay informed. Stay authentic.</span>
+        <span className='text-rurikon-300'>
+          <ShellButton />
+          <span className='hidden sm:inline'> · or press `</span>
+        </span>
+      </span>
       <span className='flex flex-wrap gap-x-4'>
         {links.map((l) => (
           <Link

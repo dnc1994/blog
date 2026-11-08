@@ -28,6 +28,12 @@ function applyTheme(theme: Theme) {
   } catch {}
 }
 
+/** Set the theme from anywhere (e.g. the hidden shell) and sync all toggles. */
+export function setSiteTheme(theme: Theme) {
+  applyTheme(theme)
+  notifyAll(theme)
+}
+
 export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme | null>(null)
 
