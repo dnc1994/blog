@@ -83,6 +83,9 @@ export default function RootLayout({
           'antialiased'
         )}
       >
+        <div className='fixed top-0 left-0 z-50 w-full bg-[#AF3029] text-white text-center text-sm font-semibold py-2'>
+          PREVIEW TEST: this banner only exists on the test/preview-banner branch
+        </div>
         <div className='fixed sm:hidden h-6 w-full top-0 left-0 z-30 pointer-events-none content-fade-out' />
         <div className='flex flex-col mobile:flex-row'>
           <Navbar />
