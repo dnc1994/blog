@@ -59,10 +59,10 @@ export const resume: Resume = {
   name: 'Linghao Zhang',
   title: 'Personalization · Memory · Consumer Agents · Self-Improving Systems',
   summary:
-    'Engineering Leader in Generative AI with full-stack depth across foundational models, scalable infrastructure, and product experiences. Currently leading next-generation Memory Architecture for Gemini Personalization, bridging AI research with world-class products serving 1B+ monthly active users.',
+    'Engineering Leader in Generative AI with full-stack depth across foundational models, scalable infrastructure, and product experiences. Currently leading always-on, proactive consumer agents and a unified memory shared across every Gemini surface, bridging AI research with world-class products serving 1B+ monthly active users.',
   pdf: {
     summary:
-      'Engineering Leader in Generative AI with expertise spanning the full stack, from foundational models and scalable infrastructure to product experiences. Currently leading the next-gen Memory Architecture for Gemini Personalization, bridging the gap between AI research and world-class products serving 1B+ monthly active users.',
+      'Engineering Leader in Generative AI with expertise spanning the full stack, from foundational models and scalable infrastructure to product experiences. Currently leading always-on, proactive consumer agents and a unified memory shared across all Gemini product surfaces, bridging the gap between AI research and world-class products serving 1B+ monthly active users.',
   },
   contact: {
     email: 'zlh@google.com',
@@ -78,8 +78,8 @@ export const resume: Resume = {
       dates: 'Oct 2025 – Present',
       bullets: [
         {
-          lead: 'Next-Gen Memory & Proactive Agents',
-          text: 'Architecting the next-gen memory and always-on, proactive consumer agents: systems that carry rich context across sessions, anticipate needs before users ask, and act in the background on their behalf, turning fragmented chats into continuously evolving, human-like assistance across the Gemini ecosystem.',
+          lead: 'Proactive Agents & Unified Memory',
+          text: 'Architecting always-on, proactive consumer agents that anticipate needs before users ask and act in the background on their behalf, powered by a unified memory shared across all Gemini product surfaces so context and personalization follow users everywhere.',
         },
         {
           lead: 'Global Impact at Scale (1B+ MAU)',
@@ -95,10 +95,10 @@ export const resume: Resume = {
           ],
         },
         {
-          lead: 'Full-Stack Technical Leadership',
-          text: 'Drove the initiative from early prototyping and executive buy-in to memory synthesis and retrieval infrastructure from scratch; established the quality flywheel through human eval protocols, 3P data vendors, automated eval pipelines, A/B test tooling, and telemetry for sparse, noisy, global multilingual traffic.',
+          lead: 'Full-Stack Technical Leadership (Short-Term Memory)',
+          text: 'Took Short-Term Memory from early prototyping and executive buy-in to memory synthesis and retrieval infrastructure from scratch; established the quality flywheel through human eval protocols, 3P data vendors, automated eval pipelines, A/B test tooling, and telemetry for sparse, noisy, global multilingual traffic.',
           pdf: {
-            text: 'Drove the initiative from early prototyping & securing executive buy-in to building memory synthesis & retrieval infra from scratch while achieving cost-efficiency at massive scale; established the quality flywheel through defining human eval protocols, managing 3P data vendors, and building automated eval pipelines; spearheaded A/B test tooling and telemetry to accelerate experimentation of new modeling techniques despite sparse feedback and noisy signals from global, multilingual traffic.',
+            text: 'Drove Short-Term Memory from early prototyping & securing executive buy-in to building memory synthesis & retrieval infra from scratch while achieving cost-efficiency at massive scale; established the quality flywheel through defining human eval protocols, managing 3P data vendors, and building automated eval pipelines; spearheaded A/B test tooling and telemetry to accelerate experimentation of new modeling techniques despite sparse feedback and noisy signals from global, multilingual traffic.',
           },
         },
       ],
@@ -109,7 +109,7 @@ export const resume: Resume = {
       dates: 'Nov 2018 – Oct 2025',
       bullets: [
         {
-          lead: 'TL, Vertex AI (Gemini Tuning Quality)',
+          lead: 'TL, Vertex AI (Post-Training Quality and Infra)',
           text: 'Post-trained Gemini models for Cloud customers with SFT, RL, Preference Optimization, and Distillation. Built infrastructure for customizable RL reward functions and user simulation for multi-turn agentic tasks.',
           pdf: {
             text: 'Post-trained Gemini models for Cloud customers with SFT, RL, Preference Optimization, Distillation. Built infra for customizable RL reward functions and user simulation for multi-turn agentic tasks.',
@@ -138,8 +138,7 @@ export const resume: Resume = {
     },
     {
       company: 'NVIDIA',
-      role: 'Research Intern · Computer Architecture Group',
-      pdf: { role: 'Research Intern @ Computer Architecture Group' },
+      role: 'Research Intern',
       dates: 'Apr 2017 – Jul 2017',
       bullets: [
         {
@@ -187,7 +186,7 @@ export const resume: Resume = {
     },
   ],
   skills: [
-    { label: 'Languages', items: ['C++', 'Python', 'SQL', 'Java', 'TypeScript', 'LaTeX', 'Japanese (JLPT N2)'] },
+    { label: 'Languages', items: ['C++', 'Python', 'Go', 'Kotlin/Java', 'SQL', 'TypeScript', 'LaTeX', 'Japanese (JLPT N2)'] },
     {
       label: 'AI / ML',
       items: ['JAX', 'TensorFlow', 'SFT / LoRA', 'RL', 'RAG', 'LLM Evals', 'Human & Synthetic Data'],

@@ -364,7 +364,7 @@ export default function ResumePage() {
                 <ul className='resumeBullets'>
                   {job.bullets.map((bullet) => (
                     <li key={`${job.company}-${bullet.lead || bullet.text}`}>
-                      {bullet.lead ? <strong>{bullet.lead}: </strong> : null}
+                      {bullet.lead ? <strong>{linkifyText(bullet.lead, bullet.links)}: </strong> : null}
                       {linkifyText(bullet.text, bullet.links)}
                     </li>
                   ))}
