@@ -3,6 +3,7 @@ import path from 'path'
 import cn from 'clsx'
 import { Tag } from '@/components/tag'
 import { resolveSocialImage } from '@/lib/seo'
+import { DecodeText } from '@/components/decode'
 
 export default async function Page(props: {
   params: Promise<{
@@ -19,9 +20,13 @@ export default async function Page(props: {
       className={cn(metadata.chinese && 'text-justify font-zh')}
       lang={metadata.chinese ? 'zh-Hans' : 'en'}
     >
-      <h1 className='text-2xl font-semibold mb-7 text-rurikon-600 text-balance'>
-        {metadata.title}
-      </h1>
+      <DecodeText
+        as='h1'
+        text={metadata.title}
+        delay={80}
+        hover
+        className='mb-8 font-display font-bold text-[2.1rem] sm:text-5xl leading-[1.05] tracking-[-0.025em] text-rurikon-600 text-balance'
+      />
       
       {/* Tags */}
       {metadata.tags && metadata.tags.length > 0 && (

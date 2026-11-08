@@ -5,59 +5,68 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import ThemeToggle from "@/components/theme-toggle";
 
-function Item(props: React.ComponentProps<typeof Link>) {
-  const pathname = usePathname();
-  const href = props.href;
+const items = [
+  { href: "/", label: "about" },
+  { href: "/posts", label: "posts" },
+  { href: "/projects", label: "projects" },
+  { href: "/gallery", label: "gallery" },
+  { href: "/lists", label: "curation" },
+];
 
-  if (typeof href !== "string") {
-    throw new Error("`href` must be a string");
-  }
-
-  const isActive = pathname === href || pathname.startsWith(href + "/");
-
-  return (
-    <li
-      className={cn(
-        isActive
-          ? "text-rurikon-800"
-          : "text-rurikon-300 hover:text-rurikon-600",
-        "transition-colors",
-        "-mx-2",
-      )}
-    >
-      <Link {...props} className="inline-block w-full px-2" draggable={false} />
-    </li>
-  );
+function isActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(href + "/");
 }
 
 export default function Navbar() {
+  const pathname = usePathname();
+
   return (
-    <nav className="mobile:mr-6 sm:mr-10 md:mr-14 w-full mobile:w-auto mobile:shrink-0">
-      <div className="mobile:sticky top-6 sm:top-10 md:top-14 mb-6 mobile:mb-0">
-        <div className="flex items-center justify-end gap-3 mb-3 mobile:mb-5">
-          <Link
-            href="/"
-            className="text-right text-rurikon-700 font-semibold text-lg leading-snug not-italic font-sans whitespace-nowrap"
-            draggable={false}
-          >
-            Synthesist in the Shell
-          </Link>
-          <div className="mobile:hidden shrink-0">
-            <ThemeToggle />
-          </div>
-        </div>
-        <ul className="lowercase text-right flex flex-wrap gap-x-3 gap-y-1 justify-end mobile:block">
-          <Item href="/">About</Item>
-          <Item href="/posts">Posts</Item>
-          <Item href="/projects">Projects</Item>
-          <Item href="/gallery">Gallery</Item>
-          <Item href="/lists">Curation</Item>
+    <header className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3 py-5 border-b border-rurikon-border font-mono text-[13px] leading-none">
+      <Link
+        href="/"
+        className="flex items-center gap-2.5 font-bold tracking-[0.1em] text-rurikon-600 hover:text-rurikon-accent transition-colors"
+        draggable={false}
+      >
+        <span
+          aria-hidden="true"
+          className="pulse-dot inline-block h-2 w-2 rounded-full bg-rurikon-accent"
+        />
+        LINGHAO.IO
+      </Link>
+
+      <nav aria-label="Main" className="order-3 w-full sm:order-none sm:w-auto">
+        <ul className="flex flex-wrap gap-x-5 gap-y-1">
+          {items.map((item, i) => {
+            const active = isActive(pathname, item.href);
+            return (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  draggable={false}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(
+                    "inline-block py-2 transition-colors",
+                    active
+                      ? "text-rurikon-accent"
+                      : "text-rurikon-400 hover:text-rurikon-600",
+                  )}
+                >
+                  <span className={cn(active ? "text-rurikon-accent" : "text-rurikon-300")}>
+                    0x0{i}
+                  </span>{" "}
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
-        <div className="hidden mobile:flex justify-end mt-5">
-          <ThemeToggle />
-        </div>
-        <div id="music-player-slot" className="hidden mobile:flex justify-end mt-5" />
+      </nav>
+
+      <div className="flex items-center gap-4">
+        <div id="music-player-slot" className="hidden mobile:flex" />
+        <ThemeToggle />
       </div>
-    </nav>
+    </header>
   );
 }

@@ -16,7 +16,7 @@ function getStoredTheme(): Theme {
     const stored = localStorage.getItem('theme')
     if (stored === 'light' || stored === 'dark') return stored
   } catch {}
-  return 'light'
+  return 'dark'
 }
 
 function applyTheme(theme: Theme) {
@@ -26,6 +26,12 @@ function applyTheme(theme: Theme) {
   try {
     localStorage.setItem('theme', theme)
   } catch {}
+}
+
+/** Set the theme from anywhere (e.g. the hidden shell) and sync all toggles. */
+export function setSiteTheme(theme: Theme) {
+  applyTheme(theme)
+  notifyAll(theme)
 }
 
 export default function ThemeToggle() {

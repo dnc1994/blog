@@ -1,13 +1,20 @@
+import { HomeHero, RecentDump, ProjectsPs, SectionLabel } from '@/components/home'
+
 export const metadata = {
   title: 'Linghao Zhang',
   description: 'I create and share knowledge with writing.',
 }
 
-# About me
+<HomeHero />
 
-Hey, I'm Linghao. My mission is to synthesize knowledge and share it freely with all.
+<RecentDump />
 
-## Featured
+<ProjectsPs />
+
+<div className='grid gap-x-16 gap-y-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] [&>div>ul]:mt-0 [&>div>h2:not(:first-child)]:mt-12'>
+<div>
+
+<SectionLabel>$ cat featured.md</SectionLabel>
 
 - Writing about AI, models, personalization, memory
     - [Evolving Memory Systems: An Eval-First Approach](/posts/memory-systems-should-be-evolved)
@@ -38,7 +45,10 @@ Hey, I'm Linghao. My mission is to synthesize knowledge and share it freely with
     {/* - [What I love the most](/the-best-things)   */}
     {/* - [What I subscribe to](/my-subscriptions) */}
 
-## Elsewhere
+</div>
+<div>
+
+<SectionLabel>$ cat elsewhere.md</SectionLabel>
 
 - [Telegram](https://t.me/linghao)
 - [Parallel Experiments](https://t.me/s/LinghaoCh): Telegram channel where I share curated resources and random thoughts (en/zh-CN).
@@ -47,14 +57,14 @@ Hey, I'm Linghao. My mission is to synthesize knowledge and share it freely with
 - [Douban](https://www.douban.com/people/instante_42/)
 {/* - Previous blog archived at [dnc1994.github.io](https://dnc1994.github.io/). */}
 
-## Mottos
+<SectionLabel>$ cat mottos.md</SectionLabel>
 
 - Stay Informed. Stay Authentic.
 - Consume to Survive, Create to Thrive.
 {/* - If We Are Not in Pain, We Are Not Alive. */}
 {/* - Whatever People Say I Am, That's What I'm Not. */}
 
-## Friends
+<SectionLabel>$ cat friends.md</SectionLabel>
 
 - [Shu Ding](https://shud.in/)
 - [Foreseaz](https://www.foreseaz.com/)
@@ -63,12 +73,15 @@ Hey, I'm Linghao. My mission is to synthesize knowledge and share it freely with
 - [Bojie Li](https://01.me/)
 - [Yocson](https://www.yocson.com/)
 
+</div>
+</div>
+
 ---
 
 <small>
-This blog borrows the visual design from [Shu Ding](https://shud.in/) and [Steph Ango](https://stephango.com/).  
+Memory Dump theme designed and built with [Claude](https://claude.ai). Light mode uses [Flexoki](https://stephango.com/flexoki) by Steph Ango.  
 All content licensed under [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) unless specified otherwise.
 </small>
 <small>
-Made with ❤️ by Linghao Zhang since 2016. Star on [GitHub]((https://github.com/dnc1994/blog)). Subscribe via [RSS](/feed.xml).
+Made with ❤️ by Linghao Zhang since 2016. Star on [GitHub](https://github.com/dnc1994/blog). Subscribe via [RSS](/feed.xml).
 </small>

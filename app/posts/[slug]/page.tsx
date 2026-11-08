@@ -7,6 +7,8 @@ import { resolveSocialImage } from '@/lib/seo'
 import Link from 'next/link'
 import { TocSidebar, type TocHeading } from '@/components/toc-sidebar'
 import { MusicPlayer } from '@/components/music-player'
+import { DecodeText } from '@/components/decode'
+import { toHex } from '@/lib/dump'
 
 function extractHeadings(mdxContent: string): TocHeading[] {
   const headings: TocHeading[] = []
@@ -77,46 +79,49 @@ export default async function Page(props: {
       className={cn(metadata.chinese && 'text-justify font-zh')}
       lang={metadata.chinese ? 'zh-Hans' : 'en'}
     >
-      <h1 className='text-2xl font-semibold mb-4 text-rurikon-600 text-balance'>
-        {metadata.title}
-      </h1>
+      <p className='mb-4 font-mono text-xs tracking-[0.2em] text-rurikon-signal uppercase'>
+        {metadata.date ? `Entry · ${metadata.date}` : 'Entry'}
+        {' · '}
+        {readingTime} min read
+      </p>
+      <DecodeText
+        as='h1'
+        text={metadata.title}
+        delay={80}
+        duration={600 + metadata.title.length * 10}
+        hover
+        className='font-display font-bold text-[2.1rem] sm:text-5xl leading-[1.05] tracking-[-0.025em] text-rurikon-600 text-balance'
+      />
+      <p aria-hidden='true' className='mt-3 mb-6 font-mono text-xs text-rurikon-ghost truncate'>
+        {toHex(metadata.title, 24)}
+      </p>
 
       {/* Meta block: date/time · languages · tags */}
-      {(metadata.date || articlesInGroup.length > 1 || metadata.tags?.length > 0) && (
-        <div className='mb-7 flex flex-col gap-y-2 text-sm'>
+      {(articlesInGroup.length > 1 || metadata.tags?.length > 0) && (
+        <div className='mb-10 pb-6 border-b border-rurikon-border flex flex-col gap-y-3 font-mono text-xs'>
           {/* Line 1: date · reading time · languages */}
-          {(metadata.date || articlesInGroup.length > 1) && (
+          {articlesInGroup.length > 1 && (
             <div className='flex flex-wrap items-center gap-x-2'>
-              {metadata.date && (
-                <>
-                  <time className='text-rurikon-300'>
-                    {new Date(metadata.date.replace(/\./g, '-')).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                  </time>
-                  <span className='text-rurikon-200'>·</span>
-                  <span className='text-rurikon-300'>{readingTime} min read</span>
-                </>
-              )}
               {articlesInGroup.length > 1 && (
                 <>
-                  {metadata.date && <span className='text-rurikon-200'>·</span>}
-                  <span className='text-rurikon-300'>Available in:</span>
+                  <span className='text-rurikon-300'>lang:</span>
                   {articlesInGroup
                     .sort((a, b) => (a.language || '').localeCompare(b.language || ''))
                     .map((article) => {
                       const isCurrent = article.slug === params.slug
                       const lang = article.language || 'en'
                       const langNames: Record<string, string> = { en: 'English', zh: '中文' }
-                      const baseClass = 'inline-flex items-center px-2 py-0.5 text-xs font-medium rounded-sm border transition-colors'
+                      const baseClass = 'inline-flex items-center px-2 py-0.5 font-mono text-xs border transition-colors'
                       const label = langNames[lang] || lang
                       const star = article.canonical
                         ? <span className='mr-1 text-[0.65rem]'>★</span>
                         : null
                       return isCurrent ? (
-                        <span key={article.slug} className={cn(baseClass, 'bg-rurikon-800 text-white border-rurikon-800')}>
+                        <span key={article.slug} className={cn(baseClass, 'bg-rurikon-accent text-[var(--background)] border-rurikon-accent')}>
                           {star}{label}
                         </span>
                       ) : (
-                        <Link key={article.slug} href={`/posts/${article.slug}`} className={cn(baseClass, 'bg-rurikon-50 text-rurikon-400 border-rurikon-200 hover:border-rurikon-accent hover:text-rurikon-accent')}>
+                        <Link key={article.slug} href={`/posts/${article.slug}`} className={cn(baseClass, 'text-rurikon-400 border-rurikon-200 hover:border-rurikon-accent hover:text-rurikon-accent')}>
                           {star}{label}
                         </Link>
                       )
@@ -129,7 +134,7 @@ export default async function Page(props: {
           {/* Line 2: tags */}
           {metadata.tags?.length > 0 && (
             <div className='flex flex-wrap items-center gap-x-2'>
-              <span className='text-rurikon-300'>Tags:</span>
+              <span className='text-rurikon-300'>tags:</span>
               {metadata.tags.map((tag: string) => (
                 <Tag key={tag} tag={tag} href={`/posts?tag=${tag}`} />
               ))}

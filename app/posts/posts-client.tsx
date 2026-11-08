@@ -1,173 +1,127 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import cn from 'clsx'
+import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import Link from 'next/link'
-import { Tag } from '@/components/tag'
-
-type Post = {
-  slug: string
-  title: string
-  date: string
-  tags: string[]
-}
+import { DumpList, type DumpItem } from '@/components/dump-list'
+import type { DumpEntry } from '@/lib/dump'
 
 type PostsClientProps = {
-  posts: Post[]
+  posts: DumpEntry[]
   tags: Record<string, number>
 }
 
-function TagFilterPanel({
-  defaultExpanded,
-  tags,
-  selectedTags,
-  onToggleTag,
-  onClear,
-}: {
-  defaultExpanded: boolean
-  tags: Record<string, number>
-  selectedTags: Set<string>
-  onToggleTag: (tag: string) => void
-  onClear: () => void
-}) {
-  const [expanded, setExpanded] = useState(defaultExpanded)
-
-  return (
-    <div>
-      <div className='flex items-center gap-1.5 mb-3'>
-        <button
-          onClick={() => setExpanded((v) => !v)}
-          className='flex items-center gap-1.5 text-sm text-rurikon-400 hover:text-rurikon-600 transition-colors'
-        >
-          <span className='text-xs opacity-60'>{expanded ? '▲' : '▼'}</span>
-          Filter by tags{selectedTags.size > 0 ? `: ${selectedTags.size} selected` : ''}
-        </button>
-        {selectedTags.size > 0 && (
-          <button
-            onClick={onClear}
-            className='text-sm text-rurikon-300 hover:text-rurikon-accent transition-colors'
-          >
-            (clear)
-          </button>
-        )}
-      </div>
-      {expanded && (
-        <div className='flex flex-wrap gap-2'>
-          {Object.entries(tags).map(([tag, count]) => (
-            <button
-              key={tag}
-              onClick={() => onToggleTag(tag)}
-              className='focus:outline-none focus-visible:ring-2 focus-visible:ring-rurikon-400 focus-visible:ring-offset-2 rounded-sm'
-            >
-              <Tag tag={tag} count={count} active={selectedTags.has(tag)} interactive />
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  )
+function withYearMarkers(posts: DumpEntry[]): DumpItem[] {
+  const out: DumpItem[] = []
+  let year = ''
+  for (const p of posts) {
+    const y = p.date.slice(0, 4)
+    if (y && y !== year) {
+      year = y
+      out.push({ year: y })
+    }
+    out.push(p)
+  }
+  return out
 }
 
 export function PostsClient({ posts, tags }: PostsClientProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [selectedTags, setSelectedTags] = useState<Set<string>>(new Set())
-  const wrapperRef = useRef<HTMLDivElement>(null)
-  const [panelLeft, setPanelLeft] = useState<number | null>(null)
-
-  useEffect(() => {
-    const update = () => {
-      if (wrapperRef.current) {
-        const rect = wrapperRef.current.getBoundingClientRect()
-        setPanelLeft(rect.right + 56)
-      }
-    }
-    update()
-    window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
-  }, [])
 
   useEffect(() => {
     const tagParam = searchParams.get('tag')
-    if (tagParam) {
-      setSelectedTags(new Set(tagParam.split(',').filter(Boolean)))
-    } else {
-      setSelectedTags(new Set())
-    }
+    setSelectedTags(new Set(tagParam ? tagParam.split(',').filter(Boolean) : []))
   }, [searchParams])
+
+  const update = (next: Set<string>) => {
+    setSelectedTags(next)
+    router.push(
+      next.size === 0
+        ? '/posts'
+        : `/posts?tag=${encodeURIComponent(Array.from(next).join(','))}`,
+      { scroll: false }
+    )
+  }
 
   const toggleTag = (tag: string) => {
     const next = new Set(selectedTags)
-    if (next.has(tag)) {
-      next.delete(tag)
-    } else {
-      next.add(tag)
-    }
-    setSelectedTags(next)
-    if (next.size === 0) {
-      router.push('/posts', { scroll: false })
-    } else {
-      router.push(`/posts?tag=${encodeURIComponent(Array.from(next).join(','))}`, { scroll: false })
-    }
+    if (next.has(tag)) next.delete(tag)
+    else next.add(tag)
+    update(next)
   }
 
-  const clearTags = () => {
-    setSelectedTags(new Set())
-    router.push('/posts', { scroll: false })
-  }
-
-  const filteredPosts =
+  const filtered =
     selectedTags.size === 0
       ? posts
       : posts.filter((p) => p.tags.some((t) => selectedTags.has(t)))
 
+  const grep =
+    selectedTags.size === 0
+      ? ''
+      : ` | grep -E "${Array.from(selectedTags).join('|')}"`
+
   return (
-    <div ref={wrapperRef}>
-      {/* Collapsible tag filter — mobile and non-xl screens */}
-      <div className='xl:hidden mb-6'>
-        <TagFilterPanel
-          defaultExpanded={false}
-          tags={tags}
-          selectedTags={selectedTags}
-          onToggleTag={toggleTag}
-          onClear={clearTags}
-        />
+    <div>
+      <p className='font-mono text-xs sm:text-[13px] tracking-[0.24em] text-rurikon-signal'>
+        FULL DUMP · {posts.length} ENTRIES
+      </p>
+      <h1 className='mt-3 font-display font-bold text-5xl sm:text-6xl tracking-[-0.03em] text-rurikon-600'>
+        Posts
+      </h1>
+
+      <div className='mt-8 mb-6'>
+        <p className='mb-3 font-mono text-[13px] text-rurikon-300 break-all'>
+          $ xxd ~/writing{grep}
+        </p>
+        <div className='flex flex-wrap gap-2' role='group' aria-label='Filter by tag'>
+          <button
+            type='button'
+            onClick={() => update(new Set())}
+            aria-pressed={selectedTags.size === 0}
+            className={cn(
+              'px-2.5 py-1.5 font-mono text-xs border transition-colors',
+              selectedTags.size === 0
+                ? 'bg-rurikon-accent border-rurikon-accent text-[var(--background)]'
+                : 'border-rurikon-200 text-rurikon-400 hover:border-rurikon-accent hover:text-rurikon-accent'
+            )}
+          >
+            ALL · {posts.length}
+          </button>
+          {Object.entries(tags).map(([tag, count]) => {
+            const active = selectedTags.has(tag)
+            return (
+              <button
+                key={tag}
+                type='button'
+                onClick={() => toggleTag(tag)}
+                aria-pressed={active}
+                className={cn(
+                  'px-2.5 py-1.5 font-mono text-xs border transition-colors',
+                  active
+                    ? 'bg-rurikon-accent border-rurikon-accent text-[var(--background)]'
+                    : 'border-rurikon-200 text-rurikon-400 hover:border-rurikon-accent hover:text-rurikon-accent'
+                )}
+              >
+                {tag.toUpperCase()} · {count}
+              </button>
+            )
+          })}
+        </div>
       </div>
 
-      {/* Post list — full width */}
-      <ul>
-        {filteredPosts.map((post) => (
-          <li key={post.slug} className='font-medium'>
-            <Link
-              href={`/posts/${post.slug}`}
-              className='group flex gap-1 justify-between items-center'
-              draggable={false}
-            >
-              <span className='block text-rurikon-500 group-hover:text-rurikon-700'>
-                {post.title}
-              </span>
-              <span className='text-sm dot-leaders flex-1 text-rurikon-100 font-normal group-hover:text-rurikon-500 transition-colors group-hover:transition-none leading-none' />
-              <time className='block font-mono text-sm text-rurikon-200 tabular-nums font-normal tracking-tighter group-hover:text-rurikon-500 transition-colors group-hover:transition-none self-start'>
-                {post.date}
-              </time>
-            </Link>
-          </li>
-        ))}
-      </ul>
-
-      {/* Fixed tag panel — xl screens only, positioned just right of article content */}
-      <div
-        className='hidden xl:block fixed top-14 w-72 max-h-[calc(100vh-7rem)] overflow-y-auto'
-        style={{ left: panelLeft !== null ? `${panelLeft}px` : undefined }}
-      >
-        <TagFilterPanel
-          defaultExpanded={true}
-          tags={tags}
-          selectedTags={selectedTags}
-          onToggleTag={toggleTag}
-          onClear={clearTags}
-        />
-      </div>
+      <DumpList
+        key={Array.from(selectedTags).join(',')}
+        items={withYearMarkers(filtered)}
+        animateFirst={14}
+        footer={
+          <span>
+            -- {filtered.length} of {posts.length} entries --
+            <span aria-hidden='true' className='cursor-blink text-rurikon-accent'> █</span>
+          </span>
+        }
+      />
     </div>
   )
 }

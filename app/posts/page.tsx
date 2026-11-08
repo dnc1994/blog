@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { getDedupedArticlesFromSection } from '@/lib/articles'
+import { toDumpEntries } from '@/lib/dump'
 import { PostsClient } from './posts-client'
 
 export const metadata = {
@@ -7,18 +8,7 @@ export const metadata = {
 }
 
 export default async function Page() {
-  const posts = (await getDedupedArticlesFromSection('posts'))
-    .map((item) => ({
-      slug: item.slug,
-      title: item.title ?? '',
-      date: item.date ?? '',
-      tags: item.tags ?? [],
-    }))
-    .sort((a, b) => {
-      const da = Number(a.date.replaceAll('.', '').replaceAll('-', '') || 0)
-      const db = Number(b.date.replaceAll('.', '').replaceAll('-', '') || 0)
-      return db - da
-    })
+  const posts = toDumpEntries(await getDedupedArticlesFromSection('posts'))
 
   const tagCounts: Record<string, number> = {}
   for (const post of posts) {
@@ -27,7 +17,7 @@ export default async function Page() {
     }
   }
   const tags = Object.fromEntries(
-    Object.entries(tagCounts).sort(([a], [b]) => a.localeCompare(b))
+    Object.entries(tagCounts).sort(([, a], [, b]) => b - a)
   )
 
   return (

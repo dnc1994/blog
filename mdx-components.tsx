@@ -18,25 +18,25 @@ export const components: Record<
 > = {
   h1: (props) => (
     <h1
-      className='text-2xl font-semibold mb-7 text-rurikon-600 text-balance'
+      className='font-display text-3xl sm:text-4xl font-bold tracking-[-0.02em] mb-7 text-rurikon-600 text-balance'
       {...props}
     />
   ),
   h2: (props) => (
     <h2
-      className='text-xl font-semibold mt-14 mb-7 text-rurikon-600 text-balance'
+      className='font-display text-2xl sm:text-[1.7rem] font-bold tracking-[-0.015em] leading-tight mt-14 mb-6 text-rurikon-600 text-balance before:content-["##_"] before:font-mono before:text-[0.7em] before:font-normal before:text-rurikon-accent before:mr-2'
       {...props}
     />
   ),
   h3: (props) => (
     <h3
-      className='text-lg font-semibold mt-14 mb-7 text-rurikon-600 text-balance'
+      className='font-display text-xl sm:text-[1.35rem] font-bold leading-snug mt-12 mb-5 text-rurikon-600 text-balance before:content-["###_"] before:font-mono before:text-[0.7em] before:font-normal before:text-rurikon-accent before:mr-2'
       {...props}
     />
   ),
   h4: (props) => (
     <h4
-      className='font-semibold mt-10 mb-5 text-rurikon-600 text-balance'
+      className='font-display font-bold mt-10 mb-5 text-rurikon-600 text-balance'
       {...props}
     />
   ),
@@ -56,7 +56,7 @@ export const components: Record<
   a: ({ href, ...props }) => {
     return (
       <Link
-        className='break-words decoration-from-font underline underline-offset-2 decoration-rurikon-300 hover:decoration-rurikon-accent hover:text-rurikon-accent focus:outline-none focus-visible:rounded-xs focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-opacity-50 focus-visible:ring-offset-2'
+        className='break-words decoration-from-font underline underline-offset-2 decoration-rurikon-200 hover:decoration-rurikon-accent hover:text-rurikon-accent focus:outline-none focus-visible:rounded-xs focus-visible:ring-2 focus-visible:ring-current focus-visible:ring-opacity-50 focus-visible:ring-offset-2'
         href={href}
         draggable={false}
         {...(href?.startsWith('https://')
@@ -69,11 +69,11 @@ export const components: Record<
       />
     )
   },
-  strong: (props) => <strong className='font-bold' {...props} />,
+  strong: (props) => <strong className='font-bold text-rurikon-600' {...props} />,
   p: (props) => <p className='mt-7' {...props} />,
   blockquote: (props) => (
     <blockquote
-      className='pl-6 -ml-6 sm:pl-10 sm:-ml-10 md:pl-14 md:-ml-14 not-mobile:text-rurikon-400'
+      className='pl-6 -ml-6 sm:pl-10 sm:-ml-10 md:pl-14 md:-ml-14 text-rurikon-400'
       {...props}
     />
   ),
@@ -115,7 +115,7 @@ export const components: Record<
       )
     }
 
-    return <code className='inline' {...props} />
+    return <code className='inline text-[0.88em] text-rurikon-accent bg-rurikon-50 border border-rurikon-border' {...props} />
   },
   Card,
   Image,
@@ -165,7 +165,7 @@ export const components: Record<
     />
   ),
   td: (props) => <td className='py-2 pr-6' {...props} />,
-  hr: (props) => <hr className='my-14 w-24 border-rurikon-border' {...props} />,
+  hr: (props) => <hr className='my-14 w-24 border-rurikon-200 border-dashed' {...props} />,
   BlockSideTitle,
   InlineMath,
   BlockMath,
