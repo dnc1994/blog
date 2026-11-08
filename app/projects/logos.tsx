@@ -168,3 +168,29 @@ export function GlassBrainLogo(props: LogoProps) {
     </svg>
   )
 }
+
+export function XumingLogo(props: LogoProps) {
+  return (
+    <svg viewBox='0 0 64 64' fill='none' aria-hidden='true' {...props}>
+      <rect x='1.5' y='1.5' width='61' height='61' rx='14' className='fill-rurikon-50 stroke-rurikon-200' />
+      {/* Hourglass frame */}
+      <line x1='13' y1='13' x2='37' y2='13' className='stroke-rurikon-500' strokeWidth='2.6' strokeLinecap='round' />
+      <line x1='13' y1='51' x2='37' y2='51' className='stroke-rurikon-500' strokeWidth='2.6' strokeLinecap='round' />
+      <path
+        d='M16 15C16 23 21 28 25 32C21 36 16 41 16 49H34C34 41 29 36 25 32C29 28 34 23 34 15Z'
+        className='fill-white stroke-rurikon-300'
+        strokeWidth='1.8'
+        strokeLinejoin='round'
+      />
+      {/* Sand */}
+      <path d='M20 20H30C29 24 27 27 25 29C23 27 21 24 20 20Z' className='fill-rurikon-300' />
+      <line x1='25' y1='31' x2='25' y2='42' className='stroke-rurikon-300' strokeWidth='1.2' strokeDasharray='1.5 2' />
+      <path d='M19 48C19.5 44.5 22 42.5 25 42.5C28 42.5 30.5 44.5 31 48Z' className='fill-rurikon-300' />
+      {/* +1s badge */}
+      <rect x='36' y='24' width='22' height='16' rx='5' className='fill-rurikon-700' />
+      <path d='M40 32H45M42.5 29.5V34.5' className='stroke-white' strokeWidth='1.8' strokeLinecap='round' />
+      <path d='M48 29.2L49.6 28V36' className='stroke-white' strokeWidth='1.8' strokeLinecap='round' strokeLinejoin='round' />
+      <path d='M55 31C54.6 30.3 53.9 30 53.1 30C52.2 30 51.6 30.5 51.6 31.1C51.6 32.6 55.2 32 55.2 34.1C55.2 34.8 54.5 35.4 53.3 35.4C52.4 35.4 51.6 35 51.3 34.3' className='stroke-white' strokeWidth='1.4' strokeLinecap='round' strokeLinejoin='round' />
+    </svg>
+  )
+}
