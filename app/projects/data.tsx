@@ -1,5 +1,6 @@
 import type { ReactNode, SVGProps } from 'react'
 import {
+  BurningChariotLogo,
   BwCalendarLogo,
   HermesSidebarLogo,
   MagiLogo,
@@ -20,6 +21,14 @@ export interface Project {
 
 // To override a logo, swap the `logo` component for a project below.
 export const projects: Project[] = [
+  {
+    id: 'burning-chariot',
+    name: '燃烧战车 Burning Chariot',
+    description:
+      'A browser remake of the classic turn-based tank artillery game, with wind and destructible terrain.',
+    repoUrl: 'https://burning-chariot.linghao.io/',
+    logo: BurningChariotLogo,
+  },
   {
     id: 'taste-loss-taxonomy',
     name: 'Taste Loss Taxonomy',
