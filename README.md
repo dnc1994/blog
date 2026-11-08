@@ -1,306 +1,108 @@
 # Synthesist in the Shell
 
-A blog by Linghao Zhang, built with Next.js 15 and modern web technologies.
-
-## Tech Stack
-
-- **Framework**: Next.js 15 (App Directory, Static Export)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS 4
-- **Content**: MDX for rich content
-- **Syntax Highlighting**: Shiki
-- **Math**: KaTeX
-- **Fonts**: Inter Variable, Lora Italic Variable, Iosevka Fixed Curly
-- **Deployment**: Cloudflare Pages
+Linghao Zhang's blog at [linghao.io](https://linghao.io): a static Next.js site with a terminal / memory-dump design, deployed on Cloudflare Pages.
 
 ## Features
 
-- ✨ Modern, clean design with smooth view transitions
-- 📱 Fully responsive layout
-- 🎨 Custom typography with variable fonts
-- 🌈 Flexoki-inspired color scheme (warm cream, near-black text, teal accents)
-- 📝 MDX support for rich content
-- 🔍 Syntax highlighting for code blocks
-- 🧮 Math rendering support
-- 🏷️ Tag system with filtering
-- 🧩 Projects page with SVG logos
-- 📸 Photography gallery with lightbox
-- 📡 Auto-generated RSS feed
-- 🗂️ Toggleable table of contents sidebar for long posts
-- ⚓ Anchor links on all headings
-- 🌐 Multilingual article support with language switcher
-- ⚡ Optimized static site with CDN delivery
+- **Memory Dump design**: dark by default (cream light mode via the toggle), glitch headlines, scanlines, and article lists rendered as hex dumps whose titles decode from noise
+- **Hidden shell**: press `` ` `` anywhere (or tap `>_ shell` in the footer) for a working terminal: `ls`, `open 3`, `grep memory`, `tags`, `cd projects`, `theme light`, `magi <question>`, and more
+- **`/dive`**: jack in and fall through a shaft of streaming glyphs into a 3D map of every post, laid out by what the posts say; click a node to dive into it
+- MDX posts with Shiki syntax highlighting, KaTeX math, side notes and link cards
+- Multilingual posts (English / 中文) with a language switcher
+- Drafts that are committed but never published
+- Tag filtering, TOC sidebar for long posts, anchor links on headings
+- Optional per-post soundtrack (YouTube player)
+- Projects page, photo gallery with lightbox, curated lists, resume page
+- RSS feed generated on every build
 
-## Getting Started
+## Getting started
 
-### Prerequisites
-
-- Node.js 18.18 or later
-- npm
-
-### Installation
+Requires Node.js 18.18–22 and npm.
 
 ```bash
 npm install
+npm run dev      # http://localhost:3000 (drafts visible)
+npm run build    # static export to dist/ + dist/feed.xml
 ```
 
-### Development
+There is no test suite; `npm run build` is the check. ESLint is not configured.
 
-```bash
-npm run dev
-```
+## Writing a post
 
-Open [http://localhost:3000](http://localhost:3000) to view the blog.
-
-### Build
-
-```bash
-npm run build
-```
-
-The build outputs to the `dist/` directory and includes:
-- Static HTML/CSS/JS files
-- Auto-generated RSS feed at `/feed.xml`
-
-### Additional Commands
-
-```bash
-# Generate RSS feed only
-npm run rss
-
-# Deploy to Cloudflare Pages (preview)
-npm run deploy
-
-# Deploy to Cloudflare Pages (production)
-npm run deploy:prod
-
-# Lint code
-npm run lint
-```
-
-## Project Structure
-
-```
-.
-├── app/                     # Next.js app directory
-│   ├── _fonts/             # Custom font files
-│   ├── globals.css         # Global styles
-│   ├── layout.tsx          # Root layout
-│   ├── page.mdx            # Home page
-│   ├── posts/              # Blog posts
-│   │   ├── page.tsx        # Posts index
-│   │   ├── [slug]/         # Dynamic post pages
-│   │   └── _articles/      # Post content (MDX)
-│   ├── notes/              # Legacy URL compatibility routes (redirect/alias to posts)
-│   │   ├── page.tsx        # Legacy notes index
-│   │   └── [slug]/         # Legacy note URLs
-│   ├── misc/               # Miscellaneous articles
-│   │   ├── page.tsx        # Misc index
-│   │   ├── [slug]/         # Dynamic misc pages
-│   │   └── _articles/      # Misc content (MDX)
-│   ├── gallery/            # Photography gallery
-│   │   ├── page.tsx        # Gallery page
-│   │   ├── gallery-grid.tsx # Lightbox component
-│   │   └── data.ts         # Photo data
-│   ├── lists/              # Curation lists
-│   │   ├── page.tsx        # Lists hub
-│   │   └── [slug]/         # Individual list pages
-│   ├── projects/           # Projects page
-│   │   ├── page.tsx        # Projects page
-│   │   ├── data.tsx        # Project metadata
-│   │   └── logos.tsx       # Project SVG logos
-│   ├── resume/             # Public resume at /resume
-│   │   ├── source.ts       # Resume content source of truth
-│   │   └── page.tsx        # Resume HTML renderer
-│   └── tags/               # Tag system
-│       └── all/            # Tag filtering page
-├── components/             # React components
-│   ├── navbar.tsx          # Navigation
-│   ├── tag.tsx             # Tag component
-│   ├── toc-sidebar.tsx     # Table of contents sidebar
-│   └── ...                 # Other components
-├── lib/                    # Utilities
-│   ├── articles.ts         # Content loading
-│   ├── seo.ts              # OG/social image resolution
-│   └── tags.ts             # Tag management
-├── scripts/                # Build scripts
-│   └── generate-rss.mjs    # RSS generation
-├── public/                 # Static assets
-├── dist/                   # Build output
-├── mdx-components.tsx      # MDX component config
-├── next.config.ts          # Next.js config
-├── wrangler.toml           # Cloudflare config
-```
-
-## Content Management
-
-### Adding a New Post
-
-1. Create a new `.mdx` file in `app/posts/_articles/`
-2. Add metadata at the top:
+Create `app/posts/_articles/<slug>.mdx` (or `app/misc/_articles/` for miscellany) and export metadata:
 
 ```mdx
 export const metadata = {
   title: 'Your Post Title',
   description: 'A brief description',
-  date: '2025.01.01',
-  tags: ['Tag1', 'Tag2'],
+  date: '2026.01.01',
+  tags: ['AI', 'Career'],
 
-  // Optional: show a table of contents sidebar (default open)
-  toc: true,
-
-  // Optional: OG/social card image (hosted on Cloudflare R2 or any public URL)
+  // optional
+  draft: true,                 // keep unpublished
+  toc: true,                   // open the TOC sidebar by default
   image: 'https://r2.linghao.io/blog-assets/your-image.png',
   imageWidth: 1200,
   imageHeight: 630,
-
-  // Optional: multilingual linking (see Multilingual Support below)
-  language: 'en',
-  translationId: 'shared-slug',
-  canonical: true,
+  language: 'en',              // multilingual: posts sharing a translationId
+  translationId: 'shared-slug',//   get a language switcher; only the
+  canonical: true,             //   canonical one is listed
+  chinese: true,               // Chinese typography
+  music: { youtube: 'VIDEO_ID', title: 'Song', artist: 'Artist' },
 }
 
-Your content here...
+Your content here…
 ```
 
-3. The post will automatically:
-   - Appear in the posts index
-   - Be included in RSS feed
-   - Be filterable by tags
-   - Get a URL like `/posts/your-post-title`
-   - Have anchor links on all headings (`#heading-slug`)
+The post appears on `/posts`, the home page dump, tag pages, the RSS feed and the `/dive` map automatically (unless it's a draft or a non-canonical translation). `npm run blog:image` helps prepare a banner and OG image (see the script header).
 
-### Table of Contents
+MDX can use `<Card>`, `<BlockSideTitle title="…">`, `<InlineMath>` and `<BlockMath>`.
 
-Any post with two or more headings gets a toggleable TOC sidebar. A small icon button appears on the right side of the viewport; clicking it opens a panel listing all headings (h2–h4) with hierarchical numbering and active-heading highlighting as you scroll.
+## Other content
 
-By default the sidebar is **closed**. Set `toc: true` in the article metadata to have it open automatically — useful for long reference posts.
+- **Projects**: `app/projects/data.tsx` (logos in `logos.tsx`)
+- **Gallery**: `app/gallery/data.ts`, images hosted on Cloudflare R2
+- **Lists**: `app/lists/<list>/data.ts`
+- **Resume**: `app/resume/source.ts` (see `docs/resume.md`)
 
-### Multilingual Support
+## Project structure
 
-Articles sharing a `translationId` are grouped as translations of each other. The article page shows a language switcher between them. Only the `canonical: true` version appears in index pages and tag pages.
-
-```mdx
-export const metadata = {
-  title: 'My Post',
-  language: 'en',
-  translationId: 'my-post',
-  canonical: true,
-}
+```
+app/
+  layout.tsx, globals.css   Root layout, theme script, design tokens
+  page.mdx                  Home (hero, recent dump, projects, featured)
+  posts/ misc/              Index pages, [slug] pages, _articles/*.mdx
+  notes/                    Legacy /notes/* compatibility routes
+  dive/                     /dive (3D net dive)
+  gallery/ lists/ projects/ resume/ tags/ …
+components/
+  navbar, site-footer, content-frame   Site shell
+  decode, dump-list, home              Decode effect, hex-dump lists, home sections
+  shell/                               Hidden terminal (commands.ts = command set)
+  dive/                                Three.js scene, glyph rain, CRT pass, audio
+lib/
+  articles.ts   Content loading (drafts, translations)
+  dump.ts       Hex-dump helpers
+  dive-map.ts   Build-time 3D layout of posts
+  tags.ts, seo.ts, legacy-notes.ts
+scripts/        RSS, OG and banner image tooling
+docs/           Design reference, resume workflow, historical plans
 ```
 
-### Content Sections
+## Docs
 
-- **Posts** (`app/posts/_articles/`) - Blog posts and reading notes
-- **Misc** (`app/misc/_articles/`) - Miscellaneous content
-
-Legacy `/notes/*` URLs are still supported for backward compatibility, but new content should be added under `posts`.
-
-### Resume Page
-
-The public resume is available at `/resume`. Its content source is `app/resume/source.ts`, and the rendered HTML page is `app/resume/page.tsx`. Update content in `source.ts`; only edit `page.tsx` for layout/styling changes. See `docs/resume.md` for the full update workflow.
-
-### Gallery
-
-The gallery feature displays a collection of photography. Photos are managed in `app/gallery/data.ts`.
-
-To add a new photo:
-1. Upload the image to a hosting service (e.g., Cloudflare R2).
-2. Add a new object to the `photos` array in `app/gallery/data.ts`:
-
-```typescript
-{
-  id: 'unique-id',
-  src: 'https://your-image-url.jpg',
-  alt: 'Description for accessibility',
-  caption: 'Optional caption text',
-  metadata: {
-    'Location': 'Kyoto, Japan',
-    'Date': '2024-10-28',
-    'Camera': 'Sony α7C II',
-  }
-}
-```
-
-### Using Components
-
-MDX files can use React components:
-
-```mdx
-<Card
-  image="https://example.com/image.jpg"
-  title="Card Title"
-  desc="Description"
-  link="https://example.com"
-/>
-
-<BlockSideTitle title="Side note text">
-  Main content here
-</BlockSideTitle>
-```
-
-## Customization
-
-### Colors
-
-The blog uses the "rurikon" color palette defined in `app/globals.css`, mapped to [Flexoki](https://stephango.com/flexoki) values. Customize colors by modifying the `@theme` section. See [`docs/visual-style.md`](./docs/visual-style.md) for the full palette reference.
-
-### Fonts
-
-Fonts are loaded locally via `next/font/local` in `app/layout.tsx` and exposed as CSS variables:
-
-- `--sans`: Inter Variable (body text, headings, UI elements — used everywhere)
-- `--serif`: Lora Italic Variable (navigation elements via global `nav {}` rule)
-- `--mono`: Iosevka Fixed Curly (code blocks and inline code)
-
-### Navigation
-
-Edit `components/navbar.tsx` to modify navigation links.
+- [`AGENTS.md`](./AGENTS.md): architecture and conventions (the guide for AI coding agents, also the best technical overview)
+- [`DEPLOYMENT.md`](./DEPLOYMENT.md): branches, preview URLs, rollback
+- [`docs/visual-style.md`](./docs/visual-style.md): the design system
 
 ## Deployment
 
-```bash
-# Deploy to preview
-npm run deploy
-
-# Deploy to production
-npm run deploy:prod
-```
-
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed setup instructions.
-
-## Tag System
-
-### Using Tags
-
-Add tags to any article's metadata:
-
-```mdx
-export const metadata = {
-  title: 'My Post',
-  tags: ['JavaScript', 'React', 'Web Development'],
-}
-```
-
-### Viewing Tags
-
-- Browse all tags: `/tags/all`
-- Filter by tags: `/tags/all?tag=JavaScript`
-- Click tags on articles to filter
-
-## RSS Feed
-
-The RSS feed is automatically generated on every build:
-
-- **Feed URL**: `https://linghao.io/feed.xml`
-- **Includes**: All posts and misc articles
-- **Updates**: Automatic on deployment
-- **Manual generation**: `npm run rss`
+Cloudflare Pages builds from GitHub: pushing to `master` deploys to production immediately; any other branch gets a preview URL. See [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ## License
 
-MIT
+Code: MIT. Writing and photos: CC BY-NC-ND 4.0 unless noted otherwise.
 
 ## Acknowledgments
 
-This blog is inspired by [Shu Ding's blog](https://shud.in/).
+The original layout was inspired by [Shu Ding's blog](https://shud.in/). The current Memory Dump design was designed and built with [Claude](https://claude.ai); light mode uses [Flexoki](https://stephango.com/flexoki) by Steph Ango.

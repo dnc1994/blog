@@ -20,9 +20,15 @@ Because a push to `master` goes live right away, all changes go through a branch
 1. Create a branch from `master`.
 2. Make changes and run `npm run build` to catch type and build errors.
 3. Push the branch, then review the result at its preview URL.
-4. Merge into `master` (directly or via PR) to publish.
+4. Merge into `master` (directly or via PR) to publish. Prefer a merge commit (`--no-ff`) so the whole change can be undone with one revert.
 
-Drafts can also be committed with `draft: true` in their metadata. They are excluded from the exported build, so they aren't reachable on preview or production (see `CLAUDE.md`). To review a draft on a preview URL, make the flip to `draft: false` on the branch.
+Drafts can also be committed with `draft: true` in their metadata. They are excluded from the exported build, so they aren't reachable on preview or production (see `AGENTS.md`). To review a draft on a preview URL, make the flip to `draft: false` on the branch.
+
+## Rolling back
+
+- **A feature:** `git revert -m 1 <merge-commit>` on `master` and push; Cloudflare redeploys in about a minute.
+- **The previous design:** preserved on branch `design-v1`, viewable at `design-v1.blog-29f.pages.dev`.
+- **Instantly, without git:** in the Cloudflare dashboard, open **Deployments** and use **Rollback** on an earlier production deployment.
 
 ## Cloudflare settings
 
@@ -44,5 +50,5 @@ npm run deploy:prod   # build + production deploy (--branch=master)
 
 ## Troubleshooting
 
-- **Build fails on Cloudflare:** run `npm run build` locally (or `npm run lint` for a faster first pass) and check the build log in the Cloudflare dashboard under **Deployments**.
+- **Build fails on Cloudflare:** run `npm run build` locally and check the build log in the Cloudflare dashboard under **Deployments**.
 - **No preview for a branch:** check the preview branch setting above. To rebuild, push an empty commit: `git commit --allow-empty -m "Trigger rebuild" && git push`.

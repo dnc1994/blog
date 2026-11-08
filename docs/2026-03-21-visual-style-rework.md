@@ -1,5 +1,7 @@
 # Visual Style Rework (2026-03-21)
 
+> **Historical.** This describes the Flexoki rework of the previous design, which was replaced by the Memory Dump redesign in November 2026 (see `visual-style.md`). The old design is preserved on branch `design-v1`.
+
 Reworked the blog's visual style to match [stephango.com](https://stephango.com), using the [Flexoki](https://stephango.com/flexoki) color palette as a reference. Changes were kept to `app/globals.css`, `mdx-components.tsx`, and page-level link components to make the diff easy to revert.
 
 ## Colors
