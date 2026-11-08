@@ -106,7 +106,7 @@ const body = [
       )
     ),
 
-  `\\section{\\sc Skills}\n\n` +
+  `\\section{\\sc Expertise}\n\n` +
     skills.map((s) => `\\rm \\textbf{${tex(s.label)}:} ${s.items.map((i) => rich(i)).join(', ')}`).join('\\\\\n'),
 ].join('\n\n')
 

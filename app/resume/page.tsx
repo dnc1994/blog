@@ -279,7 +279,7 @@ export default function ResumePage() {
 
         .resumeSkillRow {
           display: grid;
-          grid-template-columns: 21mm 1fr;
+          grid-template-columns: 32mm 1fr;
           gap: 3mm;
           padding: 0.4mm 0;
         }
@@ -290,6 +290,7 @@ export default function ResumePage() {
           font-weight: 500;
           text-transform: uppercase;
           letter-spacing: 0.45pt;
+          white-space: nowrap;
         }
 
         .resumeSkillText { color: var(--warm-ink); }
@@ -394,7 +395,7 @@ export default function ResumePage() {
         </section>
 
         <section className='resumeSection' aria-labelledby='resume-skills-title'>
-          <div className='resumeSectionLabel' id='resume-skills-title'>Skills</div>
+          <div className='resumeSectionLabel' id='resume-skills-title'>Expertise</div>
           <div className='resumeSectionBody resumeSkills'>
             {resume.skills.map((skill) => (
               <div className='resumeSkillRow' key={skill.label}>

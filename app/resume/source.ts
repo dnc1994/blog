@@ -95,7 +95,7 @@ export const resume: Resume = {
           ],
         },
         {
-          lead: 'Full-Stack Technical Leadership (Short-Term Memory)',
+          lead: 'Full-Stack Technical Leadership',
           text: 'Took Short-Term Memory from early prototyping and executive buy-in to memory synthesis and retrieval infrastructure from scratch; established the quality flywheel through human eval protocols, 3P data vendors, automated eval pipelines, A/B test tooling, and telemetry for sparse, noisy, global multilingual traffic.',
           pdf: {
             text: 'Drove Short-Term Memory from early prototyping & securing executive buy-in to building memory synthesis & retrieval infra from scratch while achieving cost-efficiency at massive scale; established the quality flywheel through defining human eval protocols, managing 3P data vendors, and building automated eval pipelines; spearheaded A/B test tooling and telemetry to accelerate experimentation of new modeling techniques despite sparse feedback and noisy signals from global, multilingual traffic.',
@@ -186,12 +186,10 @@ export const resume: Resume = {
     },
   ],
   skills: [
-    { label: 'Languages', items: ['C++', 'Python', 'Go', 'Kotlin/Java', 'SQL', 'TypeScript', 'LaTeX', 'Japanese (JLPT N2)'] },
-    {
-      label: 'AI / ML',
-      items: ['JAX', 'TensorFlow', 'SFT / LoRA', 'RL', 'RAG', 'LLM Evals', 'Human & Synthetic Data'],
-      pdf: { label: 'AI/ML', items: ['JAX', 'TensorFlow', 'SFT/LoRA', 'RL', 'RAG', 'LLM Evals', 'Human & Synthetic Data'] },
-    },
-    { label: 'Infra', items: ['GCP', 'BigQuery', 'PostgreSQL', 'JDBC', 'Query Engines', 'Vectorized Processing'] },
+    { label: 'Agents & Memory', items: ['Proactive Agent Design', 'Memory Modeling', 'Personalization', 'RAG'] },
+    { label: 'Model Quality', items: ['Post-Training (SFT/LoRA, RL)', 'Reward Design', 'JAX'] },
+    { label: 'Evals & Data', items: ['LLM-as-Judge Autoraters', 'Synthetic Data', 'Evals for Open-Ended Tasks'] },
+    { label: 'Systems', items: ['LLM Inference Optimization', 'Distributed Query Engines', 'Vectorized Processing'] },
+    { label: 'Languages', items: ['C++', 'Python', 'Go', 'Kotlin/Java', 'SQL', 'TypeScript', 'Japanese (JLPT N2)'] },
   ],
 }
