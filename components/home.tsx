@@ -4,6 +4,7 @@ import { DumpList } from '@/components/dump-list'
 import { getDedupedArticlesFromSection } from '@/lib/articles'
 import { toDumpEntries } from '@/lib/dump'
 import { projects } from '@/app/projects/data'
+import { RandomSubset } from '@/components/random-subset'
 
 export function SectionLabel({ children, id }: { children: React.ReactNode; id?: string }) {
   return (
@@ -73,8 +74,12 @@ export function ProjectsPs({ count = 3 }: { count?: number }) {
   return (
     <section aria-labelledby='ps' className='pb-14'>
       <SectionLabel id='ps'>$ ps aux | grep projects</SectionLabel>
-      <ul className='grid gap-3 grid-cols-[repeat(auto-fit,minmax(16rem,1fr))]'>
-        {projects.slice(0, count).map((p) => (
+      {/* Without JS the list would stay transparent; show the first few instead. */}
+      <noscript>
+        <style>{'[data-random-subset]{opacity:1!important}'}</style>
+      </noscript>
+      <RandomSubset count={count} className='grid gap-3 grid-cols-[repeat(auto-fit,minmax(16rem,1fr))]'>
+        {projects.map((p) => (
           <li
             key={p.id}
             className='group relative h-full p-5 border border-rurikon-border hover:border-rurikon-accent transition-colors'
@@ -94,7 +99,7 @@ export function ProjectsPs({ count = 3 }: { count?: number }) {
             </div>
           </li>
         ))}
-      </ul>
+      </RandomSubset>
       <Link
         href='/projects'
         className='inline-block mt-4 font-mono text-xs text-rurikon-accent hover:text-rurikon-800 transition-colors'

@@ -25,7 +25,7 @@ export const projects: Project[] = [
     id: 'burning-chariot',
     name: '燃烧战车 Burning Chariot',
     description:
-      'A vibe-coded browser remake of Burning Chariot, the turn-based artillery tank game once hosted on the Sina game lobby. Tune angle and power, read the wind, and blow your opponent off a destructible map. Pure frontend, zero dependencies — just open index.html.',
+      'A browser remake of the classic turn-based tank artillery game, with wind and destructible terrain.',
     repoUrl: 'https://burning-chariot.linghao.io/',
     logo: BurningChariotLogo,
   },
