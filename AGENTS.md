@@ -93,7 +93,7 @@ Full reference: `docs/visual-style.md`. Essentials:
 - `/projects`: data in `app/projects/data.tsx` (logos in `logos.tsx`). The home page shows 3 random projects.
 - `/gallery`: photos in `app/gallery/data.ts`, hosted on R2 (`r2.linghao.io`), lightbox in `gallery-grid.tsx`.
 - `/lists`: curation hub (`app/lists/page.tsx`) with one folder per list (`ai-research`, `design`, `sci-fi`, `working-with-ai`), each with its own `data.ts`. Lists and their items are sorted alphabetically at render time, so data files can be in any order.
-- `/resume`: content in `app/resume/source.ts`, rendering in `page.tsx`. See `docs/resume.md`.
+- `/resume`: content in `app/resume/source.ts`, rendering in `page.tsx`. The recruiter PDF's `resume-pdf/main.tex` is generated from the same source: after editing `source.ts`, run `npm run resume:tex` and commit `main.tex` too. See `docs/resume.md`.
 - `/tags/all`: tag browser. Standalone pages: `/the-best-things`, `/hyperbola`, `/my-subscriptions`, `/taste-loss-taxonomy`.
 - RSS: `scripts/generate-rss.mjs` runs after every build (posts + misc, drafts excluded).
 

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { resume, type ResumeLink } from './source'
+import { resume as source, type ResumeLink } from './source'
+import { resolve, resolveAll } from './variants'
 
 export const metadata: Metadata = {
   title: 'Resume',
@@ -49,6 +50,17 @@ function linkifyText(text: string, links: ResumeLink[] = []) {
   return parts
 }
 
+const top = resolve(source, 'web')!
+const resume = {
+  ...top,
+  experience: resolveAll(source.experience, 'web').map((job) => ({
+    ...job,
+    bullets: resolveAll(job.bullets, 'web'),
+  })),
+  education: resolveAll(source.education, 'web'),
+  skills: resolveAll(source.skills, 'web'),
+}
+
 export default function ResumePage() {
   return (
     <div className='resumeStandalone' aria-label='Linghao Zhang resume'>
@@ -94,9 +106,8 @@ export default function ResumePage() {
 
         .resumeSheet {
           max-width: 210mm;
-          min-height: 297mm;
           margin: 14px auto;
-          padding: 10mm 12mm;
+          padding: 12mm;
           background: var(--parchment);
           box-shadow: 0 20px 60px rgba(42, 39, 25, 0.13);
           border: 1px solid rgba(216, 212, 200, 0.8);
@@ -137,37 +148,6 @@ export default function ResumePage() {
         }
 
         .resumeContact .sep { color: var(--rule-strong); padding: 0 0.5mm; }
-
-        .resumeMetrics {
-          display: grid;
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-          column-gap: 5mm;
-          margin-bottom: 2.9mm;
-        }
-
-        .resumeMetric {
-          border-bottom: 0.35pt dotted var(--rule-strong);
-          padding-bottom: 1.4mm;
-        }
-
-        .resumeMetricValue {
-          display: block;
-          font-size: 12.7pt;
-          line-height: 1;
-          font-weight: 500;
-          color: var(--brand);
-          font-variant-numeric: tabular-nums;
-          white-space: nowrap;
-        }
-
-        .resumeMetricLabel {
-          display: block;
-          margin-top: 0.8mm;
-          color: var(--olive);
-          font-size: 8.35pt;
-          line-height: 1.15;
-          white-space: nowrap;
-        }
 
         .resumeSection {
           display: grid;
@@ -298,7 +278,7 @@ export default function ResumePage() {
 
         .resumeSkillRow {
           display: grid;
-          grid-template-columns: 21mm 1fr;
+          grid-template-columns: 32mm 1fr;
           gap: 3mm;
           padding: 0.4mm 0;
         }
@@ -309,15 +289,26 @@ export default function ResumePage() {
           font-weight: 500;
           text-transform: uppercase;
           letter-spacing: 0.45pt;
+          white-space: nowrap;
         }
 
         .resumeSkillText { color: var(--warm-ink); }
 
+        /* The sheet is typeset in print sizes (pt/mm); scale it up for reading on screen. */
+        @media screen {
+          .resumeSheet { zoom: 1.15; }
+        }
+        @media screen and (min-width: 1100px) {
+          .resumeSheet { zoom: 1.3; margin: 24px auto; }
+        }
+        @media screen and (min-width: 1400px) {
+          .resumeSheet { zoom: 1.45; margin: 32px auto; }
+        }
+
         @media (max-width: 720px) {
-          .resumeSheet { min-height: auto; margin: 0; padding: 18px; border: none; box-shadow: none; }
+          .resumeSheet { margin: 0; padding: 18px; border: none; box-shadow: none; }
           .resumeHeader { grid-template-columns: 1fr; gap: 8px; }
           .resumeContact { text-align: left; white-space: normal; }
-          .resumeMetrics { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 10px; }
           .resumeSection { grid-template-columns: 1fr; gap: 5px; }
           .resumeSectionBody { padding-top: 8px; }
           .resumeRoleHead, .resumeEduItem { grid-template-columns: 1fr; row-gap: 3px; }
@@ -359,15 +350,6 @@ export default function ResumePage() {
           </address>
         </header>
 
-        <div className='resumeMetrics' aria-label='Career highlights'>
-          {resume.metrics.map((metric) => (
-            <div className='resumeMetric' key={metric.label}>
-              <span className='resumeMetricValue'>{metric.value}</span>
-              <span className='resumeMetricLabel'>{metric.label}</span>
-            </div>
-          ))}
-        </div>
-
         <section className='resumeSection' aria-labelledby='resume-summary-title'>
           <div className='resumeSectionLabel' id='resume-summary-title'>Summary</div>
           <div className='resumeSectionBody'>
@@ -393,7 +375,7 @@ export default function ResumePage() {
                 <ul className='resumeBullets'>
                   {job.bullets.map((bullet) => (
                     <li key={`${job.company}-${bullet.lead || bullet.text}`}>
-                      {bullet.lead ? <strong>{bullet.lead}: </strong> : null}
+                      {bullet.lead ? <strong>{linkifyText(bullet.lead, bullet.links)}: </strong> : null}
                       {linkifyText(bullet.text, bullet.links)}
                     </li>
                   ))}
@@ -423,7 +405,7 @@ export default function ResumePage() {
         </section>
 
         <section className='resumeSection' aria-labelledby='resume-skills-title'>
-          <div className='resumeSectionLabel' id='resume-skills-title'>Skills</div>
+          <div className='resumeSectionLabel' id='resume-skills-title'>Expertise</div>
           <div className='resumeSectionBody resumeSkills'>
             {resume.skills.map((skill) => (
               <div className='resumeSkillRow' key={skill.label}>

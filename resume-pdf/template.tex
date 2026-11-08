@@ -1,0 +1,83 @@
+% Hand-edited layout for the PDF resume. Content comes from app/resume/source.ts;
+% run `npm run resume:tex` to regenerate main.tex. Do not edit main.tex directly.
+
+\documentclass[margin,line]{style}
+% Base font size (10.95pt is LaTeX's standard "11pt"; scrextend also allows sizes like 10.5pt).
+\usepackage[fontsize=10.95pt]{scrextend}
+
+% Page geometry: the same margin on all four sides (US Letter).
+% If an update overflows to 2 pages: shorten text first, then lower the font size or margin.
+% Content is vertically centered, so top and bottom margins stay equal.
+% Width of the left-hand section-label column (style.cls default for `margin` is 1.3in).
+\newsectionwidth{1.1in}
+\newlength{\pagemargin}\setlength{\pagemargin}{0.55in}
+\setlength{\topmargin}{\dimexpr\pagemargin-1in\relax}
+\setlength{\oddsidemargin}{\dimexpr\pagemargin-1in\relax}
+\setlength{\headheight}{0pt}\setlength{\headsep}{0pt}\setlength{\footskip}{0pt}
+\setlength{\textheight}{\dimexpr\paperheight-2\pagemargin\relax}
+% \hoffset (= the section-label column, set by style.cls) sits inside the left margin area.
+\setlength{\textwidth}{\dimexpr\paperwidth-2\pagemargin-\hoffset\relax}
+\itemsep=0in
+\parsep=0in
+
+\usepackage[pdftex]{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue
+}
+
+% NOTE: Use this for lists without a header
+\newenvironment{list2}
+    {
+        \vspace{-1em}
+        \begin{list}{$\bullet$}{
+            \setlength{\itemsep}{0.3em}
+            \setlength{\parsep}{0in}
+            \setlength{\parskip}{0in}
+            \setlength{\topsep}{0in}
+            \setlength{\partopsep}{0in}
+            \setlength{\leftmargin}{0.2in}
+        }
+    }
+    {
+        \end{list}
+    }
+
+% NOTE: Use this for lists with a header   
+\newenvironment{list3}
+    {
+        \begin{list}{$\bullet$}{
+            \setlength{\itemsep}{0in}
+            \setlength{\parsep}{0in}
+            \setlength{\parskip}{0in}
+            \setlength{\topsep}{0in}
+            \setlength{\partopsep}{0in}
+            \setlength{\leftmargin}{0.2in}
+        }
+    }
+    {
+        \end{list}
+    }
+
+% For "C++"
+\def\CC{{C\nolinebreak[4]\hspace{-.05em}\raisebox{.4ex}{\tiny\bf ++}}}
+% \newcommand{\CC}{C\nolinebreak\hspace{-.05em}\raisebox{.4ex}{\tiny\bf +}\nolinebreak\hspace{-.10em}\raisebox{.4ex}{\tiny\bf +}}
+
+%\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\begin{document}
+
+% (undo \topskip and \parskip so the fills alone set the top margin)
+\vspace*{\fill}\vskip-\topskip\vskip-\parskip\nointerlineskip
+%%HEADER%%
+
+\begin{resume}
+
+%%BODY%%
+
+\end{resume}
+\vspace*{\fill}
+
+\end{document}
