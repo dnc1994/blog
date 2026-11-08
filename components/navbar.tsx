@@ -9,7 +9,6 @@ const items = [
   { href: "/", label: "about" },
   { href: "/posts", label: "posts" },
   { href: "/projects", label: "projects" },
-  { href: "/gallery", label: "gallery" },
   { href: "/lists", label: "curation" },
 ];
 
