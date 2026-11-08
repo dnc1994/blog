@@ -148,3 +148,23 @@ export function BurningChariotLogo(props: LogoProps) {
     </svg>
   )
 }
+
+export function GlassBrainLogo(props: LogoProps) {
+  return (
+    <svg viewBox='0 0 64 64' fill='none' aria-hidden='true' {...props}>
+      <rect x='1.5' y='1.5' width='61' height='61' rx='14' className='fill-rurikon-50 stroke-rurikon-200' />
+      {/* Transparent head in profile */}
+      <path
+        d='M22 52V45C16.5 41.5 13 35.8 13 29.5C13 19.3 21.3 12 31.5 12C41.7 12 49.5 19.3 49.5 28.5L53 36.5H49.5V42C49.5 44.2 47.7 46 45.5 46H40V52'
+        className='fill-white stroke-rurikon-300'
+        strokeWidth='1.8'
+        strokeLinejoin='round'
+      />
+      {/* Memory ledger visible inside */}
+      <rect x='20' y='21' width='18' height='3' rx='1.5' className='fill-rurikon-300' />
+      <rect x='20' y='27.5' width='13' height='3' rx='1.5' className='fill-rurikon-300' />
+      <rect x='20' y='34' width='16' height='3' rx='1.5' className='fill-rurikon-300' />
+      <circle cx='41' cy='28.5' r='3.2' className='fill-rurikon-700' />
+    </svg>
+  )
+}

@@ -2,6 +2,7 @@ import type { ReactNode, SVGProps } from 'react'
 import {
   BurningChariotLogo,
   BwCalendarLogo,
+  GlassBrainLogo,
   HermesSidebarLogo,
   MagiLogo,
   PostSummarizerBotLogo,
@@ -21,6 +22,14 @@ export interface Project {
 
 // To override a logo, swap the `logo` component for a project below.
 export const projects: Project[] = [
+  {
+    id: 'glass-brain',
+    name: 'Glass Brain',
+    description:
+      "An interactive replay of an AI assistant's memory forming over a simulated year of one user's chats.",
+    repoUrl: 'https://dnc1994.github.io/glass-brain/',
+    logo: GlassBrainLogo,
+  },
   {
     id: 'burning-chariot',
     name: '燃烧战车 Burning Chariot',
