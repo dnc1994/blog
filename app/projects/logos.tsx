@@ -127,3 +127,24 @@ export function HermesSidebarLogo(props: LogoProps) {
     </svg>
   )
 }
+
+export function BurningChariotLogo(props: LogoProps) {
+  return (
+    <svg viewBox='0 0 64 64' fill='none' aria-hidden='true' {...props}>
+      <rect x='1.5' y='1.5' width='61' height='61' rx='14' className='fill-rurikon-50 stroke-rurikon-200' />
+      {/* Shell trajectory */}
+      <path d='M27 33C31 17 44 12 52 22' className='stroke-rurikon-300' strokeWidth='1.6' strokeLinecap='round' strokeDasharray='2.5 3' />
+      <circle cx='52' cy='22' r='2.6' className='fill-rurikon-700' />
+      {/* Barrel */}
+      <line x1='22' y1='38' x2='29' y2='30' className='stroke-rurikon-500' strokeWidth='3' strokeLinecap='round' />
+      {/* Turret + hull */}
+      <path d='M16 40C16 35.6 19.1 33 22.5 33C25.9 33 29 35.6 29 40Z' className='fill-rurikon-700' />
+      <rect x='11' y='39.5' width='26' height='6.5' rx='3.25' className='fill-white stroke-rurikon-300' />
+      <circle cx='16' cy='42.75' r='1.5' className='fill-rurikon-300' />
+      <circle cx='24' cy='42.75' r='1.5' className='fill-rurikon-300' />
+      <circle cx='32' cy='42.75' r='1.5' className='fill-rurikon-300' />
+      {/* Cratered terrain */}
+      <path d='M8 52C14 49 19 49.5 24 51C30 52.8 34 48 40 48C43 48 44 51.5 47 51.5C50 51.5 51 49 56 50' className='stroke-rurikon-400' strokeWidth='1.8' strokeLinecap='round' />
+    </svg>
+  )
+}
