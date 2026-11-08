@@ -8,6 +8,7 @@ import {
   PostSummarizerBotLogo,
   RedactleZhLogo,
   TasteLossTaxonomyLogo,
+  XumingLogo,
 } from './logos'
 
 export type ProjectLogo = (props: SVGProps<SVGSVGElement>) => JSX.Element
@@ -22,6 +23,14 @@ export interface Project {
 
 // To override a logo, swap the `logo` component for a project below.
 export const projects: Project[] = [
+  {
+    id: 'xuming',
+    name: '续命工坊 Xuming Workshop',
+    description:
+      'A Chinese meme-culture idle clicker: every click buys one more second of life, and the long-term goal is to extend the whole universe by one second.',
+    repoUrl: 'https://xuming.linghao.io/',
+    logo: XumingLogo,
+  },
   {
     id: 'glass-brain',
     name: 'Glass Brain',
