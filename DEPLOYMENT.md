@@ -1,17 +1,17 @@
 # Deployment Guide
 
-The blog is a static Next.js export (`dist/`) hosted on Cloudflare Pages, project `linghao-io` (see `wrangler.toml`). Cloudflare builds and deploys straight from GitHub through its Git integration. There are no GitHub Actions workflows.
+The blog is a static Next.js export (`dist/`) hosted on Cloudflare Pages, project `linghao-io` (see `wrangler.toml`). Its `*.pages.dev` subdomain is `blog-29f`, so preview URLs use that hostname, not the project name. Cloudflare builds and deploys straight from GitHub through its Git integration. There are no GitHub Actions workflows.
 
 ## Branches
 
 | Branch | Deploys to | When |
 | --- | --- | --- |
 | `master` | Production, `linghao.io` | Every push, immediately |
-| Any other branch | Preview, `<branch>.linghao-io.pages.dev` | Every push |
+| Any other branch | Preview, `<branch>.blog-29f.pages.dev` | Every push |
 
-Every deployment also gets an immutable per-commit URL (`<hash>.linghao-io.pages.dev`), shown in the Cloudflare dashboard and as a commit status / PR check on GitHub.
+Every deployment also gets an immutable per-commit URL (`<hash>.blog-29f.pages.dev`), shown in the Cloudflare dashboard and as a commit status / PR check on GitHub.
 
-Branch names are slugified for the preview hostname: lowercased, with `/` and other non-alphanumeric characters replaced by `-`. For example, `docs/foo` becomes `docs-foo.linghao-io.pages.dev`.
+Branch names are slugified for the preview hostname: lowercased, with `/` and other non-alphanumeric characters replaced by `-`. For example, `docs/foo` becomes `docs-foo.blog-29f.pages.dev`.
 
 ## Workflow
 
