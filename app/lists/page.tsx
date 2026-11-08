@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { tools } from './agentic-coding/data'
 import { resources as designResources } from './design/data'
 import { resources as aiResearchResources } from './ai-research/data'
 
@@ -14,12 +13,6 @@ function itemCount(n: number): string {
 
 const lists = [
   {
-    slug: 'agentic-coding',
-    name: 'Agentic Coding',
-    description: 'Tools for agentic coding workflows.',
-    count: tools.length,
-  },
-  {
     slug: 'design',
     name: 'Design',
     description: 'Design systems, templates, and references worth keeping close.',
@@ -31,7 +24,7 @@ const lists = [
     description: 'Papers, articles, and resources on AI research worth reading.',
     count: aiResearchResources.length,
   },
-]
+].sort((a, b) => a.name.localeCompare(b.name))
 
 export default function ListsPage() {
   return (

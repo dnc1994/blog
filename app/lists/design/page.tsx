@@ -21,7 +21,7 @@ export default function DesignPage() {
       </p>
 
       <ul className='divide-y divide-rurikon-border'>
-        {resources.map((resource) => (
+        {[...resources].sort((a, b) => a.name.localeCompare(b.name)).map((resource) => (
           <li key={resource.id} className='py-4 sm:py-5'>
             <div className='min-w-0'>
               <Link
