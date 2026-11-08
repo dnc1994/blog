@@ -13,7 +13,8 @@
     "og-image": "node scripts/og-image.mjs",
     "blog:image": "node scripts/blog-image-assets.mjs",
     "deploy": "npm run build && wrangler pages deploy dist",
-    "deploy:prod": "npm run build && wrangler pages deploy dist --branch=master"
+    "deploy:prod": "npm run build && wrangler pages deploy dist --branch=master",
+    "resume:tex": "node scripts/resume-latex.mjs"
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",

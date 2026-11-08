@@ -43,3 +43,11 @@ next-env.d.ts
 
 # wrangler
 /.wrangler/
+
+# Resume PDF build outputs
+/resume-pdf/*.pdf
+/resume-pdf/*.aux
+/resume-pdf/*.log
+/resume-pdf/*.out
+/resume-pdf/*.fls
+/resume-pdf/*.fdb_latexmk

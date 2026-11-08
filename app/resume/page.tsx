@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { resume, type ResumeLink } from './source'
+import { resume as source, type ResumeLink } from './source'
+import { resolve, resolveAll } from './variants'
 
 export const metadata: Metadata = {
   title: 'Resume',
@@ -47,6 +48,17 @@ function linkifyText(text: string, links: ResumeLink[] = []) {
   }
 
   return parts
+}
+
+const top = resolve(source, 'web')!
+const resume = {
+  ...top,
+  experience: resolveAll(source.experience, 'web').map((job) => ({
+    ...job,
+    bullets: resolveAll(job.bullets, 'web'),
+  })),
+  education: resolveAll(source.education, 'web'),
+  skills: resolveAll(source.skills, 'web'),
 }
 
 export default function ResumePage() {
