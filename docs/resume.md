@@ -10,7 +10,7 @@ The web page It is implemented as a normal Next.js App Router page, not as an MD
 ## Files
 
 - `app/resume/source.ts` — source of truth for resume content.
-  - Name, title, summary, contact info, metrics, experience, education, and skills live here as typed data.
+  - Name, title, summary, contact info, experience, education, and skills live here as typed data.
   - Keep this file prose/data-only. Do not put layout, Tailwind classes, or rendering logic here.
 - `app/resume/page.tsx` — output HTML renderer.
   - Imports `resume` from `source.ts` and turns it into semantic HTML sections.
@@ -47,7 +47,6 @@ To converge the two versions, delete the `pdf:` override and the shared text is 
 1. Edit `app/resume/source.ts`.
    - Add or revise bullets in the `experience` array.
    - Add links by including a `links` array on the relevant bullet. The renderer linkifies exact label matches in that bullet's text.
-   - Keep metrics short enough to fit the four-column row.
 2. Only edit `app/resume/page.tsx` when changing the rendered HTML structure or styling.
 3. Regenerate the LaTeX and verify:
 
@@ -68,7 +67,7 @@ npm run dev
 
 ## Print / PDF notes
 
-The recruiter PDF comes from `resume-pdf/`, not from printing the page. The page also includes standalone print CSS so browser Print → Save as PDF should produce a compact Kami-style resume. Use A4 paper size. If a future content update makes the PDF overflow, first shorten bullets or metrics in `source.ts`; only then adjust print density in `page.tsx`.
+The recruiter PDF comes from `resume-pdf/`, not from printing the page. The page also includes standalone print CSS so browser Print → Save as PDF should produce a compact Kami-style resume. Use A4 paper size. If a future content update makes the PDF overflow, first shorten bullets in `source.ts`; only then adjust print density in `page.tsx`.
 
 ## Content source history
 

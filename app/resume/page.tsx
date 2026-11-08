@@ -150,37 +150,6 @@ export default function ResumePage() {
 
         .resumeContact .sep { color: var(--rule-strong); padding: 0 0.5mm; }
 
-        .resumeMetrics {
-          display: grid;
-          grid-template-columns: repeat(4, minmax(0, 1fr));
-          column-gap: 5mm;
-          margin-bottom: 2.9mm;
-        }
-
-        .resumeMetric {
-          border-bottom: 0.35pt dotted var(--rule-strong);
-          padding-bottom: 1.4mm;
-        }
-
-        .resumeMetricValue {
-          display: block;
-          font-size: 12.7pt;
-          line-height: 1;
-          font-weight: 500;
-          color: var(--brand);
-          font-variant-numeric: tabular-nums;
-          white-space: nowrap;
-        }
-
-        .resumeMetricLabel {
-          display: block;
-          margin-top: 0.8mm;
-          color: var(--olive);
-          font-size: 8.35pt;
-          line-height: 1.15;
-          white-space: nowrap;
-        }
-
         .resumeSection {
           display: grid;
           grid-template-columns: 24mm 1fr;
@@ -329,7 +298,6 @@ export default function ResumePage() {
           .resumeSheet { min-height: auto; margin: 0; padding: 18px; border: none; box-shadow: none; }
           .resumeHeader { grid-template-columns: 1fr; gap: 8px; }
           .resumeContact { text-align: left; white-space: normal; }
-          .resumeMetrics { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 10px; }
           .resumeSection { grid-template-columns: 1fr; gap: 5px; }
           .resumeSectionBody { padding-top: 8px; }
           .resumeRoleHead, .resumeEduItem { grid-template-columns: 1fr; row-gap: 3px; }
@@ -370,15 +338,6 @@ export default function ResumePage() {
             <span>{resume.contact.organization}</span>
           </address>
         </header>
-
-        <div className='resumeMetrics' aria-label='Career highlights'>
-          {resume.metrics.map((metric) => (
-            <div className='resumeMetric' key={metric.label}>
-              <span className='resumeMetricValue'>{metric.value}</span>
-              <span className='resumeMetricLabel'>{metric.label}</span>
-            </div>
-          ))}
-        </div>
 
         <section className='resumeSection' aria-labelledby='resume-summary-title'>
           <div className='resumeSectionLabel' id='resume-summary-title'>Summary</div>

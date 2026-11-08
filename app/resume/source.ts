@@ -13,11 +13,6 @@ export type Variants<T> = T & {
   web?: Partial<T> | false
 }
 
-export type ResumeMetric = {
-  value: string
-  label: string
-}
-
 export type ResumeBullet = Variants<{
   lead: string
   text: string
@@ -53,7 +48,6 @@ export type Resume = Variants<{
     blogUrl: string
     organization: string
   }
-  metrics: ResumeMetric[]
   experience: ResumeExperience[]
   education: ResumeEducation[]
   skills: ResumeSkill[]
@@ -63,12 +57,12 @@ export type Resume = Variants<{
 // Keep raw content here; keep rendering/styling in page.tsx.
 export const resume: Resume = {
   name: 'Linghao Zhang',
-  title: 'Engineering Leader · Generative AI · Memory Architecture',
+  title: 'Personalization · Memory · Consumer Agents · Self-Improving Systems',
   summary:
-    'Engineering Leader in Generative AI with full-stack depth across foundational models, scalable infrastructure, and product experiences. Currently leading next-generation Memory Architecture for Gemini Personalization, bridging AI research with world-class products serving 900M+ monthly active users.',
+    'Engineering Leader in Generative AI with full-stack depth across foundational models, scalable infrastructure, and product experiences. Currently leading next-generation Memory Architecture for Gemini Personalization, bridging AI research with world-class products serving 1B+ monthly active users.',
   pdf: {
     summary:
-      'Engineering Leader in Generative AI with expertise spanning the full stack, from foundational models and scalable infrastructure to product experiences. Currently leading the next-gen Memory Architecture for Gemini Personalization, bridging the gap between AI research and world-class products serving 900M+ monthly active users.',
+      'Engineering Leader in Generative AI with expertise spanning the full stack, from foundational models and scalable infrastructure to product experiences. Currently leading the next-gen Memory Architecture for Gemini Personalization, bridging the gap between AI research and world-class products serving 1B+ monthly active users.',
   },
   contact: {
     email: 'zlh@google.com',
@@ -77,20 +71,18 @@ export const resume: Resume = {
     blogUrl: 'https://linghao.io',
     organization: 'Google DeepMind',
   },
-  metrics: [
-    { value: '900M+ MAU', label: 'Gemini product scale' },
-    { value: '5×', label: 'Gemini TPU throughput' },
-    { value: '$50M+ ARR', label: 'BigQuery migration scope' },
-    { value: '8', label: 'Engineers led for 0→1 GenAI' },
-  ],
   experience: [
     {
       company: 'Google DeepMind',
-      role: 'Staff Research Engineer (Uber TL)',
+      role: 'Senior Staff Research Engineer',
       dates: 'Oct 2025 – Present',
       bullets: [
         {
-          lead: 'Global Impact at Scale (900M+ MAU)',
+          lead: 'Next-Gen Memory & Proactive Agents',
+          text: 'Architecting the next-gen memory and always-on, proactive consumer agents: systems that carry rich context across sessions, anticipate needs before users ask, and act in the background on their behalf, turning fragmented chats into continuously evolving, human-like assistance across the Gemini ecosystem.',
+        },
+        {
+          lead: 'Global Impact at Scale (1B+ MAU)',
           text: 'Led technical execution for the worldwide MVP launch of Gemini Personal Intelligence, owning Short-Term Memory and Correctability for one of the world’s largest and fastest-growing AI assistant products.',
           pdf: {
             text: 'Led technical execution for the worldwide MVP launch of Gemini Personal Intelligence, owning “Short-Term Memory” and “Correctability” features for one of the world’s largest and fastest-growing AI assistant products.',
@@ -101,13 +93,6 @@ export const resume: Resume = {
               href: 'https://gemini.google/overview/personal-intelligence/',
             },
           ],
-        },
-        {
-          lead: 'Next-Gen Memory',
-          text: 'Architecting the framework and building blocks that transform fragmented chat sessions into high-quality, retrievable memory artifacts: the backbone for seamless, human-like conversational continuity across the Gemini ecosystem.',
-          pdf: {
-            text: 'Architecting the framework and building blocks that transform fragmented chat sessions into high-quality, retrievable memory artifacts, serving as the backbone for seamless, human-like conversational continuity across the Gemini ecosystem.',
-          },
         },
         {
           lead: 'Full-Stack Technical Leadership',
@@ -130,17 +115,6 @@ export const resume: Resume = {
             text: 'Post-trained Gemini models for Cloud customers with SFT, RL, Preference Optimization, Distillation. Built infra for customizable RL reward functions and user simulation for multi-turn agentic tasks.',
           },
           links: [{ label: 'Vertex AI', href: 'https://cloud.google.com/vertex-ai' }],
-        },
-        {
-          lead: 'TL, ML Runtime (Inference Optimization)',
-          text: 'Productionized mixed inference with paged attention, a new paradigm that boosted inference throughput of Gemini models on TPUs by up to ~5× on latency-insensitive workloads.',
-          pdf: {
-            text: 'Productionized mixed inference w/ paged attention, a new paradigm that boosted inference throughput of Gemini models on TPUs by up to ~5x on latency-insensitive workloads.',
-          },
-          links: [
-            { label: 'mixed inference', href: 'https://arxiv.org/abs/2403.02310' },
-            { label: 'paged attention', href: 'https://arxiv.org/pdf/2309.06180' },
-          ],
         },
         {
           lead: 'TLM, Conversational Analytics (Data Science Agent)',
