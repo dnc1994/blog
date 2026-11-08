@@ -71,10 +71,10 @@ const education = resolveAll(source.education, 'pdf')
 const skills = resolveAll(source.skills, 'pdf')
 const { contact } = top
 
-const header = `\\begin{tabular}{@{}p{3.7in}p{2in}}
-\\textbf{\\Large \t${tex(top.name.toUpperCase())}} & Email: \\href{mailto:${contact.email}}{${tex(contact.email)}}\\\\
+const header = `\\begin{tabular*}{\\textwidth}{@{}l@{\\extracolsep{\\fill}}l@{}}
+\\textbf{\\Large ${tex(top.name.toUpperCase())}} & Email: \\href{mailto:${contact.email}}{${tex(contact.email)}}\\\\
 Blog: \\href{${contact.blogUrl}}{${tex(contact.blog)}} & Phone: ${tex(contact.phone)}\\\\
-\\end{tabular}`
+\\end{tabular*}`
 
 const list = (items) => `\\begin{list2}\n${items.map((i) => `\\item \\rm ${i}`).join('\n')}\n\\end{list2}`
 

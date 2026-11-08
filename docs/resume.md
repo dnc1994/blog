@@ -38,6 +38,8 @@ All fields are shared by default. Any item (the top-level object, an experience 
 }
 ```
 
+PDF layout knobs live at the top of `resume-pdf/template.tex`: base font size (`scrextend`), one `\pagemargin` used on all four sides, and the section-label column width. Content is vertically centered, so top and bottom margins always match. If an update spills onto a second page, shorten text first, then lower the font size or margin.
+
 PDF-only strings may use `**bold**` and `*italic*`. Links listed in `links` are applied to both `lead` and `text` in the PDF. Characters like `&`, `%`, `$`, `~`, `×`, curly quotes and `C++` are converted to LaTeX automatically.
 
 To converge the two versions, delete the `pdf:` override and the shared text is used everywhere.
