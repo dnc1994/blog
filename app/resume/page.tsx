@@ -106,9 +106,8 @@ export default function ResumePage() {
 
         .resumeSheet {
           max-width: 210mm;
-          min-height: 297mm;
           margin: 14px auto;
-          padding: 10mm 12mm;
+          padding: 12mm;
           background: var(--parchment);
           box-shadow: 0 20px 60px rgba(42, 39, 25, 0.13);
           border: 1px solid rgba(216, 212, 200, 0.8);
@@ -295,8 +294,19 @@ export default function ResumePage() {
 
         .resumeSkillText { color: var(--warm-ink); }
 
+        /* The sheet is typeset in print sizes (pt/mm); scale it up for reading on screen. */
+        @media screen {
+          .resumeSheet { zoom: 1.15; }
+        }
+        @media screen and (min-width: 1100px) {
+          .resumeSheet { zoom: 1.3; margin: 24px auto; }
+        }
+        @media screen and (min-width: 1400px) {
+          .resumeSheet { zoom: 1.45; margin: 32px auto; }
+        }
+
         @media (max-width: 720px) {
-          .resumeSheet { min-height: auto; margin: 0; padding: 18px; border: none; box-shadow: none; }
+          .resumeSheet { margin: 0; padding: 18px; border: none; box-shadow: none; }
           .resumeHeader { grid-template-columns: 1fr; gap: 8px; }
           .resumeContact { text-align: left; white-space: normal; }
           .resumeSection { grid-template-columns: 1fr; gap: 5px; }
