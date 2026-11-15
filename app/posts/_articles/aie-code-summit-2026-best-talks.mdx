@@ -1,0 +1,49 @@
+export const metadata = {
+  title: 'The 5 Best Talks from AIE Code Summit 2026',
+  description: 'I attended AI Engineer Code Summit 2026 in person. If you missed it, these are the five talks I would watch first, each with a short note on why.',
+  date: '2026.11.14',
+  tags: ['AI', 'Software Engineering'],
+  language: 'en',
+  translationId: 'aie-code-summit-2026-best-talks',
+  canonical: true,
+}
+
+I was at [AI Engineer Code Summit 2026](https://ai.engineer/code/2026) this week. If you missed it, the full schedule is more than anyone has time to catch up on. These are the five talks I would watch first, in the order I'd watch them.
+
+## [All Code Is Slop (Except Mine)](https://ai.engineer/code/2026/talks/lauren-tan) -- Lauren Tan
+
+The most practical talk of the conference. When an agent makes the same mistake twice, the reflex is to add another warning to `AGENTS.md`. Tan's argument is that the correction should land somewhere harder to ignore: the codebase layout, a type, a lint rule, or an API that makes the bad operation impossible. She ranks these in a "trust pyramid", with prose rules and human review near the bottom.
+
+The detail that stuck with me is about comments. Agent-written comments can make a workaround look intentional, so her team limits them and prefers a lint error that explains itself. She also shared that her team shipped about 11,000 PRs last month at a revert rate of roughly half a percent. That's her team's own number, not a study, but it's the kind of number that makes you pay attention to the rest.
+
+## [Beyond Better Assistants: Software That Can Make a Decision](https://ai.engineer/code/2026/talks/diogo-almeida) -- Diogo Almeida
+
+A clean separation of two things people keep conflating: a good assistant and a dependable automation component. An assistant's output gets reviewed by a person before anyone acts on it. An unattended process has to pick the right action every time with no one looking, so reliability is a different requirement, not a faster version of assistance.
+
+Almeida traces the gap back to what models are trained for: rewarding human preference makes good assistants, but says nothing about what a machine should decide on its own. Worth watching if you are building anything that runs without a human in the loop. The closing directions (semantic type checking, agent state management) are framed as open questions, and I appreciated that he didn't oversell them.
+
+## [Ambition in AI](https://ai.engineer/code/2026/talks/jason-liu) -- Jason Liu
+
+The shortest of the five at about 19 minutes, and the least technical. Liu's point is that the number of background agents you run says nothing about whether you are doing ambitious work. The better questions are what you are trying to make, whether you care about the result, and whether you can tell when it needs another pass.
+
+His framing of taste as a vocabulary -- being able to describe what you like and predict what others will like -- is the most useful definition of the word I've heard in a while. The last section, about returning to interests you abandoned because the entry cost used to be too high, is the part I'd recommend to engineers who feel AI has made their work less fun.
+
+## [The Software Atelier](https://ai.engineer/code/2026/talks/armin-ronacher) -- Armin Ronacher
+
+Ronacher argues for building a good workshop before trying to run a software factory. His coding agent, Pi, has kept roughly the same core tools for a year and still became far more capable, because the models underneath improved. His own session data shows fewer corrections, fewer aborts, and much longer runs. What sets the pace now is human attention.
+
+My favorite practical habit from this one: he asks the agent for an executive summary before the verification phase, so he can redirect the work while he still understands it. I'd watch this back to back with Yegge's talk below. They are close to opposite positions on the same question, and both are argued well.
+
+## [Software Factories: Escape from Trash Mountain](https://ai.engineer/code/2026/talks/steve-yegge) -- Steve Yegge
+
+Yegge spent the year trying to get agents to run other agents (Beads, then Gas Town, then a bespoke factory he uses to build a game), and this is the report on everything that went wrong: stalled work, runaway spending, contradictory policies, unclear roles. His conclusion is that running a software factory has become mostly management work, and that the mechanical layer (merge queues, CI, review) is the easy part compared to the organizational layer of roles, priorities and authority.
+
+The section that hit closest to home for me was "trash mountain": agents record offhand remarks as policy and rarely prune decisions that no longer apply. That is a memory problem, and it's the same failure mode I see in AI memory systems, where nothing gets forgotten and stale context slowly crowds out what matters. I wrote about one way to approach it in [Evolving Memory Systems](/posts/memory-systems-should-be-evolved).
+
+---
+
+If you only have time for one, start with Lauren Tan's.
+
+---
+
+*Generative AI Usage Disclosure: Drafted by Claude from my picks and the official talk summaries.*
