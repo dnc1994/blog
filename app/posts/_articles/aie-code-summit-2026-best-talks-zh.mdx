@@ -1,0 +1,45 @@
+export const metadata = {
+  title: 'AIE Code Summit 2026 最值得看的 5 个演讲',
+  description: '我在现场参加了 AI Engineer Code Summit 2026。如果你错过了，这是我最推荐优先观看的五个演讲，每个附一段简短的推荐语。',
+  date: '2026.11.14',
+  tags: ['AI', 'Software Engineering'],
+  language: 'zh',
+  translationId: 'aie-code-summit-2026-best-talks',
+  chinese: true,
+}
+
+这周我去了 [AI Engineer Code Summit 2026](https://ai.engineer/code/2026)。如果你错过了，完整日程多到没人有时间补完。下面是我会最先看的五个演讲，按我推荐的观看顺序排列。
+
+## [All Code Is Slop (Except Mine)](https://ai.engineer/code/2026/talks/lauren-tan) -- Lauren Tan
+
+整场大会最实用的一个演讲。当 agent 第二次犯同样的错误时，人的第一反应往往是在 `AGENTS.md` 里再加一条警告。Tan 的观点是，纠正应该落在更难被忽视的地方：代码库的结构、类型、lint 规则，或者一个让错误操作根本无法发生的 API。
+
+最值得深刻内化的是她的信任金字塔（trust pyramid）。它按“约束能被多大程度地信任”来给约束的存放位置排序：代码库设计、静态分析和类型在最上层，其次是验证，prose 规则和人工 review 在最底层。理解了这个框架之后，你往 agent 指令文件里加的每一行，看起来都像一条停在最不可信层级、等着被往上挪的约束。她的团队上个月合入了大约 11,000 个 PR，回滚率稳定在 0.5% 左右。这是她团队自己的数据，不是对照研究，但已经足够让人认真对待这个金字塔。
+
+## [Ambition in AI](https://ai.engineer/code/2026/talks/jason-liu) -- Jason Liu
+
+这个演讲里没有架构图，而这恰恰是重点：Liu 站在比工具更高一层的位置上讨论问题，这是整场大会最有洞见的 19 分钟。他认为，你跑了多少个后台 agent，并不能说明你在做有野心的事。真正重要的问题是：你想做出什么，你是否在乎结果，以及你能否判断它什么时候还需要再改一轮。
+
+在此基础上，他把关于 AI 的三种常见担忧（垃圾内容泛滥、削弱批判性思维、取代人类）各自转化为使用工具的人应承担的一份责任：为你交付的东西负责，建立用来做判断的词汇，到自己领域之外去寻找灵感。他对品味的定义是“能描述自己喜欢什么，并预测别人会喜欢什么”，这是我听过最有用的一个定义，因为它让品味变成一种可以训练的能力，而不是要么有、要么没有的天赋。如果说大会其余的演讲都在讲如何从 agent 身上榨出更多产出，那么这个演讲讲的是这些杠杆到底该用来做什么。
+
+## [Software Factories: Escape from Trash Mountain](https://ai.engineer/code/2026/talks/steve-yegge) -- Steve Yegge
+
+整场大会最好笑的演讲，没有之一。Yegge 花了一整年试图让 agent 去管理别的 agent（先是 Beads，然后是 Gas Town，再到一个他用来开发游戏的定制工厂），这个演讲就是他的战地报告：工作停滞、开销失控、策略互相矛盾、agent 搞不清自己的角色。他把这些讲成了一出灾难喜剧，全场笑声几乎没停过。
+
+笑点之下是一个严肃的结论：运营一个软件工厂，如今主要是管理工作。机械层（merge queue、CI、review）是比较容易的部分，真正难的是负责角色、优先级和权限的组织层。“Trash mountain”是他给一种现象起的名字：agent 把随口一提的话记成了策略，却几乎从不清理已经过时的决定，于是越堆越高。
+
+## [Beyond Better Assistants: Software That Can Make a Decision](https://ai.engineer/code/2026/talks/diogo-almeida) -- Diogo Almeida
+
+前半部分清晰地区分了两个经常被混为一谈的东西：一个好的助手，和一个可靠的自动化组件。助手的输出在被采用之前会经过人的审阅；而一个无人值守的流程必须在没人看着的情况下每次都选对动作，针对人类偏好的训练并不能把你带到那里。
+
+后半部分才是更有意思的。Almeida 相信我们正处在一场软件革命之中，而这主要不是因为模型写代码更快了，那只是他所说的“just-in-time software”。更大的变化是“smart software”：语义判断直接运行在程序自身的逻辑里，取代原本字面意义上的条件判断。他用蓝光 LED 做类比：一个新的基础元件，和已有的元件组合起来，催生了没人预先规划过的可能性。借助 LLM 和 Jev 这样的新模型，以及之后还会出现的更多模型，他认为我们将能够彻底重新定义软件能做什么。他很谨慎地把这些称为方向而非成果，这反而让我更相信这份野心。
+
+## [The Software Atelier](https://ai.engineer/code/2026/talks/armin-ronacher) -- Armin Ronacher
+
+Ronacher 的核心论点是：agentic coding 的瓶颈现在是你自己。他的 coding agent Pi 的核心工具在过去一年里基本没变，但仅仅因为底层模型变强了，它的能力就大幅提升。他自己的使用数据显示：需要纠正的次数更少，中途中止更少，agent 连续运行的时间长得多。决定节奏的已经不是模型，而是人的注意力。用 agent 启动一个项目很容易，把它持续做下去却很难。
+
+他给出的答案是一间工坊而不是一座工厂，这让它和 Yegge 的演讲形成了很好的对照。当 agent 只为了完成目标而不断堆积复杂度时，要敢于叫停。在进入验证阶段之前先让 agent 给出一份执行摘要，趁你还理解这份工作、还能调整方向。还有，不要把“什么都能造”误当成“什么都得造”。
+
+---
+
+*生成式 AI 使用声明：本文由 Claude 根据英文版翻译。*

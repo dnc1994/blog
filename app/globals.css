@@ -384,3 +384,9 @@ html.theme-light *::selection {
 @keyframes decode-fallback {
   to { opacity: 1; }
 }
+
+/* Chinese posts justify body text; headings (often long English titles)
+   would get stretched word gaps, so keep them start-aligned. */
+.text-justify :is(h1, h2, h3, h4, h5, h6) {
+  text-align: start;
+}

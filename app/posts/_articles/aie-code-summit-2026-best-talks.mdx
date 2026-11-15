@@ -1,0 +1,45 @@
+export const metadata = {
+  title: 'The 5 Best Talks from AIE Code Summit 2026',
+  description: 'I attended AI Engineer Code Summit 2026 in person. If you missed it, these are the five talks I would watch first, each with a short note on why.',
+  date: '2026.11.14',
+  tags: ['AI', 'Software Engineering'],
+  language: 'en',
+  translationId: 'aie-code-summit-2026-best-talks',
+  canonical: true,
+}
+
+I was at [AI Engineer Code Summit 2026](https://ai.engineer/code/2026) this week. If you missed it, the full schedule is more than anyone has time to catch up on. These are the five talks I would watch first, in the order I'd watch them.
+
+## [All Code Is Slop (Except Mine)](https://ai.engineer/code/2026/talks/lauren-tan) -- Lauren Tan
+
+The most practical talk of the conference. When an agent makes the same mistake twice, the reflex is to add another warning to `AGENTS.md`. Tan's argument is that the correction should land somewhere harder to ignore: the codebase layout, a type, a lint rule, or an API that makes the bad operation impossible.
+
+The one idea to internalize deeply is her trust pyramid. It ranks where a constraint can live by how much you can trust it to hold: codebase design, static analysis and types at the top, then verification, with prose rules and human review at the bottom. Once you see it, every line you add to an agent instructions file starts to look like a constraint parked at the least trustworthy level, waiting to be moved up. Her team shipped about 11,000 PRs last month at a revert rate of roughly half a percent. That's her team's own number, not a study, but it's a good reason to take the pyramid seriously.
+
+## [Ambition in AI](https://ai.engineer/code/2026/talks/jason-liu) -- Jason Liu
+
+There's no architecture diagram in this one, and that's the point: Liu operates a level above the tooling, and it's the most insightful 19 minutes of the conference. He argues that the number of background agents you run says nothing about whether you're doing ambitious work. The questions that matter are what you are trying to make, whether you care about the result, and whether you can tell when it needs another pass.
+
+From there he takes the three usual fears about AI (slop, weakened thinking, replacement) and turns each into a responsibility for the person holding the tools: own the work you ship, build a vocabulary for judgment, look for inspiration outside your field. His definition of taste -- being able to describe what you like and predict what others will like -- is the most useful one I've heard, because it makes taste something you can train rather than something you either have or don't. If the rest of the conference is about how to get more out of agents, this talk is about what that leverage is for.
+
+## [Software Factories: Escape from Trash Mountain](https://ai.engineer/code/2026/talks/steve-yegge) -- Steve Yegge
+
+The funniest talk of the conference, by a wide margin. Yegge spent the year trying to get agents to run other agents (Beads, then Gas Town, then a bespoke factory he uses to build a game), and this is the war report: stalled work, runaway spending, contradictory policies, agents unsure of their own roles. He tells it like a disaster comedy, and the room was laughing the whole way through.
+
+Underneath the jokes is a serious conclusion: running a software factory has become mostly management work. The mechanical layer (merge queues, CI, review) is the easy part compared to the organizational layer of roles, priorities and authority. "Trash mountain" is his name for what piles up when agents record offhand remarks as policy and never prune decisions that no longer apply.
+
+## [Beyond Better Assistants: Software That Can Make a Decision](https://ai.engineer/code/2026/talks/diogo-almeida) -- Diogo Almeida
+
+The first half is a clean separation of two things people keep conflating: a good assistant and a dependable automation component. An assistant's output gets reviewed by a person before anyone acts on it. An unattended process has to pick the right action every time with no one looking, and training for human preference doesn't get you there.
+
+The second half is the more interesting part. Almeida believes we are in the middle of a software revolution, and not mainly because models write code faster -- he calls that "just-in-time software". The bigger shift is "smart software", where a semantic judgment runs inside the program's own logic instead of a literal test. His analogy is the blue LED: one new primitive that, combined with the existing ones, made things possible nobody had planned for. With LLMs and new models like Jev, and others still to come, he thinks we get to redefine what software can do at all. He's careful to call these directions rather than results, which made me trust the ambition more.
+
+## [The Software Atelier](https://ai.engineer/code/2026/talks/armin-ronacher) -- Armin Ronacher
+
+Ronacher's thesis is that the bottleneck in agentic coding is now you. His coding agent, Pi, has had roughly the same core tools for a year, yet it got dramatically more capable just because the models underneath improved. His own session data shows fewer corrections, fewer aborts, and much longer runs. The pace isn't set by the model anymore but by human attention, and starting a project with agents is easy while sustaining one is not.
+
+His answer is a workshop rather than a factory, which makes it a nice counterweight to Yegge's talk. Push back when an agent piles on complexity just to finish its goal. Ask for an executive summary before verification starts, while you still understand the work well enough to redirect it. And don't confuse being able to build anything with being obligated to build everything.
+
+---
+
+*Generative AI Usage Disclosure: Drafted by Claude from my picks and the official talk summaries.*
