@@ -149,6 +149,26 @@ export function BurningChariotLogo(props: LogoProps) {
   )
 }
 
+export function FirecrackersLogo(props: LogoProps) {
+  return (
+    <svg viewBox='0 0 64 64' fill='none' aria-hidden='true' {...props}>
+      <rect x='1.5' y='1.5' width='61' height='61' rx='14' className='fill-rurikon-50 stroke-rurikon-200' />
+      {/* Fuse cord */}
+      <path d='M22 14V50' className='stroke-rurikon-300' strokeWidth='1.6' strokeLinecap='round' />
+      {/* String of crackers, alternating sides */}
+      <rect x='24' y='17' width='12' height='5' rx='2' className='fill-rurikon-700' />
+      <rect x='8' y='25' width='12' height='5' rx='2' className='fill-white stroke-rurikon-300' />
+      <rect x='24' y='33' width='12' height='5' rx='2' className='fill-rurikon-700' />
+      <rect x='8' y='41' width='12' height='5' rx='2' className='fill-white stroke-rurikon-300' />
+      {/* Burst at the lit end */}
+      <circle cx='46' cy='44' r='2.6' className='fill-rurikon-signal' />
+      <path d='M46 36V39M46 49V52M38 44H41M51 44H54M40.5 38.5L42.6 40.6M49.4 47.4L51.5 49.5M51.5 38.5L49.4 40.6M42.6 47.4L40.5 49.5' className='stroke-rurikon-signal' strokeWidth='1.8' strokeLinecap='round' />
+      {/* Scattered red paper on the ground */}
+      <path d='M28 53L31 52M34 55L37 54.5M40 53.5L42 55' className='stroke-rurikon-400' strokeWidth='1.6' strokeLinecap='round' />
+    </svg>
+  )
+}
+
 export function GlassBrainLogo(props: LogoProps) {
   return (
     <svg viewBox='0 0 64 64' fill='none' aria-hidden='true' {...props}>

@@ -2,6 +2,7 @@ import type { ReactNode, SVGProps } from 'react'
 import {
   BurningChariotLogo,
   BwCalendarLogo,
+  FirecrackersLogo,
   GlassBrainLogo,
   HermesSidebarLogo,
   MagiLogo,
@@ -23,6 +24,14 @@ export interface Project {
 
 // To override a logo, swap the `logo` component for a project below.
 export const projects: Project[] = [
+  {
+    id: 'firecrackers',
+    name: '满地红 Firecrackers',
+    description:
+      'A first-person sandbox set on Chinese New Year\'s Eve in a southern village: pockets full of firecrackers, no quests, and everything in the yard, the lanes and the fields is fair game.',
+    repoUrl: 'https://mandihong.linghao.io/',
+    logo: FirecrackersLogo,
+  },
   {
     id: 'xuming',
     name: '续命工坊 Xuming Workshop',
