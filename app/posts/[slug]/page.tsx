@@ -16,13 +16,21 @@ function extractHeadings(mdxContent: string): TocHeading[] {
   // Same slugger rehype-slug uses, so ids match the rendered headings
   // (keeps CJK characters, de-duplicates repeated headings).
   const slugger = new GithubSlugger()
+  let inFence = false
   for (const line of mdxContent.split('\n')) {
+    // Lines inside fenced code blocks are not headings
+    if (/^\s*(```|~~~)/.test(line)) {
+      inFence = !inFence
+      continue
+    }
+    if (inFence) continue
     const match = line.match(/^(#{2,4}) (.+)$/)
     if (!match) continue
     const level = match[1].length
     const raw = match[2].trim()
     // Strip markdown formatting
     const text = raw
+      .replace(/<[^>]+>/g, '')
       .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
       .replace(/[*_`]/g, '')
       .trim()
