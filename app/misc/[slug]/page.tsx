@@ -2,7 +2,8 @@ import { promises as fs } from 'fs'
 import path from 'path'
 import cn from 'clsx'
 import { Tag } from '@/components/tag'
-import { resolveSocialImage } from '@/lib/seo'
+import { resolveAlternates, resolveSocialImage } from '@/lib/seo'
+import { getAllArticles, isHiddenDraft } from '@/lib/articles'
 import { DecodeText } from '@/components/decode'
 
 export default async function Page(props: {
@@ -53,7 +54,7 @@ export async function generateStaticParams() {
   for (const name of articles) {
     if (!name.endsWith('.mdx')) continue
     const module = await import('../_articles/' + name)
-    if (module.metadata?.draft && process.env.NODE_ENV !== 'development') continue
+    if (isHiddenDraft(module.metadata)) continue
     params.push({ slug: name.replace(/\.mdx$/, '') })
   }
   return params
@@ -70,9 +71,16 @@ export async function generateMetadata(props: {
   
   const socialImage = resolveSocialImage(metadata.image, metadata.imageWidth, metadata.imageHeight)
   
+  const group = metadata.translationId
+    ? (await getAllArticles()).filter(
+        (a) => a.section === 'misc' && a.translationId === metadata.translationId
+      )
+    : []
+
   return {
     title: metadata.title,
     description: metadata.description,
+    alternates: resolveAlternates('misc', params.slug, group),
     openGraph: {
       title: metadata.title,
       description: metadata.description,

@@ -1,6 +1,7 @@
 import { promises as fs } from 'fs'
 import Link from 'next/link'
 import path from 'path'
+import { isHiddenDraft } from '@/lib/articles'
 
 export const metadata = {
   title: 'MISC',
@@ -22,7 +23,7 @@ export default async function Page() {
     const module = await import('./_articles/' + article)
 
     if (!module.metadata) throw new Error('Missing `metadata` in ' + article)
-    if (module.metadata.draft && process.env.NODE_ENV !== 'development') continue
+    if (isHiddenDraft(module.metadata)) continue
 
     items.push({
       slug: article.replace(/\.mdx$/, ''),

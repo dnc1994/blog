@@ -1,4 +1,4 @@
-const SITE_URL = 'https://linghao.io'
+export const SITE_URL = 'https://linghao.io'
 
 function toAbsoluteUrl(url: string) {
   if (url.startsWith('http://') || url.startsWith('https://')) {
@@ -32,4 +32,25 @@ export function resolveSocialImage(
     height,
     alt: 'Social card image',
   }
+}
+
+const HREFLANG: Record<string, string> = { en: 'en', zh: 'zh-Hans' }
+
+/**
+ * Canonical URL plus hreflang links for an article. `group` is every article
+ * sharing its translationId (including itself); pass [] when untranslated.
+ */
+export function resolveAlternates(
+  section: string,
+  slug: string,
+  group: { slug: string; language?: string }[] = [],
+) {
+  const urlFor = (s: string) => `${SITE_URL}/${section}/${s}`
+  const languages =
+    group.length > 1
+      ? Object.fromEntries(
+          group.map((a) => [HREFLANG[a.language ?? 'en'] ?? a.language!, urlFor(a.slug)]),
+        )
+      : undefined
+  return { canonical: urlFor(slug), languages }
 }

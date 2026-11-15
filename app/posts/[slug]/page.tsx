@@ -3,7 +3,8 @@ import path from 'path'
 import cn from 'clsx'
 import { Tag } from '@/components/tag'
 import { getAllArticles } from '@/lib/articles'
-import { resolveSocialImage } from '@/lib/seo'
+import { resolveAlternates, resolveSocialImage } from '@/lib/seo'
+import GithubSlugger from 'github-slugger'
 import Link from 'next/link'
 import { TocSidebar, type TocHeading } from '@/components/toc-sidebar'
 import { MusicPlayer } from '@/components/music-player'
@@ -12,22 +13,28 @@ import { toHex } from '@/lib/dump'
 
 function extractHeadings(mdxContent: string): TocHeading[] {
   const headings: TocHeading[] = []
+  // Same slugger rehype-slug uses, so ids match the rendered headings
+  // (keeps CJK characters, de-duplicates repeated headings).
+  const slugger = new GithubSlugger()
+  let inFence = false
   for (const line of mdxContent.split('\n')) {
+    // Lines inside fenced code blocks are not headings
+    if (/^\s*(```|~~~)/.test(line)) {
+      inFence = !inFence
+      continue
+    }
+    if (inFence) continue
     const match = line.match(/^(#{2,4}) (.+)$/)
     if (!match) continue
     const level = match[1].length
     const raw = match[2].trim()
     // Strip markdown formatting
     const text = raw
+      .replace(/<[^>]+>/g, '')
       .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
       .replace(/[*_`]/g, '')
       .trim()
-    // Replicate github-slugger (used by rehype-slug)
-    const id = text
-      .toLowerCase()
-      .replace(/[^\w\s]/g, '')
-      .trim()
-      .replace(/\s+/g, '-')
+    const id = slugger.slug(text)
     headings.push({ id, text, level })
   }
   return headings
@@ -180,9 +187,16 @@ export async function generateMetadata(props: {
   
   const socialImage = resolveSocialImage(metadata.image, metadata.imageWidth, metadata.imageHeight)
   
+  const group = metadata.translationId
+    ? (await getAllArticles()).filter(
+        (a) => a.section === 'posts' && a.translationId === metadata.translationId
+      )
+    : []
+
   return {
     title: metadata.title,
     description: metadata.description,
+    alternates: resolveAlternates('posts', params.slug, group),
     openGraph: {
       title: metadata.title,
       description: metadata.description,

@@ -17,6 +17,11 @@ export type PostWithTags = {
 // Drafts are hidden from listings/routing outside local dev, even if committed and deployed.
 const isDev = process.env.NODE_ENV === 'development'
 
+/** The single draft rule: true when an article must not exist in this build. */
+export function isHiddenDraft(metadata?: { draft?: boolean }): boolean {
+  return !!metadata?.draft && !isDev
+}
+
 // Helper function to dynamically import articles from a specific section
 export async function getArticlesFromSection(
   section: 'posts' | 'misc'
@@ -41,7 +46,7 @@ export async function getArticlesFromSection(
         }
 
         if (module && module.metadata) {
-          if (module.metadata.draft && !isDev) continue
+          if (isHiddenDraft(module.metadata)) continue
 
           posts.push({
             slug: file.replace(/\.mdx$/, ''),

@@ -51,3 +51,6 @@ next-env.d.ts
 /resume-pdf/*.out
 /resume-pdf/*.fls
 /resume-pdf/*.fdb_latexmk
+
+# dev server pid
+.dev-server.pid

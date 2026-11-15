@@ -9,6 +9,17 @@ const __dirname = path.dirname(__filename)
 const SITE_URL = 'https://linghao.io'
 const SECTIONS = ['posts']
 
+// Match a top-level `key: '…'` string field. The closing quote must be the
+// same as the opening one, and escaped quotes are allowed inside, so values
+// like 'It\\'s' or "a 'quoted' word" parse correctly. Result is in [1].
+function matchString(source, key) {
+  const m = source.match(
+    new RegExp(`^\\s*${key}:\\s*(['"\`])((?:\\\\.|(?!\\1)[^\\\\])*)\\1`, 'm')
+  )
+  if (!m) return null
+  return [m[0], m[2].replace(/\\(.)/g, '$1')]
+}
+
 async function generateRSS() {
   console.log('🔄 Generating RSS feed...')
 
@@ -39,15 +50,15 @@ async function generateRSS() {
           const content = fs.readFileSync(filePath, 'utf-8')
           
           // Extract metadata from the file
-          const metadataMatch = content.match(/export const metadata = \{([^}]+)\}/)
+          const metadataMatch = content.match(/^export const metadata = \{[\s\S]*?^\}/m)
           if (!metadataMatch) continue
           
           // Parse the metadata
           const metadataStr = metadataMatch[0]
-          const titleMatch = metadataStr.match(/title:\s*['"](.*?)['"]/s)
-          const descMatch = metadataStr.match(/description:\s*['"](.*?)['"]/s)
-          const dateMatch = metadataStr.match(/date:\s*['"](.*?)['"]/s)
-          const draftMatch = metadataStr.match(/draft:\s*true/s)
+          const titleMatch = matchString(metadataStr, 'title')
+          const descMatch = matchString(metadataStr, 'description')
+          const dateMatch = matchString(metadataStr, 'date')
+          const draftMatch = metadataStr.match(/^\s*draft:\s*true/m)
 
           if (!titleMatch || !dateMatch) continue
           if (draftMatch) continue
