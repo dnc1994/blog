@@ -128,6 +128,8 @@ export const components: Record<
           className='mt-7 w-full'
           src={src}
           alt={alt}
+          loading='lazy'
+          decoding='async'
           draggable={false}
         />
       )
@@ -139,6 +141,8 @@ export const components: Record<
           className='mt-7 w-full'
           src={src}
           alt={alt}
+          loading='lazy'
+          decoding='async'
           draggable={false}
         />
       )

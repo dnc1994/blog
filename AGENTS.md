@@ -57,7 +57,7 @@ export const metadata = {
 ```
 
 - **Translations**: posts sharing a `translationId` get a language switcher; only `canonical: true` appears in listings, tags, the home dump and the dive map.
-- **Drafts**: `draft: true` posts are excluded from `lib/articles.ts` listings (index pages, tags, RSS, home, `/dive`) and from `generateStaticParams`, so they have no page in the build even if committed. They remain routable in `next dev`. Treat them as non-existent in production counts.
+- **Drafts**: `draft: true` posts are excluded from `lib/articles.ts` listings (index pages, tags, RSS, home, `/dive`) and from `generateStaticParams`, so they have no page in the build even if committed. They remain routable in `next dev`. The one rule lives in `isHiddenDraft()` in `lib/articles.ts`; use it rather than re-checking `metadata.draft`. Treat them as non-existent in production counts.
 - `lib/articles.ts` loads content: `getArticlesFromSection()`, `getDedupedArticlesFromSection()`, `getAllArticles()`. Dynamic imports use explicit string literals per section (webpack static analysis); don't refactor them into template literals.
 
 ### MDX components
@@ -70,7 +70,7 @@ Full reference: `docs/visual-style.md`. Essentials:
 
 - **Theme**: dark by default; `html.theme-light` switches to a cream "paper" variant (Flexoki-based). The theme class is set before paint by an inline script in `app/layout.tsx`; `components/theme-toggle.tsx` exposes `setSiteTheme()`.
 - **Palette**: always use the `rurikon-*` Tailwind colors, never raw hex, in site UI. 50 = surface, 100/200 = lines, 300/400 = muted text, 500 = body, 600 = headings, 800 = strongest; plus `rurikon-border`, `rurikon-accent` (teal), `rurikon-signal` (orange) and `rurikon-ghost` (decorative only, fails contrast). Both themes redefine the same variables, so components theme automatically.
-- **Fonts** (self-hosted in `app/_fonts`): `font-sans` Inter (body), `font-display` Space Grotesk (headings, titles), `font-mono` JetBrains Mono (UI chrome, meta, code).
+- **Fonts** (self-hosted in `app/_fonts`): `font-sans` Inter (body; subset to Latin, punctuation and symbols, other scripts fall back to system fonts), `font-display` Space Grotesk (headings, titles), `font-mono` JetBrains Mono (UI chrome, meta, code).
 - **Layout**: `components/navbar.tsx` (top bar, hex-indexed links), `components/site-footer.tsx`, `components/content-frame.tsx` (`/` and `/posts` are full width; every other route gets a centered `max-w-[44rem]` reading column).
 - **Decode effect**: `components/decode.tsx` (`useDecode`, `<DecodeText>`) renders the real text on the server, then scrambles it to noise and resolves it on mount/hover. The `.decode-pending` CSS hides it until JS runs, with a fallback if hydration fails. Respects `prefers-reduced-motion`.
 - **Dump lists**: `components/dump-list.tsx` + `lib/dump.ts` render article lists as hex dumps (offset, hex bytes of the title, decoded title, date). Used by the home page (`components/home.tsx`) and `/posts`.
@@ -96,6 +96,8 @@ Full reference: `docs/visual-style.md`. Essentials:
 - `/resume`: content in `app/resume/source.ts`, rendering in `page.tsx`. The recruiter PDF's `resume-pdf/main.tex` is generated from the same source: after editing `source.ts`, run `npm run resume:tex` and commit `main.tex` too. See `docs/resume.md`.
 - `/tags/all`: tag browser. Standalone pages: `/the-best-things`, `/hyperbola`, `/my-subscriptions`, `/taste-loss-taxonomy`.
 - RSS: `scripts/generate-rss.mjs` runs after every build (posts + misc, drafts excluded).
+- SEO: `app/sitemap.ts` and `app/robots.ts` generate `sitemap.xml` / `robots.txt`; add new standalone routes to `STATIC_ROUTES` in `sitemap.ts`. Article pages get canonical + hreflang links from `resolveAlternates()` in `lib/seo.ts`.
+- `public/_headers` sets Cloudflare Pages response headers (immutable caching for `/_next/static/*`).
 
 ## Conventions
 
