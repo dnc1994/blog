@@ -8,6 +8,7 @@ import {
   MagiLogo,
   PostSummarizerBotLogo,
   RedactleZhLogo,
+  StillwaterLogo,
   TasteLossTaxonomyLogo,
   XumingLogo,
 } from './logos'
@@ -24,6 +25,14 @@ export interface Project {
 
 // To override a logo, swap the `logo` component for a project below.
 export const projects: Project[] = [
+  {
+    id: 'stillwater',
+    name: '止水 Stillwater',
+    description:
+      'Be a duck and drift through one slow day on a river in Jiangnan: fly under stone bridges, dive for snails, beg for bread and gather lost ducklings, all generated in the browser.',
+    repoUrl: 'https://github.com/dnc1994/Stillwater',
+    logo: StillwaterLogo,
+  },
   {
     id: 'firecrackers',
     name: '满地红 Firecrackers',

@@ -214,3 +214,21 @@ export function XumingLogo(props: LogoProps) {
     </svg>
   )
 }
+
+export function StillwaterLogo(props: LogoProps) {
+  return (
+    <svg viewBox='0 0 64 64' fill='none' aria-hidden='true' {...props}>
+      <rect x='1.5' y='1.5' width='61' height='61' rx='14' className='fill-rurikon-50 stroke-rurikon-200' />
+      {/* Moon bridge closing into a circle with its reflection */}
+      <path d='M10 36H20C20 23 44 23 44 36H54' className='stroke-rurikon-500' strokeWidth='2.4' strokeLinecap='round' strokeLinejoin='round' />
+      <path d='M20 36C20 49 44 49 44 36' className='stroke-rurikon-300' strokeWidth='1.6' strokeLinecap='round' strokeDasharray='2.5 2.5' />
+      {/* Water line */}
+      <path d='M8 36H56' className='stroke-rurikon-200' strokeWidth='1.2' strokeLinecap='round' />
+      <path d='M12 44H18M46 44H52M15 50H22M42 50H49' className='stroke-rurikon-200' strokeWidth='1.4' strokeLinecap='round' />
+      {/* Duck drifting through the arch */}
+      <path d='M26 36C26 32.5 28.5 31 31.5 31.5C32.2 29.2 34 28 35.8 28.8C37.4 29.5 37.6 31.4 36.6 32.6L38.6 33.2L36.4 34C36 35.2 35.6 36 35.6 36Z' className='fill-rurikon-700' />
+      <circle cx='35.4' cy='30.6' r='0.7' className='fill-white' />
+      <path d='M37.2 33.1L39.6 33.4' className='stroke-rurikon-signal' strokeWidth='1.6' strokeLinecap='round' />
+    </svg>
+  )
+}
