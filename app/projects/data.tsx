@@ -30,7 +30,7 @@ export const projects: Project[] = [
     name: '止水 Stillwater',
     description:
       'Be a duck and drift through one slow day on a river in Jiangnan: fly under stone bridges, dive for snails, beg for bread and gather lost ducklings, all generated in the browser.',
-    repoUrl: 'https://github.com/dnc1994/Stillwater',
+    repoUrl: 'https://stillwater.linghao.io/',
     logo: StillwaterLogo,
   },
   {
