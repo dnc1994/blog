@@ -1,6 +1,7 @@
 'use client'
 
 import cn from 'clsx'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { DumpList, type DumpItem } from '@/components/dump-list'
@@ -73,7 +74,10 @@ export function PostsClient({ posts, tags }: PostsClientProps) {
 
       <div className='mt-8 mb-6'>
         <p className='mb-3 font-mono text-[13px] text-rurikon-300 break-all'>
-          $ xxd ~/writing{grep}
+          $ xxd ~/writing{grep}{' '}
+          <Link href='/library' className='text-rurikon-400 underline underline-offset-4 hover:text-rurikon-accent'>
+            (or view as books)
+          </Link>
         </p>
         <div className='flex flex-wrap gap-2' role='group' aria-label='Filter by tag'>
           <button

@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 
 // Index-style pages use the full 1280px canvas; everything else gets a
 // centered reading column.
-const WIDE_ROUTES = ['/', '/posts']
+const WIDE_ROUTES = ['/', '/posts', '/library']
 
 export default function ContentFrame({
   children,
