@@ -36,8 +36,7 @@ export async function HomeHero() {
       <div className='mt-8 flex flex-wrap items-end justify-between gap-6'>
         <p className='max-w-xl font-display text-lg sm:text-xl leading-relaxed text-rurikon-500'>
           Hey, I&apos;m Linghao. My mission is to synthesize knowledge and share
-          it freely with all. Everything I&apos;ve written is dumped below, raw
-          from memory.
+          it freely with all.
         </p>
         <p className='font-mono text-xs leading-relaxed text-rurikon-300 sm:text-right'>
           {total} entries · 0x{total.toString(16).toUpperCase()}
