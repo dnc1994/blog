@@ -5,6 +5,9 @@ import { getDedupedArticlesFromSection } from '@/lib/articles'
 import { toDumpEntries } from '@/lib/dump'
 import { projects } from '@/app/projects/data'
 import { RandomSubset } from '@/components/random-subset'
+import { BookLink } from '@/components/books-view'
+import { getBooks } from '@/lib/books'
+import { FEATURED_POSTS } from '@/app/featured'
 
 export function SectionLabel({ children, id }: { children: React.ReactNode; id?: string }) {
   return (
@@ -33,8 +36,7 @@ export async function HomeHero() {
       <div className='mt-8 flex flex-wrap items-end justify-between gap-6'>
         <p className='max-w-xl font-display text-lg sm:text-xl leading-relaxed text-rurikon-500'>
           Hey, I&apos;m Linghao. My mission is to synthesize knowledge and share
-          it freely with all. Everything I&apos;ve written is dumped below, raw
-          from memory.
+          it freely with all.
         </p>
         <p className='font-mono text-xs leading-relaxed text-rurikon-300 sm:text-right'>
           {total} entries · 0x{total.toString(16).toUpperCase()}
@@ -66,6 +68,37 @@ export async function RecentDump({ count = 8 }: { count?: number }) {
           </>
         }
       />
+    </section>
+  )
+}
+
+export async function FeaturedCovers() {
+  const posts = await getDedupedArticlesFromSection('posts')
+  const offsets = new Map(toDumpEntries(posts).map((e) => [e.slug, e.offset]))
+  const books = await getBooks()
+  // Drafts and unknown slugs simply drop out.
+  const featured = FEATURED_POSTS.flatMap((slug) => books.find((b) => b.slug === slug) ?? [])
+  if (featured.length === 0) return null
+  return (
+    <section aria-labelledby='pinned' className='pb-14'>
+      <SectionLabel id='pinned'>$ ls ~/writing/pinned/</SectionLabel>
+      <ul className='-mx-1 flex gap-5 sm:gap-6 overflow-x-auto px-1 pt-2 pb-3 snap-x'>
+        {featured.map((b) => (
+          <li key={b.slug} className='w-36 sm:w-44 shrink-0 snap-start'>
+            <BookLink book={b} />
+            <p className='mt-3 flex justify-between font-mono text-[11px] text-rurikon-300'>
+              <span className='text-rurikon-accent'>{offsets.get(b.slug)}</span>
+              <span className='tabular-nums'>{b.date}</span>
+            </p>
+          </li>
+        ))}
+      </ul>
+      <Link
+        href='/posts?view=books'
+        className='inline-block mt-2 font-mono text-xs text-rurikon-accent hover:text-rurikon-800 transition-colors'
+      >
+        view all as books →
+      </Link>
     </section>
   )
 }

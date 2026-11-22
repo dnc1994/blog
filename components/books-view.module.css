@@ -1,0 +1,122 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 2.5rem 2rem;
+  align-items: start;
+}
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 3.5rem 2.75rem;
+  }
+}
+
+/* Cover area tracks post length; books sit on a common baseline. */
+.scaled {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 2.5rem 1.75rem;
+}
+.scaled > li {
+  width: calc(150px * var(--scale));
+}
+
+.thick {
+  column-gap: 1.5rem;
+}
+
+.book {
+  display: block;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: transform 0.18s ease;
+}
+.book:hover,
+.book:focus-visible {
+  transform: translate(-3px, -5px);
+}
+.book:focus-visible,
+.spine:focus-visible {
+  outline: 2px solid var(--color-rurikon-accent);
+  outline-offset: 3px;
+}
+
+/* Shelf: spines stand on boards drawn behind each wrapped row. */
+.shelf {
+  --row: 260px;
+  --board: 10px;
+  --gap: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  column-gap: 2px;
+  row-gap: calc(var(--board) + var(--gap));
+  padding: 0 10px calc(var(--board) + var(--gap));
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent var(--row),
+    var(--color-rurikon-200) var(--row),
+    var(--color-rurikon-100) calc(var(--row) + var(--board)),
+    transparent calc(var(--row) + var(--board)),
+    transparent calc(var(--row) + var(--board) + var(--gap))
+  );
+}
+.shelf > li {
+  display: flex;
+  align-items: flex-end;
+  /* Every row is exactly --row tall so the boards line up. */
+  height: var(--row);
+  box-sizing: border-box;
+}
+
+.spine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 10px 0 8px;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--ink);
+  border-top: 5px solid var(--accent);
+  box-shadow: inset -3px 0 0 rgba(0, 0, 0, 0.14), inset 2px 0 0 rgba(255, 255, 255, 0.12);
+  transition: transform 0.18s ease;
+}
+.spine:hover,
+.spine:focus-visible {
+  transform: translateY(-10px);
+}
+.spineTitle {
+  writing-mode: vertical-rl;
+  min-height: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: var(--display), var(--sans), system-ui, 'PingFang SC', sans-serif;
+  font-variation-settings: 'wght' 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+.spineYear {
+  flex: none;
+  margin-top: 6px;
+  font-family: var(--mono), ui-monospace, monospace;
+  font-size: 9px;
+  font-variation-settings: 'wght' 700;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book,
+  .spine {
+    transition: none;
+  }
+  .book:hover,
+  .book:focus-visible,
+  .spine:hover,
+  .spine:focus-visible {
+    transform: none;
+  }
+}
