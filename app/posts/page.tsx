@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import { getDedupedArticlesFromSection } from '@/lib/articles'
+import { getBooks } from '@/lib/books'
 import { toDumpEntries } from '@/lib/dump'
 import { PostsClient } from './posts-client'
 
@@ -9,6 +10,8 @@ export const metadata = {
 
 export default async function Page() {
   const posts = toDumpEntries(await getDedupedArticlesFromSection('posts'))
+  // Post lengths, for the book-cover view.
+  const words = Object.fromEntries((await getBooks()).map((b) => [b.slug, b.words]))
 
   const tagCounts: Record<string, number> = {}
   for (const post of posts) {
@@ -22,7 +25,7 @@ export default async function Page() {
 
   return (
     <Suspense fallback={null}>
-      <PostsClient posts={posts} tags={tags} />
+      <PostsClient posts={posts} tags={tags} words={words} />
     </Suspense>
   )
 }

@@ -9,7 +9,6 @@ export const dynamic = 'force-static'
 const STATIC_ROUTES = [
   '',
   '/posts',
-  '/library',
   '/projects',
   '/gallery',
   '/lists',

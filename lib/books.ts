@@ -6,7 +6,6 @@ export type Book = {
   slug: string
   href: string
   title: string
-  year: string
   date: string
   tags: string[]
   /** Latin words + CJK characters in the post body. */
@@ -37,7 +36,6 @@ export async function getBooks(): Promise<Book[]> {
       slug: p.slug,
       href: `/posts/${p.slug}`,
       title: p.title,
-      year: p.date.slice(0, 4),
       date: p.date,
       tags: p.tags,
       words: countWords(await fs.readFile(path.join(dir, `${p.slug}.mdx`), 'utf8')),
