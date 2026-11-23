@@ -1,0 +1,75 @@
+export const metadata = {
+  title: 'The Search Is the Writing',
+  description: 'If creativity is a search problem, AI made generating candidates free. What is left of writing is the slow accumulation of the heuristics you search with, and this post shows the note it was found from.',
+  date: '2026.11.23',
+  tags: ['AI', 'Writing', 'Philosophy'],
+  language: 'en',
+  translationId: 'the-search-is-the-writing',
+  canonical: true,
+}
+
+Here is the note I typed into Claude a minute past midnight to start this post. I have not cleaned it up.
+
+> Many have framed creativity as the ability to find connections between seemingly irrelevant fields. Some have also framed it as a search problem (https://www.tengbao.me/blog/creativity-is-a-search-problem/, also think of numerous examples in the AI era, e.g. somebody generated all possible melodies with a given set of parameters and the task essentially becomes finding the right one; also there is the famous monkey typing example)
+>
+> I find my creative pursuits (mostly writing blogs) increasingly become like this. AI has made this much more clear, if people still had doubts earlier.
+>
+> This also reinforces https://swyx.io/writing-mise-en-place. My writing workflow now becomes like that, where I keep accumulating ideas and finding connections, and when the time is ripe I dump all of those into AI and refine it together (exactly what I am doing right now typing this prompt)
+>
+> I want to write a blog post about this. Brainstorm the approaches
+
+Everything below came out of that dump and a few rounds of back-and-forth. My view is that the dump is where most of the writing happened, and that what followed was search. Working this way can look like cheating, and I want to explain why I don't think it is.
+
+## Two descriptions of one thing
+
+The account of creativity I hear most often is that it means connecting fields that look unrelated. Teng Bao's [Creativity Is a Search Problem](https://www.tengbao.me/blog/creativity-is-a-search-problem/) gives a different one: every possible work already sits somewhere in an enormous space of possible works, and creating is "using heuristics to iteratively reduce a large search space" until what remains is good enough. Spelling and grammar are strict heuristics, plot and mood are loose ones, and each choice you make throws away most of what was left.
+
+These usually get presented as two separate ideas, but they describe the same activity. Most heuristics tell you to look near where you already are: the next sentence should follow from this one, the next post should resemble the last. A connection between distant fields is a heuristic that tells you to look somewhere far away, in a region nobody working on your topic has a reason to visit. It is still search. It just takes a longer step.
+
+## Generating was always the cheap half
+
+The [monkeys at their typewriters](https://en.wikipedia.org/wiki/Infinite_monkey_theorem) will eventually produce Hamlet, and nobody has ever thought that makes the monkeys playwrights. Borges's [Library of Babel](https://en.wikipedia.org/wiki/The_Library_of_Babel) holds every possible book, and its librarians despair because holding all of them is the same as holding none.
+
+There is also a version that actually happened. In 2020 Damien Riehl and Noah Rubin wrote a program that enumerated every 8-note, 12-beat melody, about 68 billion of them, saved them to a hard drive, and [released them into the public domain](http://allthemusic.info/). Their point was about copyright law. The side effect is a physical object that contains every pop hook of that shape, including the ones nobody has written yet, and it has not put a single songwriter out of work. Having all the melodies was never the hard part; knowing which one to keep is the job.
+
+Language models did to prose what that hard drive did to melodies. I can ask for twenty competent openings and have them in a minute. Producing candidates stopped being scarce, and recognition did not get any cheaper. Teng Bao's post is mostly about how heuristics shrink the space. The question I care about more is where one particular person's heuristics come from, because that is the part the model does not supply.
+
+## Mise en place is where the heuristics get built
+
+swyx's [Mise en Place Writing](https://swyx.io/writing-mise-en-place) borrows the kitchen practice of preparing every ingredient before you cook. His argument is that writing should be split the same way: pre-writing is a constant, low-intensity habit of capturing ideas and attaching links and quotes to them as they turn up, and drafting is a separate sitting that goes fast because everything is already on the counter.
+
+In his version the drafting is still a real block of hours. In mine it has mostly disappeared. I keep notes, the notes collect links, some of the notes turn out to be about the same thing, and at some point I pour the whole pile into a model and we refine it together.
+
+What I had wrong was what the pile is. I thought of my notes as ingredients, raw material that would end up in the dish. Look at the dump at the top of this post: almost none of its prose survived. What it contains is a list of decisions. It says which two framings I believe are secretly one, which examples count as evidence, which other post this one reinforces, and that my own workflow is the case study. Each of those rules out an enormous number of possible posts. The prep, in my kitchen, is less about chopping onions than about deciding what is for dinner.
+
+{/* TODO(Linghao): one concrete detail here would help -- e.g. where these notes live, or how long the Teng Bao and swyx links had been sitting there before tonight. */}
+
+The back-and-forth worked the same way. Claude answered the dump with six angles the post could take and recommended two of them as the spine. I replied in one line that I wanted all six, and that the dump itself had to be shown. Neither line added a sentence to the post. Both were heuristics, and they are the reason this post has the shape it has.
+
+There is one more piece of evidence, and it is a little funny. The style guide for this blog is a checklist that an AI agent runs against every finished draft. It has a section on novelty, and that section already says that creativity is a search problem and that the draft is the search result. I had written this post's thesis into my tooling before I noticed it was a post.
+
+## Ripe
+
+The phrase in the dump I can explain least is "when the time is ripe."
+
+The best description I have is in the same terms as everything above. Early on, a new note could belong to any of a dozen posts, so every note opens options. Later, the notes start closing them. The pile is ripe when the next thing I save only fits one post, and I can say in a sentence what the others in the pile have in common. For this one the sentence was that Teng Bao and swyx were describing the two halves of what I do every time I write.
+
+That is a description after the fact. I am not sure it would help me predict the next one, and I do not really have a system for it.
+
+{/* TODO(Linghao): this section is the most "you" and I only had one phrase to go on. Replace or extend with what ripeness actually feels like, or a pile that never ripened. */}
+
+## What the search frame leaves out
+
+Search assumes the space and the target hold still, and the best work does not respect that. [Margaret Boden](https://en.wikipedia.org/wiki/Margaret_Boden) separates exploring a conceptual space from transforming it, and the works people remember longest tend to be the ones that changed what counted as good. Teng Bao makes a related concession with *Guernica*: a model can find its way to what the painting looks like without any grasp of why it mattered.
+
+I think this objection is correct and I do not have an answer to it. A blog post that connects two other blog posts is exploration, and I am comfortable with that. I would be more careful making the same claim about a novel.
+
+## Whose search
+
+Claude produced most of the sentences in this post, so "did AI write this?" has an easy answer and it is not a very informative one. Anyone can ask the same model for an essay on creativity and search. They would get a different essay, because they would be searching with different heuristics.
+
+The dump at the top is 145 words long and badly punctuated. I think it is the part of this post that is most mine.
+
+---
+
+*Generative AI Usage Disclosure: Drafted by Claude from the note quoted at the top and the conversation that followed, then checked against my style guide.*

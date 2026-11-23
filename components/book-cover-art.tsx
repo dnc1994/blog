@@ -918,7 +918,21 @@ const signal = (() => {
   )
 })()
 
+// Every candidate already exists; the work is finding the one to keep.
+const search = (
+  <>
+    {R(7).flatMap((r) =>
+      R(7).map((c) => {
+        const hit = r === 2 && c === 4
+        return <circle key={`${r}-${c}`} cx={14 + c * 12} cy={12 + r * 12} r={hit ? 4.2 : 2.2} fill={hit ? A : 'none'} stroke={hit ? A : I} strokeWidth={0.9} />
+      }),
+    )}
+    <path d={line([[14, 84], [38, 84], [38, 60], [62, 60], [62, 36]])} fill='none' stroke={I} strokeWidth={1.3} strokeDasharray='2.4 1.8' />
+  </>
+)
+
 export const COVERS: Record<string, Cover> = {
+  'the-search-is-the-writing': { palette: P.teal, layout: 'framed', art: search },
   'what-to-pursue-instead-of-happiness': { palette: P.yellow, layout: 'inset', art: signal },
   'aie-code-summit-2026-best-talks': { palette: P.ink, layout: 'framed', art: talks },
   'taxonomy-differences-matter': { palette: P.paper, layout: 'inset', art: taxonomy },
