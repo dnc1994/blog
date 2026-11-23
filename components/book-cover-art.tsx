@@ -891,7 +891,35 @@ const chunks = (() => {
   )
 })()
 
+// Nobody chases the needle: the reading comes from the generators underneath it.
+const signal = (() => {
+  const cx = 50
+  const cy = 47
+  const at = (deg: number, r: number): [number, number] => [f(cx + r * Math.cos((deg * Math.PI) / 180)), f(cy - r * Math.sin((deg * Math.PI) / 180))]
+  const [nx, ny] = at(50, 31)
+  return (
+    <>
+      {R(5).map((i) => (
+        <line key={i} x1={14 + i * 18} y1={80} x2={cx} y2={cy} stroke={I} strokeWidth={0.8} />
+      ))}
+      <path d={`M${cx - 36} ${cy}A36 36 0 0 1 ${cx + 36} ${cy}Z`} fill={I} />
+      {R(8).map((k) => {
+        const [x1, y1] = at(160 - k * 20, 27)
+        const [x2, y2] = at(160 - k * 20, 32)
+        return <line key={k} x1={x1} y1={y1} x2={x2} y2={y2} stroke={B} strokeWidth={1.4} />
+      })}
+      <line x1={cx} y1={cy} x2={nx} y2={ny} stroke={A} strokeWidth={2.6} strokeLinecap='round' />
+      <circle cx={cx} cy={cy} r={3.4} fill={B} />
+      {R(4).map((i) => (
+        <circle key={i} cx={14 + i * 18} cy={85} r={5.4} fill={I} />
+      ))}
+      <circle cx={86} cy={85} r={4.6} fill='none' stroke={I} strokeWidth={1.6} />
+    </>
+  )
+})()
+
 export const COVERS: Record<string, Cover> = {
+  'what-to-pursue-instead-of-happiness': { palette: P.yellow, layout: 'inset', art: signal },
   'aie-code-summit-2026-best-talks': { palette: P.ink, layout: 'framed', art: talks },
   'taxonomy-differences-matter': { palette: P.paper, layout: 'inset', art: taxonomy },
   'memory-systems-should-be-evolved': { palette: P.sky, layout: 'bleed', art: evolve },
