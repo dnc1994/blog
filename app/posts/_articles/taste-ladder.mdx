@@ -1,0 +1,76 @@
+export const metadata = {
+  title: 'The Taste Ladder',
+  description: 'Taste, vocabulary and taxonomy are one skill at different heights. I think of it as a ladder with four rungs -- notice, name, sort, steer -- and AI now helps on every one of them.',
+  date: '2026.11.23',
+  tags: ['AI', 'Philosophy'],
+  language: 'en',
+  translationId: 'taste-ladder',
+  canonical: true,
+}
+
+"Taste is the moat" gets repeated a lot about working with AI, usually without anyone saying what taste is. Jason Liu made that complaint on stage at AI Engineer Code Summit this month, in [Ambition in AI](https://ai.engineer/code/2026/talks/jason-liu), one of the [five talks I'd recommend](/posts/aie-code-summit-2026-best-talks) from the conference. Then he gave an answer: taste is mostly being able to say what you like and what you don't, and saying it takes vocabulary.
+
+That stuck with me because of a habit I've had for a while and never managed to explain. Whenever I start on a problem I don't understand, the first thing I do is make a taxonomy. Sometimes it's a literal table. More often it's a few buckets I'm sorting things into before I've admitted to myself that I'm sorting. I wrote [a whole post](/posts/taxonomy-differences-matter) about what taxonomies are, and I still couldn't have told you why sorting comes first.
+
+Liu's talk supplied what sits underneath that habit. What sits in the middle came from [a post on vocabulary](https://neilkakkar.com/vocabulary-mental-model.html) by Neil Kakkar that I read years ago and keep coming back to. Stacked up, the three describe one skill at different heights, which I've started calling the **taste ladder**. It has four rungs: notice, name, sort, steer. Each rung is useful, and each one fails in its own way if you stop there, which is what pushes you up to the next.
+
+## Notice
+
+Everything starts with a reaction. You look at a design, a paragraph, a model's answer, and something in you says no. This comes before language, and it's the only rung nobody can hand you.
+
+It's also useless on its own. Liu describes hitting this in art school, when his judgment had outgrown his skill. He could see his work wasn't good, and telling himself to make it better did nothing, because there was no next action in the feeling.
+
+Anyone who has given feedback to a coding agent has been stuck in the same place. "This isn't right, try again" produces a different wrong answer. The reaction is real, but it carries no information the other side can use.
+
+{/* TODO(Linghao): optional personal anchor. One specific time you knew an output was off and could only say "try again" -- a game asset, a summary, a draft. Two or three sentences. See VOICE.md C1. */}
+
+## Name
+
+What got Liu unstuck was vocabulary: space, value, shape, texture. Once a painting can have a problem with value, you can look for that problem and fix it without touching the rest.
+
+This is Kakkar's whole argument. A name is a handle on a pattern. Before you have the name, the pattern is an unknown unknown; after, it's something you can watch for, and you start catching it while it happens instead of in hindsight. He also points out that a name often arrives with its fix attached.
+
+The trouble with names is that they come one at a time. Kakkar's own example is a pair of proverbs that contradict each other. One says "absence makes the heart grow fonder." The other says "out of sight, out of mind." Each is true in some situations and false in others, and a pile of names can't tell you which situation you're in. The usual result is that you pick a favorite name and see it everywhere.
+
+## Sort
+
+This is where the taxonomy comes in, and I think it's why I reach for one so early. A taxonomy is what you get when you make the names answer to each other. It says these four things are different kinds of the same thing, this one is a special case of that one, and these two can't both be true of the same object.
+
+My standing example is the "bad" AI answer. Bad can mean the model made something up, misread what I wanted, pitched the detail wrong, or refused when it shouldn't have. Having those four names is rung two. Knowing that they are exclusive enough to count, and that each has a different fix, is rung three.
+
+In the earlier post I argued that a taxonomy should be judged by its job, and listed four jobs: predict, coordinate, allocate, govern. What the four have in common is that the sorting changes what happens next. Triage categories decide who gets seen first, and a platform's harm categories decide what gets reviewed and enforced. A taxonomy with no job is a filing system, precise-looking, with nothing downstream depending on it. So the last rung comes from asking the same question about taste. When the thing I'm sorting is my own reaction to a piece of work, what is the job?
+
+## Steer
+
+A category of taste does its job when it tells me what to say next, to myself or to a model. I call that steering, and a taxonomy steers when knowing which kind of wrong I'm looking at tells me what to ask for.
+
+This is Liu's art-school lesson carried over to engineering. A vague complaint gives an agent nothing to work with, and a specific picture of the defect does. His example is a short prompt about finding implicit state machines: the phrase names the problem precisely enough that the agent knows what to look for and what fixed would look like.
+
+It is also how he defines taste, as "the ability to describe what you like and predict what others will like." Describing is the first three rungs. Predicting is what you can do once the description is good enough to act on.
+
+He explains why this rung matters more now, too. In machine learning terms we have become the critic to the model's generator, and a critic can only improve a generator as far as it can say what's wrong. When the generator gets better than the critic's ability to specify, progress stops. I suspect that from the inside this looks like the model hitting a plateau.
+
+## Going around
+
+The ladder is really a loop. Steering produces new work, and new work gives you something new to react to. Each pass, the reaction gets finer, and things that used to feel uniformly fine start to separate. My guess is that this is why taste looks innate from outside and feels like practice from inside.
+
+What has changed is how fast you can go around in a field you don't know. AI helps on every rung, in a different role each time:
+
+- Notice. It produces ten variants in a minute. A reaction needs something to compare against, and now the contrasts are cheap.
+- Name. Ask what practitioners call the difference between two of those variants, and it tells you.
+- Sort. It drafts a first taxonomy of those names, which gives you something to argue with.
+- Steer. Here it's the thing being directed, and it does the next round of work for you to react to.
+
+In an unfamiliar area the first three matter more than the last. The best use I've found for a model there is picking up a field's language. It teaches that faster than a textbook can, because I get to ask about the exact thing in front of me.
+
+## Why I sort first
+
+Back to the habit I started with. I think I open every new problem with a taxonomy because sorting is the lowest rung where I can check myself. A reaction is just a reaction, and a single name is hard to test. A taxonomy I can try on ten real cases, see where it breaks, and see whether it tells me what to do next.
+
+It also used to be the expensive rung. Getting from a first reaction to a usable set of distinctions in an unfamiliar field took months of reading and practice. Now a rough version takes an afternoon, and the time goes into more trips around the loop. Liu closes his talk by asking engineers which interests they set aside to do software, on the argument that going back to them has become cheap. The ladder is how I'd explain why.
+
+As for what taste is, since the phrase never says: for me it's these four rungs, and most of the time I can tell which one I'm stuck on.
+
+---
+
+*Generative AI Usage Disclosure: The idea and the three sources are mine. Claude outlined and drafted the post from them, I revised it through comments, and Claude edited it against my style guide.*

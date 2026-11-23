@@ -918,7 +918,20 @@ const signal = (() => {
   )
 })()
 
+// The taste ladder: four rungs, the top one (steer) lit.
+const ladder = (
+  <>
+    <path d='M34 92L40 8M66 92L60 8' fill='none' stroke={I} strokeWidth={3} strokeLinecap='round' />
+    {R(4).map((i) => {
+      const y = 76 - i * 19
+      const dx = ((92 - y) / 84) * 6
+      return <line key={i} x1={f(34 + dx)} y1={y} x2={f(66 - dx)} y2={y} stroke={i === 3 ? A : I} strokeWidth={i === 3 ? 4.4 : 3} strokeLinecap='round' />
+    })}
+  </>
+)
+
 export const COVERS: Record<string, Cover> = {
+  'taste-ladder': { palette: P.navy, layout: 'framed', art: ladder },
   'what-to-pursue-instead-of-happiness': { palette: P.yellow, layout: 'inset', art: signal },
   'aie-code-summit-2026-best-talks': { palette: P.ink, layout: 'framed', art: talks },
   'taxonomy-differences-matter': { palette: P.paper, layout: 'inset', art: taxonomy },
